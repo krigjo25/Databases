@@ -113,11 +113,21 @@ DELIMITER **
     
 /*********************************** library - procedures ******************************************/
 DELIMITER **
-    CREATE OR REPLACE PROCEDURE insertL (In bID INT, vbookName VARCHAR(255), vauthor VARCHAR(255), vQty INT, vBy VARCHAR(255), mID INT)
+    CREATE OR REPLACE PROCEDURE insertL (In bID INT, vQty INT, mID INT)
         BEGIN
+            -- Declaring variables
+            DECLARE vBy VARCHAR(255);
+            DECLARE vAuthor VARCHAR(255);
+            DECLARE vbookName VARCHAR(255);
+
+            -- Selecting values into the variableset
+            SELECT author INTO vAuthor FROM books WHERE id = bID;
+            SELECT memberName INTO vBy FROM member WHERE id = mID;
+            SELECT bookName INTO vbookName FROM books WHERE id = bID;
+
             -- Inserting values into the table
             INSERT INTO lib (bookID, bookName, author, qty, dateBorrowed, returnDate, remindDate, overDueDate, borrowedBy, memberID) VALUES
-                (bID, vbookName, vauthor, vQty, CURDATE(), CURDATE() + INTERVAL 4 WEEK, CURDATE() + INTERVAL 3 WEEK, CURDATE() + INTERVAL 5 WEEK, vBy, mID);
+                (bID, vbookName, vAuthor, vQty, CURDATE(), CURDATE() + INTERVAL 4 WEEK, CURDATE() + INTERVAL 3 WEEK, CURDATE() + INTERVAL 5 WEEK, vBy, mID);
         END **
 
   

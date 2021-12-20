@@ -62,7 +62,9 @@
 
                 CALL returnBook(vID)                                                            --      Return a book for the given member
                 CALL userSearch(vID)                                                            --      Search after a user to see the given rented books
-                CALL insertB(14, 'DemoTitle', 'Jhon Doe', 1, 'Jhon Doe', 12) 
+                CALL insertB(14,1,12) 
                                    --      Rent out a book for the given member
                 
 *****************************************************************************************/
+
+CALL insertB(14, 'DemoTitle', 'Jhon Doe', 1, 'Jhon Doe', 12) 
