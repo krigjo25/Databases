@@ -1,0 +1,41 @@
+Rooms
+    -   100 - 199 First Floor 
+    -   200 - 299 Second Floor
+    -   300 - 399 Third Floor
+
+Tables
+
+    First Floor
+    
+        -   roomID
+        -   roomName
+        -   hourlyRate
+    --------------------
+        Reseption,
+        Library,
+        cafeteria,
+        Pharmacy,
+        ICU,
+        Emergency Services
+        Ward
+        EquipmentRoom
+
+    Second Floor
+
+        -   roomID
+        -   roomName
+        -   hourlyRate
+
+
+    --------------------
+        Ward
+        Equipments
+        operation Theaters
+        EquipmentRoom
+
+Procedures
+    -   Update information
+
+Triggers
+
+Events

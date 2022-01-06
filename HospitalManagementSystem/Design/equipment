@@ -1,0 +1,7 @@
+equipment (list of special equipments in the hospital)
+
+        Column                          Comment
+    -   Equipment ID
+    -   Equipment Name
+    -   qty
+    -   Room nr

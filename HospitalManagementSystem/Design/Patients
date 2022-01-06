@@ -1,0 +1,68 @@
+Patient Table
+        Column                              Comment
+Personal Information
+    -   unique ID                           To identify the patient
+    -   Gender
+    -   age
+    -   ContactInfo                         Phone number, e-mail
+    -   Disease Code                        A KEY TO doc Table
+    -   Alergies                            A KEY TO alergies Table
+    -   blood type                          A KEY TO Blood type table 
+    -   PDF                                 Patient Journal
+    -   Datetime inn                            A counter from
+    -   DateTime out                            A counter untill
+    -   Next Appointment                    If the user is visiting a specialist
+
+Procedures
+    -   Insert a new patient
+    -   Update patient Journal
+    -   Update patient Information
+
+Events
+
+triggers
+    When the patient gets registered for the first time in the database,
+    Create a PDF containing the personal info, alergies, diagnosis ( where the recommended treatments get fetched from the database)
+
+
+PDF file 
+
+***************************************************
+Patient Journal of Jhon Doe 0 (fontsize 20, Fontfamily ARIAL titles bold)
+
+age         Gender
+20            M
+
+contact information
++4712345678, jhondoe@domaine.domaine
+
+List of current Diagnosis
+
+Recommended treatment for your illness
+
+
+List of Alergies
+
+CREATE TRIGGER my_trigger BEFORE UPDATE ON my_tbl
+  ....
+  SET RC= sys_exec('/usr/bin/python my_script.py');
+
+  
+Recommended treatment for your alergies
+
+
+Next Appointment
+dd.mm-yy
+**************************************************
+
+******************* Hospital Visits**************************
+Last hospital Visit : dd.mm.yy
+
+During your last stay at Ålesund Hospital
+patient were visiting (roomName)(roomID), between inDate + hh.mm and outdate + hh.mm
+
+(IF he were visiting more than one room)
+
+patient were also visiting (roomName)(roomID), between inDate + hh.mm and outdate + hh.mm
+
+**************************************************
