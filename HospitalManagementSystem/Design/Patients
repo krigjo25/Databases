@@ -27,6 +27,7 @@ triggers
 
 PDF file 
 self.height, self.width = letter
+
 ***************************************************
 Patient Journal of Jhon Doe 0 (fontsize 20, Fontfamily ARIAL titles bold)
 

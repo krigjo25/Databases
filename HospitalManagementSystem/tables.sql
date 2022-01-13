@@ -11,7 +11,7 @@ CREATE TABLE patient (
                         alergies VARCHAR(255) NOT NULL DEFAULT 00000,
                         diseases VARCHAR(255) NOT NULL DEFAULT 00000,
                         dateIn DATETIME NOT NULL DEFAULT CURRENT_TIME,
-                        dateOut DATETIME NOT NULL,
+                        dateOut DATETIME,
                         nextAppointment DATE,
                         billing MEDIUMBLOB,
                         patientJournal MEDIUMBLOB,
