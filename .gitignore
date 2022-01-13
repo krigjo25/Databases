@@ -2,3 +2,4 @@
 .vscode/settings.json
 HospitalManagementSystem/python/env/.env
 HospitalManagementSystem/python/env/
+*.pdf
