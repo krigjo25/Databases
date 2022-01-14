@@ -17,8 +17,8 @@ from dotenv import load_dotenv
 
 #   ReportLab Resposories
 from reportlab.lib.colors import blue
-from reportlab.pdfgen.canvas import Canvas,rl_config
 from reportlab.lib.pagesizes import A4, letter
+from reportlab.pdfgen.canvas import Canvas,rl_config
 
 load_dotenv()
 
@@ -113,6 +113,8 @@ class PDFCanvas (Canvas):
         self.setFont('Halvetica', 16)
 
 #   What the person has visited
+#   Notes from the doctor
+
 
     def BodyFooter(self):
         #   Initializing the class
