@@ -38,47 +38,37 @@ class PDFCanvas (Canvas):
         self.cur = self.conn.cursor()
 
     def BodyHeader(self):
-        #   Connecting, selecting and executing a mariadb statement
+
+        #   Initializing the SQL Statement, procsessing it, and fetch the statement and close the
         #   Personal info about the given patient
+
         query = 'SELECT * FROM patient;'
-        try:
-            cur = self.cur.execute(query)
-        except mariadb.Error as e:
-            print(e)
+        cur = self.cur.execute(query)
         data = self.cur.fetchall()
 
+        self.conn.close()
+        #   Initializing a list for the SQL values
+
         patientData = []
+
         for i in data:
             patientData.append(i)
-    
-        #    patientData.append(i[0])
-        #    patientData.append(i[1])
-        #    patientData.append(i[2])
-        #    patientData.append(i[3])
-        #    patientData.append(i[4])
-        #    patientData.append(i[5])
-        #    patientData.append(i[6])
-        #    patientData.append(i[7])
-        #    patientData.append(i[8])
-        #    patientData.append(i[9])
-
-        print(patientData)
-        print(patientData[0][0])
-        self.conn.close()
 
         # Declaring variables fetched from Database
         pid = patientData[0][0]
-        pName = patientData[0][1]
         age = patientData[0][2]
         sex = patientData[0][3]
+        pName = patientData[0][1]
         phone = patientData[0][4]
         email = patientData[0][5]
         address = 'streetName (nr), Apartment 2D'
         zipcode = '00000 NEWYORK'
-        arterise = '***********************************************************************************************'
+        
         bType = patientData[0][6]
         aCode = patientData[0][7]
         dCode = patientData[0][8]
+        arterise = '***********************************************************************************************'
+
         
         #   Title of the document
         docTitle = f'Patient Journal of {pName} {pid}'

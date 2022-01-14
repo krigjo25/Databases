@@ -1,4 +1,5 @@
 from lib.patientJournal import PDFCanvas
+from lib.insertToJournal import PDFsql
 
 def PDFSetup():
     #   Initializing the class
@@ -7,8 +8,9 @@ def PDFSetup():
     c.BodyHeader()
     #c.BodyMain()
     #c.BodyFooter()
-    c.save()
     c.showPage()
+    c.save()
+    
 
 if __name__ == '__main__':
     PDFSetup()
