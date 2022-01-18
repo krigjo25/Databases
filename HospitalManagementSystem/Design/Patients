@@ -31,42 +31,37 @@ self.height, self.width = letter
 ***************************************************
 Patient Journal of Jhon Doe 100 (fontsize 20, Fontfamily ARIAL titles bold)
 
-age         Sex
-20           M
+    age         Sex     BloodType           List of Current Diseases
+    20           M         0+                   A000A
 
 contact information
-
-+4712345678, 
+                                            List of Recommended treatment
++4712345678,                                        A000A
 jhondoe@domaine.domaine
 
-streetName(nr), Apartment (nr)
-zipCode, State
+streetName(nr), Apartment (nr)              List of Current Alergies
+zipCode, State                                      A000A
 
 List of current Diagnosis
-
-Recommended treatment for your illness
-
-
-List of Alergies
-
-
-  
-Recommended treatment:
+                                            List of Recommended treatment
+Recommended treatment for your illness              A000A
 
 patient registered
 dd.mm.yyyy
-**************************************************
+-----------------------------------------------------------------------------
 
 ******************* Hospital Visits**************************
-Last hospital Visit : dd.mm.yy
+Last Visit : dd.mm.yy
 
 During your last stay at Ålesund Hospital
 patient were visiting (roomName)(roomID), due to {reason}. between inDate + hh.mm and outdate + hh.mm
 
 doctor notes :
 max 200 letters
+-------------------------------------------------------------------------------------------------------
 (IF he were visiting more than one room)
 
 patient were also visiting (roomName)(roomID), between inDate + hh.mm and outdate + hh.mm
 
-**************************************************
+------------------------------------------------------------------------------
+Hospital logo, name, number, address, postalcode

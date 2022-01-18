@@ -1,14 +1,14 @@
 /********************************************   Patient table   ********************************************/
 
 CREATE TABLE patient (
-                        id INT NOT NULL AUTO_INCREMENT,
-                        patientName VARCHAR(255) NOT NULL,
-                        age VARCHAR(3) NOT NULL,
+                        id BIGINT NOT NULL AUTO_INCREMENT,
+                        patientName VARCHAR(255) NOT NULL DEFAULT,
+                        age TINYINT NOT NULL DEFAULT 20,
                         gender VARCHAR(5) NOT NULL, 
                         phoneNumber VARCHAR(255) NOT NULL,
                         eMail VARCHAR(255) NOT NULL,
-                        adress VARCHAR(255) NOT NULL,
-                        zipcode INT(4) NOT NULL,
+                        adress VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
+                        zipcode SMALLINT NOT NULL DEFAULT 0000,
                         bloodType VARCHAR(255), 
                         alergies VARCHAR(255) NOT NULL DEFAULT 00000,
                         diseases VARCHAR(255) NOT NULL DEFAULT 00000,
