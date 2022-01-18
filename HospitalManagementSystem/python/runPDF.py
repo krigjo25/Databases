@@ -27,6 +27,7 @@ def PDFSetup():
     execute = cur.execute(query)
     cur = cur.fetchone()
     
+    pid = []
     for i in cur:
         i = str(i)
         pid.append(i)

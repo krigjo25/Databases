@@ -15,6 +15,10 @@ from os import getenv
 #   dotenv Responsories
 from dotenv import load_dotenv
 
+#   Library Responsories
+
+from lib.dictionaries import Dictionaries
+
 #   ReportLab Resposories
 from reportlab.lib.colors import blue
 from reportlab.lib.pagesizes import A4, letter
@@ -27,7 +31,6 @@ class PDFCanvas (Canvas):
     def __init__(self, filename='patientJournal.pdf', pagesize=A4, bottomup=1, pageCompression=0, encoding=rl_config.defaultEncoding, verbosity=0, encrypt=None):
         super().__init__(filename,pagesize, bottomup, pageCompression, encoding, verbosity, encrypt)
         self.height, self.width = letter
-
         self.conn = mariadb.connect(
                                 host=getenv('HOST'),
                                 user= getenv('USERNAME'),
@@ -60,15 +63,13 @@ class PDFCanvas (Canvas):
         pName = patientData[0][1]
         phone = patientData[0][4]
         email = patientData[0][5]
-        #adrs = patientData [0][7]
-        #zip = patientData[0][8]
-
-        address = 'streetName (nr), Apartment 2D'
-        zipcode = '00000 NEWYORK'
+        adrs = patientData [0][6]
+        zipNum = patientData[0][7]
+        zipCode = Dictionaries.postalCode(patientData[0][7])
         
-        bType = patientData[0][6]
-        alC = patientData[0][7]#[0]
-        doC = patientData[0][8]#[0]
+        bType = patientData[0][8]
+        alC = patientData[0][9]#[0]
+        doC = patientData[0][10]#[0]
         arterise = '***********************************************************************************************'
 
         
@@ -99,8 +100,8 @@ class PDFCanvas (Canvas):
         self.setFont('Helvetica', 16)
         self.drawString( 50, 550, f'{phone},')
         self.drawString( 50, 525, f'{email}')
-        self.drawString( 50, 475, f'{address}')
-        self.drawString( 60, 450, f'{zipcode}')
+        self.drawString( 50, 475, f'{adrs}')
+        self.drawString( 60, 450, f'{zipNum}, {zipCode}')
         self.drawString( 0, 400, f'{arterise}')
 
                 #   illnesses
@@ -142,16 +143,17 @@ class PDFCanvas (Canvas):
 
     def BodyMain(self):
         #   Initializing the class
-        self.setFont('Halvetica', 16)
-
+        #self.setFont('Halvetica', 16)
+        pass
 #   What the person has visited
 #   Notes from the doctor
 
 
     def BodyFooter(self):
-        #   Initializing the class
-            #   UploadFile module
-        pass
-#   Hospital name
-#   Contactinfo
-#   organization information
+        #   Line Through
+        self.setFont('Helvetica', 10)
+        self.drawString( 0, 5, f'Logo')
+        self.drawString( 50, 5, f'HospitalName')
+        self.drawString( 125, 5, f'HospitalNumber')
+        self.drawString( 200, 5, f'HospitalAddress')
+        self.drawString( 275, 5, f'ZipCode, City')
