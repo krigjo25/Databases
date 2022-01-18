@@ -4,3 +4,4 @@ HospitalManagementSystem/python/env/
 HospitalManagementSystem/python/lib/__pycache/
 *.pdf
 .env
+*.pyc

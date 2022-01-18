@@ -24,6 +24,7 @@ class UploadFile():
         #   Converting data to binary format
         with open(fName, 'rb') as file:
             binaryData = file.read()
+            print(binaryData)
         return binaryData
 
     def generateBlob(table, column, id, name, photo, bioData):
@@ -42,11 +43,11 @@ class UploadFile():
         file = BinaryConverter(dataFile)
 
         #   Converting information into tuple
-        cur = (table, column, id, name, photo, file)
+        cur = (table, column, id, name, photo)
         result = cursor.execute(query, bFile)
         self.conn.close()
     
-    def generatePDF(self, column, value, vid):
+    def generatePDF(self, column, pdf, vid):
         conn = mariadb.connect(
                                 host=getenv('HOST'),
                                 user= getenv('USERNAME'),
@@ -58,8 +59,8 @@ class UploadFile():
         cur = conn.cursor()
 
         #   Update a column
-        value = self.BinaryConverter(value)
-        query = f' UPDATE patient SET {column} = {value} WHERE id = {vid}'
-        print(query)
+        #pdf = self.BinaryConverter(pdf)
+        #print(value)
+        query = f' UPDATE patient SET {column} = "{pdf}" WHERE id = {vid}'
         execute = cur.execute(query)
         conn.close()

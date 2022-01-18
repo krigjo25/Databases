@@ -45,7 +45,6 @@ class PDFCanvas (Canvas):
         query = 'SELECT * FROM patient;'
         cur = self.cur.execute(query)
         data = self.cur.fetchall()
-
         self.conn.close()
         #   Initializing a list for the SQL values
 
@@ -61,12 +60,15 @@ class PDFCanvas (Canvas):
         pName = patientData[0][1]
         phone = patientData[0][4]
         email = patientData[0][5]
+        #adrs = patientData [0][7]
+        #zip = patientData[0][8]
+
         address = 'streetName (nr), Apartment 2D'
         zipcode = '00000 NEWYORK'
         
         bType = patientData[0][6]
-        aCode = patientData[0][7]
-        dCode = patientData[0][8]
+        alC = patientData[0][7]#[0]
+        doC = patientData[0][8]#[0]
         arterise = '***********************************************************************************************'
 
         
@@ -83,33 +85,63 @@ class PDFCanvas (Canvas):
         self.setFont('Helvetica', 18)
         self.drawString( 50, 700, 'Age')
         self.drawString( 100, 700, 'Sex')
+        self.drawString(150, 700, 'BloodType')
 
         self.setFont('Helvetica', 16)
         self.drawString( 58, 675, f'{age}')
         self.drawString( 108, 675, f'{sex}')
+        self.drawString(158, 675, f'{bType}')
 
         #   ContactInformation
         self.setFont('Helvetica', 18)
         self.drawString( 50, 600, 'Contact Information')
 
         self.setFont('Helvetica', 16)
-        self.drawString( 50, 575, f'{address}')
-        self.drawString( 50, 550, f'{zipcode}')
-        self.drawString( 290, 575, f'{phone}')
-        self.drawString( 290, 550, f'{email}')
+        self.drawString( 50, 550, f'{phone},')
+        self.drawString( 50, 525, f'{email}')
+        self.drawString( 50, 475, f'{address}')
+        self.drawString( 60, 450, f'{zipcode}')
+        self.drawString( 0, 400, f'{arterise}')
 
-        #   Footer information
-            #   Next Appointmennt
-            #   Stars
+                #   illnesses
+
+        self.setFont('Helvetica', 18)
+        self.drawString( 300, 700, 'Diagnosis')
 
         self.setFont('Helvetica', 16)
-        self.drawString( 60, 475, f'Next appointment')
-        self.drawString( 60, 450, 'dd.mm-yy')
-        self.drawString( 0, 400, f'{arterise}')
+        self.drawString( 300, 650, f'{doC},')
+        self.drawString( 300, 625, f'{doC}')
+        self.drawString( 300, 600, f'{doC}')
+        self.drawString( 300, 575, f'{doC}')
+
+        self.drawString( 400, 700, 'Recommended Treatment')
+
+        self.setFont('Helvetica', 16)
+        self.drawString( 425, 650, f'{doC},')
+        
+        self.drawString( 425, 625, f'{doC}')
+        self.drawString( 425, 600, f'{doC}')
+        self.drawString( 425, 575, f'{doC}')
+
+        self.setFont('Helvetica', 18)
+        self.drawString( 300, 525, 'Alergies')
+
+        self.setFont('Helvetica', 16)
+        self.drawString( 300, 500, f'{alC},')
+        self.drawString( 300, 475, f'{alC}')
+        self.drawString( 300, 450, f'{alC}')
+        self.drawString( 300, 425, f'{alC}')
+
+        self.drawString( 400, 525, 'Recommended Treatment')
+
+        self.setFont('Helvetica', 16)
+        self.drawString( 425, 500, f'{alC},')
+        self.drawString( 425, 475, f'{alC}')
+        self.drawString( 425, 450, f'{alC}')
+        self.drawString( 425, 425, f'{alC}')
 
     def BodyMain(self):
         #   Initializing the class
-        c = PDFCanvas()
         self.setFont('Halvetica', 16)
 
 #   What the person has visited
@@ -118,8 +150,8 @@ class PDFCanvas (Canvas):
 
     def BodyFooter(self):
         #   Initializing the class
-        c = PDFCanvas()    
-
+            #   UploadFile module
+        pass
 #   Hospital name
 #   Contactinfo
 #   organization information
