@@ -5,8 +5,9 @@ the table doc is a list of diseases with a id to for the doctors, and to retriev
 
 doc ( List of Disases )
         Column                      Comment
+    -   id                          not null autoIncrement
     -   Disease ID                  A ID which contain two letters, 3 numbers e.g A000A
     -   Disease Name                The name for the disease 
     -   Symptoms
-    -   Medicine                    Medicine name
     -   medicine id
+    -   Medicine                    Medicine name
