@@ -132,7 +132,8 @@ class PDFCanvas (Canvas):
         self.drawString( 300, 475, f'{alC}')
         self.drawString( 300, 450, f'{alC}')
         self.drawString( 300, 425, f'{alC}')
-
+        
+        self.setFont('Helvetica', 18)
         self.drawString( 400, 525, 'Recommended Treatment')
 
         self.setFont('Helvetica', 16)
@@ -140,14 +141,38 @@ class PDFCanvas (Canvas):
         self.drawString( 425, 475, f'{alC}')
         self.drawString( 425, 450, f'{alC}')
         self.drawString( 425, 425, f'{alC}')
+        #   Line Through
 
     def BodyMain(self):
-        #   Initializing the class
-        #self.setFont('Halvetica', 16)
-        pass
-#   What the person has visited
-#   Notes from the doctor
+        date = '01.01-94'
+        patientInfo = 'Jhon Doe'  
+        roomName = 'Ward - Recovery'
+        roomID = 225
+        reason = 'Demo reason' 
+        doctor = 'Jhon Doe'
+        #   255 CHARACTERS
+        doc =       'amet aliquam id diam maecenas ultricies mi eget mauris pharetra'
+        doc1 =      'et ultrices neque ornare aenean euismod elementum nisi quis el-'
+        doc2 =      'e ifend quam adipiscing vitae pro in sagittis nisl rhoncus mat-'
+        doc3 =      'tis rhoncus urna neque viverra justo nec ultrices du sa'
+        #   Document Font
+        self.setFont('Helvetica', 20)
+        self.drawString(150, 350, f'During {patientInfo}\'s at HospitalName')
 
+        self.setFont('Helvetica', 16)
+        #   Document Text
+        self.drawString(50, 300, f'{patientInfo}\'s last visit')
+        self.drawString(50,275, f'{date}')
+        self.drawString(250,300, 'During your last stay at HospitalName')
+        self.drawString(250, 275, f'You were visiting {roomName}, {roomID}')
+        self.drawString(250, 250, f'Due to {reason}')
+        self.drawString(250, 225, f'Between {date} - {date}')
+        self.drawString(50, 175, f'Doctor {doctor}\'s notes')
+        self.drawString(50, 150, f'{doc}')
+        self.drawString(50, 125, f'{doc1}')
+        self.drawString(50, 100, f'{doc2}')
+        self.drawString(50, 75, f'{doc3}')
+        #   Line Through
 
     def BodyFooter(self):
         #   Line Through
@@ -157,3 +182,4 @@ class PDFCanvas (Canvas):
         self.drawString( 125, 5, f'HospitalNumber')
         self.drawString( 200, 5, f'HospitalAddress')
         self.drawString( 275, 5, f'ZipCode, City')
+        #   Line Through

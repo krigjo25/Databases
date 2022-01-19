@@ -1,0 +1,141 @@
+%PDF-1.3
+%“Œ‹ž ReportLab Generated PDF document http://www.reportlab.com
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-BoldOblique /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
+>>
+endobj
+6 0 obj
+<<
+/Author (anonymous) /CreationDate (D:20000101000000+00'00') /Creator (ReportLab PDF Library - www.reportlab.com) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
+  /Subject (unspecified) /Title (untitled) /Trapped /False
+>>
+endobj
+7 0 obj
+<<
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
+>>
+endobj
+8 0 obj
+<<
+/Length 2933
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+BT /F2 20 Tf 24 TL ET
+BT 1 0 0 1 200 800 Tm (Patient Journal of Jhon Doe 100) Tj T* ET
+BT /F1 18 Tf 21.6 TL ET
+BT 1 0 0 1 50 700 Tm (Age) Tj T* ET
+BT 1 0 0 1 100 700 Tm (Sex) Tj T* ET
+BT 1 0 0 1 150 700 Tm (BloodType) Tj T* ET
+BT /F1 16 Tf 19.2 TL ET
+BT 1 0 0 1 58 675 Tm (27) Tj T* ET
+BT 1 0 0 1 108 675 Tm (M) Tj T* ET
+BT 1 0 0 1 158 675 Tm (AB) Tj T* ET
+BT /F1 18 Tf 21.6 TL ET
+BT 1 0 0 1 50 600 Tm (Contact Information) Tj T* ET
+BT /F1 16 Tf 19.2 TL ET
+BT 1 0 0 1 50 550 Tm (PhoneNumber,) Tj T* ET
+BT 1 0 0 1 50 525 Tm (E-mailAddress) Tj T* ET
+BT 1 0 0 1 50 475 Tm (CharminAvenue) Tj T* ET
+BT 1 0 0 1 60 450 Tm (0, Warshington) Tj T* ET
+BT 1 0 0 1 0 400 Tm (***********************************************************************************************) Tj T* ET
+BT /F1 18 Tf 21.6 TL ET
+BT 1 0 0 1 300 700 Tm (Diagnosis) Tj T* ET
+BT /F1 16 Tf 19.2 TL ET
+BT 1 0 0 1 300 650 Tm (A000A,) Tj T* ET
+BT 1 0 0 1 300 625 Tm (A000A) Tj T* ET
+BT 1 0 0 1 300 600 Tm (A000A) Tj T* ET
+BT 1 0 0 1 300 575 Tm (A000A) Tj T* ET
+BT 1 0 0 1 400 700 Tm (Recommended Treatment) Tj T* ET
+BT /F1 16 Tf 19.2 TL ET
+BT 1 0 0 1 425 650 Tm (A000A,) Tj T* ET
+BT 1 0 0 1 425 625 Tm (A000A) Tj T* ET
+BT 1 0 0 1 425 600 Tm (A000A) Tj T* ET
+BT 1 0 0 1 425 575 Tm (A000A) Tj T* ET
+BT /F1 18 Tf 21.6 TL ET
+BT 1 0 0 1 300 525 Tm (Alergies) Tj T* ET
+BT /F1 16 Tf 19.2 TL ET
+BT 1 0 0 1 300 500 Tm (A000A,) Tj T* ET
+BT 1 0 0 1 300 475 Tm (A000A) Tj T* ET
+BT 1 0 0 1 300 450 Tm (A000A) Tj T* ET
+BT 1 0 0 1 300 425 Tm (A000A) Tj T* ET
+BT /F1 18 Tf 21.6 TL ET
+BT 1 0 0 1 400 525 Tm (Recommended Treatment) Tj T* ET
+BT /F1 16 Tf 19.2 TL ET
+BT 1 0 0 1 425 500 Tm (A000A,) Tj T* ET
+BT 1 0 0 1 425 475 Tm (A000A) Tj T* ET
+BT 1 0 0 1 425 450 Tm (A000A) Tj T* ET
+BT 1 0 0 1 425 425 Tm (A000A) Tj T* ET
+BT /F1 20 Tf 24 TL ET
+BT 1 0 0 1 150 350 Tm (During Jhon Doe's at HospitalName) Tj T* ET
+BT /F1 16 Tf 19.2 TL ET
+BT 1 0 0 1 50 300 Tm (Jhon Doe's last visit) Tj T* ET
+BT 1 0 0 1 50 275 Tm (01.01-94) Tj T* ET
+BT 1 0 0 1 250 300 Tm (During your last stay at HospitalName) Tj T* ET
+BT 1 0 0 1 250 275 Tm (You were visiting Ward - Recovery, 225) Tj T* ET
+BT 1 0 0 1 250 250 Tm (Due to Demo reason) Tj T* ET
+BT 1 0 0 1 250 225 Tm (Between 01.01-94 - 01.01-94) Tj T* ET
+BT 1 0 0 1 50 175 Tm (Doctor Jhon Doe's notes) Tj T* ET
+BT 1 0 0 1 50 150 Tm (amet aliquam id diam maecenas ultricies mi eget mauris pharetra) Tj T* ET
+BT 1 0 0 1 50 125 Tm (et ultrices neque ornare aenean euismod elementum nisi quis el-) Tj T* ET
+BT 1 0 0 1 50 100 Tm (e ifend quam adipiscing vitae pro in sagittis nisl rhoncus mat-) Tj T* ET
+BT 1 0 0 1 50 75 Tm (tis rhoncus urna neque viverra justo nec ultrices du sa) Tj T* ET
+BT /F1 10 Tf 12 TL ET
+BT 1 0 0 1 0 5 Tm (Logo) Tj T* ET
+BT 1 0 0 1 50 5 Tm (HospitalName) Tj T* ET
+BT 1 0 0 1 125 5 Tm (HospitalNumber) Tj T* ET
+BT 1 0 0 1 200 5 Tm (HospitalAddress) Tj T* ET
+BT 1 0 0 1 275 5 Tm (ZipCode, City) Tj T* ET
+ 
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000073 00000 n 
+0000000114 00000 n 
+0000000221 00000 n 
+0000000340 00000 n 
+0000000543 00000 n 
+0000000611 00000 n 
+0000000907 00000 n 
+0000000966 00000 n 
+trailer
+<<
+/ID 
+[<1c178198fbdfa51b25995d89d4102043><1c178198fbdfa51b25995d89d4102043>]
+% ReportLab generated PDF document -- digest (http://www.reportlab.com)
+
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
+>>
+startxref
+3950
+%%EOF

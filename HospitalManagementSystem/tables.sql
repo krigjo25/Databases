@@ -57,3 +57,13 @@ CREATE TABLE lom (
                     demo VARCHAR(255), 
                     demo1 VARCHAR(255));
 /*************************************************************************************************************/
+
+/******************************************** Rooms *****************************************************/
+CREATE TABLE firstFloor (
+    -- Table of List of Medicines
+                    roomID SMALLINT SIGNED NOT NULL,
+                    roomName VARCHAR(255) NOT NULL DEFAULT 'AA00A',
+                    EquipmentID MEDIUMINT NOT NULL, 
+                    equipment VARCHAR(255), 
+                    demo1 VARCHAR(255));
+/*************************************************************************************************************/
