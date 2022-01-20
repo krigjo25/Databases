@@ -119,28 +119,44 @@ class PDFCanvas (Canvas):
 
         self.setFont('Helvetica', 16)
         self.drawString( 425, 650, f'{doC},')
+        if doc == True:
+            self.drawString( 425, 625, f'{doC}')
         
-        self.drawString( 425, 625, f'{doC}')
-        self.drawString( 425, 600, f'{doC}')
-        self.drawString( 425, 575, f'{doC}')
+        if doc == True:   
+            self.drawString( 425, 600, f'{doC}')
+
+        if doc == True:
+            self.drawString( 425, 575, f'{doC}')
 
         self.setFont('Helvetica', 18)
         self.drawString( 300, 525, 'Alergies')
 
         self.setFont('Helvetica', 16)
         self.drawString( 300, 500, f'{alC},')
-        self.drawString( 300, 475, f'{alC}')
-        self.drawString( 300, 450, f'{alC}')
-        self.drawString( 300, 425, f'{alC}')
+
+        if alC == True:
+            self.drawString( 300, 475, f'{alC}')
+
+        if alC == True:
+            self.drawString( 300, 450, f'{alC}')
+
+        if alC == True:
+            self.drawString( 300, 425, f'{alC}')
         
         self.setFont('Helvetica', 18)
         self.drawString( 400, 525, 'Recommended Treatment')
 
         self.setFont('Helvetica', 16)
         self.drawString( 425, 500, f'{alC},')
-        self.drawString( 425, 475, f'{alC}')
-        self.drawString( 425, 450, f'{alC}')
-        self.drawString( 425, 425, f'{alC}')
+ 
+        if alC == True:
+            self.drawString( 425, 475, f'{alC}')
+
+        if alC == True:
+            self.drawString( 425, 450, f'{alC}')
+
+        if alC == True:
+            self.drawString( 425, 425, f'{alC}')
         #   Line Through
 
     def BodyMain(self):

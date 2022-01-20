@@ -11,7 +11,7 @@ CREATE OR REPLACE PROCEDURE insertPatient (pName VARCHAR(255),vage INT, vSex VAR
     Inserting a new patient for the table
     */
     INSERT INTO patient (patientName, age, gender, phoneNumber, eMail, bloodType, alergies, diseases) VALUES
-    (pName, vage, vSex, vPhone, veMail, bType, vAlergies,villness);
+    (pName, vage, vSex, vPhone, veMail, bType, vAlergies, villness);
     END ??
 
 CREATE OR REPLACE PROCEDURE updatePatient (vID INT,  vColumn VARCHAR(20), vValue VARCHAR(255))
@@ -27,3 +27,33 @@ CREATE OR REPLACE PROCEDURE updatePatient (vID INT,  vColumn VARCHAR(20), vValue
                 EXECUTE stmt;
                 DEALLOCATE PREPARE stmt;
 /*****************************************************/
+DELIMITER ??
+/************************ List of Alergies **************************/
+CREATE OR REPLACE PROCEDURE insertLOA (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
+    BEGIN
+        -- Inserting values into list of Alergies
+        INSERT INTO loa (alergyID, alergyName, symptoms, medicineID) VALUES 
+        (vID, vName, vSymptoms, mID);
+    END ??
+
+/***************************************************/
+DELIMITER ??
+/************************ List of Diagnosis **************************/
+CREATE OR REPLACE PROCEDURE insertLOD (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
+    BEGIN
+        -- Inserting values into list of Diagnosis
+        INSERT INTO lod (diagnosisID, diagnosisName, symptoms, medicineID) VALUES 
+        (vID, vName, vSymptoms, mID);
+    END ??
+
+/***************************************************/
+DELIMITER ??
+/************************ List of Diagnosis **************************/
+CREATE OR REPLACE PROCEDURE insertLOM (mID CHAR(5), vName VARCHAR(255), vIllness VARCHAR(255))
+    BEGIN
+        -- Inserting values into list of Medicine
+        INSERT INTO lom (medicineID, medicineName, illness) VALUES 
+        (mID, vName, vIllness);
+    END ??
+
+/***************************************************/
