@@ -5,12 +5,13 @@
 # By krigjo25
 #####################################################
 
-#   Database    Responsories
-import mariadb
-
 #   Python Responsories
 import sys
 from os import getenv
+
+
+#   Database    Responsories
+import mariadb
 
 #   dotenv Responsories
 from dotenv import load_dotenv
