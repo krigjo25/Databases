@@ -57,3 +57,13 @@ CREATE OR REPLACE PROCEDURE insertLOM (mID CHAR(5), vName VARCHAR(255), vIllness
     END ??
 
 /***************************************************/
+
+/*********************** Rooms ************************************/
+
+DELIMITER x
+CREATE OR REPLACE PROCEDURE firstFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
+    BEGIN
+        -- Inserting values into list of Medicine
+        INSERT INTO firstFloor (roomName, hourlyRate) VALUES 
+        (vName, vRate);
+    END x

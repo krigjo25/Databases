@@ -22,48 +22,21 @@ CREATE TABLE patient (
                         registered TIMESTAMP NOT NULL DEFAULT NOW(),
                         PRIMARY KEY(id, diseases, alergies));
 /*************************************************************************************************************/
-
-/******************************************** Diagnosis *****************************************************/
-CREATE TABLE lod (
-    -- Table of List of Diseases
-                    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-                    diseaseID CHAR(5) NOT NULL DEFAULT 'A000A', 
-                    diseaseName VARCHAR(255) NOT NULL, 
-                    symptoms VARCHAR(255) NOT NULL,
-                    medicineID VARCHAR(255) NOT NULL,
-                    demo VARCHAR(255), 
-                    demo1 VARCHAR(255));
+DELIMITER ;
+/******************************** Employee **************************************************************************/
+CREATE TABLE employees (
+                        EmployeeID INT NOT NULL,
+                        employeeName VARCHAR(255) NOT NULL,
+                        employeeAddress VARCHAR(255) NOT NULL,
+                        email VARCHAR(255) NOT NULL,
+                        phone VARCHAR(255) NOT NULL,
+                        zipCode SMALLINT NOT NULL DEFAULT 0000,
+                        department VARCHAR(255) NOT NULL,
+                        Position VARCHAR(255) NOT NULL,
+                        employeeContract TINYBLOB,
+                        Hired TIMESTAMP NOT NULL DEFAULT CURRENT_TIME));
 /*************************************************************************************************************/
 
-/******************************************** Alergies *****************************************************/
-CREATE TABLE loa (
-    -- Table of List of Alergies
-                    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
-                    alergyID CHAR(5) NOT NULL DEFAULT 'AA000', 
-                    alergyName VARCHAR(255) NOT NULL, 
-                    symptoms VARCHAR(255) NOT NULL, 
-                    medicineID VARCHAR(255) NOT NULL, 
-                    demo VARCHAR(255),
-                    demo1 VARCHAR(255));
-/*************************************************************************************************************/
+/******************************** RoomBookings *******************************************************************/
 
-/******************************************** medicine *****************************************************/
-CREATE TABLE lom (
-    -- Table of List of Medicines
-                    id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                    MedicineID VARCHAR(255) NOT NULL DEFAULT 'AA00A',
-                    MedicineName CHAR(5) NOT NULL, 
-                    illness VARCHAR(255) NOT NULL,
-                    demo VARCHAR(255), 
-                    demo1 VARCHAR(255));
-/*************************************************************************************************************/
-
-/******************************************** Rooms *****************************************************/
-CREATE TABLE firstFloor (
-    -- Table of List of Medicines
-                    roomID SMALLINT SIGNED NOT NULL,
-                    roomName VARCHAR(255) NOT NULL DEFAULT 'AA00A',
-                    EquipmentID MEDIUMINT NOT NULL, 
-                    equipment VARCHAR(255), 
-                    demo1 VARCHAR(255));
 /*************************************************************************************************************/

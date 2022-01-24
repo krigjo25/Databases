@@ -71,9 +71,7 @@ class PDFCanvas (Canvas):
         bType = patientData[0][8]
         alC = patientData[0][9]#[0]
         doC = patientData[0][10]#[0]
-        arterise = '***********************************************************************************************'
 
-        
         #   Title of the document
         docTitle = f'Patient Journal of {pName} {pid}'
 
@@ -103,7 +101,6 @@ class PDFCanvas (Canvas):
         self.drawString( 50, 525, f'{email}')
         self.drawString( 50, 475, f'{adrs}')
         self.drawString( 60, 450, f'{zipNum}, {zipCode}')
-        self.drawString( 0, 400, f'{arterise}')
 
                 #   illnesses
 
@@ -120,13 +117,13 @@ class PDFCanvas (Canvas):
 
         self.setFont('Helvetica', 16)
         self.drawString( 425, 650, f'{doC},')
-        if doc == True:
+        if doC == True:
             self.drawString( 425, 625, f'{doC}')
         
-        if doc == True:   
+        if doC == True:   
             self.drawString( 425, 600, f'{doC}')
 
-        if doc == True:
+        if doC == True:
             self.drawString( 425, 575, f'{doC}')
 
         self.setFont('Helvetica', 18)
@@ -158,7 +155,14 @@ class PDFCanvas (Canvas):
 
         if alC == True:
             self.drawString( 425, 425, f'{alC}')
-        #   Line Through
+
+       #   Lines
+        self.setFont ('Helvetica', 30)
+        self.line(0,400,890,400)
+        self.drawString( 0, 400, f'{arterise}')
+
+        return
+
 
     def BodyMain(self):
         date = '01.01-94'
@@ -167,17 +171,19 @@ class PDFCanvas (Canvas):
         roomID = 225
         reason = 'Demo reason' 
         doctor = 'Jhon Doe'
+
         #   255 CHARACTERS
         doc =       'amet aliquam id diam maecenas ultricies mi eget mauris pharetra'
         doc1 =      'et ultrices neque ornare aenean euismod elementum nisi quis el-'
         doc2 =      'e ifend quam adipiscing vitae pro in sagittis nisl rhoncus mat-'
         doc3 =      'tis rhoncus urna neque viverra justo nec ultrices du sa'
+
         #   Document Font
         self.setFont('Helvetica', 20)
         self.drawString(150, 350, f'During {patientInfo}\'s at HospitalName')
 
-        self.setFont('Helvetica', 16)
         #   Document Text
+        self.setFont('Helvetica', 16)
         self.drawString(50, 300, f'{patientInfo}\'s last visit')
         self.drawString(50,275, f'{date}')
         self.drawString(250,300, 'During your last stay at HospitalName')
@@ -189,14 +195,18 @@ class PDFCanvas (Canvas):
         self.drawString(50, 125, f'{doc1}')
         self.drawString(50, 100, f'{doc2}')
         self.drawString(50, 75, f'{doc3}')
-        #   Line Through
+
+        return
 
     def BodyFooter(self):
-        #   Line Through
+        
+        self.line(0,20,890,20)
         self.setFont('Helvetica', 10)
-        self.drawString( 0, 5, f'Logo')
-        self.drawString( 50, 5, f'HospitalName')
-        self.drawString( 125, 5, f'HospitalNumber')
-        self.drawString( 200, 5, f'HospitalAddress')
-        self.drawString( 275, 5, f'ZipCode, City')
-        #   Line Through
+        self.drawString(50, 7, f'Logo')
+        self.drawString(150, 7, f'HospitalName')
+        self.drawString(250, 7, f'HospitalNumber')
+        self.drawString(350, 7, f'HospitalAddress')
+        self.drawString(450, 7, f'ZipCode, City')
+        self.line(0,3,890,3)
+
+        return

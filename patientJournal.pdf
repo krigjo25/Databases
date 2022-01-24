@@ -43,7 +43,7 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 2933
+/Length 2561
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -64,7 +64,6 @@ BT 1 0 0 1 50 550 Tm (PhoneNumber,) Tj T* ET
 BT 1 0 0 1 50 525 Tm (E-mailAddress) Tj T* ET
 BT 1 0 0 1 50 475 Tm (CharminAvenue) Tj T* ET
 BT 1 0 0 1 60 450 Tm (0, Warshington) Tj T* ET
-BT 1 0 0 1 0 400 Tm (***********************************************************************************************) Tj T* ET
 BT /F1 18 Tf 21.6 TL ET
 BT 1 0 0 1 300 700 Tm (Diagnosis) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
@@ -75,23 +74,16 @@ BT 1 0 0 1 300 575 Tm (A000A) Tj T* ET
 BT 1 0 0 1 400 700 Tm (Recommended Treatment) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
 BT 1 0 0 1 425 650 Tm (A000A,) Tj T* ET
-BT 1 0 0 1 425 625 Tm (A000A) Tj T* ET
-BT 1 0 0 1 425 600 Tm (A000A) Tj T* ET
-BT 1 0 0 1 425 575 Tm (A000A) Tj T* ET
 BT /F1 18 Tf 21.6 TL ET
 BT 1 0 0 1 300 525 Tm (Alergies) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
-BT 1 0 0 1 300 500 Tm (A000A,) Tj T* ET
-BT 1 0 0 1 300 475 Tm (A000A) Tj T* ET
-BT 1 0 0 1 300 450 Tm (A000A) Tj T* ET
-BT 1 0 0 1 300 425 Tm (A000A) Tj T* ET
+BT 1 0 0 1 300 500 Tm (AAC31,) Tj T* ET
 BT /F1 18 Tf 21.6 TL ET
 BT 1 0 0 1 400 525 Tm (Recommended Treatment) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
-BT 1 0 0 1 425 500 Tm (A000A,) Tj T* ET
-BT 1 0 0 1 425 475 Tm (A000A) Tj T* ET
-BT 1 0 0 1 425 450 Tm (A000A) Tj T* ET
-BT 1 0 0 1 425 425 Tm (A000A) Tj T* ET
+BT 1 0 0 1 425 500 Tm (AAC31,) Tj T* ET
+BT /F1 30 Tf 36 TL ET
+n 0 400 m 890 400 l S
 BT /F1 20 Tf 24 TL ET
 BT 1 0 0 1 150 350 Tm (During Jhon Doe's at HospitalName) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
@@ -107,11 +99,14 @@ BT 1 0 0 1 50 125 Tm (et ultrices neque ornare aenean euismod elementum nisi qui
 BT 1 0 0 1 50 100 Tm (e ifend quam adipiscing vitae pro in sagittis nisl rhoncus mat-) Tj T* ET
 BT 1 0 0 1 50 75 Tm (tis rhoncus urna neque viverra justo nec ultrices du sa) Tj T* ET
 BT /F1 10 Tf 12 TL ET
-BT 1 0 0 1 0 5 Tm (Logo) Tj T* ET
-BT 1 0 0 1 50 5 Tm (HospitalName) Tj T* ET
-BT 1 0 0 1 125 5 Tm (HospitalNumber) Tj T* ET
-BT 1 0 0 1 200 5 Tm (HospitalAddress) Tj T* ET
-BT 1 0 0 1 275 5 Tm (ZipCode, City) Tj T* ET
+BT 1 0 0 1 50 7 Tm (Logo) Tj T* ET
+BT 1 0 0 1 150 7 Tm (HospitalName) Tj T* ET
+BT 1 0 0 1 250 7 Tm (HospitalNumber) Tj T* ET
+BT 1 0 0 1 350 7 Tm (HospitalAddress) Tj T* ET
+BT 1 0 0 1 450 7 Tm (ZipCode, City) Tj T* ET
+BT /F1 30 Tf 36 TL ET
+n 0 3 m 890 3 l S
+n 0 20 m 890 20 l S
  
 endstream
 endobj
@@ -137,5 +132,5 @@ trailer
 /Size 9
 >>
 startxref
-3950
+3578
 %%EOF
