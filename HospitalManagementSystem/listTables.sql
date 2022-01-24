@@ -1,4 +1,3 @@
-
 /******************************************** Diagnosis *****************************************************/
 CREATE TABLE lod (
     -- Table of List of Diseases
@@ -56,4 +55,5 @@ CREATE TABLE thirdFloor (
                     hourlyRate DECIMAL(7,2) NOT NULL DEFAULT 0.00, 
                     demo VARCHAR(255),
                     demo1 VARCHAR(255));
+
 /*************************************************************************************************************/

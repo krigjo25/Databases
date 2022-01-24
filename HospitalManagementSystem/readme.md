@@ -55,17 +55,17 @@
 
 ## Introduction
 
-***About the Developer***
+**About the Developer**
 
 krigjo25, born in 94, Norway, part the time goes to python, SQL
 otherwise, Gym and living life as a human
 
-***HospitalManageSystem***
+**HospitalManageSystem**
 
 The idea of HospitalManageSystem is to create a system
 which lets the personell to add, modify the patient journal
 
-***Contact Information***
+**Contact Information**
 
 Discord : krigjo25#5588
 
@@ -77,12 +77,13 @@ Only One advice,
 Can be found in its given folder at github,com
 
     The project started
+    
 
     The project were finished
 
 ## SQL Data
 
- ***Tables***
+ **Tables**
 
         patients
             includes the "personal" information about a given patient
@@ -117,16 +118,30 @@ Can be found in its given folder at github,com
             Third floor
                 300
                 399
-            
-            fourth floor
 
-                400-499
 
-***procedures***
+**Procedures**
 
-***triggers***
+***Patient***
 
-***events***
+        InsertPatient (pName, vAge, vSex, vPhone, vEmail, bType, vAlergies, vIllness)                                       --Inserts a patient to the table
+
+        patientInfo (vID, vColumn, vValue)       --  Updates a value for the patient table
+    
+***List Of Alergies***
+
+    insertLOA (vID, vName, vSymptoms, medicine ID)  --  Inserts a new Alergy
+
+***List Of Diagnosis***
+
+    insertLOD (vID, vName, vSymptoms, medicine ID)
+
+***List of Medicine***
+    insertLOM (vID, vName, vSymptoms, illness)
+
+**Triggers**
+
+**Events**
 
 ##  Testing
 
@@ -135,19 +150,23 @@ Can be found in its given folder at github,com
 
 ##  Python
 
-***sendSMS,py***
+**sendSMS,py**
 
-***dictionaries.py***
+**dictionaries.py**
 
-***patientjournal.py***
+**patientjournal.py**
 
-***uploadbiodata.py***
+**uploadbiodata.py**
 
-***runPDF.py***
+**sampleContract.py**
+
+**runPDF.py**
 
 ##  PDF
 
-***patientjoirnal.pdf***
+**patientjoirnal.pdf**
+
+**sampleContract.pdf**
 
 ##  Summary
 
