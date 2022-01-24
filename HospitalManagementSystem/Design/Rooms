@@ -11,27 +11,25 @@ Tables
         -   roomName
         -   hourlyRate
     --------------------
+
         Reseption,
         Library,
         cafeteria,
         Pharmacy,
         ICU,
         Emergency Services
-        Ward
         EquipmentRoom
+        observation room
 
     Second Floor
-
-        -   roomID
-        -   roomName
-        -   hourlyRate
-
-
-    --------------------
+    
         Ward
         Equipments
         operation Theaters
         EquipmentRoom
+
+    Third Floor
+
 
 Procedures
     -   Update information

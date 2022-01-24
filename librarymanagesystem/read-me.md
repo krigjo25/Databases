@@ -34,8 +34,8 @@ otherwise, Gym and living life as a human
 
 ***libraryManageSystem***
 
-The idea of libraryManageSystem is to create a system
-which lets the user borrow / purchase a book
+Creating a back-end system, to send a reciepte, of a borrowed book, 
+send notifications about a rental book, return date of the book, missing rental books 
 
 ***Contact Information***
 
@@ -55,14 +55,15 @@ Member, books, lib
 
 ### Views
 
-An overview of whom is borrowing which book
+An overview of whom is renting which book
 An overview of current stock of books
 
 ### Events
 
-Delete, rows when they're set in the
-terminated table to maintain the information
-Sending mail for notifications, billing and recipe
+Delete events
+    deletes row, which is in the terminated row,
+    sends rows to terminated after x days
+    sends an notification through email
 
 ### procedures
 
@@ -207,7 +208,7 @@ Created to test the Database
 
 ## Credentials
 
-Reposories and plugins used for this database,
+Reposories and plugins used for this projects,
     yagmail,
     mariadb
 

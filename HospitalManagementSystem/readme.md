@@ -103,6 +103,24 @@ Can be found in its given folder at github,com
 
             lod
                 List of given Deseases
+                
+        Interior list
+
+            First floor
+            100 - 199
+
+            Second floor
+
+                200
+                299
+            
+            Third floor
+                300
+                399
+            
+            fourth floor
+
+                400-499
 
 ***procedures***
 
