@@ -34,6 +34,7 @@
 
     
 [Python](#Python).....................
+
         dictonaries.py................
         patientJournal.py.............
         uploadbiodata.py..............
@@ -64,7 +65,7 @@
 
 **About the Developer**
 
-krigjo25, born in 94, Norway, part the time goes to python, SQL
+kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
 otherwise, Gym and living life as a human
 
 **Project**
@@ -85,40 +86,37 @@ Can be found in its given folder at github,com
 
  **Tables**
 
-        patients
-            includes the "personal" information about a given patient
+    patients
+        includes the "personal" information about a given patient
 
-        Employee..................
-            includes the information about the Hospital Staff
+    Employee..................
+        includes the information about the Hospital Staff
 
-        roomBookings..............
-            A booking system so the staff has to book a given room
+    roomBookings..............
+        A booking system so the staff has to book a given room
 
-        Hospital lists
-            
-            lom 
-                List of medecines
-            
-            loa
-                list of given registered Alergies
+    Hospital lists
 
-            lod
-                List of given Deseases
+        lom 
+            List of medecines
+
+        loa
+            list of given registered Alergies
+
+        lod
+            List of given Deseases
                 
-        Interior list
+    Interior list
 
-            First floor
+        First floor
             100 - 199
 
-            Second floor
+        Second floor
 
-                200
-                299
+            200 - 299
             
-            Third floor
-                300
-                399
-
+        Third floor
+            300 - 399
 
 **Procedures**
 
@@ -137,6 +135,7 @@ Can be found in its given folder at github,com
     insertLOD (vID, vName, vSymptoms, medicine ID)
 
 ***List of Medicine***
+
     insertLOM (vID, vName, vSymptoms, illness)
 
 **Triggers**
@@ -161,29 +160,61 @@ Can be found in its given folder at github,com
 **sampleContract.py**
 
 **runPDF.py**
+This is the main class which to be run everytime patient / employee table gets updated
 
+****
 ##  PDF
 
-**patientjoirnal.pdf**
+**sampleJournal.pdf**
+
+This is the patient journal, includes information about the given patient,
+what has done during the patient's stay at the Hospital. 
 
 **sampleContract.pdf**
 
+Simple contract for the employee, store it in the database, so its always available for the administration, employee
+
+**Invoice.pdf**
+A simple invoice for the patient, after his stay
+
 ##  Summary
 
-* 
+* Some experience i learned while design this database, 
+Kriss had to find a way to create a text sheet which is stored in the database by using "BLOB", Kriss choose to use PDF format as the text file.
+i had a wish to extract information from the database into the PDF file, in order for it to be dynamical. So reportlab were a good option for this case.
 
-*
+* 
 
 * 
 
 * 
 ## Responsories
 
+Plugins for mariadb
+
+Libraries 
+
+dotenv, - []()
+mariadb, - []()
+reportlab, - []()
+- []()
+- []()
+
 ## Credits
 
 **Contact Information**
 
 Discord : krigjo25#5588
+messenger : krigjo25
 
 Only One advice,
 « The importance of creating is just have fun. »
+
+in gloria excelcius deo
+
+**Licence**
+Not licenced.
+
+**Disclamers**
+
+**References**
