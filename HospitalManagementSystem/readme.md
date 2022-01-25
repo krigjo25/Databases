@@ -160,9 +160,9 @@ Can be found in its given folder at github,com
 **sampleContract.py**
 
 **runPDF.py**
+
 This is the main class which to be run everytime patient / employee table gets updated
 
-****
 ##  PDF
 
 **sampleJournal.pdf**
@@ -213,6 +213,7 @@ Only One advice,
 in gloria excelcius deo
 
 **Licence**
+
 Not licenced.
 
 **Disclamers**
