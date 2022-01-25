@@ -34,9 +34,31 @@ CREATE TABLE employees (
                         department VARCHAR(255) NOT NULL,
                         Position VARCHAR(255) NOT NULL,
                         employeeContract TINYBLOB,
-                        Hired TIMESTAMP NOT NULL DEFAULT CURRENT_TIME));
+                        Hired TIMESTAMP NOT NULL DEFAULT NOW()));
 /*************************************************************************************************************/
 
-/******************************** RoomBookings *******************************************************************/
+/******************************** RoomBookings **************************************************************/
+CREATE TABLE booking (
+                        id INT NOT NULL AUTO_INCREMENT,
+                        patientID INT NOT NULL,
+                        patient VARCHAR(255) NOT NULL,
+                        roomID INT NOT NULL,
+                        roomName VARCHAR(255),
+                        rate DECIMAL(4,2) NOT NULL DEFAULT 0,
+                        employeeID INT NOT NULL,
+                        employeeName VARCHAR(255),
+                        bookingInn DATETIME NOT NULL DEFAULT NOW(),
+                        bookingOut DATETIME NOT NULL,
+                        demo VARCHAR(255),
+                        demo1 VARCHAR(255));
+/*************************************************************************************************************/
 
+
+/************************************* Billings *************************************************************/
+
+CREATE TABLE billing (
+                        invoiceID INT NOT NULL, -- AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT=300000 
+                        Ammount, DECIMAL(11,2),
+                        discount TINYINT NOT NULL, 
+)
 /*************************************************************************************************************/

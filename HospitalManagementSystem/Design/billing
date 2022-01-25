@@ -7,13 +7,14 @@ The invoice should be able to fetch every room visited by the user, and calculat
 fetch the hourly price, and calculate how many hours, minutes spent in the room after it has passed a certian time (30 min )
 by using Python / SQL for so if its less than 30 min, the name of te room should appear, but not the charge amount.
 
-We should create a table called billing for each patient, in a new Database which is called billing.
+We should create a table called billing, in a new Database which is called billing.
 In this database we will use patient id to identify patient name
 table Billing
+
     -   Name
     -   last visit
     -   invoice id
-    -   Price 
+    -   Price
     -   status
 
 procedures

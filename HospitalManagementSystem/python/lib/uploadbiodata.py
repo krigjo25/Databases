@@ -59,8 +59,6 @@ class UploadFile():
         cur = conn.cursor()
 
         #   Update a column
-        #pdf = self.BinaryConverter(pdf)
-        #print(value)
         query = f' UPDATE patient SET {column} = "{pdf}" WHERE id = {vid}'
         execute = cur.execute(query)
         conn.close()

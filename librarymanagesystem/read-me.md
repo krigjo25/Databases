@@ -2,95 +2,110 @@
 
 ## Table Of Content
 
-    Introduction...........
-        developer..........
+[Introduction](#Introduction)......................
+    
+    developer.....................
+    project...........................
+        The design....................
+        Case..........................
 
-    project............
-        The design.............
+[SQLData](#SQLData)..........................
+    
+    Tables........................
+    patients..................
+    Employee..................
+    roomBookings..............
+    lom.......................
+    loa.......................
+    lom.......................
 
-    Tables.................
-        member............
-        terminemember.....
-        books..............
-        lib................
-        Procedures.............
+    Procedures....................
 
-   Triggers...............
-        terminatemember...
-        terminatebook......
-    Events.................
-        delRecords.........
-        discount...........
+    Triggers......................
+        terminatemember...........
+        terminatebook.............
+            
+    Events........................
+        delRecords................
+        discount..................
+    
+    Views.........................
 
-    Views..................
-    Summuary...............
+
+    
+[Python](#Python).....................
+
+        dictonaries.py................
+        patientJournal.py.............
+        uploadbiodata.py..............
+        sendSMS.py....................    
+        runPDF.py.....................
+
+
+[PDF](#PDF).......................
+
+    patientjournal.pdf............
+    invoice.pdf...................
+
+[Testing](#Testing)...................
+
+        SQL Data......................
+        test.sql......................
+    
+[Summuary](#Summuary).................
+
+[Responsary](#Responsary).............
+
+[Credentials](#Credentials)...........
+
+    licence...........................
+    Contact Information...............
 
 ## Introduction
 
-***About the Developer***
+**About the Developer**
 
-krigjo25, born in 94, Norway, using most of my time on Python language
+kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
 otherwise, Gym and living life as a human
 
-***libraryManageSystem***
+**Project info**
 
-Creating a back-end system, to send a reciepte, of a borrowed book, 
-send notifications about a rental book, return date of the book, missing rental books 
+    Creating a back-end system, to send reminders, invoice, reciepte, of a rentail books book, 
 
-***Contact Information***
-
-Discord : krigjo25#5588
-
-Only One advice,
-« The importance of creating is just have fun. »
+    Started : 10.10-21
+    Last Update: 06.01-22
 
 ## The Design
 
-The idea is to create a library system, which sends
-out a notification, recipte and billing
+    The idea is to create a Library ystem, which sends
+    out a notification, recipte and invoices
 
-### Tables
+## SQL DATA
 
-Member, books, lib
+**Tables**
 
-### Views
+    Member
+    
+    books
+    
+    lib
 
-An overview of whom is renting which book
-An overview of current stock of books
+**Procedures**
 
-### Events
+***Universial Procedures***
+
+**Triggers**
+
+**Events**
 
 Delete events
     deletes row, which is in the terminated row,
     sends rows to terminated after x days
     sends an notification through email
 
-### procedures
 
-Should include the procedures which is necsessary
-for the system to work
 
-### Project info
-
-Started : 10.10-21
-Last Update: 06.01-22
-
-### Files Contains in the project
-
-read-me.md
-
-sendMail.py
-
-views.sql,
-events.sql,
-tables.sql,
-testSQL.sql,
-triggers.sql,
-procedures.sql
-
-The SQL is designed for mariadb
-
-## tables.sql
+**Tables**
 
     Members
         Stores information about the given member,
@@ -116,7 +131,7 @@ The SQL is designed for mariadb
         send a reminder on email, after a given time, 
         there will be added a fine to the user of x cash
 
-## Procedures.sql
+**Procedures**
 
     Universal procedures
         Universal procedures is created, its not necsessary
@@ -162,7 +177,7 @@ The SQL is designed for mariadb
             Search for the user and check if the
             user has any given books in his acoount
 
-## Triggers,sql
+**Triggers**
 
     termineMember
         Moves a row from the member table into
@@ -180,7 +195,7 @@ The SQL is designed for mariadb
         as the book is returned, and ready to be 
         deleted from the database.
 
-## Events.sql
+**Events**
 
     delRecords
         deletes records which has 0 value and older than given value
@@ -194,7 +209,7 @@ The SQL is designed for mariadb
         Trigger an event to send a reminder when the returndate is
         close, on or 7days behind
 
-## Views.sql
+**Views**
 
     lib
         Viewing important colums
@@ -202,9 +217,17 @@ The SQL is designed for mariadb
     books 
         Viewing important colums
 
-## test.sql
+## Responsories
 
-Created to test the Database
+Plugins for mariadb
+
+Libraries 
+
+Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
+mariadb, - [MariaDB](https://github.com/MariaDB)
+yagmail, - [Pascal Van Kooten]()
+- []()
+- []()
 
 ## Credentials
 
@@ -212,7 +235,12 @@ Reposories and plugins used for this projects,
     yagmail,
     mariadb
 
-written and edited by,
-krigjo25.
+**Contact Information**
 
-************************************************************************************************************************
+Discord : krigjo25#5588
+
+Only One advice,
+« The importance of creating is just have fun. »
+
+**Licence**
+Not Licenced

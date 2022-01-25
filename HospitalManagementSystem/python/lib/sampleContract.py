@@ -41,7 +41,7 @@ class contractSample (Canvas):
 
     def PDFHeader(self):
         #   Document title
-        title = f'Employeer Contratct at HospitalName'
+        title = f'Employeer Contract at HospitalName'
         self.setFont('Hevetica-BoldOblique', 20)
         self.drawString(200, 800, title)
 

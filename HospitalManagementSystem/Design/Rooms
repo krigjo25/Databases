@@ -33,7 +33,4 @@ Tables
 
 Procedures
     -   Update information
-
-Triggers
-
-Events
+    -   Insert a newRoom

@@ -68,11 +68,14 @@
 kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
 otherwise, Gym and living life as a human
 
-**Project**
+**Project info**
 
-The idea of HospitalManageSystem is to create a system
+The idea of HospitalManageSystem is to create a back-end system
 which lets the personell to add, modify the patient journal
-
+ 
+ Started :
+ Last Update :
+ 
 ## The Design
 
 Can be found in its given folder at github,com
@@ -81,7 +84,7 @@ Can be found in its given folder at github,com
         01-01-22
 
     The project were finished
-        
+
 
 ## SQL Data
 
@@ -113,7 +116,6 @@ Can be found in its given folder at github,com
             100 - 199
 
         Second floor
-
             200 - 299
             
         Third floor
@@ -121,29 +123,42 @@ Can be found in its given folder at github,com
 
 **Procedures**
 
+***Universial Procedures***
+
 ***Patient***
 
-        InsertPatient (pName, vAge, vSex, vPhone, vEmail, bType, vAlergies, vIllness)                                       --Inserts a patient to the table
+        CALL newPatient (pName, vAge, vSex, vPhone, vEmail, bType, vAlergies, vIllness)         --Inserts a patient to the table
 
-        patientInfo (vID, vColumn, vValue)       --  Updates a value for the patient table
-    
+        CALL patientInfo (vID, vColumn, vValue)                                                 --  Updates a value for the patient table
+
+***Employee***
+
 ***List Of Alergies***
 
-    insertLOA (vID, vName, vSymptoms, medicine ID)  --  Inserts a new Alergy
+    CALL insertLOA (vID, vName, vSymptoms, medicine ID)                                         --  Inserts a new Alergy
 
 ***List Of Diagnosis***
 
-    insertLOD (vID, vName, vSymptoms, medicine ID)
+    CALL insertLOD (vID, vName, vSymptoms, medicine ID)                                         -- Inserts a new Diagnosis
 
 ***List of Medicine***
 
-    insertLOM (vID, vName, vSymptoms, illness)
+    CALL insertLOM (vID, vName, vSymptoms, illness)                                             --  Inerts a new type of Medicine
+
+***Rooms***
+
+    CALL firstFloor('roomName', 10000.00)
+    CALL secondFloor('roomName', 10000.00)
+    CALL thirdFloor('roomName', 10000.00)
 
 **Triggers**
 
 **Events**
 
 ##  Testing
+    Test Performed in this SQL Project
+
+    - Manually entered values
 
 ***SQL Testing***
 
@@ -153,6 +168,8 @@ Can be found in its given folder at github,com
 **sendSMS,py**
 
 **dictionaries.py**
+
+Created to easly maintain postal codes in the area
 
 **patientjournal.py**
 
@@ -178,11 +195,14 @@ Simple contract for the employee, store it in the database, so its always availa
 **Invoice.pdf**
 A simple invoice for the patient, after his stay
 
-##  Summary
+#  Summuary
+
+* Always there is room for cleaning, i choose to devide the different method in classes, and devide them into each python file, so there would be less mess in the code.
+
 
 * Some experience i learned while design this database, 
 Kriss had to find a way to create a text sheet which is stored in the database by using "BLOB", Kriss choose to use PDF format as the text file.
-i had a wish to extract information from the database into the PDF file, in order for it to be dynamical. So reportlab were a good option for this case.
+kriss had a wish to extract information from the database into the PDF file, in order for it to be dynamical. So reportlab were a good option for this case.
 
 * 
 
@@ -195,9 +215,9 @@ Plugins for mariadb
 
 Libraries 
 
-dotenv, - []()
-mariadb, - []()
-reportlab, - []()
+Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
+mariadb, - [MariaDB](https://github.com/MariaDB)
+reportlab, - [nAdy Robinson, Robin Becker, the ReportLab team and the community](https://reportlab.com)
 - []()
 - []()
 
