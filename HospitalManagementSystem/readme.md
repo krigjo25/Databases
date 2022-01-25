@@ -77,10 +77,11 @@ which lets the personell to add, modify the patient journal
 
 Can be found in its given folder at github,com
 
-    The project started
-    
+    The project started 
+        01-01-22
 
     The project were finished
+        
 
 ## SQL Data
 
