@@ -133,6 +133,9 @@ Can be found in its given folder at github,com
 
 ***Employee***
 
+    CALL newEmployee (eName, vAge, vSex, vPhone, vEmail)
+    
+
 ***List Of Alergies***
 
     CALL insertLOA (vID, vName, vSymptoms, medicine ID)                                         --  Inserts a new Alergy
@@ -165,21 +168,21 @@ Can be found in its given folder at github,com
 
 ##  Python
 
-**sendSMS,py**
-
 **dictionaries.py**
 
 Created to easly maintain postal codes in the area
 
 **patientjournal.py**
 
+This programming, create a PDF file from values which is in the database
+
 **uploadbiodata.py**
 
-**sampleContract.py**
+This uploads blob files to the database
 
 **runPDF.py**
 
-This is the main class which to be run everytime patient / employee table gets updated
+This programming, runs the different methods which is coded
 
 ##  PDF
 
@@ -188,23 +191,20 @@ This is the main class which to be run everytime patient / employee table gets u
 This is the patient journal, includes information about the given patient,
 what has done during the patient's stay at the Hospital. 
 
-**sampleContract.pdf**
-
-Simple contract for the employee, store it in the database, so its always available for the administration, employee
-
 **Invoice.pdf**
-A simple invoice for the patient, after his stay
+
+A simple invoice for the patient, after the patient's stay
 
 #  Summuary
 
-* Always there is room for cleaning, i choose to devide the different method in classes, and devide them into each python file, so there would be less mess in the code.
+* In the world of programming, there is always room for cleaning, i choose to devide the different methods in classes, and devide them into each python file, so there would be less mess in the code. Deviding lists, static and Dynamical tables, in different files, to make the code more readable for others.
 
 
 * Some experience i learned while design this database, 
 Kriss had to find a way to create a text sheet which is stored in the database by using "BLOB", Kriss choose to use PDF format as the text file.
 kriss had a wish to extract information from the database into the PDF file, in order for it to be dynamical. So reportlab were a good option for this case.
 
-* 
+*  Kriss experienced some issues with Keys, learned that there is more than just one Key to be used, even though some of them are the same, so kriss choose Candidate key for the given database, unless its the row id.
 
 * 
 

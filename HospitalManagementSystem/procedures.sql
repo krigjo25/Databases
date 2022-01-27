@@ -2,7 +2,17 @@
 author
 krigjo25
 
-/*****************************************************/
+/******************************************************/
+/********************** Employees ********************/
+
+CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN Eaddr VARCHAR(255), IN vAge INT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN vZip SMALLINT, IN vDep VARCHAR(255), IN vPos VARCHAR(255))
+    BEGIN
+        -- This procedure creates a new row with the details of an employee 
+        INSERT INTO employees (employeeName, employeeAddress, zipCode, email, phone, eContact, position) VALUES
+        (eName, Eaddr, vZip, vEmail, vPhone, vEmergency, vPos)
+    -   Insert a new employee
+    -   Update employee info
+/****************************************************/
 /********************** Patients ********************/
 DELIMITER ??
 CREATE OR REPLACE PROCEDURE insertPatient (pName VARCHAR(255),vAge INT, vSex VARCHAR(5), vPhone VARCHAR(255), vEmail VARCHAR(255), bType VARCHAR(20), vAlergies VARCHAR(255), vIllness VARCHAR(255))
