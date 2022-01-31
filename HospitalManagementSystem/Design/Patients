@@ -51,6 +51,7 @@ Recommended treatment for your illness              A000A
 **patient registered**
 
 dd.mm.yyyy
+
 -----------------------------------------------------------------------------
 
 ******************* Hospital Visits**************************
@@ -65,11 +66,12 @@ due to {reason}. between inDate + hh.mm and outdate + hh.mm
 Doctor DoctorName's notes 
 (
 
-    
 )
 
 max 200 letters
--------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------
+
 (IF he were visiting more than one room)
 
 patient were also visiting (roomName)(roomID), between inDate + hh.mm and outdate + hh.mm
