@@ -3,23 +3,23 @@
 
 **Patient Information**
 
-        *   unique ID \t                        To identify the patient custom start from 100
-        *   Gender                              The gender max 5 characters
-        *   age                                 The age of the patient
-        *   ContactInfo                         Phone number, e-mail
-        *   Disease Code                        A Unique KEY TO doc Table
-        *   Alergies                            A Unique KEY TO alergies Table
-        *   blood type                          A Unique KEY TO Blood type table 
-        *   PDF                                 Patient Journal
-        *   Datetime inn                        A counter from
-        *   DateTime out                        A counter untill
-        *   Next Appointment                    If the user is visiting a specialist
+        -   unique ID \t                        To identify the patient custom start from 100
+        -   Gender                              The gender max 5 characters
+        -   age                                 The age of the patient
+        -   ContactInfo                         Phone number, e-mail
+        -   Disease Code                        A Unique KEY TO doc Table
+        -   Alergies                            A Unique KEY TO alergies Table
+        -   blood type                          A Unique KEY TO Blood type table 
+        -   PDF                                 Patient Journal
+        -   Datetime inn                        A counter from
+        -   DateTime out                        A counter untill
+        -   Next Appointment                    If the user is visiting a specialist
 
 **Procedures**
 
-        * Insert a new patient
-        * Update patient Journal
-        * Update patient Information
+        - Insert a new patient
+        - Update patient Journal
+        - Update patient Information
 
 **Events**
 
