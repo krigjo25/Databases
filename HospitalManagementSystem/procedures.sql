@@ -14,58 +14,57 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN Eaddr VARCHAR
     -   Update employee info
 /****************************************************/
 /********************** Patients ********************/
-DELIMITER ??
-CREATE OR REPLACE PROCEDURE insertPatient (pName VARCHAR(255),vAge INT, vSex VARCHAR(5), vPhone VARCHAR(255), vEmail VARCHAR(255), bType VARCHAR(20), vAlergies VARCHAR(255), vIllness VARCHAR(255))
+DELIMITER x
+CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN vAge TINYINT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN bType VARCHAR(20), IN vAlergies VARCHAR(255), IN vIllness VARCHAR(255))
     BEGIN
     /*
     Inserting a new patient for the table
     */
     INSERT INTO patient (patientName, age, gender, phoneNumber, eMail, bloodType, alergies, diseases) VALUES
     (pName, vage, vSex, vPhone, veMail, bType, vAlergies, villness);
-    END ??
+    END x
 
-CREATE OR REPLACE PROCEDURE patientInfo(vID INT,  vColumn VARCHAR(20), 
-vValue VARCHAR(255))
+CREATE OR REPLACE PROCEDURE patientInfo(IN vID INT, IN vColumn VARCHAR(20),vValue VARCHAR(255))
     BEGIN
 
     /*
     Updates patient information Which has VARCHAR as DATATYPE
     */
-    SET @Query = CONCAT('UPDATE patient SET ', vColumn , vValue ' WHERE id = ', vID);
+    SET @Query = CONCAT('UPDATE patient SET ', vColumn , vValue, ' WHERE id = ', vID);
 
                 /*Prepareing and executing the statement*/
                 PREPARE stmt FROM @Query;
                 EXECUTE stmt;
                 DEALLOCATE PREPARE stmt;
+    END x
 /*****************************************************/
-DELIMITER ??
+DELIMITER x
 /************************ List of Alergies **************************/
-CREATE OR REPLACE PROCEDURE insertLOA (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
+CREATE OR REPLACE PROCEDURE insertA (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
     BEGIN
         -- Inserting values into list of Alergies
-        INSERT INTO loa (alergyID, alergyName, symptoms, medicineID) VALUES 
-        (vID, vName, vSymptoms, mID);
-    END ??
+        INSERT INTO alergies (alergyID, alergyName, symptoms, medicineID)
+        VALUES (vID, vName, vSymptoms, mID);
+    END x
 
 /***************************************************/
-DELIMITER ??
+DELIMITER x
 /************************ List of Diagnosis **************************/
-CREATE OR REPLACE PROCEDURE insertLOD (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
+CREATE OR REPLACE PROCEDURE insertD (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
     BEGIN
         -- Inserting values into list of Diagnosis
-        INSERT INTO lod (diagnosisID, diagnosisName, symptoms, medicineID) VALUES 
-        (vID, vName, vSymptoms, mID);
-    END ??
-
+        INSERT INTO diagnosis (diagnosisID, diagnosisName, symptoms, medicineID)
+        VALUES (vID, vName, vSymptoms, mID);
+    END x
 /***************************************************/
-DELIMITER ??
-/************************ List of Diagnosis **************************/
-CREATE OR REPLACE PROCEDURE insertLOM (mID CHAR(5), vName VARCHAR(255), vIllness VARCHAR(255))
+DELIMITER x
+/************************ List of available Medecines **************************/
+CREATE OR REPLACE PROCEDURE insertM (mID CHAR(5), vName VARCHAR(255), vIllness VARCHAR(255))
     BEGIN
         -- Inserting values into list of Medicine
-        INSERT INTO lom (medicineID, medicineName, illness) VALUES 
-        (mID, vName, vIllness);
-    END ??
+        INSERT INTO availableMedecines (medicineID, medicineName, illness) 
+        VALUES (mID, vName, vIllness);
+    END x
 
 /***************************************************/
 
@@ -75,6 +74,6 @@ DELIMITER x
 CREATE OR REPLACE PROCEDURE firstFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
     BEGIN
         -- Inserting values into list of Medicine
-        INSERT INTO firstFloor (roomName, hourlyRate) VALUES 
-        (vName, vRate);
+        INSERT INTO firstFloor (roomName, hourlyRate)
+        VALUES (vName, vRate);
     END x

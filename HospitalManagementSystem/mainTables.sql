@@ -7,7 +7,7 @@ Comments such as the one below indicates, it has to be made after the the given 
 /********************************************   Patient table   ********************************************/
 
 CREATE TABLE patient (
-                        id BIGINT NOT NULL AUTO_INCREMENT,
+                        id BIGINT NOT NULL,
                         patientName VARCHAR(255) NOT NULL,
                         age TINYINT NOT NULL DEFAULT 20,
                         gender VARCHAR(5) NOT NULL, 
@@ -15,12 +15,12 @@ CREATE TABLE patient (
                         eMail VARCHAR(255) NOT NULL,
                         adress VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
                         zipcode SMALLINT NOT NULL DEFAULT 0000,
-                        bloodType VARCHAR(255), 
-                        alergies VARCHAR(255) NOT NULL DEFAULT 'NNNNA',
+                        bloodType VARCHAR(2), 
+                        alergies VARCHAR(255) NOT NULL UNIQUE DEFAULT 'NNNNA',
                         diagnosis VARCHAR(255) NOT NULL DEFAULT 'NNNND',
+                        medecine  VARCHAR(255) NOT NULL DEFAULT 'NNNNM',
                         dateIn DATETIME NOT NULL DEFAULT CURRENT_TIME,
                         dateOut DATETIME,
-                        nextAppointment DATE,
                         billing MEDIUMBLOB,
                         patientJournal MEDIUMBLOB,
                         demo VARCHAR(255),
@@ -28,9 +28,10 @@ CREATE TABLE patient (
                         registered TIMESTAMP NOT NULL DEFAULT NOW(),
 
                     --  Table Constraints
-                        PRIMARY KEY(id),
-                        CONSTRAINT UniqeuName UNIQUE(diagnosis, alergies),
+
+                        CONSTRAINT UniqeuName UNIQUE(diagnosis, medecine, patientName),
                         CONSTRAINT ListOfAlergies_FK FOREIGN KEY(alergies) REFERENCES alergies(alergyID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT ListofMedecine FOREIGN KEY(medecine) REFERENCES availableMedecines(mID) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT ListOfDiagnosis_FK FOREIGN KEY(diagnosis) REFERENCES diagnosis(diagnosisID) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
 

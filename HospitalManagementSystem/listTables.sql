@@ -11,11 +11,11 @@ CREATE TABLE diagnosis (
 
                 -- Table Constraints
                     CONSTRAINT uniqueName UNIQUE(diagnosisID),
-                    CONSTRAINT medecineID_fk FOREIGN KEY(medecineID) REFERENCES lom(mID) ON DELETE CASCADE ON UPDATE CASCADE);
+                    CONSTRAINT medecineID_fk FOREIGN KEY(medecineID) REFERENCES availableMedecines(mID) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
 
 CREATE TABLE alergies (
-    -- Table of List of Alergies
+                -- Table of List of Alergies
                     id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     alergyID CHAR(5) NOT NULL DEFAULT 'NNNNA', 
                     aName VARCHAR(255) NOT NULL, 
@@ -25,16 +25,22 @@ CREATE TABLE alergies (
                     demo1 VARCHAR(255),
                 --  Table Constraints
                     CONSTRAINT uniqueName UNIQUE(alergyID),
-                    CONSTRAINT medecineID_fk2 FOREIGN KEY(medecineID) REFERENCES lom(mID) ON DELETE CASCADE ON UPDATE CASCADE);
+                    CONSTRAINT medecineID_fk2 FOREIGN KEY(medecineID) REFERENCES availableMedecines(mID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 CREATE TABLE availableMedecines (
-    -- Table of List of Medicines
+                --  Table of List of Medicines
+
+                    id BIGINT NOT NULL AUTO_INCREMENT,
                     mID CHAR(5) NOT NULL DEFAULT 'NNNNM',
-                    medicineName VARCHAR(255) NOT NULL DEFAULT 'Test', 
+                    medecineName VARCHAR(255) NOT NULL DEFAULT 'Demo Medicine', 
                     illness VARCHAR(255) NOT NULL,
                     demo VARCHAR(255), 
                     demo1 VARCHAR(255),
-                    PRIMARY KEY (mID));
+
+                --  Table Constraints
+
+                    PRIMARY KEY (id),
+                    CONSTRAINT uniqueName UNIQUE(mID, medecineName));
 
 /*************************************************************************************************************/
 

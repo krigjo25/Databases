@@ -1,4 +1,5 @@
-A patient will have a unique Patient ID. (0)
+A patient will have a unique Patient ID.
+
 Full description about the patient about personal detail and phone number, 
 and then Disease and what treatment is going on. The doctor will handle 
 patients, one doctor can Treat more than 1 patient. Also, each doctor will 

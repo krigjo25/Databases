@@ -1,52 +1,55 @@
-Patient Table
+## Patient Table
         Column                              Comment
-Personal Information
-    -   unique ID                           To identify the patient
-    -   Gender
-    -   age
-    -   ContactInfo                         Phone number, e-mail
-    -   Disease Code                        A KEY TO doc Table
-    -   Alergies                            A KEY TO alergies Table
-    -   blood type                          A KEY TO Blood type table 
-    -   PDF                                 Patient Journal
-    -   Datetime inn                            A counter from
-    -   DateTime out                            A counter untill
-    -   Next Appointment                    If the user is visiting a specialist
 
-Procedures
-    -   Insert a new patient
-    -   Update patient Journal
-    -   Update patient Information
+**Patient Information**
+*   unique ID                           To identify the patient custom start from 100
+*   Gender                              The gender max 5 characters
+*   age                                 The age of the patient
+*   ContactInfo                         Phone number, e-mail
+*   Disease Code                        A Unique KEY TO doc Table
+*   Alergies                            A Unique KEY TO alergies Table
+*   blood type                          A Unique KEY TO Blood type table 
+*   PDF                                 Patient Journal
+*   Datetime inn                        A counter from
+*   DateTime out                        A counter untill
+*   Next Appointment                    If the user is visiting a specialist
 
-Events
+**Procedures**
+* Insert a new patient
+* Update patient Journal
+* Update patient Information
 
-triggers
-    When the patient gets registered for the first time in the database,
-    Create a PDF containing the personal info, alergies, diagnosis ( where the recommended treatments get fetched from the database)
+**Events**
+
+**Triggers**
+When the patient gets registered for the first time in the database,
+Create a PDF containing the personal info, alergies, diagnosis
+( where the recommended treatments get fetched from the database)
 
 
-PDF file 
-self.height, self.width = letter
+**PDF file**
 
 ***************************************************
-Patient Journal of Jhon Doe 100 (fontsize 20, Fontfamily ARIAL titles bold)
+>Patient Journal of **Jhon Doe 100** (fontsize 20, Fontfamily ARIAL titles bold)
+>
+>    **age         Sex     BloodType           List of Current Diseases**
+>>  dd.mm-yy       M         0+                   A000A
+>
+>**contact information**            **List of Recommended treatment**
 
-    age         Sex     BloodType           List of Current Diseases
-  dd.mm-yy       M         0+                   A000A
-
-contact information
-                                            List of Recommended treatment
 +4712345678,                                        A000A
 jhondoe@domaine.domaine
 
-streetName(nr), Apartment (nr)              List of Current Alergies
-zipCode, State                                      A000A
+streetName(nr), Apartment (nr)              **List of Current Alergies**
+zipCode, State                                      
+                                                    A000A
 
-List of current Diagnosis
-                                            List of Recommended treatment
+**List of current Diagnosis**            **List of Recommended treatment**
+
 Recommended treatment for your illness              A000A
 
-patient registered
+**patient registered**
+
 dd.mm.yyyy
 -----------------------------------------------------------------------------
 

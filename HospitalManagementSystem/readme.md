@@ -71,21 +71,32 @@ otherwise, Gym and living life as a human
 **Project info**
 
 The idea of HospitalManageSystem is to create a back-end system
-which lets the personell to add, modify the patient journal
+which lets the personell to add and modify the patient journal
  
- Started :
- Last Update :
+>   project start :
+>>  1.01-22
+>
+>   Last Update :
+>>
+
+>   SQL Database: 
+ 
+>>  mariaDB
  
 ## The Design
 
-Can be found in its given folder at github,com
+The design has its own folder in github.com
 
-    The project started 
-        01-01-22
+**The design includes**
 
-    The project were finished
-
-
+>patient.txt,
+>bookings.txt,
+>employee.txt,
+>billing.txt,
+>list of diseases.txt
+>rooms.txt
+>thecase.txt
+>turnus.txt
 ## SQL Data
 
  **Tables**
