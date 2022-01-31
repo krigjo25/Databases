@@ -2,7 +2,7 @@
         Column                              Comment
 
 **Patient Information**
-*   unique ID                           To identify the patient custom start from 100
+*   unique ID \t                          To identify the patient custom start from 100
 *   Gender                              The gender max 5 characters
 *   age                                 The age of the patient
 *   ContactInfo                         Phone number, e-mail
@@ -33,44 +33,44 @@ Create a PDF containing the personal info, alergies, diagnosis
 >Patient Journal of **Jhon Doe 100** (fontsize 20, Fontfamily ARIAL titles bold)
 >
 >    **age         Sex     BloodType           List of Current Diseases**
->>  dd.mm-yy       M         0+                   A000A
+>  dd.mm-yy       M         0+                   A000A
 >
 >**contact information**            **List of Recommended treatment**
-
-+4712345678,                                        A000A
-jhondoe@domaine.domaine
-
-streetName(nr), Apartment (nr)              **List of Current Alergies**
-zipCode, State                                      
-                                                    A000A
-
-**List of current Diagnosis**            **List of Recommended treatment**
-
-Recommended treatment for your illness              A000A
-
-**patient registered**
-
-dd.mm.yyyy
-
------------------------------------------------------------------------------
-
-******************* Hospital Visits**************************
-Last Visit : dd.mm.yy
-
-During your last stay at Ålesund Hospital
-The patient were visiting 
-
-(roomID)(roomName), 
-due to {reason}. between inDate + hh.mm and outdate + hh.mm
-
-Doctor DoctorName's notes 
-(
-
-)
-
-max 200 letters
-
---------------------------------------------------------------------------------------------------
+>
+>+4712345678,                                        A000A
+>jhondoe@domaine.domaine
+>
+>streetName(nr), Apartment (nr)              **List of Current Alergies**
+>zipCode, State                                      
+>                                                    A000A
+>
+>**List of current Diagnosis**            **List of Recommended treatment**
+>
+>Recommended treatment for your illness              A000A
+>
+>**patient registered**
+>
+>dd.mm.yyyy
+>
+>-----------------------------------------------------------------------------
+>
+>******************* Hospital Visits**************************
+>Last Visit : dd.mm.yy
+>
+>During your last stay at Ålesund Hospital
+>The patient were visiting 
+>
+>(roomID)(roomName), 
+>due to {reason}. between inDate + hh.mm and outdate + hh.mm
+>
+>Doctor DoctorName's notes 
+>(
+>
+>)
+>
+>max 200 letters
+>
+>--------------------------------------------------------------------------------------------------
 
 (IF he were visiting more than one room)
 
