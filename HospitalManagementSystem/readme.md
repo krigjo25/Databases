@@ -208,16 +208,29 @@ A simple invoice for the patient, after the patient's stay
 
 #  Summuary
 
-* In the world of programming, there is always room for cleaning, i choose to devide the different methods in classes, and devide them into each python file, so there would be less mess in the code. Deviding lists, static and Dynamical tables, in different files, to make the code more readable for others.
+* In the world of programming, there is always room for cleaning, 
+the common choose were to devide the different methods in classes, 
+and devide them into each python file, so there would be less mess 
+in the code. Deviding lists, static and Dynamical tables, in different
+files, to make the code more readable for others.
 
 
-* Some experience i learned while design this database, 
-Kriss had to find a way to create a text sheet which is stored in the database by using "BLOB", Kriss choose to use PDF format as the text file.
-kriss had a wish to extract information from the database into the PDF file, in order for it to be dynamical. So reportlab were a good option for this case.
+*  While designing the Database, the need for a better text reading 
+software, than using plaint text were a need PDF were choosen as the
+file format for the text files, the information from the database had
+to be extracted to the PDF from the database, by using reportLab's Library,
+ it could be achived. The way to store the information in the database,
+could be a more challange as database only read bytes, not words, so by
+using 'BLOB' the file could be saved in the database.
 
-*  Kriss experienced by using the foreign key, there is issues by using the Primary Key, to avoid the foreign key issue, suggested soulution is to  Choose a different key for the foreignKey. The choice were to use unique insted of Primary Key. For the row ID is the Primary targeting to retieve information.
+*  The experience by using  the foreign key, which where experienced,
+to avoid the foreign key issue 150, there has to be only one Primary key,
+but there can be multiply usage of the other keys suggested soulution is
+to  Choose a different key for the foreignKey. The choice were to  use 
+unique insted of Primary Key. For the row ID is the Primary targeting to 
+retieve information.
 
-*  Kriss had a slightly challange to merge all the floors into one table,
+*   Kriss had a slightly challange to merge all the floors into one table,
 The thought were to create a new table, with foreign key, but it wouldnt work, 
 as the assumption about foreign keys can not refer to more than one table the b
 etter soloution were to create a view for this matter.
@@ -226,9 +239,9 @@ etter soloution were to create a view for this matter.
 
 ## Responsories
 
-Plugins for mariadb
+**Plugins for mariadb**
 
-Libraries 
+**Python Libraries** 
 
 * Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
 * mariadb, - [MariaDB Community](https://github.com/MariaDB)
