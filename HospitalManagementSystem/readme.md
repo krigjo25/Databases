@@ -218,7 +218,9 @@ kriss had a wish to extract information from the database into the PDF file, in 
 *  Kriss experienced by using the foreign key, there is issues by using the Primary Key, to avoid the foreign key issue, suggested soulution is to  Choose a different key for the foreignKey. The choice were to use unique insted of Primary Key. For the row ID is the Primary targeting to retieve information.
 
 *  Kriss had a slightly challange to merge all the floors into one table,
-The thought were to create a new table, with foreign key, but it wouldnt work, as kriss assumes the foreign key will fail due to there is only one foreign key for each column, the better soloution were to create a view for this matter.
+The thought were to create a new table, with foreign key, but it wouldnt work, 
+as the assumption about foreign keys can not refer to more than one table the b
+etter soloution were to create a view for this matter.
 
 * 
 
