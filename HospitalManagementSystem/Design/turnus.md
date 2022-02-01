@@ -3,7 +3,7 @@ from the employees table.
 
 The table generates a turnus for 3 months at the time, 
 
-Table 
+**Table** 
 
         turnus
         -       Employee name
@@ -11,10 +11,10 @@ Table
         -       vacation days
         -       Sick days
 
-Procedures
+**Procedures**
 -       insert member
 
-Events
+**Events**
 
 
-Trigger
+**Trigger**
