@@ -226,11 +226,11 @@ Plugins for mariadb
 
 Libraries 
 
-Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
-mariadb, - [MariaDB](https://github.com/MariaDB)
-reportlab, - [nAdy Robinson, Robin Becker, the ReportLab team and the community](https://reportlab.com)
-- []()
-- []()
+* Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
+* mariadb, - [MariaDB](https://github.com/MariaDB)
+* reportlab, - [nAdy Robinson, Robin Becker, the ReportLab team and the community](https://reportlab.com)
+* []()
+* []()
 
 ## Credits
 

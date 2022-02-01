@@ -75,19 +75,18 @@ CREATE TABLE booking (
 
 /*************************************************************************************************************/
 
-
 /************************************* Billings *************************************************************/
 
 CREATE TABLE billing (
                     --  Table Columns
-                        id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT
+                        id BIGINT NOT NULL UNIQUE AUTO_INCREMENT
                         invoiceID INT NOT NULL, -- AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT=300000 
                         patientID INT NOT NULL,
                         Ammount, DECIMAL(11,2),
                         discount TINYINT NOT NULL,
-                        status VARCHAR(8) NOT NULL DEFAULT 'Not Paid' 
+                        paymentStatus VARCHAR(8) NOT NULL DEFAULT 'Not Paid',
                     
                     -- Table Constraints
-                    CONSTRAINT uniqueName UNIQUE(invoiceID)
-                    CONSTRAINT patient_FK FOREIGN KEY(patientID) ON DELETE CASCADE ON UPDATE CASCADE);
+                    CONSTRAINT uniqueName UNIQUE(invoiceID),
+                    CONSTRAINT patient_FK FOREIGN KEY(patientID) REFERENCE patient (patientID) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/

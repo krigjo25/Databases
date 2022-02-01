@@ -48,6 +48,7 @@ CREATE TABLE availableMedecines (
 
 CREATE TABLE firstFloor (
                 --  Table Columns
+                    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     roomID SMALLINT SIGNED NOT NULL,
                     roomName VARCHAR(255) NOT NULL,
                     price DECIMAL(7,2) NOT NULL DEFAULT 0.00, 
@@ -58,23 +59,20 @@ CREATE TABLE firstFloor (
                     PRIMARY KEY(roomID));
 CREATE TABLE secondFloor (
                 --  Table columns
-                    roomID SMALLINT SIGNED NOT NULL,
+                    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                    roomID SMALLINT SIGNED NOT NULL UNIQUE,
                     roomName VARCHAR(255) NOT NULL,
                     price DECIMAL(7,2) NOT NULL DEFAULT 0.00, 
                     demo VARCHAR(255),
-                    demo1 VARCHAR(255),
-
-                --  Table Constraints
-                    PRIMARY KEY(roomID));
+                    demo1 VARCHAR(255));
 
 CREATE TABLE thirdFloor (
                 --  Table Columns
-                    roomID SMALLINT SIGNED NOT NULL,
+                    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                    roomID SMALLINT SIGNED NOT NULL UNIQUE,
                     roomName VARCHAR(255) NOT NULL,
                     price DECIMAL(7,2) NOT NULL DEFAULT 0.00, 
                     demo VARCHAR(255),
-                    demo1 VARCHAR(255),
+                    demo1 VARCHAR(255));
 
-                --  Table Constraints
-                    PRIMARY KEY (roomID));
 /*************************************************************************************************************/
