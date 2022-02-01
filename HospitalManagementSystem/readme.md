@@ -257,7 +257,7 @@ Discord : krigjo25#5588
 messenger : krigjo25
 
 Only One advice,
-« The importance of creating is just have fun. »
+« The importance of creating is fun. »
 
 **Licence**
 
