@@ -1,4 +1,5 @@
 /******************************************** Diagnosis *****************************************************/
+DELIMITER ;
 CREATE TABLE diagnosis (
                 -- Table Columns
                     id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -45,18 +46,16 @@ CREATE TABLE availableMedecines (
 /*************************************************************************************************************/
 
 /******************************************** Rooms *****************************************************/
-
+DELIMITER
 CREATE TABLE firstFloor (
                 --  Table Columns
                     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                    roomID SMALLINT SIGNED NOT NULL,
+                    roomID SMALLINT SIGNED NOT NULL UNIQUE,
                     roomName VARCHAR(255) NOT NULL,
                     price DECIMAL(7,2) NOT NULL DEFAULT 0.00, 
                     demo VARCHAR(255),
-                    demo1 VARCHAR(255),
+                    demo1 VARCHAR(255));
 
-                --  Table Constraints
-                    PRIMARY KEY(roomID));
 CREATE TABLE secondFloor (
                 --  Table columns
                     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

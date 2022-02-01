@@ -1,4 +1,4 @@
-/************************************************************************
+/********************************************************************
 
 *   Author
         krigjo25
@@ -12,10 +12,22 @@
 *   Project end
             dd.mm-yy
 ********************************************************************/
-/*
 
-CALL insertLOD ('A36AF', Asthma', 'Wheezing,breathlessness, coughing, a tight chest', 'FA');    -- Insert a query to our list of Deseases table
-CALL insertLOA ('AAC31', 'Cat Alergy', 'Sneezing, red, itchy eyes', 'NS330');                       -- Insert a query to our list of Alergy table
-CALL insertLOM ('A36AF', Asthma', 'Wheezing,breathlessness, coughing, a tight chest', 'FA');    -- Insert a query to our list of Medicine table
+/*********************** Patient Procedures*************************
+CALL newPatient('Name', age, 'sex', 'PhoneNumber', 'Email address', 'bloodType, 'Alergies', 'Diagnosis');
+CALL patientInfo('Column', 'Value', id);
+********************************************************************/
 
-*/
+/*********************** Employee Procedures************************
+CALL newEmployee ('Employee Name', 'Employee Address', age, 'sex', ' Employee number', 'Employee zipCode', 'Employee Email', 'Department', 'Position');
+CALL updateEmployee('Column', 'Value', id);
+********************************************************************/
+
+/*********************** Table list************************
+CALL insertD ('ID', Diagnosis Name', 'Symptoms', 'MedecineID');    -- Insert a query to our list of Deseases table
+CALL insertA ('ID', Alergy Name', 'Symptoms', 'MedecineID');
+CALL insertM ('ID', 'Medecine Name', 'Illness');    -- Insert a query to our list of Medicine table
+CALL firstFloor ('RoomName', Rate);    -- Insert a query to our list of Deseases table
+CALL secondFloor ('RoomName', Rate);    -- Insert a query to our list of Deseases table
+CALL thirdFloor ('RoomName', Rate);    -- Insert a query to our list of Deseases table
+********************************************************************/

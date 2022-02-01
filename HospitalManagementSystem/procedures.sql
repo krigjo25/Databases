@@ -11,12 +11,21 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN Eaddr VARCHAR
         -- This procedure creates a new row with the details of an employee 
         INSERT INTO employees (employeeName, employeeAddress, zipCode, email, phone, eContact, position) VALUES
         (eName, Eaddr, vZip, vEmail, vPhone, vEmergency, vPos)
-    -   Insert a new employee
-    -   Update employee info
+    END x
+
+CREATE OR REPLACE PROCEDURE employeeInfo (IN vColumn VARCHAR(20), IN eValue VARCHAR(255), IN eID INT)
+    BEGIN
+        SET @Query = CONCAT('UPDATE employee SET ', vColumn, ' = ', eValue, ' WHERE ID = ', eID);
+            PREPARE stmt FROM @Query;
+            EXECUTE stmt;
+            DEALLOCATE PREPARE stmt;
+
+    END x
 /****************************************************/
+
 /********************** Patients ********************/
 DELIMITER x
-CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN vAge TINYINT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN bType VARCHAR(20), IN vAlergies VARCHAR(255), IN vIllness VARCHAR(255))
+CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN vAge TINYINT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN bType VARCHAR(2), IN vAlergies VARCHAR(255), IN vIllness VARCHAR(255))
     BEGIN
     /*
     Inserting a new patient for the table
@@ -25,7 +34,7 @@ CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN vAge TINYIN
     (pName, vage, vSex, vPhone, veMail, bType, vAlergies, villness);
     END x
 
-CREATE OR REPLACE PROCEDURE patientInfo(IN vID INT, IN vColumn VARCHAR(20),vValue VARCHAR(255))
+CREATE OR REPLACE PROCEDURE patientInfo(IN vColumn VARCHAR(20), vValue VARCHAR(255), IN vID INT)
     BEGIN
 
     /*
@@ -76,5 +85,21 @@ CREATE OR REPLACE PROCEDURE firstFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
     BEGIN
         -- Inserting values into list of Medicine
         INSERT INTO firstFloor (roomName, hourlyRate)
+        VALUES (vName, vRate);
+    END x
+
+DELIMITER x
+CREATE OR REPLACE PROCEDURE secondFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
+    BEGIN
+        -- Inserting values into list of Medicine
+        INSERT INTO secondFloor (roomName, hourlyRate)
+        VALUES (vName, vRate);
+    END x
+
+DELIMITER x
+CREATE OR REPLACE PROCEDURE thirdFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
+    BEGIN
+        -- Inserting values into list of Medicine
+        INSERT INTO thirdFloor (roomName, hourlyRate)
         VALUES (vName, vRate);
     END x
