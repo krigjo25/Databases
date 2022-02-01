@@ -9,9 +9,9 @@ INSERT INTO wagonOne (formName, pSeries, plate, arm, mincool, minOven, sutableWi
 INSERT INTO wagonTwo (formName, pSeries, plate, arm, notes) VALUES
         
         ('Aqua 600', 'Aqua-Series', 30.33,27.30,''),
-        ('Aqua 600 pre', 'Prebouy-Series', 30.33, 27.30,''), --#1100
-        ('Prebouy 850', 'Prebouy-Series', 30.33, 27.30, ''), --# Silkasse
-        ('Prebouy 1100', 'Prebouy-Series', 30.33, 27.30, ''), -- #600
+        ('Aqua 600 pre', 'Prebouy-Series', 30.33, 27.30,''),
+        ('Prebouy 850', 'Prebouy-Series', 30.33, 27.30, ''), 
+        ('Prebouy 1100', 'Prebouy-Series', 30.33, 27.30, ''),
         ('MB-40', 'MB-Series', 30.33, 27.30, ''),
         ('Mb-100', 'MB-Series', 30.33, 27.30, ''),
         ('MB-250','MB-Series', 30.33, 27.30, ''),

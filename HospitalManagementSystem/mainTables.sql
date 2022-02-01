@@ -1,9 +1,13 @@
 /*
+
+/***************************************************************
 Comments such as the one below indicates, it has to be made after the the given table
 
 # Comment
 
-*/
+This file contains the main tables which is used in the project
+
+***************************************************************/
 /********************************************   Patient table   ********************************************/
 
 CREATE TABLE patient (
@@ -70,7 +74,7 @@ CREATE TABLE booking (
                     --  Table Constraints
                     CONSTRAINT uniqueName UNIQUE(patientName, roomName, rate, EmployeeName),
                     CONSTRAINT patient_FK FOREIGN KEY (patientName) ON DELETE CASCADE, ON UPDATE CASCADE,
-                    CONSTRAINT room_FK FOREIGN KEY (roomName) REFERENCES firstfloor ON DELETE CASCADE ON UPDATE CASCADE,
+                    CONSTRAINT room_FK FOREIGN KEY (roomName) REFERENCES Rooms ON DELETE CASCADE ON UPDATE CASCADE,
                     CONSTRAINT employee_FK FOREIGN KEY (employeeName) REFERENCES employees(employeeName) ON DELETE RESTRICT ON UPDATE CASCADE);
 
 /*************************************************************************************************************/

@@ -1,3 +1,9 @@
+/***************************************************************
+
+This file contains the all tables which is considered as a list
+
+/***************************************************************/
+
 /******************************************** Diagnosis *****************************************************/
 DELIMITER ;
 CREATE TABLE diagnosis (
@@ -70,7 +76,6 @@ CREATE TABLE thirdFloor (
                     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                     roomID SMALLINT SIGNED NOT NULL UNIQUE,
                     roomName VARCHAR(255) NOT NULL,
-                    price DECIMAL(7,2) NOT NULL DEFAULT 0.00, 
                     demo VARCHAR(255),
                     demo1 VARCHAR(255));
 

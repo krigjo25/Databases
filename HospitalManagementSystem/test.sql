@@ -1,16 +1,7 @@
-/********************************************************************
+/***************************************************************
 
-*   Author
-        krigjo25
+This file contains the CALL Procedures which is used in the project
 
-*   FileName 
-        test SQL
-
-*   project Start
-            02.12-21
-
-*   Project end
-            dd.mm-yy
 ********************************************************************/
 
 /*********************** Patient Procedures*************************
@@ -23,11 +14,21 @@ CALL newEmployee ('Employee Name', 'Employee Address', age, 'sex', ' Employee nu
 CALL updateEmployee('Column', 'Value', id);
 ********************************************************************/
 
-/*********************** Table list************************
+/*********************** Table list*********************************
 CALL insertD ('ID', Diagnosis Name', 'Symptoms', 'MedecineID');    -- Insert a query to our list of Deseases table
 CALL insertA ('ID', Alergy Name', 'Symptoms', 'MedecineID');
 CALL insertM ('ID', 'Medecine Name', 'Illness');    -- Insert a query to our list of Medicine table
+
 CALL firstFloor ('RoomName', Rate);    -- Insert a query to our list of Deseases table
 CALL secondFloor ('RoomName', Rate);    -- Insert a query to our list of Deseases table
 CALL thirdFloor ('RoomName', Rate);    -- Insert a query to our list of Deseases table
+********************************************************************/
+
+/*********************** Booking Procedures ************************
+********************************************************************/
+
+/*********************** Billing Procedures ************************
+********************************************************************/
+
+/*********************** Turnus Procedures ************************
 ********************************************************************/

@@ -215,11 +215,13 @@ A simple invoice for the patient, after the patient's stay
 Kriss had to find a way to create a text sheet which is stored in the database by using "BLOB", Kriss choose to use PDF format as the text file.
 kriss had a wish to extract information from the database into the PDF file, in order for it to be dynamical. So reportlab were a good option for this case.
 
-*  Kriss experienced some issues with Keys, learned that there is more than just one Key to be used, even though some of them are the same, so kriss choose Candidate key for the given database, unless its the row id.
+*  Kriss experienced by using the foreign key, there is issues by using the Primary Key, to avoid the foreign key issue, suggested soulution is to  Choose a different key for the foreignKey. The choice were to use unique insted of Primary Key. For the row ID is the Primary targeting to retieve information.
+
+*  Kriss had a slightly challange to merge all the floors into one table,
+The thought were to create a new table, with foreign key, but it wouldnt work, as kriss assumes the foreign key will fail due to there is only one foreign key for each column, the better soloution were to create a view for this matter.
 
 * 
 
-* 
 ## Responsories
 
 Plugins for mariadb
