@@ -73,33 +73,30 @@ otherwise, Gym and living life as a human
 The idea of HospitalManageSystem is to create a back-end system
 which lets the personell to add and modify the patient journal
  
->   project start :
->>  1.01-22
->
->   Last Update :
->>
+    project start :
+        1.01-22
 
->   SQL Database: 
- 
->>  mariaDB
- 
-## The Design
+   Last Update :
 
-The design has its own folder in github.com
 
-**The design includes**
+    SQL Database: 
+        mariaDB
+    
+**The Design**
 
->patient.txt,
->bookings.txt,
->employee.txt,
->billing.txt,
->list of diseases.txt
->rooms.txt
->thecase.txt
->turnus.txt
+includes the text files below,
+>[Patient](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Patients.md),
+>[Bookings](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Bookings.md),
+>[Employee](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Employee.md),
+>[Billing](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Billing.md),
+>[Table list](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TableList.md),
+>[Rooms](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Rooms.md),
+>[The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
+>[Turnus](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Turnus.md)
+
 ## SQL Data
 
- **Tables**
+**Tables**
 
     patients
         includes the "personal" information about a given patient
@@ -112,13 +109,13 @@ The design has its own folder in github.com
 
     Hospital lists
 
-        lom 
+        medecines 
             List of medecines
 
-        loa
+        alergies
             list of given registered Alergies
 
-        lod
+        diagnosis
             List of given Deseases
                 
     Interior list
@@ -138,9 +135,9 @@ The design has its own folder in github.com
 
 ***Patient***
 
-        CALL newPatient (pName, vAge, vSex, vPhone, vEmail, bType, vAlergies, vIllness)         --Inserts a patient to the table
+        CALL newPatient (pName, vAge, vSex, vPhone, vEmail, bType, vAlergies, vIllness)         #   Inserts a patient to the table
 
-        CALL patientInfo (vID, vColumn, vValue)                                                 --  Updates a value for the patient table
+        CALL patientInfo (vID, vColumn, vValue)                                                 #   Updates a value for the patient table
 
 ***Employee***
 
@@ -149,15 +146,15 @@ The design has its own folder in github.com
 
 ***List Of Alergies***
 
-    CALL insertLOA (vID, vName, vSymptoms, medicine ID)                                         --  Inserts a new Alergy
+    CALL insertLOA (vID, vName, vSymptoms, medicine ID)                                         #   Inserts a new Alergy
 
 ***List Of Diagnosis***
 
-    CALL insertLOD (vID, vName, vSymptoms, medicine ID)                                         -- Inserts a new Diagnosis
+    CALL insertLOD (vID, vName, vSymptoms, medicine ID)                                         #   Inserts a new Diagnosis
 
 ***List of Medicine***
 
-    CALL insertLOM (vID, vName, vSymptoms, illness)                                             --  Inerts a new type of Medicine
+    CALL insertLOM (vID, vName, vSymptoms, illness)                                             #  Inerts a new type of Medicine
 
 ***Rooms***
 
@@ -165,17 +162,23 @@ The design has its own folder in github.com
     CALL secondFloor('roomName', 10000.00)
     CALL thirdFloor('roomName', 10000.00)
 
+**Views**
+
+    Rooms.sql                                                                                   #   An overview of all rooms which is available in the Hospital
+
 **Triggers**
 
 **Events**
 
 ##  Testing
-    Test Performed in this SQL Project
+
+**Test Performed in this SQL Project**
 
     - Manually entered values
 
 ***SQL Testing***
 
+The database has been manually tested 
 
 ##  Python
 
@@ -199,7 +202,7 @@ This programming, runs the different methods which is coded
 
 **sampleJournal.pdf**
 
-This is the patient journal, includes information about the given patient,
+the patient journal, includes information about the given patient,
 what has done during the patient's stay at the Hospital. 
 
 **Invoice.pdf**
@@ -239,7 +242,9 @@ etter soloution were to create a view for this matter.
 
 ## Responsories
 
-**Plugins for mariadb**
+**Database Plugins**
+
+
 
 **Python Libraries** 
 
@@ -264,5 +269,7 @@ Only One advice,
 Not licenced.
 
 **Disclamers**
+
+This datebase is as is
 
 **References**
