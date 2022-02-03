@@ -11,8 +11,14 @@ The table generates a turnus for 3 months at the time,
         -       vacation days
         -       Sick days
 
+## Turnus
+        This table is only for the working with dates
+
+        id,
+        employeeName,
+        datetime
+
 **Procedures**
--       insert member
 
 **Events**
 

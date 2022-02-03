@@ -16,10 +16,10 @@ CREATE TABLE patient (
                         patientName VARCHAR(255) NOT NULL DEFAULT 'Jhon Doe',
                         birthDate DATE NOT NULL DEFAULT '01.01-1973',
                         ssn INT NOT NULL DEFAULT 123456789
-                        age TINYINT NOT NULL DEFAULT 20,
-                        gender VARCHAR(5) NOT NULL, 
+                        sex VARCHAR(5) NOT NULL, 
                         phoneNumber VARCHAR(255),
                         street VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
+                        provice VARCHAR(255) NOT NULL DEFAULT 'Warshinton DC',
                         zipcode SMALLINT NOT NULL DEFAULT 12345,
                         companyName VARCHAR(255) NOT NULL DEFAULT 'Unemployed',
                         industry VARCHAR(255) NOT NULL DEFAULT 'Unemployed',
@@ -63,10 +63,9 @@ CREATE TABLE employees (
                         eStatus TINYINT NOT NULL,
                         occupation VARCHAR(255) NOT NULL,
                         hourlyRate DECIMAL(9,2),
-                        eContact VARCHAr(255),
                         department VARCHAR(255) NOT NULL,
                         eContract TINYBLOB,
-                        Hired TIMESTAMP NOT NULL DEFAULT NOW());
+                        hired TIMESTAMP NOT NULL DEFAULT NOW());
 /*************************************************************************************************************/
 
 /******************************** RoomBookings **************************************************************/

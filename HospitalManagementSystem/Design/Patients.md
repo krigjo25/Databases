@@ -4,16 +4,50 @@
 **Patient Information**
 
         -   unique ID \t                        To identify the patient custom start from 100
-        -   Gender                              The gender max 5 characters
-        -   age                                 The age of the patient
-        -   ContactInfo                         Phone number, e-mail
+        #   General information about the patient
+
+        -   birthDate                           The date of birth
+        -   ssn                                 Security Social Number
+        -   sex                                 The sex max 5 characters
+        -   mobile                              Phone number, max 9 digits
+        -   street                              street name of the patient
+        -   provice                             state of the patient
+        -   zipcode                             the given postal code
+
+        #   Information about work
+
+        -   companyName                         patients employeement
+        -   industry                            work environment
+
+        #   Health information
+
+        -   bodyWeight                          Patient's body Weight
+        -   bodyHeight                          Patient's body Height
+        -   bodyMass                            Patient's body mass
+        -   bloodType                           Blood type of the patient
         -   Disease Code                        A Unique KEY TO doc Table
-        -   Alergies                            A Unique KEY TO alergies Table
-        -   blood type                          A Unique KEY TO Blood type table 
-        -   PDF                                 Patient Journal
-        -   Datetime inn                        A counter from
-        -   DateTime out                        A counter untill
-        -   Next Appointment                    If the user is visiting a specialist
+        -   Alergies                            A Unique KEY TO alergies 
+        -   medecine                            A Unique Key to available medecine
+        -   dateIn                              When the patient arrive
+        -   dateOut                             When the patient leaves
+        -   billing                             Invoice for the patient
+        -   patientJournal                      Patient Journal
+
+        Constraints
+
+        UNIQUE KEYS
+
+        patientName,
+        patientID
+        medecine,
+        diseaseCode 
+        Medecine
+
+        FOREIGN KEY
+
+        medecine,
+        diseaseCode 
+        Medecine
 
 **Procedures**
 
@@ -31,29 +65,35 @@
 
 **PDF file**
 
+
+        
         ***************************************************
         Patient Journal of **Jhon Doe 100** (fontsize 20, Fontfamily ARIAL titles bold)
 
-        **age         Sex     BloodType           List of Current Diseases**
-        dd.mm-yy       M         O+                     A000A
+        General information
 
-        **contact information**            **List of Recommended treatment**
+        Social Security Number      Sex     BloodType   List of Current Diseases**
+           dd.mm-yy00000             M         O+                 A000A
 
-        +4712345678,                                        A000A
-        jhondoe@domaine.domaine
+        Contact Information
 
-        streetName(nr), Apartment (nr)              **List of Current Alergies**
-        zipCode, State                                      
-                                                        A000A
+            mobile          Street          State   ZipCode
+        123-123-123        
 
-        **List of current Diagnosis**            **List of Recommended treatment**
+        Work Information
 
-        Recommended treatment for your illness              A000A
+            Company             Industry
+            Unemployed         Unemployed
+        
+        Health information
 
-        **patient registered**
+        bodyWeight      BodyHeight      BodyMass
 
-        dd.mm.yyyy
-
+        
+        bloodType       Diseases        Alergies
+        
+        Current Medecine        Date IN    dateOut
+        
         -----------------------------------------------------------------------------
 
         ******************* Hospital Visits**************************

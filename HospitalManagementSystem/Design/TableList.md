@@ -3,7 +3,7 @@
 In the given tables below is a list of deseases, alergies and medecines
 Its a dynamic list where the doctor can find given desease, alergy or medecine  to retrieve in other cases such as sickpapers or other documents.
 
-**doc ( List of Disases )**
+**deseases ( List of Disases )**
     
     Column                          Comment
 
@@ -13,7 +13,7 @@ Its a dynamic list where the doctor can find given desease, alergy or medecine  
     -   Symptoms                    Some main symptoms
     -   mID                 the medecine's id
 
-**Alergy**
+**Alergy (List of Alergies)**
 
     Column                          Comment
 
@@ -21,9 +21,9 @@ Its a dynamic list where the doctor can find given desease, alergy or medecine  
     -   Disease ID                  A ID which contain letters e.g 'NNNNA'
     -   Disease Name                The name for the disease 
     -   Symptoms                    Some main symptoms
-    -   mID                 the medecine's id
+    -   mID                         the medecine's id
 
-**Medecine**
+**availableMedecine (List of available medecines)**
 
     Column                          Comment
 

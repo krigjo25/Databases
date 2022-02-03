@@ -1,20 +1,29 @@
 The employee table consist of personal and work related information for employees to calculate the salary, and for emergencies
 
 **Table**
-    personal information
+    
         Column              Comment
 
-    -    Full name,         Varchar
-    -    degree
-    -    number,            VARCHAR  
-    -    e-mail,
-    -    living address
+    personal information
 
-    Work related information 
-    
-     -   position
-     -   hired
-     -   primary department
+    -   Full name,         Varchar
+    -   date of birth,
+    -   street,
+    -   provice,
+    -   zipCode,
+    -   email,
+    -   phone,
+    .   mobile,
+
+    Work information
+
+    -   eStatus,
+    -   occupation,
+    -   hourlyRate
+    -   department
+    -   eContract,
+    -   hired
+
 
 **Procedures**
 

@@ -3,8 +3,16 @@
 Creating a table for the hospital staff to book a room for a patient, during the patient's stay.
 This table should include the following information
 
-    Columns
-    - ID | PatientID | PatientName | roomID | roomName | employeeID | EmployeeName | Timein |Timeout | 
+    Columns                         Comments
+    bookID                             The id of the booking 
+    PatientID
+    PatientName
+    roomID
+    roomName
+    employeeID
+    EmployeeName
+    Timein
+    Timeout
 
 **Procedures**
 
