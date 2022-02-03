@@ -12,13 +12,20 @@ This file contains the main tables which is used in the project
 
 CREATE TABLE patient (
                         id BIGINT NOT NULL,
-                        patientName VARCHAR(255) NOT NULL,
+                        -- General information
+                        patientName VARCHAR(255) NOT NULL DEFAULT 'Jhon Doe',
+                        birthDate DATE NOT NULL DEFAULT '01.01-1973',
+                        ssn INT NOT NULL DEFAULT 123456789
                         age TINYINT NOT NULL DEFAULT 20,
                         gender VARCHAR(5) NOT NULL, 
-                        phoneNumber VARCHAR(255) NOT NULL,
-                        eMail VARCHAR(255) NOT NULL,
-                        adress VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
-                        zipcode SMALLINT NOT NULL DEFAULT 0000,
+                        phoneNumber VARCHAR(255),
+                        street VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
+                        zipcode SMALLINT NOT NULL DEFAULT 12345,
+                        companyName VARCHAR(255) NOT NULL DEFAULT 'Unemployed',
+                        industry VARCHAR(255) NOT NULL DEFAULT 'Unemployed',
+                        --  Health information
+                        bodyWeight MEDIUMINT NOT NULL,
+                        bodyIndex INT,
                         bloodType VARCHAR(2), 
                         alergies VARCHAR(255) NOT NULL UNIQUE DEFAULT 'NNNNA',
                         diagnosis VARCHAR(255) NOT NULL DEFAULT 'NNNND',
@@ -29,6 +36,9 @@ CREATE TABLE patient (
                         patientJournal MEDIUMBLOB,
                         demo VARCHAR(255),
                         demo1 VARCHAR(255),
+
+                        --  Employeement
+
                         registered TIMESTAMP NOT NULL DEFAULT NOW(),
 
                     --  Table Constraints
@@ -41,16 +51,21 @@ CREATE TABLE patient (
 
 /******************************** Employee **************************************************************************/
 CREATE TABLE employees (
-                        EmployeeID INT NOT NULL,
-                        employeeName VARCHAR(255) NOT NULL,
-                        employeeAddress VARCHAR(255) NOT NULL,
+                        eID INT NOT NULL,
+                        eName VARCHAR(255) NOT NULL,
+                        birthDate DATE NOT NULL,
+                        street VARCHAR(255) NOT NULL,
+                        provice VARCHAR(255) NOT NULL,
+                        zipCode  SMALLINT NOT NULL DEFAULT 1234,
                         email VARCHAR(255) NOT NULL,
                         phone VARCHAR(255) NOT NULL,
-                        zipCode SMALLINT NOT NULL DEFAULT 0000,
+                        mobile VARCHAR(255) NOT NULL,
+                        eStatus TINYINT NOT NULL,
+                        occupation VARCHAR(255) NOT NULL,
+                        hourlyRate DECIMAL(9,2),
                         eContact VARCHAr(255),
                         department VARCHAR(255) NOT NULL,
-                        Position VARCHAR(255) NOT NULL,
-                        employeeContract TINYBLOB,
+                        eContract TINYBLOB,
                         Hired TIMESTAMP NOT NULL DEFAULT NOW());
 /*************************************************************************************************************/
 
