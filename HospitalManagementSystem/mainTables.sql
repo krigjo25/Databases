@@ -14,16 +14,15 @@ CREATE TABLE patient (
                         id BIGINT NOT NULL,
                         -- General information
                         patientName VARCHAR(255) NOT NULL DEFAULT 'Jhon Doe',
-                        birthDate DATE NOT NULL DEFAULT '01.01-1973',
-                        ssn INT NOT NULL DEFAULT 123456789
+                        birthDate DATE NOT NULL DEFAULT '1973-01-01',
+                        ssn INT NOT NULL DEFAULT 010174000,
                         sex VARCHAR(5) NOT NULL, 
                         phoneNumber VARCHAR(255),
                         street VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
                         provice VARCHAR(255) NOT NULL DEFAULT 'Warshinton DC',
                         zipcode SMALLINT NOT NULL DEFAULT 12345,
-                        companyName VARCHAR(255) NOT NULL DEFAULT 'Unemployed',
-                        industry VARCHAR(255) NOT NULL DEFAULT 'Unemployed',
-                        --  Health information
+
+                    --  Health information
                         bodyWeight MEDIUMINT NOT NULL,
                         bodyIndex INT,
                         bloodType VARCHAR(2), 
@@ -37,8 +36,9 @@ CREATE TABLE patient (
                         demo VARCHAR(255),
                         demo1 VARCHAR(255),
 
-                        --  Employeement
-
+                    --  Employeement
+                        company VARCHAR(255) NOT NULL DEFAULT 'Unemployeed',
+                        industry VARCHAR(255) NOT NULL DEFAULT 'Unemployeed',
                         registered TIMESTAMP NOT NULL DEFAULT NOW(),
 
                     --  Table Constraints
@@ -52,6 +52,8 @@ CREATE TABLE patient (
 /******************************** Employee **************************************************************************/
 CREATE TABLE employees (
                         eID INT NOT NULL,
+
+                    --  General information
                         eName VARCHAR(255) NOT NULL,
                         birthDate DATE NOT NULL,
                         street VARCHAR(255) NOT NULL,
@@ -60,6 +62,8 @@ CREATE TABLE employees (
                         email VARCHAR(255) NOT NULL,
                         phone VARCHAR(255) NOT NULL,
                         mobile VARCHAR(255) NOT NULL,
+
+                    -- Work related information
                         eStatus TINYINT NOT NULL,
                         occupation VARCHAR(255) NOT NULL,
                         hourlyRate DECIMAL(9,2),
@@ -70,10 +74,11 @@ CREATE TABLE employees (
 
 /******************************** RoomBookings **************************************************************/
 CREATE TABLE booking (
+
                     --  Table Columns
-                        id INT NOT NULL AUTO_INCREMENT,
+                        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         patientID INT NOT NULL,
-                        patient VARCHAR(255) NOT NULL,
+                        patientName VARCHAR(255) NOT NULL,
                         roomID INT NOT NULL,
                         roomName VARCHAR(255),
                         rate DECIMAL(4,2) NOT NULL DEFAULT 0,
@@ -86,10 +91,10 @@ CREATE TABLE booking (
                         demo1 VARCHAR(255),
 
                     --  Table Constraints
-                    CONSTRAINT uniqueName UNIQUE(patientName, roomName, rate, EmployeeName),
-                    CONSTRAINT patient_FK FOREIGN KEY (patientName) ON DELETE CASCADE, ON UPDATE CASCADE,
-                    CONSTRAINT room_FK FOREIGN KEY (roomName) REFERENCES Rooms ON DELETE CASCADE ON UPDATE CASCADE,
-                    CONSTRAINT employee_FK FOREIGN KEY (employeeName) REFERENCES employees(employeeName) ON DELETE RESTRICT ON UPDATE CASCADE);
+                        CONSTRAINT uniqueName UNIQUE(patientName, roomName, rate, employeeName),
+                        CONSTRAINT patient_FK FOREIGN KEY (patientName) REFERENCES patient (patientName) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT room_FK FOREIGN KEY (roomName) REFERENCES rooms (roomName) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT employee_FK FOREIGN KEY (employeeName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE);
 
 /*************************************************************************************************************/
 

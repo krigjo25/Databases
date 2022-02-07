@@ -86,6 +86,7 @@ which lets the personell to add and modify the patient journal
 
 Infomration about the design can be found in the given links below
 includes the text files below,
+
 * [Patient](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Patients.md),
 * [Bookings](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Bookings.md),
 * [Employee](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Employee.md),
