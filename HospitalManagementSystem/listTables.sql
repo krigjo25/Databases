@@ -80,3 +80,17 @@ CREATE TABLE thirdFloor (
                     demo1 VARCHAR(255));
 
 /*************************************************************************************************************/
+
+
+/******************************************** Rooms *****************************************************/
+DELIMITER
+CREATE TABLE relations (
+                        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                        patientID INT NOT NULL,
+                        eID INT NOT NULL,
+
+                    --  Constraints 
+                        CONSTRAINT uniqueKey UNIQUE(patientID, eID),
+                        CONSTRAINT patientID_FK FOREIGN KEY (patientID) REFERENCES patient(patientID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees (eID) ON DELETE CASCADE ON UPDATE CASCADE);
+/*************************************************************************************************************/
