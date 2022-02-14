@@ -2,9 +2,22 @@
 
 This file contains the Procedures which is used in the project
 
-/***************************************************************/
-/********************** Employees Procedures ******************/
+Employees Procedures,
+Patient Procedures,
+Booking Procedures,
+Billing Proceduures,
 
+Relation Procedures,
+Alergy Procedures,
+diagnosis Procedures,
+Medecine Procedures.
+Room Procedures.
+/***************************************************************/
+
+/********************** Employees Procedures *******************
+This procedures below allows the management
+add a new employee into the database
+***************************************************************/
 CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN Eaddr VARCHAR(255), IN vAge INT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN vZip SMALLINT, IN vDep VARCHAR(255), IN vPos VARCHAR(255))
     BEGIN
         -- This procedure creates a new row with the details of an employee 
@@ -12,9 +25,18 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN Eaddr VARCHAR
         (eName, Eaddr, vZip, vEmail, vPhone, vEmergency, vPos)
     END x
 
-CREATE OR REPLACE PROCEDURE employeeInfo (IN vColumn VARCHAR(20), IN eValue VARCHAR(255), IN eID INT)
+
+/**************************************************************
+This procedure below allow the management
+to edit information about the employee,
+But it doesnt allow date but we assume the date is correct in this case
+***************************************************************/
+DELIMITER x
+
+CREATE OR REPLACE PROCEDURE employeeInfo (IN vColumn VARCHAR(20), IN eValue VARCHAR(255), IN eID BIGINT)
     BEGIN
-        SET @Query = CONCAT('UPDATE employee SET ', vColumn, ' = ', eValue, ' WHERE ID = ', eID);
+        --  The procedure updates, the values for employees, execpt date
+        SET @Query = CONCAT('UPDATE employees SET ', vColumn, ' = ', eValue, ' WHERE eID = ', eID);
             PREPARE stmt FROM @Query;
             EXECUTE stmt;
             DEALLOCATE PREPARE stmt;
@@ -22,7 +44,9 @@ CREATE OR REPLACE PROCEDURE employeeInfo (IN vColumn VARCHAR(20), IN eValue VARC
     END x
 /***************************************************************/
 
-/********************** Patients Procedures ********************/
+/********************** Patients Procedures ********************
+Inserting a new record to the table.
+****************************************************************/
 DELIMITER x
 CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN vAge TINYINT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN bType VARCHAR(2), IN vAlergies VARCHAR(255), IN vIllness VARCHAR(255))
     BEGIN
@@ -32,7 +56,10 @@ CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN vAge TINYIN
     INSERT INTO patient (patientName, age, gender, phoneNumber, eMail, bloodType, alergies, diseases) VALUES
     (pName, vage, vSex, vPhone, veMail, bType, vAlergies, villness);
     END x
-
+    
+/*****************************************************************
+Update the patient Information.
+******************************************************************/
 CREATE OR REPLACE PROCEDURE patientInfo(IN vColumn VARCHAR(20), vValue VARCHAR(255), IN vID INT)
     BEGIN
 
@@ -47,6 +74,22 @@ CREATE OR REPLACE PROCEDURE patientInfo(IN vColumn VARCHAR(20), vValue VARCHAR(2
                 DEALLOCATE PREPARE stmt;
     END x
 /***********************************************************************/
+
+/*********************** Booking Procedures ************************/
+/*******************************************************************/
+
+/*********************** Billing Procedures ************************/
+/*******************************************************************/
+
+/*********************** Turnus Procedures *************************/
+/*******************************************************************/
+
+
+
+/****************************************************************
+Procedures of Diagnosis, alergies, and Medecine
+****************************************************************/
+
 DELIMITER x
 /************************ Alergies Procedures **************************/
 CREATE OR REPLACE PROCEDURE insertA (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
@@ -105,11 +148,3 @@ CREATE OR REPLACE PROCEDURE thirdFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
 
 /*******************************************************************/
 
-/*********************** Booking Procedures ************************/
-/*******************************************************************/
-
-/*********************** Billing Procedures ************************/
-/*******************************************************************/
-
-/*********************** Turnus Procedures *************************/
-/*******************************************************************/

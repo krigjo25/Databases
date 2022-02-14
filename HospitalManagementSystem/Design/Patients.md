@@ -1,16 +1,21 @@
 ## Patient Table
         Column                              Comment
+**Databse**
+Own database for Patients
 
 **Patient Information**
 
         -   unique ID \t                        To identify the patient custom start from 100
+
         #   General information about the patient
 
         -   birthDate                           The date of birth
         -   ssn                                 Security Social Number
         -   sex                                 The sex max 5 characters
         -   mobile                              Phone number, max 9 digits
+
         -   street                              street name of the patient
+        
         -   provice                             state of the patient
         -   zipcode                             the given postal code
 

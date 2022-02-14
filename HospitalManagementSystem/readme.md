@@ -96,6 +96,7 @@ includes the text files below,
 *   [The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
 *   [Turnus](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Turnus.md)
 *   [PatientEmployeeRelations](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/relations.md)
+
 ## SQL Data
 
 **Tables**
@@ -137,38 +138,54 @@ includes the text files below,
 
 ***Patient***
 
-        CALL newPatient (pName, vAge, vSex, vPhone, vEmail, bType, vAlergies, vIllness)         #   Inserts a patient to the table
+    #   add a new record of a patient
+    CALL newPatient (pName, vAge, vSex, vPhone, vEmail, bType, vAlergies, vIllness)
 
-        CALL patientInfo (vID, vColumn, vValue)                                                 #   Updates a value for the patient table
+    #   Updates the value for the record
+    CALL patientInfo (vID, vColumn, vValue)
 
 ***Employee***
 
+    #   Add a new record to the table
     CALL newEmployee (eName, vAge, vSex, vPhone, vEmail)
-    
+
+    # Updates the information of the employee  except :x: Date
+    CALL employeeInfo (vID, vColumn, vValue)
 
 ***List Of Alergies***
 
-    CALL insertLOA (vID, vName, vSymptoms, medicine ID)                                         #   Inserts a new Alergy
-
+    #   Creates a new record for alergies
+    CALL insertLOA (vID, vName, vSymptoms, medicine ID)
 ***List Of Diagnosis***
 
-    CALL insertLOD (vID, vName, vSymptoms, medicine ID)                                         #   Inserts a new Diagnosis
+    #   Creates a new record for Diagnosis
+    CALL insertLOD (vID, vName, vSymptoms, medicine ID)
+
 
 ***List of Medicine***
 
-    CALL insertLOM (vID, vName, vSymptoms, illness)                                             #  Inerts a new type of Medicine
+    #   Creates a new record for Medecines
+    CALL insertLOM (vID, vName, vSymptoms, illness)
 
 ***Rooms***
 
+    #   Creates a new record for the table
     CALL firstFloor('roomName', 10000.00)
     CALL secondFloor('roomName', 10000.00)
     CALL thirdFloor('roomName', 10000.00)
 
 **Views**
 
-    Rooms.sql                                                                                   #   An overview of all rooms which is available in the Hospital
+    #   An overview of available rooms
+    Rooms.
 
 **Triggers**
+
+    #   Triggers the mysql database to create a new PDF
+    Patient
+
+    #   Triggers a new record in another table
+    terminateEmployee
 
 **Events**
 
@@ -240,7 +257,8 @@ The thought were to create a new table, with foreign key, but it wouldnt work,
 as the assumption about foreign keys can not refer to more than one table the b
 etter soloution were to create a view for this matter.
 
-* 
+*   Since the database is growing, i have to add new databases to keep the coding as clean as possible, One database for terminate records, 
+one database for employees, and one for the patients 
 
 ## Responsories
 
@@ -264,7 +282,7 @@ Discord : krigjo25#5588
 messenger : krigjo25
 
 Only One advice,
-« The importance of creating is fun. »
+« Everything is perfect as is. »
 
 **Licence**
 

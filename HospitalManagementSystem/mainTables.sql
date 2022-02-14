@@ -11,7 +11,7 @@ This file contains the main tables which is used in the project
 /********************************************   Patient table   ********************************************/
 
 CREATE TABLE patient (
-                        id BIGINT NOT NULL,
+                        id BIGINT NOT NULL, --  AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
                         -- General information
                         patientName VARCHAR(255) NOT NULL DEFAULT 'Jhon Doe',
                         birthDate DATE NOT NULL DEFAULT '1973-01-01',
@@ -33,14 +33,15 @@ CREATE TABLE patient (
                         dateOut DATETIME,
                         billing MEDIUMBLOB,
                         patientJournal MEDIUMBLOB,
-                        demo VARCHAR(255),
-                        demo1 VARCHAR(255),
 
                     --  Employeement
                         company VARCHAR(255) NOT NULL DEFAULT 'Unemployeed',
                         industry VARCHAR(255) NOT NULL DEFAULT 'Unemployeed',
                         registered TIMESTAMP NOT NULL DEFAULT NOW(),
 
+                    --  Extra columns
+                        demo VARCHAR(255),
+                        demo1 VARCHAR(255),
                     --  Table Constraints
 
                         CONSTRAINT UniqeuName UNIQUE(diagnosis, medecine, patientName),
@@ -51,7 +52,7 @@ CREATE TABLE patient (
 
 /******************************** Employee **************************************************************************/
 CREATE TABLE employees (
-                        eID INT NOT NULL,
+                        eID BIGINT NOT NULL, -- AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT = 100
 
                     --  General information
                         eName VARCHAR(255) NOT NULL,
