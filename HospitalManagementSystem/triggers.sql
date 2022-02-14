@@ -21,7 +21,7 @@ The Trigger add the employee to another table,
 to keep the records clean, and still save the employee
 Archives and termination are keept in new Databases
 *************************************************************/
-CREATE TRIGGER Patient BEFORE DELETE ON employees
+CREATE TRIGGER terminateEmployee BEFORE DELETE ON employees
     FOR EACH ROW
     
     BEGIN
