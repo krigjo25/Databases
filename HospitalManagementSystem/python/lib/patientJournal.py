@@ -32,24 +32,23 @@ class PDFCanvas (Canvas):
     def __init__(self, filename='SampleJournal.pdf', pagesize=A4, bottomup=1, pageCompression=0, encoding=rl_config.defaultEncoding, verbosity=0, encrypt=None):
         super().__init__(filename,pagesize, bottomup, pageCompression, encoding, verbosity, encrypt)
         self.height, self.width = letter
-        self.conn = mariadb.connect(
-                                host=getenv('HOST'),
-                                user= getenv('USERNAME'),
-                                port= int(getenv('PORT')),
-                                password = getenv('PASSWORD'),
-                                database = getenv('DATABASE')
-            )
-        self.cur = self.conn.cursor()
-
+        self.hms = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('HMS'))
+        self.pat = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('PAT'))
+        self.emp = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('EMP'))
+        self.hmsCur = self.hms.cursor()
+        self.patCur = self.pat.cursor()
+        self.empCur = self.emp.cursor()
+    
     def BodyHeader(self):
 
         #   Initializing the SQL Statement, procsessing it, and fetch the statement and close the
         #   Personal info about the given patient
 
         query = 'SELECT * FROM patient;'
-        cur = self.cur.execute(query)
-        data = self.cur.fetchall()
+        cur = self.patCur.execute(query)
+        data = self.patCur.fetchall()
         self.conn.close()
+        
         #   Initializing a list for the SQL values
 
         patientData = []
@@ -64,7 +63,7 @@ class PDFCanvas (Canvas):
         pName = patientData[0][1]
         phone = patientData[0][4]
         email = patientData[0][5]
-        adrs = patientData [0][6]
+        adrs = patientData[0][6]
         zipNum = patientData[0][7]
         zipCode = Dictionaries.postalCode(patientData[0][7])
         
@@ -165,8 +164,9 @@ class PDFCanvas (Canvas):
 
 
     def BodyMain(self):
+
         date = '01.01-94'
-        patientInfo = 'Jhon Doe'  
+        pName = 'Jhon Doe'  
         roomName = 'Ward - Recovery'
         roomID = 225
         reason = 'Demo reason' 
@@ -184,7 +184,7 @@ class PDFCanvas (Canvas):
 
         #   Document Text
         self.setFont('Helvetica', 16)
-        self.drawString(50, 300, f'{patientInfo}\'s last visit')
+        self.drawString(50, 300, f'{pName}\'s last visit')
         self.drawString(50,275, f'{date}')
         self.drawString(250,300, 'During your last stay at HospitalName')
         self.drawString(250, 275, f'You were visiting {roomName}, {roomID}')

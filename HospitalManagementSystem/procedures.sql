@@ -22,7 +22,7 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN Eaddr VARCHAR
     BEGIN
         -- This procedure creates a new row with the details of an employee 
         INSERT INTO employees (employeeName, employeeAddress, zipCode, email, phone, eContact, position) VALUES
-        (eName, Eaddr, vZip, vEmail, vPhone, vEmergency, vPos)
+        (eName, Eaddr, vZip, vEmail, vPhone, vEmergency, vPos);
     END x
 
 
@@ -45,10 +45,13 @@ CREATE OR REPLACE PROCEDURE employeeInfo (IN vColumn VARCHAR(20), IN eValue VARC
 /***************************************************************/
 
 /********************** Patients Procedures ********************
+
 Inserting a new record to the table.
+
 ****************************************************************/
+
 DELIMITER x
-CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN vAge TINYINT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN bType VARCHAR(2), IN vAlergies VARCHAR(255), IN vIllness VARCHAR(255))
+CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN bDate DATE, IN vssn INT() vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN bType VARCHAR(2), IN vAlergies VARCHAR(255), IN vIllness VARCHAR(255))
     BEGIN
     /*
     Inserting a new patient for the table
@@ -56,7 +59,7 @@ CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN vAge TINYIN
     INSERT INTO patient (patientName, age, gender, phoneNumber, eMail, bloodType, alergies, diseases) VALUES
     (pName, vage, vSex, vPhone, veMail, bType, vAlergies, villness);
     END x
-    
+
 /*****************************************************************
 Update the patient Information.
 ******************************************************************/

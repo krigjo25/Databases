@@ -86,11 +86,12 @@ CREATE TABLE thirdFloor (
 DELIMITER
 CREATE TABLE relations (
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                        patientID INT NOT NULL,
-                        eID INT NOT NULL,
+                        pID BIGINT NOT NULL,
+                        eID BIGINT NOT NULL,
 
                     --  Constraints 
-                        CONSTRAINT uniqueKey UNIQUE(patientID, eID),
-                        CONSTRAINT patientID_FK FOREIGN KEY (patientID) REFERENCES patient(patientID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees (eID) ON DELETE CASCADE ON UPDATE CASCADE);
+                        CONSTRAINT uniqueKey UNIQUE(pID, eID),
+                        CONSTRAINT patientID_FK FOREIGN KEY (pID) REFERENCES patients.patient(pID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE);
+
 /*************************************************************************************************************/

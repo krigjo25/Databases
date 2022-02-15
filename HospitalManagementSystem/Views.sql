@@ -4,12 +4,16 @@ This file contains the views which is used in the project
 
 **************************************************************/
 
-/********************* Rooms view *****************************/
+/********************* Rooms view *****************************
+DATABASE 
+    HospitalManagementSystem
+    
+**************************************************************/
 CREATE OR REPLACE VIEW rooms AS
         SELECT
             firstFloor.roomID AS 'Room ID',
             firstFloor.roomName AS 'Room Name',
-            firstFloor.rate AS 'Hourly Room Rate',
+            firstFloor.price AS 'Hourly Room Rate'
         FROM firstFloor
 
         UNION ALL
@@ -17,7 +21,7 @@ CREATE OR REPLACE VIEW rooms AS
         SELECT
             secondFloor.roomID,
             secondFloor.roomName,
-            secondFloor.rate
+            secondFloor.price
         FROM secondFloor
 
         UNION ALL
@@ -25,6 +29,6 @@ CREATE OR REPLACE VIEW rooms AS
         SELECT
             thirdFloor.roomID,
             thirdFloor.roomName,
-            thirdFloor.rate
+            thirdFloor.price
         FROM thirdFloor;
 /*********************************************************/
