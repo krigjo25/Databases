@@ -25,7 +25,6 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN Eaddr VARCHAR
         (eName, Eaddr, vZip, vEmail, vPhone, vEmergency, vPos);
     END x
 
-
 /**************************************************************
 This procedure below allow the management
 to edit information about the employee,
@@ -50,14 +49,19 @@ Inserting a new record to the table.
 
 ****************************************************************/
 
-DELIMITER x
-CREATE OR REPLACE PROCEDURE insertPatient (IN pName VARCHAR(255), IN bDate DATE, IN vssn INT() vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vEmail VARCHAR(255), IN bType VARCHAR(2), IN vAlergies VARCHAR(255), IN vIllness VARCHAR(255))
+CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN vssn INT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vWeight MEDIUMINT, IN vHeight INT, IN bType VARCHAR(2), IN vAlergies VARCHAR(5), IN vDoc VARCHAR(5), IN vMed VARCHAR(5))
     BEGIN
     /*
-    Inserting a new patient for the table
+        Inserting a new patient for the table
     */
-    INSERT INTO patient (patientName, age, gender, phoneNumber, eMail, bloodType, alergies, diseases) VALUES
-    (pName, vage, vSex, vPhone, veMail, bType, vAlergies, villness);
+        DECLARE vBMI TINYINT UNSIGNED;
+
+        SET vBMI = vHeight / vBodyWeight;
+
+
+        INSERT INTO patient (patientName, birthDate, ssn, sex, phoneNumber, street, zipCode, bodyWeight, bodyHeight, bodyIndex, bloodType, alergies, diagnosis, medecine, company, industry) 
+            VALUES
+            (pName, bDate, vssn, vSex, vPhone, vStreet, cZip, vWeight, vHeight, vBMI, bType, vAlergies, vDoc, vMed, vCompany, vIndustry);
     END x
 
 /*****************************************************************
@@ -69,12 +73,13 @@ CREATE OR REPLACE PROCEDURE patientInfo(IN vColumn VARCHAR(20), vValue VARCHAR(2
     /*
     Updates patient information Which has VARCHAR as DATATYPE
     */
-    SET @Query = CONCAT('UPDATE patient SET ', vColumn , vValue, ' WHERE id = ', vID);
 
-                /*Prepareing and executing the statement*/
-                PREPARE stmt FROM @Query;
-                EXECUTE stmt;
-                DEALLOCATE PREPARE stmt;
+        SET @Query = CONCAT('UPDATE patient SET ', vColumn , vValue, ' WHERE id = ', vID);
+
+        /*Prepareing and executing the statement*/
+            PREPARE stmt FROM @Query;
+            EXECUTE stmt;
+            DEALLOCATE PREPARE stmt;
     END x
 /***********************************************************************/
 
@@ -151,3 +156,49 @@ CREATE OR REPLACE PROCEDURE thirdFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
 
 /*******************************************************************/
 
+/*********************** relation Procedures ******************************
+
+This procedure assign a doctor to a patient
+
+***********************************************************************/
+
+DELIMITER x
+CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT)
+    BEGIN
+
+        -- Declareing new variables
+        DECLARE pName VARCHAR(255);
+        DECLARE emName VARCHAR(255);
+
+        --  Assigning the new variable values
+        SET pName = (SELECT patientName from patients.patient WHERE pID = vpID);
+        SET emName = (SELECT eName from employees WHERE eID = veID);
+
+        -- Assigning doctor to patient
+        INSERT INTO relations (eID, employeeName, pID, patientName)
+            VALUES 
+            (veID, emName, vpID, pName);
+
+    END x
+
+CREATE OR REPLACE PROCEDURE delRelation (IN veID BIGINT, IN vpID BIGINT)
+    BEGIN
+        -- Deletes a row from the relation table
+        DELETE FROM relations WHERE eID = veID AND pID = vpID;
+    END x
+
+CREATE OR REPLACE PROCEDURE updateRelation(vcolumn,veID, vpID)
+    BEGIN
+        CASE;
+        WHEN vColumn = 'eID'
+            /*Updates a table with the given characters*/
+            SET @Query = CONCAT('UPDATE relations SET ', vcolumn, ' = ', vValue, ' WHERE id = ', vID);
+
+            /*Prepareing and executing the statement*/
+
+            PREPARE stmt FROM @Query;
+            EXECUTE stmt;
+            DEALLOCATE PREPARE stmt;
+
+    END x
+/*******************************************************************/

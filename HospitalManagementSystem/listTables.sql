@@ -83,15 +83,19 @@ CREATE TABLE thirdFloor (
 
 
 /******************************************** Rooms *****************************************************/
-DELIMITER
+DELIMITER ;
 CREATE TABLE relations (
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         pID BIGINT NOT NULL,
+                        patientName VARCHAR(255),
                         eID BIGINT NOT NULL,
+                        employeeName VARCHAR(255),
+                        demo VARCHAR(255),
+                        demo1 VARCHAR(255),
 
                     --  Constraints 
-                        CONSTRAINT uniqueKey UNIQUE(pID, eID),
-                        CONSTRAINT patientID_FK FOREIGN KEY (pID) REFERENCES patients.patient(pID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE);
+                        CONSTRAINT uniqueKey UNIQUE(pID, eID));
+                        --CONSTRAINT patientID_FK FOREIGN KEY (pID) REFERENCES patients.patient(pID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        --CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE);
 
 /*************************************************************************************************************/

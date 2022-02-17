@@ -258,7 +258,7 @@ as the assumption about foreign keys can not refer to more than one table the b
 etter soloution were to create a view for this matter.
 
 *   Since the database is growing, i have to add new databases to keep the coding as clean as possible, One database for terminate records, 
-one database for employees, and one for the patients 
+one database for employees and stuff for the employees, one for the administration, misc, and one for the patients 
 
 ## Responsories
 

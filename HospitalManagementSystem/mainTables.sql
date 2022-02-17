@@ -46,12 +46,12 @@ CREATE TABLE patient (
                         sex VARCHAR(5) NOT NULL, DEFAULT 'M'
                         phoneNumber VARCHAR(255),
                         street VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
-                        provice VARCHAR(255) NOT NULL DEFAULT 'Warshinton DC',
                         zipcode SMALLINT NOT NULL DEFAULT 12345,
 
                     --  Health information
-                        bodyWeight MEDIUMINT,
-                        bodyIndex INT,
+                        bodyWeight MEDIUMINT DEFAULT 80,
+                        bodyHeight INT NOT NULL DEFAULT '180',
+                        bodyIndex INT NOT NULL,
                         bloodType VARCHAR(2), 
                         alergies VARCHAR(255) NOT NULL UNIQUE DEFAULT 'NNNNA',
                         diagnosis VARCHAR(255) NOT NULL DEFAULT 'NNNND',
@@ -101,11 +101,9 @@ CREATE TABLE employees (
                         eName VARCHAR(255) NOT NULL,
                         birthDate DATE NOT NULL,
                         street VARCHAR(255) NOT NULL,
-                        provice VARCHAR(255) NOT NULL,
                         zipCode  SMALLINT NOT NULL DEFAULT 1234,
                         email VARCHAR(255) NOT NULL,
                         phone VARCHAR(255) NOT NULL,
-                        mobile VARCHAR(255) NOT NULL,
 
                     -- Work related information
                         eStatus TINYINT NOT NULL,
@@ -121,7 +119,7 @@ CREATE TABLE booking (
 
                     --  Table Columns
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                        piD BIGINT NOT NULL,
+                        pID BIGINT NOT NULL,
                         patientName VARCHAR(255) NOT NULL,
                         rID SMALLINT SIGNED NOT NULL,
                         roomName VARCHAR(255),

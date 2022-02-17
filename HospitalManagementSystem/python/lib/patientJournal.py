@@ -31,7 +31,10 @@ class PDFCanvas (Canvas):
 
     def __init__(self, filename='SampleJournal.pdf', pagesize=A4, bottomup=1, pageCompression=0, encoding=rl_config.defaultEncoding, verbosity=0, encrypt=None):
         super().__init__(filename,pagesize, bottomup, pageCompression, encoding, verbosity, encrypt)
+
         self.height, self.width = letter
+
+        #   Database Connections
         self.hms = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('HMS'))
         self.pat = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('PAT'))
         self.emp = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('EMP'))
