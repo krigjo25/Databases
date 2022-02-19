@@ -91,6 +91,7 @@ includes the text files below,
 *   [Bookings](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Bookings.md),
 *   [Employee](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Employee.md),
 *   [Billing](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Billing.md),
+*   [Salaries](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/salaries.md)
 *   [Table list](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TableList.md),
 *   [Rooms](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Rooms.md),
 *   [The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
@@ -103,9 +104,19 @@ includes the text files below,
 
     patients
         includes the "personal" information about a given patient
+    
+    Billing
+        Information about the Invoices for the patient
 
     Employee..................
         includes the information about the Hospital Staff
+
+    relations
+        includes the iformation about assignments for doctors
+
+    reports
+        reports / notes from the doctor
+
 
     roomBookings..............
         A booking system so the staff has to book a given room
@@ -176,8 +187,7 @@ includes the text files below,
 
 **Views**
 
-    #   An overview of available rooms
-    Rooms.
+    SELECT Rooms                    --  Rooms in the hospital
 
 **Triggers**
 

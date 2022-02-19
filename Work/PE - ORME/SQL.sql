@@ -7,7 +7,7 @@ INSERT INTO wagonOne (formName, pSeries, plate, arm, mincool, minOven, sutableWi
         ('APB 2200 LIGHT', 'APB-Series',14.39, 31.84, 35, 32, 'APB SERIES 1500 + LIGHT',  '');
 
 INSERT INTO wagonTwo (formName, pSeries, plate, arm, notes) VALUES
-        
+        ('SFS-100', 'SFS-Series', 30.33,27.30, '')
         ('Aqua 600', 'Aqua-Series', 30.33,27.30,''),
         ('Aqua 600 pre', 'Prebouy-Series', 30.33, 27.30,''),
         ('Prebouy 850', 'Prebouy-Series', 30.33, 27.30, ''), 
@@ -32,16 +32,16 @@ INSERT INTO wagonTwo (formName, pSeries, plate, arm, notes) VALUES
         ('APB 1000 FO', 'APB-Series', 27.44, 14.86, ''),
         ('APB 500', 'APB-Series', 53.19, 27.71, 'small middlepice');
 
-DELIMITER;
 INSERT INTO wagonThree (formName, pSeries, plate, arm, mincool, minOven, middlePice, bracer,notes) VALUES
         ('Prebouy 1600',  'Prebouy Series', 9.33, 27.17, 35, 28.5,  '', 'ON bottom',''),
-        ('Pontoon 2700', 'Pontoon Series', 29.44, 40.00, 40, 31, '','10 cm below 1350', 'Timer : 4700'), -- Bracer 10 cm below 1350
+        ('Pontoon 2700', 'Pontoon Series', 29.44, 40.00, 40, 31, '','marked', 'Timer : 4700'), -- Bracer 10 cm below 1350
         ('Aqua 4000', 'Aqua Series', 11.16, 20.35, 35, 37.5, '', 'On Top', '' ),
         ('Aqua 2000', 'Aqua Series', 13.36, 22.24, 35, 28, '', 'ON bottom', ''),
-        ('Kopas 30', 'Kopas Series', 05.05, 27.00, 28, 25, '', '10 cm below top', ''),
+        ('Kopas 30', 'Kopas Series', 05.05, 27.00, 28, 25, '', 'Marked', ''),
         ('Aqua 2500', 'Aqua Series', 5.00, 25.10, 35, 30, '', 'On Top', 'add isolation');
-DELIMITER ;
+
 INSERT INTO productionInfo(formID, formName, kg) VALUES
+
         (2022, 'APB 500', 30),
         (2021, 'APB 1000', 40),
         (1000, 'APB 1500', 100),

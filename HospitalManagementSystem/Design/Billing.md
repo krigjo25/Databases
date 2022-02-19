@@ -21,21 +21,21 @@ table Billing
 
 **procedures**
 
+    CALL newBilling (vpID)                  -   Insert the necsessary values to create the PDF file.
+
+    CALL updateBilling (vColumn, vpID)      -   Updates the values
     -   Insert the selected patient into the table, by using his given patient id
 
 **Triggers**
 
+    -   After two overdues, trigger a Insert into another table called credited
+
 **Events**
-    
-    -   Triggers a event when the patient has been recovered,
+
+    .   If the invoice is overDue, trigger a new date
+    -   Triggers an event when the patient has been recovered,
 
 ## Invoice
-
-
-
-
-
-**invoice**
 
     FirmName
     Address                                 logo

@@ -1,9 +1,11 @@
 ## Patient Table
-        Column                              Comment
+
+
 **Databse**
 Own database for Patients
 
 **Patient Information**
+        Column                              Comment
 
         -   unique ID \t                        To identify the patient custom start from 100
 
@@ -14,9 +16,8 @@ Own database for Patients
         -   sex                                 The sex max 5 characters
         -   mobile                              Phone number, max 9 digits
 
-        -   street                              street name of the patient
+        -   street                              street name
         
-        -   provice                             state of the patient
         -   zipcode                             the given postal code
 
         #   Information about work
@@ -35,12 +36,11 @@ Own database for Patients
         -   medecine                            A Unique Key to available medecine
         -   dateIn                              When the patient arrive
         -   dateOut                             When the patient leaves
-        -   billing                             Invoice for the patient
         -   patientJournal                      Patient Journal
 
         Constraints
 
-        UNIQUE KEYS
+        UNIQUE 
 
         patientName,
         patientID
@@ -57,10 +57,13 @@ Own database for Patients
 **Procedures**
 
         - Insert a new patient
-        - Update patient Journal
         - Update patient Information
 
 **Events**
+
+-       When the patient checks out from the hospital, Create a Invoice
+
+-       When the patient Journal gets updated, update the PDF
 
 **Triggers**
 
@@ -73,12 +76,12 @@ Own database for Patients
 
         
         ***************************************************
-        Patient Journal of **Jhon Doe 100** (fontsize 20, Fontfamily ARIAL titles bold)
+        Patient Journal of **Jhon Doe 1000** (fontsize 20, Fontfamily ARIAL titles bold)
 
         General information
 
         Social Security Number      Sex     BloodType   List of Current Diseases**
-           dd.mm-yy00000             M         O+                 A000A
+           ddmm00000             M         O+                 A000A
 
         Contact Information
 

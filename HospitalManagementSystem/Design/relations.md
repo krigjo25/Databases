@@ -13,12 +13,18 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 >   eID                     Unique employee ID
 >   employeeID              Name of the assigned doctor
 >
->   CONSTRAINT 
+>   CONSTRAINTS
 >
->   eID                     ForeignKey the given doctor has to be an employee at the hospital
+>   FOREIGN KEY
+>>   eID                     ForeignKey the given doctor has to be an employee at the hospital
+>>
+>>  patientID               ForeignKey, UNIQUE the patient has to be registered in the database and cannot be assigned to other doctors
 >
->   patientID               ForeignKey, UNIQUE the patient has to be registered in the database and cannot be assigned to other doctors
-
+> UNIQUE
+>> pID              The patient should to be able to be assigned to other doctors
+>
+>   PRIMARY KEY
+>> id                   
 
 **Procedures**
 
