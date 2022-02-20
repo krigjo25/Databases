@@ -17,13 +17,13 @@ def PDFSetup():
                                 user= getenv('USERNAME'),
                                 port= int(getenv('PORT')),
                                 password = getenv('PASSWORD'),
-                                database = getenv('DATABASE')
+                                database = 'patients'
             )
 
     cur = conn.cursor()
 
         #   Selecting and procsessing from the database
-    query = f' SELECT id FROM patient;'
+    query = f' SELECT pID FROM patient;'
     execute = cur.execute(query)
     cur = cur.fetchone()
     

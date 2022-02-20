@@ -1,4 +1,4 @@
-The employee table consist of personal and work related information for employees to calculate the salary, and for emergencies
+The employee table consist of personal and work related information for employees to calculate the salary, and for emergencies.
 
 **Database**
 
@@ -10,7 +10,7 @@ new Database for employees
 
     personal information
 
-    -   Full name,         Varchar
+    -   Full name,
     -   date of birth,
     -   street,
     -   provice,
@@ -25,7 +25,6 @@ new Database for employees
     -   occupation,
     -   hourlyRate
     -   department
-    -   eContract,
     -   hired
 
 

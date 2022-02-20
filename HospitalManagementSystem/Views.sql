@@ -11,25 +11,28 @@ DATABASE
 **************************************************************/
 CREATE OR REPLACE VIEW rooms AS
         SELECT
-            firstFloor.roomID AS 'Room ID',
-            firstFloor.roomName AS 'Room Name',
-            firstFloor.price AS 'Hourly Room Rate'
+
+            firstFloor.roomID AS 'roomID',
+            firstFloor.roomName AS 'roomName'
+
         FROM firstFloor
 
         UNION ALL
 
         SELECT
+
             secondFloor.roomID,
-            secondFloor.roomName,
-            secondFloor.price
+            secondFloor.roomName
+
         FROM secondFloor
 
         UNION ALL
 
         SELECT
+
             thirdFloor.roomID,
-            thirdFloor.roomName,
-            thirdFloor.price
+            thirdFloor.roomName
+
         FROM thirdFloor;
 /*********************************************************/
 

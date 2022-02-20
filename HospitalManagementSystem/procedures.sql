@@ -247,6 +247,38 @@ CREATE OR REPLACE PROCEDURE modifyRelation( IN vColumn VARCHAR(20), veID BIGINT,
 /*******************************************************************/
 
 /*********************** Booking Procedures ************************/
+CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN rID SMALLINT, IN vInn DATE, IN vBookingReason VARCHAR(255))
+    BEGIN
+        --  Declareing variables'
+        DECLARE rName TYPE OF rooms.roomName;
+        DECLARE vOut TYPE OF booking.bookOut;
+        DECLARE veName TYPE OF employees.employees.eName;
+        DECLARE vpName TYPE OF patients.patient.patientName;
+
+        --  Selecting the values and insert it into the variable
+
+        SELECT patientName INTO vpName FROM patients.patient WHERE pID = vpID;
+        SELECT employeeName INTO veName FROM employees.employees WHERE eID = veID;
+        SELECT hourlyRoomRate into roomRate FROM rooms WHERE roomID = rID;
+        
+        --  Case to loop through the booking reason and room Name
+        IF
+            rName = 'Surgery Theaters' THEN 
+
+            CASE
+                WHEN vBookingReason == ''
+
+            END CASE;
+
+            CASE
+                WHEN vBooking
+        END IF;
+
+        --  Inserting values into the table
+        INSERT INTO booking (pID, patientName, rID, roomName, rate, eID, employeeName, bookingInn, bookingOut, comments)
+            VALUES
+                (vpID, vpName, vRid, rName, vRate, veID, veName, vInn, vOut)
+    END x
 /*******************************************************************/
 
 /*********************** Turnus Procedures *************************/

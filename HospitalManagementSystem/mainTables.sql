@@ -10,32 +10,29 @@ This file contains the main tables which is used in the project
 DATABASES
 
 patients
+    Tables
+        patient,
+        billing
+
 employee,
+    Tables
+        employees,
+        relations
+        turnus
+        terminated staff members
+
 hospitalManagementSystem
+    Tables
+        Alergies,
+        Diagnosis,
+        availableMedecines
+        firstFloor,
+        secondFloor,
+        thirdFloor,
+        bookings
+
 ***************************************************************/
-/********************************************   Patient table   ********************************************
-CREATE DATABASE patients
-
-    This database includes patient information, billing
-
-CREATE DATABASE employees
-
-    Staff members,
-    salary
-    turnus
-
-    terminated staff members,
-    
-
-CREATE DATABASE hospitalManagementSystem
-    Alergies,
-    Diagnosis,
-    availableMedecines
-    firstFloor,
-    secondFloor,
-    thirdFloor,
-
-*************************************************************************************************************/
+/********************************************   Patient table   *******************************************/
 
 CREATE TABLE patient (
                         id BIGINT NOT NULL, --  AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
@@ -75,9 +72,9 @@ CREATE TABLE patient (
                         CONSTRAINT ListOfAlergies_FK FOREIGN KEY(alergies) REFERENCES HospitalManagementSystem.alergies (alergyID) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT ListofMedecine FOREIGN KEY(medecine) REFERENCES HospitalManagementSystem.availableMedecines (mID) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT ListOfDiagnosis_FK FOREIGN KEY(diagnosis) REFERENCES HospitalManagementSystem.diagnosis (diagnosisID) ON DELETE CASCADE ON UPDATE CASCADE);
-/*************************************************************************************************************/
+/*********************************************************************************************************/
 
-/************************************* Billings *************************************************************/
+/************************************* Billings **********************************************************/
 
 CREATE TABLE billing (
                     --  Table Columns
@@ -92,7 +89,7 @@ CREATE TABLE billing (
                     CONSTRAINT uniqueName UNIQUE(invoiceID, pID),
                     CONSTRAINT patient_FK FOREIGN KEY(pID) REFERENCES patient (pID) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
-/******************************** Employee **************************************************************************/
+/******************************** Employee *******************************************************************/
 
 CREATE TABLE employees (
                         eID BIGINT NOT NULL, -- AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT = 100
@@ -133,7 +130,8 @@ CREATE TABLE booking (
                         demo1 VARCHAR(255),
 
                     --  Table Constraints
-                        CONSTRAINT uniqueName UNIQUE (pID, roomName, rID, eID),
+                        INDEX (rID, eID),
+                        CONSTRAINT uniqueName UNIQUE (pID, bookingInn),
                         CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT patient_FK FOREIGN KEY (pID) REFERENCES patients.patient (pID) ON DELETE CASCADE ON UPDATE CASCADE);
                         CONSTRAINT rommID_FK FOREIGN KEY (rID) REFERENCES rooms (roomID) ON DELETE CASCADE ON UPDATE CASCADE);

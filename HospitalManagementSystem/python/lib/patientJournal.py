@@ -47,7 +47,7 @@ class PDFCanvas (Canvas):
         #   Initializing the SQL Statement, procsessing it, and fetch the statement and close the
         #   Personal info about the given patient
 
-        query = 'SELECT * FROM patient;'
+        query = 'SELECT * FROM patient WHERE pID = {};'
         cur = self.patCur.execute(query)
         data = self.patCur.fetchall()
         self.conn.close()

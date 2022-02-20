@@ -24,7 +24,9 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 >> pID              The patient should to be able to be assigned to other doctors
 >
 >   PRIMARY KEY
->> id                   
+>> id
+>
+>                    
 
 **Procedures**
 
