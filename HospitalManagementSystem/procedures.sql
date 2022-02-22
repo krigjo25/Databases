@@ -318,5 +318,17 @@ CREATE OR REPLACE PROCEDURE newTurnus (IN veID BIGINT, IN vDate DATE, IN vTimeIn
             VALUES (eName, vDate, vTimeInn, vTimeout);
     END x
 
+CREATE OR REPLACE PROCEDURE sickDay (IN veID BIGINT, IN vInt TINYINT, OUT vError VARCHAR(255))
+    BEGIN
+
+        --  Declaring variables
+
+        -- Inserting values into the variables
+
+        -- Updating sickDays, and adding a comment "Sick, self-decleration"
+    IF vInt > vSickDays THEN SELECT 'An error Occured,', vInt, ' Can not be greater than sickDays' AS 'Integer error:' INTO vError;;   
+    END x
+
+CREATE OR REPLACE PROCEDURE
 
 /*******************************************************************/
