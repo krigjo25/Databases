@@ -9,10 +9,12 @@ This table should include the following information
     PatientName
     roomID
     roomName
+    procedure
     employeeID
     EmployeeName
     Timein
     Timeout
+    SurgeryType
 
 **Procedures**
 

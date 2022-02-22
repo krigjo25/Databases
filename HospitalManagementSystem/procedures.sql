@@ -245,41 +245,78 @@ CREATE OR REPLACE PROCEDURE modifyRelation( IN vColumn VARCHAR(20), veID BIGINT,
 
     END x
 /*******************************************************************/
-
 /*********************** Booking Procedures ************************/
-CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN rID SMALLINT, IN vInn DATE, IN vBookingReason VARCHAR(255))
+CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vRid SMALLINT, IN vInn DATE)
     BEGIN
+
         --  Declareing variables'
         DECLARE rName TYPE OF rooms.roomName;
         DECLARE vOut TYPE OF booking.bookOut;
+        DECLARE vRate TYPE OF rooms.hourlyRoomRate;
         DECLARE veName TYPE OF employees.employees.eName;
         DECLARE vpName TYPE OF patients.patient.patientName;
 
         --  Selecting the values and insert it into the variable
-
+        SELECT roomName INTO rName FROM rooms WHERE roomID = vRid;
         SELECT patientName INTO vpName FROM patients.patient WHERE pID = vpID;
-        SELECT employeeName INTO veName FROM employees.employees WHERE eID = veID;
-        SELECT hourlyRoomRate into roomRate FROM rooms WHERE roomID = rID;
+        SELECT employeeName INTO veName FROM employees.employees WHERE eID = veID;        
         
-        --  Case to loop through the booking reason and room Name
-        IF
-            rName = 'Surgery Theaters' THEN 
+        --  Loop through the booking reason and room Name
+        --IF rName = 'SurgeryTheaters' THEN SET vRate = (SELECT hourlyRoomRate FROM rooms WHERE roomName = rName);
+        --ELSE IF rName = 'ICU'  THEN SET vRate = (SELECT hourlyRoomRate FROM rooms WHERE roomName = rName);
+        --END IF;
 
-            CASE
-                WHEN vBookingReason == ''
-
-            END CASE;
-
-            CASE
-                WHEN vBooking
-        END IF;
-
+        --  Creating a loop to check wheter the date is taken or not
+        
         --  Inserting values into the table
-        INSERT INTO booking (pID, patientName, rID, roomName, rate, eID, employeeName, bookingInn, bookingOut, comments)
-            VALUES
-                (vpID, vpName, vRid, rName, vRate, veID, veName, vInn, vOut)
+        INSERT INTO booking (pID, patientName, rID, roomName, eID, employeeName, bookingInn, bookingOut)
+            VALUES (vpID, vpName, vRid, rName, veID, veName, vInn, vOut);
+    END x
+
+CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
+    BEGIN
+
+    --  Delete a row from the database
+    DELETE FROM booking WHERE pID = vpID;
+
+    END x
+
+CREATE OR REPLACE PROCEDURE searchRoom (IN vDate DATETIME, IN vrID SMALLINT)
+    BEGIN
+        --  Declare variables
+        DECLARE vrName VARCHAR(255);
+
+        --  Set a value to the variable
+        SET vrName = (SELECT roomName FROM rooms WHERE rID = vrID);
+
+        --  Select the values from the table
+        SELECT pID, rID, roomName, bookInn, bookOut FROM bookings WHERE bookInn = vDate AND comments != 'Cancelled' AND roomName = vrName;
+    
     END x
 /*******************************************************************/
 
 /*********************** Turnus Procedures *************************/
+CREATE OR REPLACE PROCEDURE newTurnus (IN veID BIGINT, IN vDate DATE, IN vTimeInn TIME)
+    BEGIN
+
+        --  Declare variables
+        DECLARE vResult TYPE OF turnus.inn;
+        DECLARE vTimeOut TYPE OF turnus.ut;
+        DECLARE veName TYPE OF employees.eName;
+
+        --  Insert values to variables
+        SELECT eName INTO veName FROM employees WHERE eID = veID;
+
+        --  Count the hours for the staff to be at work
+        SET vResult = vTimeInnte + 8; 
+
+        --  Assign the values to the variable
+        SET vTimeOut = vResult;
+
+        --  Insert into the table
+        INSERT INTO turnus (employeeName, dato, inn, ut) 
+            VALUES (eName, vDate, vTimeInn, vTimeout);
+    END x
+
+
 /*******************************************************************/
