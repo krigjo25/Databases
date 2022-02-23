@@ -4,7 +4,8 @@ from the employees table.
 
 The table generates a turnus for 3 months at the time, 
 
-**Turnus** 
+**Turnus**
+
     Column  DATATYPE        Comment<br>
 
 -   eName       VARCHAR(255)    
@@ -16,6 +17,9 @@ The table generates a turnus for 3 months at the time,
 
 
 **Procedures**
+
+-   CALL newTurnus(veID);
+-   CALL sickDays(veID);
 
 **Events**
 

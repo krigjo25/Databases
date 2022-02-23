@@ -150,33 +150,68 @@ includes the text files below,
 ***Patient***
 
     #   add a new record of a patient
-    CALL newPatient (pName, vAge, vSex, vPhone, vEmail, bType, vAlergies, vIllness)
+    CALL newPatient (pName, bDate, vssn, vSex, vPhone, vStreet, vZip,vEmail, vWeight, vHeight, bType, vAlergies, vDoc, vMed);
 
     #   Updates the value for the record
-    CALL patientInfo (vID, vColumn, vValue)
+    CALL modifyPatient (vColumn,vValue, vID)d;
+
+***Billings***
+
+    #   Creating a new billing for the patient
+    CALL newBilling (vpID);
 
 ***Employee***
 
     #   Add a new record to the table
-    CALL newEmployee (eName, vAge, vSex, vPhone, vEmail)
+    CALL newEmployee (eName, vDate, vStreet, vEmail, vPhone,veStatus ,vTitle, vDep);
 
     # Updates the information of the employee  except :x: Date
-    CALL employeeInfo (vID, vColumn, vValue)
+    CALL modifyEmployee (vColumn, vValue, veID);
+
+***Relations***
+
+    #   Assign a doctor to a patient
+    CALL newRelation (veID, vpID);
+
+    #   Delete an assignement manually
+    CALL delRelation (veID, vpID);
+
+    #   Modify a relation
+    CALL modifyRelation (vColumn, veID, vpID);
+
+***Turnus***
+
+    #   Assign time for the employee to be at work
+    CALL newTurnus (veID, vDate, vTime, vhrs);
+
+    #   If the doctor is sick, update the sicDays, and add a comment to the turnus
+    CALL sickDays (veID, vInt, vComment);
 
 ***List Of Alergies***
 
     #   Creates a new record for alergies
-    CALL insertLOA (vID, vName, vSymptoms, medicine ID)
+    CALL insertLOA (vID, vName, vSymptoms, medicine ID);
+
 ***List Of Diagnosis***
 
     #   Creates a new record for Diagnosis
-    CALL insertLOD (vID, vName, vSymptoms, medicine ID)
-
+    CALL insertLOD (vID, vName, vSymptoms, medicine ID);
 
 ***List of Medicine***
 
     #   Creates a new record for Medecines
-    CALL insertLOM (vID, vName, vSymptoms, illness)
+    CALL insertLOM (vID, vName, vSymptoms, illness);
+
+***booking***
+
+    #   Booking a room for the patient
+    CALL bookRoom (vpID, veID, vrID, vInn);
+
+    #   Cancellation of a room booking
+    CALL delbook (vpID);
+
+    #   Check if a room is available
+    CALL checkRoom (veID, vDate, vTimeInn);
 
 ***Rooms***
 
@@ -185,9 +220,10 @@ includes the text files below,
     CALL secondFloor('roomName', 10000.00)
     CALL thirdFloor('roomName', 10000.00)
 
+
 **Views**
 
-    SELECT Rooms                    --  Rooms in the hospital
+    Rooms
 
 **Triggers**
 
