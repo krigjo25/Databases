@@ -317,8 +317,6 @@ one database for employees and stuff for the employees, one for the administrati
 * mariadb, - [MariaDB Community](https://github.com/MariaDB)
 * Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
 * reportlab, - [Andy Robinson, Robin Becker, the ReportLab team and the community](https://reportlab.com)
-* []()
-* []()
 
 ## Credits
 
