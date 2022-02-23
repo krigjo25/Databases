@@ -32,8 +32,7 @@ new Database for employees
     -   hired
 
 | EmployeeName | birthDate | street | zipCode | email | Phone | eStatus | occupation | hourlyRate | department | hired |
-|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
-
+|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
 
 **Procedures**
 
