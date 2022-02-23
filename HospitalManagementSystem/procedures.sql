@@ -6,14 +6,16 @@ This file contains the Procedures which is used in the project
 Patient Procedures,
 Billing Proceduures,
 
-Employees Procedures,
+Turnus Prodcedures,
 Relation Procedures,
-Booking Procedures,
+Employees Procedures,
 
+Room Procedures,
 Alergy Procedures,
+Booking Procedures,
+Medecine Procedures,
 diagnosis Procedures,
-Medecine Procedures.
-Room Procedures.
+
 
 /***************************************************************/
 
@@ -331,7 +333,7 @@ CREATE OR REPLACE PROCEDURE sickDay (IN veID BIGINT, IN vInt TINYINT, IN vCommen
 
         -- Updating sickDays
         IF vInt < vSickDays THEN 
-        SET vResult = vSickDays - vInt
+        SET vResult = vSickDays - vInt;
         UPDATE employees SET sickDays = vSickDays - vInt WHERE eID = veID;
         UPDATE turnus SET comments = vComment WHERE dato = vDate AND inn = vTime;
         END IF;
