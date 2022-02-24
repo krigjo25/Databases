@@ -1,4 +1,4 @@
-## Patient Table
+# Patients
 
 The patient table, should include necsessary information, for the assigned Doctor<br>
 to do the necsessary treatment for the patient. Would like to have the patient details<br>
@@ -6,9 +6,9 @@ in a own Database, for easier maintance.
 
 **Patient Information**
 
-# General information about the patient         #  Information about work         #  Health Information
+#  General information about the patient         #  Information about work         #  Health Information
 | pID | patientName | ssn | sex | mobile| street | zipCode | companyName | industry | BodyWeight | bodyHeight | bodyMassIndex | bloodType | DiseaseCode | alergies | medecine | dateIn | dateOut |
-|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
+|--- |--- |--- |---	|--- |--- |--- |---	|--- |--- |---	|--- |--- |--- |---	|--- |--- |--- |
 
  Constraints |
 |---	|
