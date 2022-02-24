@@ -96,9 +96,15 @@ includes the text files below,
 *   [Rooms](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Rooms.md),
 *   [The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
 *   [Turnus](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Turnus.md)
-*   [PatientEmployeeRelations](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/relations.md)
+*   [Patient Employee Relations](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/relations.md)
 
 ## SQL Data
+
+**Databases**
+
+*   [patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patients/)
+*   [employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employees/)
+*   [HospitalManageMent](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagement)
 
 **Tables**
 
