@@ -74,11 +74,13 @@ The idea of HospitalManageSystem is to create a back-end system
 which lets the personell to add and modify the patient journal
  
     project start :<br>
-        1.01-22
+        01.01-22
 
    Last Update :<br>
-        15.02-22
+        24.02-22
 
+    Finished : <br>
+        dd.mm-yy    
     SQL Database:<br> 
         mariaDB
     
