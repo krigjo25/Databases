@@ -9,8 +9,8 @@ employees to calculate the salary.
 
 **Table**
 
-| eID || EmployeeName | birthDate | street | zipCode | email | Phone | eStatus | occupation | hourlyRate | department | hired |
-|---  ||---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
+| eID | EmployeeName | birthDate | street | zipCode | email | Phone | eStatus | occupation | hourlyRate | department | hired |
+|--- |--- |--- |---	|--- |--- |--- |---	|--- |--- |--- |---	|
 
 **Procedures**
 
