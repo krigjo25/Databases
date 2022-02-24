@@ -6,7 +6,7 @@ in a own Database, for easier maintance.
 
 **Patient Information**
 
-#  General information about the patient         #  Information about work         #  Health Information
+##  General information about the patient                  #  Information about work #  Health Information
 | pID | patientName | ssn | sex | mobile| street | zipCode | companyName | industry | BodyWeight | bodyHeight | bodyMassIndex | bloodType | DiseaseCode | alergies | medecine | dateIn | dateOut |
 |--- |--- |--- |---	|--- |--- |--- |---	|--- |--- |---	|--- |--- |--- |---	|--- |--- |--- |
 
