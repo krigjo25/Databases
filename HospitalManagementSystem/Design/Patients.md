@@ -35,7 +35,7 @@ in a own Database, for easier maintance.
 
 -  When the patient checks out from the hospital, Create a Invoice
 
--      When the patient Journal gets updated, update the PDF
+-  When the patient Journal gets updated, update the PDF
 
 **Triggers**
 
