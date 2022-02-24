@@ -13,8 +13,8 @@ We should create a table called billing, in a new Database which is called billi
 In this database we will use patient id to identify patient name
 table Billing
 
-| patientID | invoiceID | price | status |
-|---	|---	|---	|---	|
+| patientName | invoiceID | price | status | reminder | overdue |
+|--- |--- |--- |--- |--- |--- |
 
 **procedures**
 
@@ -25,9 +25,11 @@ table Billing
     CALL updateBilling (vColumn, vpID)
 
 **Triggers**
+
     #   After overdue, trigger an insert into credited table
 
 **Events**
+
     #   When the invoice is overdue, trigger a new date,
 
     #   Triggers an insert and pdf creation when patient has been recovered

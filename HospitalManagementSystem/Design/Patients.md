@@ -6,7 +6,7 @@ in a own Database, for easier maintance.
 
 **Patient Information**
 
-##  General information about the patient                  #  Information about work #  Health Information
+ #  General information about the patient                  #  Information about work #  Health Information
 | pID | patientName | ssn | sex | mobile| street | zipCode | companyName | industry | BodyWeight | bodyHeight | bodyMassIndex | bloodType | DiseaseCode | alergies | medecine | dateIn | dateOut |
 |--- |--- |--- |---	|--- |--- |--- |---	|--- |--- |---	|--- |--- |--- |---	|--- |--- |--- |
 
@@ -25,10 +25,10 @@ in a own Database, for easier maintance.
 
 **Procedures**
 
-#  Register a new patient to the database
+ #  Register a new patient to the database
 - CALL newPatient()
 
-#  Modify patient information
+ #  Modify patient information
 - CALL modifyPatient()
 
 **Events**

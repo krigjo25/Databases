@@ -8,9 +8,6 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 | id | pID | patientName | eID | employeeName |
 |--- |--- |--- |--- |--- |
 
-| id | pID | patientName | eID | employeeName |
-|--- |--- |--- |--- |--- |
-
 | Constraints | Comment |
 |--- |--- |
 | Unique | CONSTRAINT | 
@@ -25,13 +22,13 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 
 **Procedures**
 
-#   Assigning new patient to a doctor
+    #   Assigning new patient to a doctor
 -   CALL newRelation(eID, pID);
 
-#   Removing the relation upon recovery
+    #   Removing the relation upon recovery
 -   CALL delRelation(eID. pID);
 
-#   Updating the Doctor assignment
+    #   Updating the Doctor assignment
 -   CALL updateRelation(vcolumn, veID, vpID);
 
 **Events**
