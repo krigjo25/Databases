@@ -5,20 +5,15 @@ from the employees table.
 The table generates a turnus for 3 months at the time, 
 
 **Turnus**
-
-    Column  DATATYPE        Comment<br>
-
--   eName       VARCHAR(255)    
--   dato        DATE NOT NULL
--   inn         TIME NOT NULL
--   ut          TIME NOT NULL
--   comment     VARCHAR(255)
--   sickDays    TINYINT UNSIGNED DEFAULT 25
-
+| eID| eName | dato | timeInn | out | comment | sickDays |
+|---	|---	|---	|---	|---	|--- |--- |
 
 **Procedures**
 
+    #   Add a new Turnus
 -   CALL newTurnus(veID);
+
+    #   Decrease sickDays ammount
 -   CALL sickDays(veID);
 
 **Events**

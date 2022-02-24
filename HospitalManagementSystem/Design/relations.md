@@ -5,34 +5,36 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 **relation Information**
 
 
-| ID | pID | patientName | eID | employeeName |
+| id | pID | patientName | eID | employeeName |
+|--- |--- |--- |--- |--- |
 
->   ID                      Unique row id
->   pID                     Unique patient ID
->   patientName             Name of the patient
->   eID                     Unique employee ID
->   employeeID              Name of the assigned doctor
->
->   CONSTRAINTS
->
->   FOREIGN KEY
->>   eID                     ForeignKey the given doctor has to be an employee at the hospital
->>
->>  patientID               ForeignKey, UNIQUE the patient has to be registered in the database and cannot be assigned to other doctors
->
-> UNIQUE
->> pID              The patient should to be able to be assigned to other doctors
->
->   PRIMARY KEY
->> id
->
->                    
+| id | pID | patientName | eID | employeeName |
+|--- |--- |--- |--- |--- |
+
+| Constraints | Comment |
+|--- |--- |
+| Unique | CONSTRAINT | 
+| pID|  |
+| INDEX| KEY |
+| eID | | The doctor can be assigned to multiple patients |
+| FOREIGN KEY | CONSTRAINT |
+| eID | | The doctor has to be an employee at the hospital |
+| pID | | The patient has to be registered in the database |
+| PRIMARY KEY | KEY |
+| id | | Row Counter|
 
 **Procedures**
 
->   CALL newRelation(eID, pID);     -   Assigning new patient to a doctor
->   CALL delRelation(eID. pID);     -   Removing the relation upon recovery
->   CALL updateRelation(vcolumn, veID, vpID);  -   Updating the Doctor assignment
+#   Assigning new patient to a doctor
+-   CALL newRelation(eID, pID);
+
+#   Removing the relation upon recovery
+-   CALL delRelation(eID. pID);
+
+#   Updating the Doctor assignment
+-   CALL updateRelation(vcolumn, veID, vpID);
 
 **Events**
-Creating an event to terminate a relation when the  patient has been<br> recovered. So the doctor can get new patients
+
+Creating an event to terminate a relation when the<br>
+patient has been recovered. So the doctor can get new patients

@@ -1,14 +1,20 @@
 ## About the project case
+Create (a) database(es) with full patient details and employee details<br>
 
-    A patient will have a unique Patient ID.
+The patient table will include<br>
+Personal details, work related information and health information
+    
+The Doctor will handle patients, one doctor can treat up to ten patient<br>
+Also each employee will have an unique employeeID, Doctors and patient<br>
+will be related to eachoter. 
 
-    Full description about the patient about personal detail and phone number, 
-    and then Disease and what treatment is going on. The doctor will handle 
-    patients, one doctor can Treat more than 1 patient. Also, each doctor will 
-    have a unique ID. Doctor and Patients will be related. Patients can be 
-    admitted to the hospital.
+So by creating a hospital, there has to be different rooms, such as
 
-    So different room numbers will be there, also rooms for Operation 
-    Theaters and ICU.  There are some nurses, and ward boys for the 
-    maintenance of the hospital and for patient take care.  Based upon the 
-    number of days and treatment bill will be generated.
+* Operation Theaters
+* ICU
+* Emergency services
+
+The hospital would need some nurses, ward boys for the maintance <br>
+of the hospital and for patient care.
+
+Based sed upon the number of days and treatment bill will be generated.

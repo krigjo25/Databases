@@ -2,37 +2,15 @@
 
 **Description**
 
-The employee table consist of personal and work related information for employees to calculate the salary, and for emergencies.
+Employee related information should be in a own database, to have a clean database.
 
-**Database**
-
-new Database for employees
+The employee table consist of personal and work related information for<br>
+employees to calculate the salary.
 
 **Table**
-    
-        Column              Comment
 
-    personal information
-
-    -   Full name,
-    -   date of birth,
-    -   street,
-    -   provice,
-    -   zipCode,
-    -   email,
-    -   phone,
-    .   mobile,
-
-    Work information
-
-    -   eStatus,
-    -   occupation,
-    -   hourlyRate
-    -   department
-    -   hired
-
-| EmployeeName | birthDate | street | zipCode | email | Phone | eStatus | occupation | hourlyRate | department | hired |
-|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
+| eID || EmployeeName | birthDate | street | zipCode | email | Phone | eStatus | occupation | hourlyRate | department | hired |
+|---  ||---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
 
 **Procedures**
 

@@ -1,69 +1,41 @@
 ## Patient Table
 
-
-**Databse**
-Own database for Patients
+The patient table, should include necsessary information, for the assigned Doctor<br>
+to do the necsessary treatment for the patient. Would like to have the patient details<br>
+in a own Database, for easier maintance.
 
 **Patient Information**
-        Column                              Comment
 
-        -   unique ID \t                        To identify the patient custom start from 100
+# General information about the patient         #  Information about work         #  Health Information
+| pID | patientName | ssn | sex | mobile| street | zipCode | companyName | industry | BodyWeight | bodyHeight | bodyMassIndex | bloodType | DiseaseCode | alergies | medecine | dateIn | dateOut |
+|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
 
-        #   General information about the patient
-
-        -   birthDate                           The date of birth
-        -   ssn                                 Security Social Number
-        -   sex                                 The sex max 5 characters
-        -   mobile                              Phone number, max 9 digits
-
-        -   street                              street name
-        
-        -   zipcode                             the given postal code
-
-        #   Information about work
-
-        -   companyName                         patients employeement
-        -   industry                            work environment
-
-        #   Health information
-
-        -   bodyWeight                          Patient's body Weight
-        -   bodyHeight                          Patient's body Height
-        -   bodyMass                            Patient's body mass
-        -   bloodType                           Blood type of the patient
-        -   Disease Code                        A Unique KEY TO doc Table
-        -   Alergies                            A Unique KEY TO alergies 
-        -   medecine                            A Unique Key to available medecine
-        -   dateIn                              When the patient arrive
-        -   dateOut                             When the patient leaves
-        -   patientJournal                      Patient Journal
-
-        Constraints
-
-        UNIQUE 
-
-        patientName,
-        patientID
-        medecine,
-        diseaseCode 
-        Medecine
-
-        FOREIGN KEY
-
-        medecine,
-        diseaseCode 
-        Medecine
+ Constraints |
+|---	|
+| Unique |
+| patientID |
+| patientName |
+| medecine |
+| diagnosisCode |
+| FOREIGN KEY |
+| medecine |
+| diagnosisCode |
+| alergies |
+| medecine |
 
 **Procedures**
 
-        - Insert a new patient
-        - Update patient Information
+#  Register a new patient to the database
+- CALL newPatient()
+
+#  Modify patient information
+- CALL modifyPatient()
 
 **Events**
 
--       When the patient checks out from the hospital, Create a Invoice
+-  When the patient checks out from the hospital, Create a Invoice
 
--       When the patient Journal gets updated, update the PDF
+-      When the patient Journal gets updated, update the PDF
 
 **Triggers**
 

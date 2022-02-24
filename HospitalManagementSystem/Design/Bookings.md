@@ -1,34 +1,25 @@
 ##  RoomBooking
 
-Creating a table for the hospital staff to book a room for a patient, during the patient's stay.
+Creating a table for the hospital staff to book a room for surgery / Ward, during the patient's stay.
 This table should include the following information
 
-    Columns                         Comments
-    bookID                             The id of the booking 
-    PatientID
-    PatientName
-    roomID
-    roomName
-    procedure
-    employeeID
-    EmployeeName
-    Timein
-    Timeout
-    SurgeryType
+
+| bookID | patientID | patientName | roomID | roomName | eID | employeeName | Date | timeInn | timeOut | surgeryType |
+|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|---	|
 
 **Procedures**
 
     The table should have following procedure
 
-    Search rooms
-        Search for room availability
-
-    bookRoom
-        booking a room for the given patient
-
-    delBook 
-        Delete a booking 
-
+    #   Searching for available rooms 
+    CALL searchRoom ()
+    
+    #   Book a room
+    CALL bookRoom ()
+    
+    #   Cancel a booking
+    CALL cancelBook ()
+    
 **Triggers**
 
 **Events**
