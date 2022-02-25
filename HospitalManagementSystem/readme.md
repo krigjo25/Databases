@@ -228,6 +228,11 @@ includes the text files below,
     CALL secondFloor('roomName', 10000.00)
     CALL thirdFloor('roomName', 10000.00)
 
+**Functions**
+
+[whatever]: #   Functions for employees
+    
+    CALL checkRecovery();
 
 **Views**
 

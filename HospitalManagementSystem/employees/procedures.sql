@@ -80,12 +80,6 @@ CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT)
 
     END x
 
-CREATE OR REPLACE PROCEDURE delRelation (IN veID BIGINT, IN vpID BIGINT)
-    BEGIN
-        -- Deletes a row from the relation table
-        DELETE FROM relations WHERE eID = veID AND pID = vpID;
-    END x
-
 CREATE OR REPLACE PROCEDURE modifyRelation( IN vColumn VARCHAR(20), IN veID BIGINT, IN vpID BIGINT, IN vValue BIGINT)
     BEGIN
 
