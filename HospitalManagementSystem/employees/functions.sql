@@ -1,10 +1,12 @@
-/*
+/****************************************************************
 About the checkRecovery
 
 Declare necsessary variables to perform a counter, Selecting ids,
 Update values into the table
 
-*/
+*****************************************************************/
+DELIMITER x
+
 CREATE OR REPLACE FUNCTION checkRecovery() RETURNS INT DETERMINISTIC
     BEGIN
 
@@ -21,16 +23,16 @@ CREATE OR REPLACE FUNCTION checkRecovery() RETURNS INT DETERMINISTIC
         SET vRecovery = 0;
 
         --  Counting rows
-        SELECT COUNT(*) FROM patients.patient INTO vCounter;
+        SELECT COUNT(*) INTO vCounter FROM patients.patient WHERE (dateOut IS NOT NULL);
 
         --  While loop to check each row
-        WhileCounter: WHILE vID < vCounter DO
+        WhileCounter: WHILE vID <= vCounter DO
 
             --  Selecting recovery date into vDate
             SELECT dateOut INTO vDate FROM patients.patient WHERE pID = vpID;
-
+    
             --  If statements
-            IF vOutDate = CURDATE() THEN SET vRecovery = 1;
+            IF vOutDate <= CURDATE() THEN SET vRecovery = 1;
 
                 CASE
 

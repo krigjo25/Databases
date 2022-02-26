@@ -4,14 +4,21 @@
 
 Employee related information should be in a own database, to have a clean database.
 
-The employee table consist of personal and work related information for<br>
+There has to be two tables, one where the title and hourlyRate is registered<br>
+another table which consistof personal and work related information for<br>
 employees to calculate the salary.
+
+So we need two tables where a title is registered, and hourlyRent for employee
+
 
 **Table**
 
+| Occupation | hourlyRate | x
+|--- |--- |
+
 | eID | EmployeeName | birthDate | street | zipCode | email | Phone | eStatus | occupation | hourlyRate | department | hired |
 |--- |--- |--- |---	|--- |--- |--- |---	|--- |--- |--- |---	|
-
+0
 **Procedures**
 
     #   Create a new record of employees

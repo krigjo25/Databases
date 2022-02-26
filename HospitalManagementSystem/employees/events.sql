@@ -17,6 +17,9 @@ CREATE OR REPLACE EVENT delRecords
 
         -- Delete records from turnus
         DELETE FROM employees.turnus WHERE dato <  DATE_SUB(CURDATE(), INTERVAL + 1 YEAR);
+
+        -- When the employee has gone a period with out being sick, he get back sickdays
+         
     END x
 /*************************************************************************************************************/
 

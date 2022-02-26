@@ -28,4 +28,5 @@ CREATE OR REPLACE TRIGGER terminateEmployee BEFORE DELETE ON employees
         VALUES
         (OLD.eID, OLD.eName, OLD.birthDate, OLD.street, OLD.zipCode, OLD.email, OLD.phone, OLD.occupation, OLD.department);
     END x
+
 /*********************************************************/

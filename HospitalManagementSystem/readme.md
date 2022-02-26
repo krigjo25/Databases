@@ -224,14 +224,18 @@ includes the text files below,
 ***Rooms***
 
     #   Creates a new record for the table
-    CALL firstFloor('roomName', 10000.00)
-    CALL secondFloor('roomName', 10000.00)
-    CALL thirdFloor('roomName', 10000.00)
+    CALL firstFloor('roomName', 10000.00);
+    CALL secondFloor('roomName', 10000.00);
+    CALL thirdFloor('roomName', 10000.00);
 
 **Functions**
 
-[whatever]: #   Functions for employees
+    #   Functions for employees
     
+    #  Calculate a monthly salary
+    CALL calcSalary(eID);
+
+    #  Check if the person is recovered
     CALL checkRecovery();
 
 **Views**
@@ -286,6 +290,10 @@ what has done during the patient's stay at the Hospital.
 **Invoice.pdf**
 
 A simple invoice for the patient, after the patient's stay
+
+**Salary.pdf** 
+
+A simple salary for the employee
 
 #  Summuary
 
