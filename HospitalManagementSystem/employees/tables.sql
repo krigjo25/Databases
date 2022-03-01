@@ -17,30 +17,54 @@ employee,
 
 /******************************** Employee *******************************************************************/
 
-CREATE TABLE employees (
+CREATE OR REPLACE TABLE employees (
                         eID BIGINT NOT NULL, -- AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT = 100
 
                     --  General information
                         eName VARCHAR(255) NOT NULL,
                         birthDate DATE NOT NULL,
                         street VARCHAR(255) NOT NULL,
-                        zipCode  SMALLINT NOT NULL DEFAULT 1234,
+                        zipCode MEDIUMINT NOT NULL DEFAULT 12345,
                         email VARCHAR(255) NOT NULL,
                         phone VARCHAR(255) NOT NULL,
 
                     -- Work related information
-                        eStatus TINYINT NOT NULL,
+                        eStatus TINYINT NOT NULL DEFAULT 5,
                         occupation VARCHAR(255) NOT NULL,
-                        hourlyRate DECIMAL(9,2),
+                        hRate DECIMAL(9,2),
                         department VARCHAR(255) NOT NULL,
-                        eContract TINYBLOB,
                         sickDays TINYINT NOT NULL DEFAULT 25,
-                        hired TIMESTAMP NOT NULL DEFAULT NOW()),
+                        hired TIMESTAMP NOT NULL DEFAULT NOW(),
                         
-                    --  Table Constraints
-                        INDEX(eName);
+                    --  Constraints
+                        INDEX(eName, occupation, hRate, department),
+                        CONSTRAINT uniqueName UNIQUE(eID));--,
+                        -- The rooms
+                        --CONSTRAINT room_fk FOREIGN KEY (department) REFERENCES HospitalManagementSystem.rooms ON DELETE CASCADE ON UPDATE CASCADE);
+                        --CONSTRAINT occupation_fk FOREIGN KEY(occupation) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE,
+                        --CONSTRAINT hourlyRate FOREIGN KEY(hRate) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE;
 /*************************************************************************************************************/
 DELIMITER ;
+/******************************** Relations **************************************************************/
+CREATE TABLE relations (
+
+                        --  Table Columns
+                        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                        pID BIGINT NOT NULL,
+                        patientName VARCHAR(255),
+                        eID BIGINT NOT NULL,
+                        eName VARCHAR(255) NOT NULL,
+                        recovered TINYINT NOT NULL DEFAULT 0,
+
+                        --  Table Constraints
+                        UNIQUE(pID),
+                        INDEX (eID, eName, patientName),
+                        CONSTRAINT employeeID_fk FOREIGN KEY (eID) REFERENCES employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT employeeName_fk FOREIGN KEY (eName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT patientID_fk FOREIGN KEY (pID) REFERENCES patients.patient (id) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT patientName_fk FOREIGN KEY (patientName) REFERENCES patients.patient (patientName) ON DELETE CASCADE ON UPDATE CASCADE);
+/*************************************************************************************************************/
+
 /******************************** Turnus **************************************************************/
 CREATE TABLE turnus (
                         --  Table Columns

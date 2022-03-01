@@ -3,7 +3,7 @@
 *********************************************************************************************************/
 
 CREATE OR REPLACE EVENT delRecords
-    -- Schedule the time for the event
+        -- Schedule the time for the event
     ON SCHEDULE EVERY 1 DAY DO BEGIN
 
         --  Delete records from employee
@@ -16,10 +16,10 @@ CREATE OR REPLACE EVENT delRecords
         DELETE FROM employees.relations WHERE recovered = 1;
 
         -- Delete records from turnus
-        DELETE FROM employees.turnus WHERE dato <  DATE_SUB(CURDATE(), INTERVAL + 1 YEAR);
+        DELETE FROM employees.turnus WHERE dato <  DATE_SUB(CURDATE(), INTERVAL + 1 DAY);
 
         -- When the employee has gone a period with out being sick, he get back sickdays
-         
-    END x
+
+END x
 /*************************************************************************************************************/
 

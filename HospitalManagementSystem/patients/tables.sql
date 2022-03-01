@@ -10,22 +10,22 @@ patients
 ************************************************************************/
 /********************************************   Patient table   *******************************************/
 
-CREATE TABLE patient (
-                        id BIGINT NOT NULL, --  AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
+CREATE OR REPLACE TABLE patient (
+                        id BIGINT, -- NOT NULL AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
                         
                         -- General information
-                        patientName VARCHAR(255) NOT NULL DEFAULT 'Jhon Doe',
+                        patientName VARCHAR(255) NOT NULL UNIQUE DEFAULT 'Jhon Doe',
                         birthDate DATE NOT NULL DEFAULT '1973-01-01',
-                        ssn INT NOT NULL DEFAULT 010174000,
-                        sex VARCHAR(5) NOT NULL, DEFAULT 'M'
+                        ssn VARCHAR(12) NOT NULL DEFAULT 0101740009,
+                        gender VARCHAR(5) NOT NULL DEFAULT 'M',
                         phoneNumber VARCHAR(255),
                         street VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
-                        zipcode SMALLINT NOT NULL DEFAULT 12345,
+                        zipcode MEDIUMINT SIGNED NOT NULL DEFAULT 12345,
 
                     --  Health information
-                        bodyWeight MEDIUMINT DEFAULT 80,
-                        bodyHeight INT NOT NULL DEFAULT '180',
-                        bodyIndex INT NOT NULL,
+                        bWeight DECIMAL (5.2) DEFAULT 80.0,
+                        bHeight SMALLINT SIGNED NOT NULL DEFAULT 180,
+                        bmi DECIMAL (5,2) NOT NULL,
                         bloodType VARCHAR(2), 
                         alergies VARCHAR(255) NOT NULL UNIQUE DEFAULT 'NNNNA',
                         diagnosis VARCHAR(255) NOT NULL DEFAULT 'NNNND',
@@ -45,14 +45,14 @@ CREATE TABLE patient (
                         demo1 VARCHAR(255),
                     --  Table Constraints
 
-                        CONSTRAINT UniqeuName UNIQUE(diagnosis, medecine, patientName),
+                        INDEX (diagnosis, medecine, alergies),
                         CONSTRAINT ListOfAlergies_FK FOREIGN KEY(alergies) REFERENCES HospitalManagementSystem.alergies (alergyID) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT ListofMedecine FOREIGN KEY(medecine) REFERENCES HospitalManagementSystem.availableMedecines (mID) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT ListOfDiagnosis_FK FOREIGN KEY(diagnosis) REFERENCES HospitalManagementSystem.diagnosis (diagnosisID) ON DELETE CASCADE ON UPDATE CASCADE);
 /*********************************************************************************************************/
 
 /************************************* Billings **********************************************************/
-
+DELIMITER
 CREATE TABLE billing (
                     --  Table Columns
                         id BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
@@ -63,7 +63,8 @@ CREATE TABLE billing (
                         paymentStatus VARCHAR(8) NOT NULL DEFAULT 'Not Paid',
                     
                     -- Table Constraints
-                    CONSTRAINT uniqueName UNIQUE(invoiceID, pID),
+                    INDEX (pID),
+                    CONSTRAINT uniqueName UNIQUE(invoiceID),
                     CONSTRAINT patient_FK FOREIGN KEY(pID) REFERENCES patient (pID) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
 

@@ -2,23 +2,22 @@
 
 **Description**
 
-Employee related information should be in a own database, to have a clean database.
 
-There has to be two tables, one where the title and hourlyRate is registered<br>
-another table which consistof personal and work related information for<br>
-employees to calculate the salary.
+Employee related information should have a own database, to have a clean database.
 
-So we need two tables where a title is registered, and hourlyRent for employee
+The design includes two tables, for information about employees.
 
+We would like to have a static table where values such as salary and titles are<br>
+the main table employee should consist of personal and work related information<br>
 
-**Table**
+**Tables**
 
-| Occupation | hourlyRate | x
+| Occupation | hourlyRate |
 |--- |--- |
 
 | eID | EmployeeName | birthDate | street | zipCode | email | Phone | eStatus | occupation | hourlyRate | department | hired |
 |--- |--- |--- |---	|--- |--- |--- |---	|--- |--- |--- |---	|
-0
+
 **Procedures**
 
     #   Create a new record of employees
@@ -26,6 +25,7 @@ So we need two tables where a title is registered, and hourlyRent for employee
 
     #   Modify employee Information
     CALL modifyEmployee (vColumn, vValue, veID,)
+
 
 **Events**
 

@@ -9,19 +9,44 @@ Billing Proceduures,
 /***************************************************************/
 
 /*********************** Patients Procedures ******************************/
-
-CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN vssn INT, IN vSex VARCHAR(5), IN vPhone VARCHAR(255), IN vStreet VARCHAR(255), IN vZip TINYINT, IN vWeight INT, IN vHeight INT, IN bType VARCHAR(2), IN vAlergies VARCHAR(5), IN vDoc VARCHAR(5), IN vMed VARCHAR(5))
+DELIMITER x
+CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN vssn VARCHAR(255), IN vGender VARCHAR(5), IN vPhone VARCHAR(255), IN vStreet VARCHAR(255), IN vZip INT, IN vWeight INT, IN vHeight INT, IN bType VARCHAR(2), IN vAlergies VARCHAR(5), IN vDoc VARCHAR(5), IN vMed VARCHAR(5))
     BEGIN
         --  Declare variables
-        DECLARE vBMI TINYINT UNSIGNED;
+        DECLARE vBMI TINYINT;
+        
+        DECLARE partOne TYPE OF patient.ssn;
+        DECLARE partTwo TYPE OF patient.ssn;
+        DECLARE partThree TYPE OF patient.ssn;
 
-        --  Add a value to the variables
-        SET vBMI = vHeight / vBodyWeight;
+        DECLARE areaCode TYPE OF patient.phoneNumber;
+        DECLARE lastDigit TYPE OF patient.phoneNumber;
+        DECLARE threeDigit TYPE OF patient.phoneNumber;
+
+        -- Converting cm into m
+        SET @height = vHeight / 100;
+        SET @height = @height * 2;
+
+        --  divide the Weight with Height
+        SET vBMI = vWeight/@height;
+
+        --  Trimming the Phone Number
+        SET areaCode = SUBSTRING(vPhone, 1,3);
+        SET lastDigit = SUBSTRING(vPhone, 7,4);
+        SET threeDigit = SUBSTRING(vPhone, 4,3);
+
+        -- Trimming the Social Security Number
+        SET partOne = SUBSTRING(vssn, 1,3);
+        SET partTwo = SUBSTRING(vssn, 3,2);
+        SET partThree = SUBSTRING(vssn,5,4);
+
+        -- Assigning the new values to the variables, using concat to merge the string
+        SET vssn = CONCAT(partOne, '-', partTwo, '-', partThree);
+        SET vPhone = CONCAT ('(', areaCode, ') -', threeDigit, '-', lastDigit);
 
         --  Insert values into the table
-        INSERT INTO patient (patientName, birthDate, ssn, sex, phoneNumber, street, zipCode, bodyWeight, bodyHeight, bodyIndex, bloodType, alergies, diagnosis, medecine)
-            VALUES
-                (pName, bDate, vssn, vSex, vPhone, vStreet, vZip, vWeight, vHeight, vBMI, bType, vAlergies, vDoc, vMed);
+        INSERT INTO patient (patientName, birthDate, ssn, gender, phoneNumber, street, zipCode, bWeight, bHeight, bmi, bloodType, alergies, diagnosis, medecine) VALUES
+                (pName, bDate, vssn, vGender, vPhone, vStreet, vZip, vWeight, vHeight, vBMI, bType, vAlergies, vDoc, vMed);
     END x
 
 /*****************************************************************/

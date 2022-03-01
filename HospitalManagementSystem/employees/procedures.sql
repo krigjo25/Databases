@@ -14,18 +14,27 @@ This procedures below allows the management
 add a new employee into the database
 
 ***************************************************************/
-CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, IN vStreet VARCHAR(255), IN vEmail VARCHAR(255), IN vPhone VARCHAR(255), IN veStatus TINYINT, IN vTitle VARCHAR(255),  IN vDep VARCHAR(255))
+CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, IN vStreet VARCHAR(255), IN vZip MEDIUMINT, IN vEmail VARCHAR(255), IN vPhone VARCHAR(255), IN veStatus TINYINT, IN vTitle VARCHAR(255),  IN vDep VARCHAR(255))
     BEGIN
         -- This procedure creates a new row with the details of an employee 
 
         --  Declare variables
         DECLARE vSalary DECIMAL(9,2);
-
+    
         --  Add a value to the Variable
-        SET vSalary = (SELECT salary FROM salaries WHERE occupation = vTitle);
+        --SET vSalary = (SELECT salary FROM salaryInfo WHERE occupation = vTitle);
         
-        INSERT INTO employees (eName, birthDate, street, zipCode, email, phone, eStatus, hourlyPay, department, occupation) VALUES
-        (eName, vDate, vStreet, vZip, vEmail, vPhone, veStatus, vSalary, vDep, vTitle);
+        -- Modifying the employee number
+
+        SET @areaCode = SUBSTRING(vPhone, 1,3);
+        SET @lastDigit = SUBSTRING(vPhone, 7,4);
+        SET @threeDigit = SUBSTRING(vPhone, 4,3);
+
+        SET vPhone = CONCAT ('(', @areaCode, ') -', @threeDigit, '-', @lastDigit);
+
+
+        INSERT INTO employees (eName, birthDate, street, zipCode, email, phone, eStatus, department, occupation) VALUES
+        (eName, vDate, vStreet, vZip, vEmail, vPhone, veStatus, vDep, vTitle);
     END x
 
 /**************************************************************/
