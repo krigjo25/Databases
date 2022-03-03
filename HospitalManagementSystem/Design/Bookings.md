@@ -11,13 +11,13 @@ This table should include the following information
 
     The table should have following procedure
 
-    #   Searching for available rooms 
+    ###   Searching for available rooms 
     CALL searchRoom ()
     
-    #   Book a room
+   ###    Book a room
     CALL bookRoom ()
     
-    #   Cancel a booking
+    ###   Cancel a booking
     CALL cancelBook ()
     
 **Triggers**

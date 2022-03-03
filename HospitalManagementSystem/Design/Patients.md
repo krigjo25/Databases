@@ -25,10 +25,10 @@ in a own Database, for easier maintance.
 
 **Procedures**
 
- #  Register a new patient to the database
+ ###  Register a new patient to the database
 - CALL newPatient()
 
- #  Modify patient information
+ ###  Modify patient information
 - CALL modifyPatient()
 
 **Events**

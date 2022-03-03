@@ -37,7 +37,7 @@ CREATE OR REPLACE TABLE employees (
                         hired TIMESTAMP NOT NULL DEFAULT NOW(),
                         
                     --  Constraints
-                        INDEX(eName, occupation, hRate, department));
+                        INDEX(eName, sickDays, occupation, hRate, department));
                         -- The rooms
                         --CONSTRAINT room_fk FOREIGN KEY (department) REFERENCES HospitalManagementSystem.rooms ON DELETE CASCADE ON UPDATE CASCADE);
                         --CONSTRAINT occupation_fk FOREIGN KEY(occupation) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE,
@@ -73,13 +73,24 @@ CREATE OR REPLACE TABLE turnus (
                         dato DATE NOT NULL,
                         inn TIME NOT NULL,
                         ut TIME NOT NULL,
-                        sickDays TINYINT UNSIGNED NOT NULL DEFAULT 25,
-                        absence VARCHAR(255),
                         hrs TINYINT NOT NULL,
                         minute TINYINT NOT NULL,
-                        
+                        sickDays TINYINT UNSIGNED NOT NULL,
+                        absence VARCHAR(255),
+
                         --  Table Constraints
-                        INDEX (eID, eName, dato, inn, ut),
+                        INDEX (eID, eName, sickDays),
                         CONSTRAINT employeeID_fk2 FOREIGN KEY (eID) REFERENCES employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT employeeName_fk2 FOREIGN KEY (eName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE);
+                        CONSTRAINT employeeName_fk2 FOREIGN KEY (eName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT sickDays_fk FOREIGN KEY (sickDays) REFERENCES employees (sickDays) ON DELETE CASCADE ON UPDATE CASCADE);
+/*************************************************************************************************************/
+DELIMITER ;
+/******************************** SalaryInfo **************************************************************/
+CREATE OR REPLACE TABLE salaryInfo (
+                        --  Table Columns
+                        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                        occupation VARCHAR(255) NOT NULL, 
+                        yearlyRate DECIMAL(10,2) NOT NULL,
+                        monthlyRate DECIMAL(7,2) NOT NULL,
+                        hRate DECIMAL (5,2) NOT NULL);
 /*************************************************************************************************************/

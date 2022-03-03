@@ -30,7 +30,8 @@ INSERT INTO wagonTwo (formName, pSeries, plate, arm, notes) VALUES
         ('Aqualine Finger end piece', 'Pontoon-Series', 30.33, 27.30, 'Waffle iron'),
         ('Aqualine Wide Finger end piece', 'Pontoon-Series', 30.33, 27.30, 'Hammer'),
         ('APB 1000 FO', 'APB-Series', 27.44, 14.86, ''),
-        ('APB 500', 'APB-Series', 53.19, 27.71, 'small middlepice');
+        ('APB 500', 'APB-Series', 53.19, 27.71, 'small middlepice'),
+        ('Sotra', 'FS-Series', 30.33, 27.30, '');
 
 INSERT INTO wagonThree (formName, pSeries, plate, arm, mincool, minOven, middlePice, bracer,notes) VALUES
         ('Prebouy 1600',  'Prebouy Series', 9.33, 27.17, 35, 28.5,  '', 'ON bottom',''),
@@ -71,4 +72,5 @@ INSERT INTO productionInfo(formID, formName, kg) VALUES
         (2017, 'Aqualine Wide Finger ', 30),
         (2018, 'Aqualine Finger', 17),
         (2019, 'Aqualine end piece finger ', 1.5),
-        (2020, 'Aqualine Wide Finger end piece', 5);
+        (2020, 'Aqualine Wide Finger end piece', 5),
+        (2021, 'SOTRA', 6);

@@ -1,16 +1,16 @@
-## Listed Tables
+# Listed Tables
 
 In the given tables below is a list of deseases, alergies and medecines
 Its a dynamic list where the doctor can find given desease, alergy or medecine  to retrieve in other cases such as sickpapers or other documents.
 
-**diagnosis ( List of Diagnosis )**
+###diagnosis ( List of Diagnosis )
 
 | id | doc | diagonsisName | symptoms | mID |
 |---	|---	|---	|---	|---	|
 
 
 
-**Alergy (List of Alergies)**
+###Alergy (List of Alergies)
 
 | id | alergyID | alergyName | symptoms | mID |
 |---	|---	|---	|---	|---	|
@@ -19,7 +19,7 @@ Its a dynamic list where the doctor can find given desease, alergy or medecine  
 | id | mID | medecineName | symptoms |
 |---	|---	|---	|---	|
 
-**Rooms**
+##Rooms
 
     -   100 - 199 First Floor 
     -   200 - 299 Second Floor
@@ -47,8 +47,8 @@ each floor Table should include
 
 **Procedures**
 
-    # Assign a name and a id to a room
+    ### Assign a name and a id to a room
 *   CALL newRoom (vrID, rName);
 
-    #   modify room information 
+    ###   modify room information 
 *    CALL modifyRoom (vColumn, vValue);

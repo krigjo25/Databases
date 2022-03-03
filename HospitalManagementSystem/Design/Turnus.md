@@ -17,6 +17,6 @@ The table generates a turnus for 3 months at the time,
 -   CALL sickDays(veID);
 
 **Events**
-
+ 
 
 **Trigger**

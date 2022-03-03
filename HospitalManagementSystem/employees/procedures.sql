@@ -78,7 +78,7 @@ CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT, OUT vE
         --  Counting how many times the doctor has been added to the table
         SET vCount = (SELECT COUNT(eID) FROM relations WHERE eID = veID);
 
-        IF vCount <= 9 THEN
+        IF vCount <= 10 THEN
 
             -- Assigning doctor to patient
             INSERT INTO relations (pID, patientName, eID, employeeName )
@@ -114,6 +114,7 @@ CREATE OR REPLACE PROCEDURE modifyRelation(IN veID BIGINT, IN vpID BIGINT, OUT v
 /*********************** Turnus Procedures *************************/
 CREATE OR REPLACE PROCEDURE newTurnus (IN veID BIGINT, IN vDate DATE, IN vTimeInn TIME, IN hh VARCHAR(2), IN mm TINYINT, IN vai TINYINT)
     BEGIN
+
         --  Declare variables
         DECLARE vAbsence VARCHAR(255);
         DECLARE vTimeOut TYPE OF turnus.ut;
@@ -123,9 +124,18 @@ CREATE OR REPLACE PROCEDURE newTurnus (IN veID BIGINT, IN vDate DATE, IN vTimeIn
         --  Insert values to variables
         SELECT eName INTO veName FROM employees WHERE eID = veID;
 
-        --  Converting hours into time // Challanges vmin converts into random hours
-        SET vTimeOut =  ADDTIME(vTimeInn, CONCAT(0, hh, 0, mm, 0, 0));
+        --  Converting hours into time 
+        IF mm = 0 AND hh < 10 THEN
+            SET vTimeOut =  ADDTIME(vTimeInn, CONCAT(0,hh, 0, 0, 0, 0));
 
+        -- Checking if hh is greater  or equal to 10
+        ELSEIF mm = 0 AND hh >= 10 THEN 
+            SET vTimeOut = ADDTIME (vTimeInn, CONCAT(hh, 0, 0, 0, 0));
+
+        -- // Challanges vmin converts into random hours
+        ELSEIF mm > 0 THEN
+            SET vTimeOut =  ADDTIME(vTimeInn, CONCAT(0, hh, mm, 0, 0));
+        END IF;
         --  Creating a case to check wheter vai is equal to one or two
         CASE
 
@@ -154,7 +164,7 @@ CREATE OR REPLACE PROCEDURE newTurnus (IN veID BIGINT, IN vDate DATE, IN vTimeIn
             VALUES (veID, veName, vDate, vTimeInn, vTimeout, vAbsence, hh, mm);
 
     END x
-
+DELIMITER
 CREATE OR REPLACE PROCEDURE modifySickDay (IN veID BIGINT, IN vInt TINYINT, IN vComment VARCHAR(255))
     BEGIN
 

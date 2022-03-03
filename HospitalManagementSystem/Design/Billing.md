@@ -18,10 +18,10 @@ table Billing
 
 **procedures**
 
-    #   Insert necsessary values to create the pdf file
-    CALL newBilling (vpID)                 
+###  Insert necsessary values to create the pdf file
+-    CALL newBilling (vpID)                 
 
-    #   Updates the values, if wrongly added
+###  Updates the values, if wrongly added
     CALL updateBilling (vColumn, vpID)
 
 **Triggers**
