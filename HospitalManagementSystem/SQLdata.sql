@@ -25,10 +25,18 @@ CALL newEmployee ('Gregory M. Flood', '1980-12-24', '1921 Reel Avenue', 88061, '
 
 /************************************************************************/
 
+/************************************* relations ************************/
+
+-- CALL newRelation (veID, vpID);
+CALL newRelation (1000, 1000);
+/************************************************************************/
+
 
 
 
 DELIMITER ;
+/************************************* Patients ************************/
+
 CALL newPatient ('Rober L. Cooper', '1980-02-11', '635626170', 'M', '9565510901', '3681 Seth Street', 76901 , 108, 185,'B+', 'NNNNA' , 'NNNND' , 'NNNNM' )
 CALL newPatient ('Aaron C. Crowder', '1960-09-07', '624492945', 'M', '7147672206', '178 Alpaca Way', 91505 , 103.6, 178,'O-', 'vAlergies' , 'vDoc' , 'vMed' )
 CALL newPatient ('Majorie R. Cummings', '1992-06-24', '316026733', 'F', '5743042963', '2370 Villa Drive', 46625 , 52.21, 168,'A+', 'vAlergies' , 'vDoc' , 'vMed' )
@@ -49,7 +57,7 @@ CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', 
 CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
 CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
 
-/************************************************************************/
+/*****************************************************************************/
 /********************************** Rooms ************************************/
 
 CALL firstFloor ('RoomName', Rate); 

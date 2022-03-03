@@ -63,30 +63,30 @@ CREATE OR REPLACE PROCEDURE modifyEmployee (IN vColumn VARCHAR(20), IN vValue VA
 This procedure assign a doctor to a patient
 
 ***********************************************************************/
-CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT)
+CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT, OUT vError VARCHAR(255))
     BEGIN
 
         -- Declareing new variables
+        DECLARE vCount TINYINT;
         DECLARE pName VARCHAR(255);
         DECLARE veName VARCHAR(255);
-        DECLARE vCount TINYINT;
 
         --  Assigning the new variable values
-        SET pName = (SELECT patientName from patients.patient WHERE pID = vpID);
         SET veName = (SELECT eName from employees WHERE eID = veID);
+        SET pName = (SELECT patientName from patients.patient WHERE id = vpID);
 
         --  Counting how many times the doctor has been added to the table
-        SET vCount = COUNT(veID);
+        SET vCount = (SELECT COUNT(eID) FROM relations WHERE eID = veID);
 
         IF vCount <= 9 THEN
 
-        -- Assigning doctor to patient
-        INSERT INTO relations (eID, employeeName, pID, patientName)
-            VALUES 
-            (veID, veName, vpID, pName);
+            -- Assigning doctor to patient
+            INSERT INTO relations (pID, patientName, eID, employeeName )
+                VALUES 
+                (vpID, pName, veID, veName);
 
+            SET vError = CONCAT(veName, ' Were assigned as ', pName, ' Primary doctor');
         END IF;
-
     END x
 
 CREATE OR REPLACE PROCEDURE modifyRelation( IN vColumn VARCHAR(20), IN veID BIGINT, IN vpID BIGINT, IN vValue BIGINT)

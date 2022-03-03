@@ -37,8 +37,7 @@ CREATE OR REPLACE TABLE employees (
                         hired TIMESTAMP NOT NULL DEFAULT NOW(),
                         
                     --  Constraints
-                        INDEX(eName, occupation, hRate, department),
-                        CONSTRAINT uniqueName UNIQUE(eID));--,
+                        INDEX(eName, occupation, hRate, department));
                         -- The rooms
                         --CONSTRAINT room_fk FOREIGN KEY (department) REFERENCES HospitalManagementSystem.rooms ON DELETE CASCADE ON UPDATE CASCADE);
                         --CONSTRAINT occupation_fk FOREIGN KEY(occupation) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE,
@@ -46,25 +45,25 @@ CREATE OR REPLACE TABLE employees (
 /*************************************************************************************************************/
 DELIMITER ;
 /******************************** Relations **************************************************************/
-CREATE TABLE relations (
+CREATE OR REPLACE TABLE relations (
 
                         --  Table Columns
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         pID BIGINT NOT NULL,
                         patientName VARCHAR(255),
                         eID BIGINT NOT NULL,
-                        eName VARCHAR(255) NOT NULL,
+                        employeeName VARCHAR(255) NOT NULL,
                         recovered TINYINT NOT NULL DEFAULT 0,
 
                         --  Table Constraints
                         UNIQUE(pID),
-                        INDEX (eID, eName, patientName),
+                        INDEX (eID, employeeName, patientName),
                         CONSTRAINT employeeID_fk FOREIGN KEY (eID) REFERENCES employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT employeeName_fk FOREIGN KEY (eName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT employeeName_fk FOREIGN KEY (employeeName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT patientID_fk FOREIGN KEY (pID) REFERENCES patients.patient (id) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT patientName_fk FOREIGN KEY (patientName) REFERENCES patients.patient (patientName) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
-
+DELIMITER ;
 /******************************** Turnus **************************************************************/
 CREATE TABLE turnus (
                         --  Table Columns

@@ -14,6 +14,7 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 | pID|  |
 | INDEX| KEY |
 | eID | | The doctor can be assigned to multiple patients |
+
 | FOREIGN KEY | CONSTRAINT |
 | eID | | The doctor has to be an employee at the hospital |
 | pID | | The patient has to be registered in the database |
@@ -22,16 +23,17 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 
 **Procedures**
 
-    #   Assigning new patient to a doctor
+<!--#   Assigning new patient to a doctor-->
 -   CALL newRelation(eID, pID);
 
     #   Removing the relation upon recovery
 -   CALL delRelation(eID. pID);
 
     #   Updating the Doctor assignment
--   CALL updateRelation(vcolumn, veID, vpID);
+-   CALL modifyRelation(vcolumn, veID, vpID);
 
 **Events**
 
 Creating an event to terminate a relation when the<br>
-patient has been recovered. So the doctor can get new patients
+patient has been recovered. So the doctor can get new<br>
+patients if limit is reached.
