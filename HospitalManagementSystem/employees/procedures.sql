@@ -86,47 +86,76 @@ CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT, OUT vE
                 (vpID, pName, veID, veName);
 
             SET vError = CONCAT(veName, ' Were assigned as ', pName, ' Primary doctor');
+
+            SELECT vError AS 'SQL operation Succsess'; 
+
+        ELSEIF vCount >= 10 THEN
+
+            SET vError = CONCAT (veName, ' Has reached the maximum of assignments. Take care of your employees.');
+
+            SELECT vError AS 'SQL operation Failed !';
         END IF;
     END x
 
-CREATE OR REPLACE PROCEDURE modifyRelation( IN vColumn VARCHAR(20), IN veID BIGINT, IN vpID BIGINT, IN vValue BIGINT)
+CREATE OR REPLACE PROCEDURE modifyRelation(IN veID BIGINT, IN vpID BIGINT, OUT vCon VARCHAR(100))
     BEGIN
 
-        --  Creating a case to update selected Column
-        CASE
-        WHEN vColumn = 'eID' THEN SET @Query = CONCAT('UPDATE relations SET ', vColumn, ' = ', vValue, ' WHERE eID = ', veID);
-        WHEN vColumn = 'pID' THEN SET @Query = CONCAT('UPDATE relations SER ', vColumn, ' = ', vValue, ' WHERE pID = ', vpID);
-        END CASE;
+            -- Update relations patient and employee name
+            UPDATE relations SET patientName = (SELECT patientName FROM patients.patient WHERE pID = vpID) WHERE pID= vpID;
+            UPDATE relations SET employeeName = (SELECT employeeName FROm employees.employees WHERE eID = veID) WHERE eID = veID;
 
-            /*Prepareing and executing the statement*/
-            PREPARE stmt FROM @Query;
-            EXECUTE stmt;
-            DEALLOCATE PREPARE stmt;
+            SET vConf = CONCAT('You have re-assigned ', (SELECT employeeName FROM relation WHERE eID = veID), ' To ', (SELECT patientName FROM relations WHERE pID = vpID));
+
+            SELECT vConf AS 'SQL Confirmation';
 
     END x
 /*******************************************************************/
 
 /*********************** Turnus Procedures *************************/
-CREATE OR REPLACE PROCEDURE newTurnus (IN veID BIGINT, IN vDate DATE, IN vTimeInn TIME, IN vhrs TINYINT, vMin TINYINT)
+CREATE OR REPLACE PROCEDURE newTurnus (IN veID BIGINT, IN vDate DATE, IN vTimeInn TIME, IN hh VARCHAR(2), IN mm TINYINT, IN vai TINYINT)
     BEGIN
-
         --  Declare variables
+        DECLARE vAbsence VARCHAR(255);
         DECLARE vTimeOut TYPE OF turnus.ut;
         DECLARE veName TYPE OF employees.eName;
-        DECLARE vSickDays TYPE OF employees.sickDays;
+        DECLARE vSick TYPE OF employees.sickDays;
 
         --  Insert values to variables
         SELECT eName INTO veName FROM employees WHERE eID = veID;
 
-        --  Count the hours for the staff to be at work
-        SET vTimeOut = CONCAT(vhrs,':', vmin, ':00'); 
+        --  Converting hours into time // Challanges vmin converts into random hours
+        SET vTimeOut =  ADDTIME(vTimeInn, CONCAT(0, hh, 0, mm, 0, 0));
+
+        --  Creating a case to check wheter vai is equal to one or two
+        CASE
+
+            WHEN vai = 0 THEN
+
+                SET vAbsence = '';
+
+            WHEN vai = 1 THEN            
+
+                SET vAbsence = 'Doctor / Dentis';
+            WHEN vai = 2 THEN
+
+                SET vAbsence = 'Sick';
+
+
+                --  Selecting sickDays values into the variable
+                SET vSick = (SELECT sickDays FROM employees.employees WHERE eID = vEID);
+
+                --  Updating the information in employees 
+                UPDATE employees SET sickDays = vSick - 1 WHERE eID = veID;
+
+        END CASE;
 
         --  Insert into the table
-        INSERT INTO turnus (eID, eName, dato, inn, ut, sickDays) 
-            VALUES (veID, veName, vDate, vTimeInn, vTimeout, vSickDays);
+        INSERT INTO turnus (eID, eName, dato, inn, ut, absence, hrs, minute) 
+            VALUES (veID, veName, vDate, vTimeInn, vTimeout, vAbsence, hh, mm);
+
     END x
 
-CREATE OR REPLACE PROCEDURE sickDay (IN veID BIGINT, IN vInt TINYINT, IN vComment VARCHAR(255))
+CREATE OR REPLACE PROCEDURE modifySickDay (IN veID BIGINT, IN vInt TINYINT, IN vComment VARCHAR(255))
     BEGIN
 
         --  Declaring variables

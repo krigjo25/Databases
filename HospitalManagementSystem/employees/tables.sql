@@ -65,7 +65,7 @@ CREATE OR REPLACE TABLE relations (
 /*************************************************************************************************************/
 DELIMITER ;
 /******************************** Turnus **************************************************************/
-CREATE TABLE turnus (
+CREATE OR REPLACE TABLE turnus (
                         --  Table Columns
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         eID BIGINT NOT NULL,
@@ -74,10 +74,12 @@ CREATE TABLE turnus (
                         inn TIME NOT NULL,
                         ut TIME NOT NULL,
                         sickDays TINYINT UNSIGNED NOT NULL DEFAULT 25,
-                        comments VARCHAR(255),
+                        absence VARCHAR(255),
+                        hrs TINYINT NOT NULL,
+                        minute TINYINT NOT NULL,
                         
                         --  Table Constraints
                         INDEX (eID, eName, dato, inn, ut),
-                        CONSTRAINT employeeID_fk FOREIGN KEY (eID) REFERENCES employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT employeeName_fk FOREIGN KEY (eName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE);
+                        CONSTRAINT employeeID_fk2 FOREIGN KEY (eID) REFERENCES employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT employeeName_fk2 FOREIGN KEY (eName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/

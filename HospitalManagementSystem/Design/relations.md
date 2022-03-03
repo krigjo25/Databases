@@ -1,4 +1,4 @@
-#   Employe - Patient Relation table
+#   Employee - Patient Relation table
 
 Creating a list of patients which is assigned to doctors, will make the it easier to remember which patient the doctor has, This table will be a cross over table
 

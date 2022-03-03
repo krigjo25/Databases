@@ -27,13 +27,16 @@ CALL newEmployee ('Gregory M. Flood', '1980-12-24', '1921 Reel Avenue', 88061, '
 
 /************************************* relations ************************/
 
--- CALL newRelation (veID, vpID);
-CALL newRelation (1000, 1000);
+--  CALL newRelation (veID, vpID, @vError);
+CALL newRelation (1000, 1000, @vError);
+
+--  CALL modifyRelation (modifyRelation( 'vColumn', veID, vpID, 'vValue', @conmsg)
 /************************************************************************/
+/************************************* Turnus ************************/
 
-
-
-
+--  CALL newTurnus (veID, vDate, vTimeInn, vhrs, vMin, vai) 0 - 2
+CALL newTurnus (1000, '2022.05.04', '08:00:00', 8, 0, 0);
+/************************************************************************/
 DELIMITER ;
 /************************************* Patients ************************/
 

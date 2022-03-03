@@ -10,10 +10,10 @@ The table generates a turnus for 3 months at the time,
 
 **Procedures**
 
-    #   Add a new Turnus
--   CALL newTurnus(veID);
+###   Add a new Turnus
+-   CALL newTurnus(veID, vDate, vTimeInn, hh, mm, vai);
 
-    #   Decrease sickDays ammount
+###   Decrease sickDays ammount
 -   CALL sickDays(veID);
 
 **Events**
