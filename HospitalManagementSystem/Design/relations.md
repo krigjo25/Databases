@@ -11,15 +11,13 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 | Constraints | Comment |
 |--- |--- |
 | Unique | CONSTRAINT | 
-| pID|  |
-| INDEX| KEY |
-| eID | | The doctor can be assigned to multiple patients |
-
-| FOREIGN KEY | CONSTRAINT |
-| eID | | The doctor has to be an employee at the hospital |
-| pID | | The patient has to be registered in the database |
-| PRIMARY KEY | KEY |
-| id | | Row Counter|
+| pID |  The patient has to be registered and only one Primary doctor each patient|
+| INDEX | KEY |
+| eID | The doctor can be assigned to multiple patients |
+| employeeName | Doctors can have the same name |
+| patientName | Patients can have the same name |
+| PRIMARY KEY| KEY |
+| id | Row Counter ||
 
 **Procedures**
 
