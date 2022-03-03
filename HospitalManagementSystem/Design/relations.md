@@ -23,13 +23,13 @@ Creating a list of patients which is assigned to doctors, will make the it easie
 
 **Procedures**
 
-<!--#   Assigning new patient to a doctor-->
+###   Assigning new patient to a doctor
 -   CALL newRelation(eID, pID);
 
-    #   Removing the relation upon recovery
+###   Removing the relation upon recovery
 -   CALL delRelation(eID. pID);
 
-    #   Updating the Doctor assignment
+###   MODIFY the Doctor assignment
 -   CALL modifyRelation(vcolumn, veID, vpID);
 
 **Events**
