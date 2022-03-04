@@ -1,11 +1,28 @@
 
+/********************************** Wagon One ***********************/
+--      CALL NewOne(vName, vPlate, vArm, vSeries)
+CALL newOne ('APB 1500 end',  14.39, 31.84, 'APB-Series');
+CALL newOne ('APB 1500 end LIGHT',  14.39, 31.84, 'APB-Series');
+CALL newOne ('APB 2200 end',  14.39, 31.84, 'APB-Series');
+CALL newOne ('APB 2200 end LIGHT',  14.39, 31.84, 'APB-Series');
+CALL newOne ('APB 2200 middle',  14.39, 31.84, 'APB-Series');
 
-INSERT INTO wagonOne (formName, pSeries, plate, arm, mincool, minOven, sutableWith, notes) VALUES
-        ('APB 1500', 'APB-Series', 14.39, 31.84, 35, 32, 'APB SERIES 2200 + LIGHT', ''),
-        ('APB 2200', 'APB-Series', 14.39, 31.84, 35, 32, 'APB SERIES 1500 + LIGHT', ''),
-        ('APB 1500 LIGHT', 'APB-Series', 14.39, 31.84, 35, 32, 'APB SERIES 2200 + LIGHT', ''),
-        ('APB 2200 LIGHT', 'APB-Series',14.39, 31.84, 35, 32, 'APB SERIES 1500 + LIGHT',  '');
+/*******************************************************************/
 
+/********************************** Wagon Two ***********************/
+--      CALL NewOne(vName, vPlate, vArm, vSeries)
+
+/*******************************************************************/
+
+/********************************** Wagon Three ***********************/
+--      CALL NewOne(vName, vPlate, vArm, vSeries)
+
+/*******************************************************************/
+
+/********************************** productionInfo ***********************/
+--      CALL NewOne(vName, vPlate, vArm, vSeries)
+
+/*******************************************************************/
 INSERT INTO wagonTwo (formName, pSeries, plate, arm, notes) VALUES
         ('SFS-100', 'SFS-Series', 30.33,27.30, '')
         ('Aqua 600', 'Aqua-Series', 30.33,27.30,''),
