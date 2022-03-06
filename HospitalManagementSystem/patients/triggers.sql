@@ -14,10 +14,11 @@ DELIMITER x
 CREATE OR REPLACE TRIGGER triggerPDF AFTER INSERT ON patient
     FOR EACH ROW
     BEGIN
-
+        --  Declare variables
         DECLARE cmd VARCHAR(255);
         DECLARE result int(10);
 
+        -- Give Variables a value
         SET cmd = CONCAT('python /home/createPDF.py');
 
         SET result = sys_exec(cmd);

@@ -1,25 +1,20 @@
 
 /*********************** ProductionInfo Procedures ****************/
-
 DELIMITER x
-CREATE OR REPLACE PROCEDURE proInfo(IN fID BIGINT, IN kg DECIMAL(4,1) )
+CREATE OR REPLACE PROCEDURE proInfo(IN vID BIGINT, IN kg DECIMAL(4,1) )
     BEGIN
-        -- This procedure returns how much gram there is for colouring
 
-        -- Updating values in productionInfo
+        UPDATE productionInfo
+            SET kg = kg
+        WHERE formID = vID;
 
-        UPDATE productionInfo 
-            SET kilo = kg 
-        WHERE formID = fID;
-
-        -- Updating column yellow, grey
         UPDATE productionInfo
             SET yellow = kg
-        WHERE formID = fID;
+        WHERE formID = vID;
 
         UPDATE productionInfo
             SET grey = kg*2
-        WHERE formID = fID;
+        WHERE formID = vID;
     END x
 
 DELIMITER x

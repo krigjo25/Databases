@@ -8,86 +8,75 @@ CALL newOne ('APB 2200 end LIGHT',  14.39, 31.84, 'APB-Series');
 CALL newOne ('APB 2200 middle',  14.39, 31.84, 'APB-Series');
 
 /*******************************************************************/
-
+--ALTER TABLE wagonTwo MODIFY COLUMN formID2 BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT=2000;
 /********************************** Wagon Two ***********************/
---      CALL NewOne(vName, vPlate, vArm, vSeries)
-
-/*******************************************************************/
+--      CALL newTwo(vName, vSeries, vPlate, vArm, vMinOven, vNotes)
+CALL newTwo('Sotra', 'FS-Series', 30.33,27.30, '');
+CALL newTwo('Aqua 600', 'Aqua-Series', 30.33,27.30, '');
+CALL newTwo('Aqua 600 pre', 'Prebouy-Series', 30.33, 27.30,'');
+CALL newTwo('Prebouy 850', 'Prebouy-Series', 30.33, 27.30, '');
+CALL newTwo('Prebouy 1100', 'Prebouy-Series', 30.33, 27.30, '');
+CALL newTwo('MB-40', 'MB-Series', 30.33, 27.30, '');
+CALL newTwo('Mb-100', 'MB-Series', 30.33, 27.30, '');
+CALL newTwo('MB-250','MB-Series', 30.33, 27.30, '');
+CALL newTwo('SBH', 'SBH-Series', 30.33, 27.30, '');
+CALL newTwo('Kopas 9', 'Kopas-Series', 30.33, 27.30, '');
+CALL newTwo('Kopas 10', 'Kopas-Series', 30.33, 27.30, '');
+CALL newTwo('Kopas 11', 'Kopas-Series', 30.33, 27.30, '');
+CALL newTwo('Kopas 12', 'Kopas-Series',30.33, 27.30, '');
+CALL newTwo('Silkasse', 'Liftup-Series', 30.33, 27.30, '');
+CALL newTwo('Stuss', 'Liftup-Series', 30.33, 27.30, ' Stuss to SilKasse (3 buckets)');
+CALL newTwo('Aqualine Finger', 'Pontoon-Series', 30.33, 27.30, '');
+CALL newTwo('Aqualine Wide Finger ', 'Pontoon-Series', 30.33, 27.30, '');
+CALL newTwo('Aqualine Finger end piece', 'Pontoon-Series', 30.33, 27.30, 'Waffle iron');
+CALL newTwo('Aqualine Wide Finger end piece', 'Pontoon-Series', 30.33, 27.30, 'Hammer');
+CALL newTwo('APB 1000 FO', 'APB-Series', 27.44, 14.86, '');
+CALL newTwo('APB 500', 'APB-Series', 53.19, 27.71, 'small middlepice');
 
 /********************************** Wagon Three ***********************/
---      CALL NewOne(vName, vPlate, vArm, vSeries)
+--      CALL newThree(vName, vSeries, vPlate, vArm, vMinOven, vNotes, vBracer)
+CALL newThree('Prebouy 1600', 'Prebouy Series', 9.33, 27.17, 28.5,  '', 'ON bottom');
+CALL newThree('Pontoon 2700', 'Pontoon Series', 29.44, 40.00, 31,'Timer : 4700', 'marked'); -- Bracer 10 cm below 1350
+CALL newThree('Kopas 30', 'Kopas Series', 05.05, 27.00, 25, '', 'Marked');
+CALL newThree('Aqua 2000', 'Aqua Series', 13.36, 22.24, 28.5, '', 'ON bottom');
+CALL newThree('Aqua 2500', 'Aqua Series', 5.00, 25.10, 30, 'add isolation', 'On Top');
+CALL newThree('Aqua 4000', 'Aqua Series', 11.16, 20.35, 37.5, '', 'On Top');
 
 /*******************************************************************/
 
 /********************************** productionInfo ***********************/
---      CALL NewOne(vName, vPlate, vArm, vSeries)
+        -- CALL proInfo(vID, kg)
 
-/*******************************************************************/
-INSERT INTO wagonTwo (formName, pSeries, plate, arm, notes) VALUES
-        ('SFS-100', 'SFS-Series', 30.33,27.30, '')
-        ('Aqua 600', 'Aqua-Series', 30.33,27.30,''),
-        ('Aqua 600 pre', 'Prebouy-Series', 30.33, 27.30,''),
-        ('Prebouy 850', 'Prebouy-Series', 30.33, 27.30, ''), 
-        ('Prebouy 1100', 'Prebouy-Series', 30.33, 27.30, ''),
-        ('MB-40', 'MB-Series', 30.33, 27.30, ''),
-        ('Mb-100', 'MB-Series', 30.33, 27.30, ''),
-        ('MB-250','MB-Series', 30.33, 27.30, ''),
-        ('LB-40', 'LB-Series', 30.33, 27.30, ''),
-        ('LB-100', 'LB-Series', 30.33, 27.30, ''),
-        ('LB-250', 'LB-Series', 30.33, 27.30, ''),
-        ('SBH', 'SBH-Series', 30.33, 27.30, ''),
-        ('Kopas 9', 'Kopas-Series', 30.33, 27.30, ''),
-        ('Kopas 10', 'Kopas-Series', 30.33, 27.30, ''),
-        ('Kopas 11', 'Kopas-Series', 30.33, 27.30, ''),
-        ('Kopas 12', 'Kopas-Series',30.33, 27.30, ''),
-        ('Silkasse', 'Liftup-Series', 30.33, 27.30, ''),
-        ('Stuss', 'Liftup-Series', 30.33, 27.30, ' Stuss to SilKasse (3 buckets)'),
-        ('Aqualine Finger', 'Pontoon-Series', 30.33, 27.30, ''),
-        ('Aqualine Wide Finger ', 'Pontoon-Series', 30.33, 27.30, ''),
-        ('Aqualine Finger end piece', 'Pontoon-Series', 30.33, 27.30, 'Waffle iron'),
-        ('Aqualine Wide Finger end piece', 'Pontoon-Series', 30.33, 27.30, 'Hammer'),
-        ('APB 1000 FO', 'APB-Series', 27.44, 14.86, ''),
-        ('APB 500', 'APB-Series', 53.19, 27.71, 'small middlepice'),
-        ('Sotra', 'FS-Series', 30.33, 27.30, '');
-
-INSERT INTO wagonThree (formName, pSeries, plate, arm, mincool, minOven, middlePice, bracer,notes) VALUES
-        ('Prebouy 1600',  'Prebouy Series', 9.33, 27.17, 35, 28.5,  '', 'ON bottom',''),
-        ('Pontoon 2700', 'Pontoon Series', 29.44, 40.00, 40, 31, '','marked', 'Timer : 4700'), -- Bracer 10 cm below 1350
-        ('Aqua 4000', 'Aqua Series', 11.16, 20.35, 35, 37.5, '', 'On Top', '' ),
-        ('Aqua 2000', 'Aqua Series', 13.36, 22.24, 35, 28, '', 'ON bottom', ''),
-        ('Kopas 30', 'Kopas Series', 05.05, 27.00, 28, 25, '', 'Marked', ''),
-        ('Aqua 2500', 'Aqua Series', 5.00, 25.10, 35, 30, '', 'On Top', 'add isolation');
-
-INSERT INTO productionInfo(formID, formName, kg) VALUES
-
-        (2022, 'APB 500', 30),
-        (2021, 'APB 1000', 40),
-        (1000, 'APB 1500', 100),
-        (1001, 'APB 2200', 140),
-        (1002, 'APB 1500 LIGHT', 90),
-        (1003, 'APB 2200 LIGHT', 120),
-        (2000, 'Prebouy 600', 30),
-        (2001, 'Prebouy 850', 30),
-        (2003, 'Prebouy 1100',45),
-        (3000, 'Prebouy 1600', 67.5),
-        (2004, 'MB-40', 2.5),
-        (2005, 'MB-100', 6),
-        (2006, 'MB-250', 12),
-        (2007, 'LB-40', 2.5),
-        (2008, 'LB-100', 6),
-        (2009, 'LB-250', 12),
-        (2010, 'SBH-100', 6),
-        (2011, 'Kopas 9', 11),
-        (2012, 'Kopas 10', 17.5),
-        (2013, 'Kopas 11', 20),
-        (2014, 'Kopas 12', 30),
-        (3003, 'Kopas 30', 85),
-        (3001, 'Pontoon 2700',100),
-        (2015, 'Silkasse', 20),
-        (2016, 'Stuss', 5),
-        (3002, 'Aqua 4000',140), 
-        (2017, 'Aqualine Wide Finger ', 30),
-        (2018, 'Aqualine Finger', 17),
-        (2019, 'Aqualine end piece finger ', 1.5),
-        (2020, 'Aqualine Wide Finger end piece', 5),
-        (2021, 'SOTRA', 6);
+CALL proInfo(1000,100);
+CALL proInfo(1001, 90;
+CALL proInfo(1002, 140);
+CALL proInfo(1003, 110);
+CALL proInfo(1004, 140);
+CALL proInfo(2000, 6);
+CALL proInfo(2001, 30);
+CALL proInfo(2002, 27.5);
+CALL proInfo(2003, 27);
+CALL proInfo(2004, 30);
+CALL proInfo(2005, 2.5);
+CALL proInfo(2006, 6);
+CALL proInfo(2007, 12);
+CALL proInfo(2008, 6);
+CALL proInfo(2009, 11);
+CALL proInfo(2010, 17.5);
+CALL proInfo(2011, 20);
+CALL proInfo(2012, 30);
+CALL proInfo(2013, 20);
+CALL proInfo(2014, 5);
+--CALL proInfo(2015, 20);
+--CALL proInfo(2016, 5);
+CALL proInfo(2017, 4.5);
+CALL proInfo(2018, 1.5);
+CALL proInfo(2019, 40);
+CALL proInfo(2020, 30);
+CALL proInfo(3000, 67.5);
+CALL proInfo(3001, 100);
+CALL proInfo(3002, 67.5);
+CALL proInfo(3003, 85);
+CALL proInfo(3004, 85);
+CALL proInfo(3005, 90);
+CALL proInfo(3006, 140);

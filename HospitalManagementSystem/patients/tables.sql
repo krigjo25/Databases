@@ -65,7 +65,7 @@ CREATE TABLE billing (
                     -- Table Constraints
                     INDEX (pID),
                     CONSTRAINT uniqueName UNIQUE(invoiceID),
-                    CONSTRAINT patient_FK FOREIGN KEY(pID) REFERENCES patient (pID) ON DELETE CASCADE ON UPDATE CASCADE);
+                    CONSTRAINT patient_FK FOREIGN KEY (pID) REFERENCES patient (pID) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
 
 /******************************** RoomBookings **************************************************************/

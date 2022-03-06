@@ -9,323 +9,273 @@
 /******************************** Aqua - Series ******************************/
 CREATE OR REPLACE VIEW aquaView AS
         SELECT
-                wagonOne.id AS 'Form ID',
+                wagonOne.formID AS 'Form ID',
                 wagonOne.formName AS 'Form Name',
                 wagonOne.arm AS 'Arm Rotation',
                 wagonOne.plate AS 'Plate Rotation',
                 wagonOne.mincool AS 'Cooling Time',
                 wagonOne.minOven AS 'Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
+                productionInfo.kg AS 'kg Gram',
                 productionInfo.yellow AS 'Yellow',
                 productionInfo.grey AS 'Grey',
-                wagonOne.pSeries AS 'Series'
+                wagonOne.series AS 'Series'
 
         FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%Aqua%'
+        JOIN productionInfo ON wagonOne.formID = productionInfo.formID
+        WHERE series LIKE '%Aqua%'
 
         UNION ALL
 
         SELECT
-                wagonTwo.id,
+                wagonTwo.formID,
                 wagonTwo.formName,
                 wagonTwo.arm,
                 wagonTwo.plate,
                 wagonTwo.mincool,
                 wagonTwo.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.yellow,
                 productionInfo.grey,
-                wagonTwo.pSeries
+                wagonTwo.series
         
         FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries like '%Aqua%'
+        JOIN productionInfo ON wagonTwo.formID = productionInfo.formID
+        WHERE series like '%Aqua%'
 
         UNION ALL
         
         SELECT 
-                wagonThree.id,
+                wagonThree.formID,
                 wagonThree.formName,
                 wagonThree.arm,
                 wagonThree.plate,
                 wagonThree.mincool,
                 wagonThree.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.yellow,
                 productionInfo.grey,
-                wagonThree.pSeries
+                wagonThree.series
 
         FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%Aqua%';
+        JOIN productionInfo ON wagonThree.formID = productionInfo.formID
+        WHERE series LIKE '%Aqua%';
 /****************************************************************************/
 
 /******************************* Apb-Series ******************************/
 CREATE OR REPLACE VIEW apbView AS
         SELECT
-                wagonOne.id AS 'Form ID',
+                wagonOne.formID AS 'Form ID',
                 wagonOne.formName AS 'Form Name',
                 wagonOne.arm AS 'Arm Rotation',
                 wagonOne.plate AS 'Plate Rotation',
                 wagonOne.mincool AS ' Cooling Time',
                 wagonOne.minOven AS 'Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
+                productionInfo.kg AS 'kg Gram',
                 productionInfo.yellow AS 'Yellow',
                 productionInfo.grey AS 'Grey',
                 productionInfo.black AS 'Black',
-                wagonOne.pSeries AS 'Series'
+                wagonOne.series AS 'Series'
 
         FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%APB%'
+        JOIN productionInfo ON wagonOne.formID = productionInfo.formID
+        WHERE series LIKE '%APB%'
 
         UNION ALL
         
         SELECT 
-                wagonTwo.id,
+                wagonTwo.formID,
                 wagonTwo.formName,
                 wagonTwo.arm,
                 wagonTwo.plate,
                 wagonTwo.mincool,
                 wagonTwo.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.yellow,
                 productionInfo.grey,
                 productionInfo.black,
-                wagonTwo.pSeries
+                wagonTwo.series
         
         FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries LIKE '%APB%'
+        JOIN productionInfo ON wagonTwo.formID = productionInfo.formID
+        WHERE series LIKE '%APB%'
 
         UNION ALL
         
         SELECT
-                wagonThree.id,
+                wagonThree.formID,
                 wagonThree.formName,
                 wagonThree.arm,
                 wagonThree.plate,
                 wagonThree.mincool,
                 wagonThree.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.yellow,
                 productionInfo.grey,
                 productionInfo.black,
-                wagonThree.pSeries
+                wagonThree.series
         
         FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%APB%';
+        JOIN productionInfo ON wagonThree.formID = productionInfo.formID
+        WHERE series LIKE '%APB%';
 /****************************************************************************/
 
 
 /******************************* Kopas-Series ******************************/
     CREATE OR REPLACE VIEW kopasView AS
         SELECT
-                wagonOne.id  AS 'Form ID',
+                wagonOne.formID  AS 'Form ID',
                 wagonOne.formName AS 'Form Name',
                 wagonOne.arm AS 'Arm Rotation',
                 wagonOne.plate AS 'Plate Rotation',
                 wagonOne.mincool AS 'Cooling Time',
                 wagonOne.minOven AS 'Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
+                productionInfo.kg AS 'kg Gram',
                 productionInfo.grey as 'Grey',
-                wagonOne.pSeries AS 'Series'
+                wagonOne.series AS 'Series'
 
         FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%Kopas%'
+        JOIN productionInfo ON wagonOne.formID = productionInfo.formID
+        WHERE series LIKE '%Kopas%'
         
         UNION ALL
         SELECT
-                wagonTwo.id,
+                wagonTwo.formID,
                 wagonTwo.formName,
                 wagonTwo.arm,
                 wagonTwo.plate,
                 wagonTwo.mincool,
                 wagonTwo.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.grey,
-                wagonTwo.pSeries
+                wagonTwo.series
 
         FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries LIKE '%Kopas%'
+        JOIN productionInfo ON wagonTwo.formID = productionInfo.formID
+        WHERE series LIKE '%Kopas%'
         
         UNION ALL
 
         SELECT 
-                wagonThree.id,
+                wagonThree.formID,
                 wagonThree.formName,
                 wagonThree.arm,
                 wagonThree.plate,
                 wagonThree.mincool,
                 wagonThree.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.grey,
-                wagonThree.pSeries
+                wagonThree.series
         
         FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%Kopas%';
+        JOIN productionInfo ON wagonThree.formID = productionInfo.formID
+        WHERE series LIKE '%Kopas%';
 
         
 /****************************************************************************/
 
 /******************************** LLB - Series ******************************/
-CREATE OR REPLACE VIEW lbView AS
-        SELECT
-                wagonOne.id AS 'Form ID',
-                wagonOne.formName As 'Form Name',
-                wagonOne.arm AS 'Arm Rotation',
-                wagonOne.plate As 'Plate Rotation',
-                wagonOne.mincool AS 'Cooling Time',
-                wagonOne.minOven AS 'Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
-                productionInfo.yellow AS 'Yelloq',
-                wagonOne.pSeries AS 'Series'
-
-        FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%LB%'
-
-        UNION ALL
-
-        SELECT
-                wagonTwo.id,
-                wagonTwo.formName,
-                wagonTwo.arm,
-                wagonTwo.plate,
-                wagonTwo.mincool,
-                wagonTwo.minOven,
-                productionInfo.kilo,
-                productionInfo.yellow,
-                wagonTwo.pSeries
-
-        FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries LIKE '%LB%'
-
-        UNION ALL
-
-        SELECT
-                wagonThree.id,
-                wagonThree.formName,
-                wagonThree.arm,
-                wagonThree.plate,
-                wagonThree.mincool,
-                wagonThree.minOven,
-                productionInfo.kilo,
-                productionInfo.yellow,
-                wagonThree.pSeries
-        FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%lb%';
-
-/****************************************************************************/
 
 /******************************** LiftUp - Series ******************************/
 CREATE OR REPLACE VIEW liftupView AS
         SELECT
-                wagonOne.id AS 'Form ID',
+                wagonOne.formID AS 'Form ID',
                 wagonOne.formName As 'Form Name',
                 wagonOne.arm AS 'Arm Rotation',
                 wagonOne.plate As 'Plate Rotation',
                 wagonOne.mincool AS 'Cooling Time',
                 wagonOne.minOven AS 'Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
+                productionInfo.kg AS 'kg Gram',
                 productionInfo.blue AS 'Blue',
-                wagonOne.pSeries AS 'Series'
+                wagonOne.series AS 'Series'
 
         FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%Liftup%'
+        JOIN productionInfo ON wagonOne.formID = productionInfo.formID
+        WHERE series LIKE '%Liftup%'
 
         UNION ALL
 
         SELECT
-                wagonTwo.id,
+                wagonTwo.formID,
                 wagonTwo.formName,
                 wagonTwo.arm,
                 wagonTwo.plate,
                 wagonTwo.mincool,
                 wagonTwo.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.blue,
-                wagonTwo.pSeries
+                wagonTwo.series
 
         FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries LIKE '%Liftup%'
+        JOIN productionInfo ON wagonTwo.formID = productionInfo.formID
+        WHERE series LIKE '%Liftup%'
 
         UNION ALL
 
         SELECT
-                wagonThree.id,
+                wagonThree.formID,
                 wagonThree.formName,
                 wagonThree.arm,
                 wagonThree.plate,
                 wagonThree.mincool,
                 wagonThree.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.blue,
-                wagonThree.pSeries
+                wagonThree.series
         FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%Liftup%';
+        JOIN productionInfo ON wagonThree.formID = productionInfo.formID
+        WHERE series LIKE '%Liftup%';
 
 /****************************************************************************/
 
 /******************************* Kopas-Series ******************************/
     CREATE OR REPLACE VIEW mbView AS
         SELECT
-                wagonOne.id  AS 'Form ID',
+                wagonOne.formID  AS 'Form ID',
                 wagonOne.formName AS 'Form Name',
                 wagonOne.arm AS 'Arm Rotation',
                 wagonOne.plate AS 'Plate Rotation',
                 wagonOne.mincool AS 'Cooling Time',
                 wagonOne.minOven AS 'Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
+                productionInfo.kg AS 'kg Gram',
                 productionInfo.orange as 'Orange',
-                wagonOne.pSeries AS 'Series'
+                wagonOne.series AS 'Series'
 
         FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%mb%'
+        JOIN productionInfo ON wagonOne.formID = productionInfo.formID
+        WHERE series LIKE '%mb%'
         
         UNION ALL
         SELECT
-                wagonTwo.id,
+                wagonTwo.formID,
                 wagonTwo.formName,
                 wagonTwo.arm,
                 wagonTwo.plate,
                 wagonTwo.mincool,
                 wagonTwo.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.orange,
-                wagonTwo.pSeries
+                wagonTwo.series
 
         FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries LIKE '%mb%'
+        JOIN productionInfo ON wagonTwo.formID = productionInfo.formID
+        WHERE series LIKE '%mb%'
         
         UNION ALL
 
         SELECT 
-                wagonThree.id,
+                wagonThree.formID,
                 wagonThree.formName,
                 wagonThree.arm,
                 wagonThree.plate,
                 wagonThree.mincool,
                 wagonThree.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.orange,
-                wagonThree.pSeries
+                wagonThree.series
         
         FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%mb%';
+        JOIN productionInfo ON wagonThree.formID = productionInfo.formID
+        WHERE series LIKE '%mb%';
 
         
 /****************************************************************************/
@@ -333,157 +283,157 @@ CREATE OR REPLACE VIEW liftupView AS
 /******************************** Pontoon - Series ******************************/
 CREATE OR REPLACE VIEW pontoonView AS
         SELECT
-                wagonOne.id AS 'Form ID',
+                wagonOne.formID AS 'Form ID',
                 wagonOne.formName As 'Form Name',
                 wagonOne.arm AS 'Arm Rotation',
                 wagonOne.plate As 'Plate Rotation',
                 wagonOne.mincool AS 'Cooling Time',
                 wagonOne.minOven AS 'Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
+                productionInfo.kg AS 'kg Gram',
                 productionInfo.black AS 'Black',
-                wagonOne.pSeries AS 'Series'
+                wagonOne.series AS 'Series'
 
         FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%Pontoon%'
+        JOIN productionInfo ON wagonOne.formID = productionInfo.formID
+        WHERE series LIKE '%Pontoon%'
 
         UNION ALL
 
         SELECT
-                wagonTwo.id,
+                wagonTwo.formID,
                 wagonTwo.formName,
                 wagonTwo.arm,
                 wagonTwo.plate,
                 wagonTwo.mincool,
                 wagonTwo.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.black,
-                wagonTwo.pSeries
+                wagonTwo.series
 
         FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries LIKE '%Pontoon%'
+        JOIN productionInfo ON wagonTwo.formID = productionInfo.formID
+        WHERE series LIKE '%Pontoon%'
 
         UNION ALL
 
         SELECT
-                wagonThree.id,
+                wagonThree.formID,
                 wagonThree.formName,
                 wagonThree.arm,
                 wagonThree.plate,
                 wagonThree.mincool,
                 wagonThree.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.black,
-                wagonThree.pSeries
+                wagonThree.series
         FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%Pontoon%';
+        JOIN productionInfo ON wagonThree.formID = productionInfo.formID
+        WHERE series LIKE '%Pontoon%';
 
 /****************************************************************************/
 /******************************* Prebouy - Series ****************************/
 CREATE OR REPLACE VIEW prebouyView AS 
         SELECT
-                wagonOne.ID AS 'Form ID',
+                wagonOne.formID AS 'Form ID',
                 wagonOne.formName AS 'Form Name',
                 wagonOne.arm AS 'Arm Rotation',
                 wagonOne.plate AS 'Plate Rotation',
                 wagonOne.mincool AS 'Cooling Time',
                 wagonOne.minOven AS ' Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
+                productionInfo.kg AS 'kg Gram',
                 productionInfo.yellow AS 'Yellow',
                 productionInfo.grey AS 'Grey',
-                wagonOne.pSeries AS 'Series'
+                wagonOne.series AS 'Series'
 
         FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%Prebouy%'
+        JOIN productionInfo ON wagonOne.formID = productionInfo.formID
+        WHERE series LIKE '%Prebouy%'
 
         UNION ALL
         
         SELECT 
-                wagonTwo.id,
+                wagonTwo.formID,
                 wagonTwo.formName,
                 wagonTwo.arm,
                 wagonTwo.plate,
                 wagonTwo.mincool,
                 wagonTwo.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.yellow,
                 productionInfo.grey,
-                wagonTwo.pSeries
+                wagonTwo.series
         
         FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries LIKE '%Prebouy%'
+        JOIN productionInfo ON wagonTwo.formID = productionInfo.formID
+        WHERE series LIKE '%Prebouy%'
 
         UNION ALL
 
         SELECT
-                wagonThree.id,
+                wagonThree.formID,
                 wagonThree.formName,
                 wagonThree.arm,
                 wagonThree.plate,
                 wagonThree.mincool,
                 wagonThree.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.yellow,
                 productionInfo.grey,
-                wagonThree.pSeries
+                wagonThree.series
 
         FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%Prebouy%';
+        JOIN productionInfo ON wagonThree.formID = productionInfo.formID
+        WHERE series LIKE '%Prebouy%';
 /**************************************************************************/
 
 /******************************** Sbh - Series ******************************/
 CREATE OR REPLACE VIEW sbhView AS
         SELECT
-                wagonOne.id AS 'Form ID',
+                wagonOne.formID AS 'Form ID',
                 wagonOne.formName As 'Form Name',
                 wagonOne.arm AS 'Arm Rotation',
                 wagonOne.plate As 'Plate Rotation',
                 wagonOne.mincool AS 'Cooling Time',
                 wagonOne.minOven AS 'Oven Time',
-                productionInfo.kilo AS 'Kilo Gram',
+                productionInfo.kg AS 'kg Gram',
                 productionInfo.blue AS 'Blue',
-                wagonOne.pSeries AS 'Series'
+                wagonOne.series AS 'Series'
 
         FROM wagonOne
-        JOIN productionInfo ON wagonOne.id = productionInfo.formID
-        WHERE pSeries LIKE '%SBH%'
+        JOIN productionInfo ON wagonOne.formID = productionInfo.formID
+        WHERE series LIKE '%SBH%'
 
         UNION ALL
 
         SELECT
-                wagonTwo.id,
+                wagonTwo.formID,
                 wagonTwo.formName,
                 wagonTwo.arm,
                 wagonTwo.plate,
                 wagonTwo.mincool,
                 wagonTwo.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.blue,
-                wagonTwo.pSeries
+                wagonTwo.series
 
         FROM wagonTwo
-        JOIN productionInfo ON wagonTwo.id = productionInfo.formID
-        WHERE pSeries LIKE '%SBH%'
+        JOIN productionInfo ON wagonTwo.formID = productionInfo.formID
+        WHERE series LIKE '%SBH%'
 
         UNION ALL
 
         SELECT
-                wagonThree.id,
+                wagonThree.formID,
                 wagonThree.formName,
                 wagonThree.arm,
                 wagonThree.plate,
                 wagonThree.mincool,
                 wagonThree.minOven,
-                productionInfo.kilo,
+                productionInfo.kg,
                 productionInfo.blue,
-                wagonThree.pSeries
+                wagonThree.series
         FROM wagonThree
-        JOIN productionInfo ON wagonThree.id = productionInfo.formID
-        WHERE pSeries LIKE '%SBH%';
+        JOIN productionInfo ON wagonThree.formID = productionInfo.formID
+        WHERE series LIKE '%SBH%';
 
 /****************************************************************************/
