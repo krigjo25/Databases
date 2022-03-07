@@ -11,7 +11,7 @@ patients
 /********************************************   Patient table   *******************************************/
 
 CREATE OR REPLACE TABLE patient (
-                        id BIGINT, -- NOT NULL AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
+                        id BIGINT SIGNED NOT NULL , -- NOT NULL AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
                         
                         -- General information
                         patientName VARCHAR(255) NOT NULL UNIQUE DEFAULT 'Jhon Doe',
@@ -56,16 +56,16 @@ DELIMITER
 CREATE TABLE billing (
                     --  Table Columns
                         id BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
-                        pID BIGINT NOT NULL,
-                        invoiceID INT NOT NULL, -- AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT=300000 
-                        Ammount DECIMAL(11,2),
+                        invoiceID INT NOT NULL UNIQUE, -- AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT=300000 
+                        pID BIGINT SIGNED NOT NULL,
                         discount TINYINT NOT NULL,
-                        paymentStatus VARCHAR(8) NOT NULL DEFAULT 'Not Paid',
+                        incTax DECIMAL(11,2),
+                        overDue DATE NOT NULL,
+                        paymentStatus TINYINT NOT NULL DEFAULT 0,
                     
                     -- Table Constraints
-                    INDEX (pID),
-                    CONSTRAINT uniqueName UNIQUE(invoiceID),
-                    CONSTRAINT patient_FK FOREIGN KEY (pID) REFERENCES patient (pID) ON DELETE CASCADE ON UPDATE CASCADE);
+                        INDEX (pID),
+                        CONSTRAINT patientID_FK FOREIGN KEY (pID) REFERENCES patient (id) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
 
 /******************************** RoomBookings **************************************************************/

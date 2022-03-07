@@ -1,4 +1,3 @@
-
 /************************************* employees ************************/
 
 -- CALL newEmployee (Name, date, street, zip, email, phone, mobile, eStatus, occupation, department)
@@ -36,48 +35,4 @@ CALL newRelation (1000, 1000, @vError);
 
 --  CALL newTurnus (veID, vDate, vTimeInn, vhrs, vMin, vai) 0 - 2
 CALL newTurnus (1000, '2022.05.04', '08:00:00', 8, 0, 0);
-/************************************************************************/
-DELIMITER ;
-/************************************* Patients ************************/
-
-CALL newPatient ('Rober L. Cooper', '1980-02-11', '635626170', 'M', '9565510901', '3681 Seth Street', 76901 , 108, 185,'B+', 'NNNNA' , 'NNNND' , 'NNNNM' )
-CALL newPatient ('Aaron C. Crowder', '1960-09-07', '624492945', 'M', '7147672206', '178 Alpaca Way', 91505 , 103.6, 178,'O-', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('Majorie R. Cummings', '1992-06-24', '316026733', 'F', '5743042963', '2370 Villa Drive', 46625 , 52.21, 168,'A+', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('Donald H. Reed' , '1983-02-25' , '217696608', 'M', '2404653677', '747 Pine Tree Lane', 20191 , 108.1, 165,'A-', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('Kathryn M. Laird' , '1981-09-07' , '232268551', 'F', '3042763051', '1844 Froe Street', 26505 , 80.56, 168,'B+', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('Nicolas E. Abston' , '1983-06-06' , 47.3, 'M', '8646158470', '179 Pooh Bear Lane', 29673 , 47.3, 187,'A+', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('Tammy F. Dudley', '989--02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-CALL newPatient ('pName' , '1994-02-25' , 'vssn', 'vSex' , 'vPhone', 'vStreet', vZip , vWeight, vHeight,'bType', 'vAlergies' , 'vDoc' , 'vMed' )
-
-/*****************************************************************************/
-/********************************** Rooms ************************************/
-
-CALL firstFloor ('RoomName', Rate); 
-CALL firstFloor ('RoomName', Rate); 
-CALL firstFloor ('RoomName', Rate); 
-CALL firstFloor ('RoomName', Rate); 
-CALL firstFloor ('RoomName', Rate); 
-
-CALL secondFloor ('RoomName', Rate);
-CALL secondFloor ('RoomName', Rate);
-CALL secondFloor ('RoomName', Rate);
-CALL secondFloor ('RoomName', Rate);
-CALL secondFloor ('RoomName', Rate);
-
-CALL thirdFloor ('RoomName', Rate);
-CALL thirdFloor ('RoomName', Rate);
-CALL thirdFloor ('RoomName', Rate);
-CALL thirdFloor ('RoomName', Rate);
-CALL thirdFloor ('RoomName', Rate);
 /************************************************************************/
