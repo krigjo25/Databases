@@ -67,31 +67,3 @@ CREATE TABLE billing (
                         INDEX (pID),
                         CONSTRAINT patientID_FK FOREIGN KEY (pID) REFERENCES patient (id) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
-
-/******************************** RoomBookings **************************************************************/
-CREATE OR REPLACE TABLE booking (
-
-                    --  Table Columns
-                        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                        pID BIGINT NOT NULL,
-                        patientName VARCHAR(255) NOT NULL,
-                        rID SMALLINT SIGNED NOT NULL,
-                        roomName VARCHAR(255),
-                        procedures VARCHAR(255),
-                        rate DECIMAL(4,2) NOT NULL DEFAULT 0,
-                        eID BIGINT NOT NULL,
-                        employeeName VARCHAR(255),
-                        bookingInn DATETIME NOT NULL,
-                        bookingOut DATETIME NOT NULL,
-                        demo VARCHAR(255),
-                        demo1 VARCHAR(255),
-
-                    --  Table Constraints
-                        INDEX (rID, eID),
-                        CONSTRAINT uniqueName UNIQUE (pID, bookingInn),
-                        CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT patient_FK FOREIGN KEY (pID) REFERENCES patients.patient (pID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT rommID_FK FOREIGN KEY (rID) REFERENCES rooms (roomID) ON DELETE CASCADE ON UPDATE CASCADE);
-
-/*************************************************************************************************************/
-

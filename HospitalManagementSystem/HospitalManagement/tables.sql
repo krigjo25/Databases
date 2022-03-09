@@ -96,22 +96,46 @@ CREATE OR REPLACE TABLE thirdFloor (
 
 /*************************************************************************************************************/
 
+/******************************** RoomBookings **************************************************************/
+CREATE OR REPLACE TABLE booking (
 
-/******************************************** Rooms *****************************************************/
-DELIMITER ;
-CREATE OR REPLACE TABLE relations (
+                    --  Table Columns
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         pID BIGINT NOT NULL,
-                        patientName VARCHAR(255),
+                        patientName VARCHAR(255) NOT NULL,
+                        rID SMALLINT SIGNED NOT NULL,
+                        roomName VARCHAR(255),
+                        procedures VARCHAR(255),
+                        rate DECIMAL(4,2) NOT NULL,
                         eID BIGINT NOT NULL,
                         employeeName VARCHAR(255),
-                        recovered TINYINT NOT NULL DEFAULT 0,
+                        bookingInn DATETIME NOT NULL,
+                        bookingOut DATETIME NOT NULL,
                         demo VARCHAR(255),
                         demo1 VARCHAR(255),
 
-                    --  Constraints 
-                        CONSTRAINT uniqueKey UNIQUE(pID, eID));
-                        --CONSTRAINT patientID_FK FOREIGN KEY (pID) REFERENCES patients.patient(pID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        --CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE);
+                    --  Table Constraints
+                        INDEX (eID),
+                        CONSTRAINT uniqueName UNIQUE (pID, bookingInn),
+                        CONSTRAINT patient_FK FOREIGN KEY (pID) REFERENCES patients.patient (pID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT rate_FK FOREIGN KEY (rate) REFERENCES operationProcedures (procedureRate) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT procedureName FOREIGN KEY (procedures) REFERENCES operationProcedures (procedureName) ON DELETE CASCADE ON UPDATE CASCADE);
+                        
+/*************************************************************************************************************/
 
+/******************************** RoomBookings **************************************************************/
+CREATE OR REPLACE TABLE operationProcedures (
+
+                    --  Table Columns
+                        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+                        procedureName VARCHAR(255) NOT NULL,
+                        procedureRate DECIMAL(4,2) NOT NULL,
+                        procedureTime DATETIME NOT NULL,
+                        demo VARCHAR(255),
+                        demo1 VARCHAR(255),
+
+                    --  Table Constraints
+                        INDEX (procedureName, procedureRate));
+                        
 /*************************************************************************************************************/

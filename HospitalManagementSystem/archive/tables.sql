@@ -67,6 +67,7 @@ CREATE OR REPLACE TABLE creditedBillings (
                         pStatus TINYINT NOT NULL DEFAULT 0,
                         overDue DATE NOT NULL,
                         dateCredited DATE NOT NULL DEFAULT CURDATE(),
+
                         --  Table Constraints
                         INDEX (pID, invoiceID, pStatus),
                         CONSTRAINT patientIDFK_1 FOREIGN KEY (pID) REFERENCES patients.patient (id) ON DELETE CASCADE ON UPDATE CASCADE);

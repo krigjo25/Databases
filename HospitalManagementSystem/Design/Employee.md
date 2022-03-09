@@ -15,6 +15,11 @@ the main table employee should consist of personal and work related information<
 | eID | EmployeeName | birthDate | street | zipCode | email | Phone | eStatus | occupation | hourlyRate | department | hired |
 |--- |--- |--- |---	|--- |--- |--- |---	|--- |--- |--- |---	|
 
+ Constraints |
+|---	|
+| Unique |
+| employeeID |
+
 **Procedures**
 
     ###   Create a new record of employees

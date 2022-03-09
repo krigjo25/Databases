@@ -1,6 +1,6 @@
-## Billing system (reminder) - Send email
+## Billing system
 
-This system should fetch necsessary columns from the different tables, to calculate the bill, Then create a invoice for send using Yagmail (in this case)
+This system should fetch necsessary columns from the different tables, to calculate the bill, Then create an invoice for the patient
 
 
 The invoice should be able to fetch every room visited by the user, and calculate the hours or minutes been in the room.
@@ -13,7 +13,9 @@ We should create a table called billing, in a new Database which is called billi
 In this database we will use patient id to identify patient name
 table Billing
 
-| patientName | invoiceID | price | status | reminder | overdue |
+**Tables**
+
+| patientID | invoiceID | incTax | reminder | overdue |
 |--- |--- |--- |--- |--- |--- |
 
 **procedures**
@@ -26,8 +28,8 @@ table Billing
 
 **Triggers**
 
-    #   After overdue, trigger an insert into credited table
-
+After overdue, trigger an insert into credited table eif the billing is overdue<br>
+else trigger an insert into paidBillings table
 **Events**
 
     #   When the invoice is overdue, trigger a new date,

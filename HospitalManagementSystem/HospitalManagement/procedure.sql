@@ -17,31 +17,37 @@ Procedures of Diagnosis, alergies, rooms and Medecine
 ****************************************************************/
 
 /*********************** Booking Procedures ************************/
-CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vrID SMALLINT, IN vInn DATE)
+CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vrID SMALLINT, IN vOid INT)
     BEGIN
 
         --  Declareing variables'
         DECLARE rName TYPE OF rooms.roomName;
-        DECLARE vOut TYPE OF booking.bookOut;
-        DECLARE vRate TYPE OF rooms.hourlyRoomRate;
+        Declare vInn TYPE OF booking.bookInn;
+
+        DECLARE procedureRate DECIMAL (4,2);
+        DECLARE procedureName VARCHAR(255);
+        DECLARE procedureTime DECIMAL (3,1);
+
         DECLARE veName TYPE OF employees.employees.eName;
         DECLARE vpName TYPE OF patients.patient.patientName;
 
         --  Selecting the values and insert it into the variable
         SELECT roomName INTO rName FROM rooms WHERE roomID = vRid;
         SELECT patientName INTO vpName FROM patients.patient WHERE pID = vpID;
-        SELECT employeeName INTO veName FROM employees.employees WHERE eID = veID;        
-        
-        --  Loop through the booking reason and room Name
-        --IF rName = 'SurgeryTheaters' THEN SET vRate = (SELECT hourlyRoomRate FROM rooms WHERE roomName = rName);
-        --ELSE IF rName = 'ICU'  THEN SET vRate = (SELECT hourlyRoomRate FROM rooms WHERE roomName = rName);
-        --END IF;
+        SELECT employeeName INTO veName FROM employees.employees WHERE eID = veID;
 
-        --  Creating a loop to check wheter the date is taken or not
-        
+        --  Selecting the informaation about the operation procedure
+        SELECT procedureTime INTO procedureTime FROM operation.procedureTime WHERE id = vOid;
+        SELECT procedureName INTo procedureName FROM HospitalManagementSystem.operation WHERE id = vOid;
+        SELECT procedureRate INTO procedureRate FROM HospitalManagementSystem.operation Where id = vOid;
+
+        --  Set values for the variables
+        SET vInn = CURDATE();
+        SET procedureTime = ADDTIME(vInn, procedureTime);
+
         --  Inserting values into the table
-        INSERT INTO booking (pID, patientName, rID, roomName, eID, employeeName, bookingInn, bookingOut)
-            VALUES (vpID, vpName, vrID, rName, veID, veName, vInn, vOut);
+        INSERT INTO booking (pID, patientName, rID, roomName, procedures, rate, eID, employeeName, bookingInn, bookingOut)
+            VALUES (vpID, vpName, vrID, rName, procedureName, procedureRate, veID, veName, vInn, procedureTime);
     END x
 
 CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
@@ -105,14 +111,14 @@ CREATE OR REPLACE PROCEDURE firstFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
     END x
 
 
-CREATE OR REPLACE PROCEDURE secondFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
+CREATE OR REPLACE PROCEDURE secondFloor ( IN vName VARCHAR(255), IN vRate DECIMAL(4.2))
     BEGIN
         -- Inserting values into list of Medicine
         INSERT INTO secondFloor (roomName, hourlyRate)
         VALUES (vName, vRate);
     END x
 
-CREATE OR REPLACE PROCEDURE thirdFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
+CREATE OR REPLACE PROCEDURE thirdFloor ( IN vName VARCHAR(255), IN vRate DECIMAL(4.2))
     BEGIN
         -- Inserting values into list of Medicine
         INSERT INTO thirdFloor (roomName, hourlyRate)
@@ -121,4 +127,27 @@ CREATE OR REPLACE PROCEDURE thirdFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
 
 /*******************************************************************/
 
+/*********************** Room Procedures ******************************/
+CREATE OR REPLACE PROCEDURE operationProcedure ( IN vName VARCHAR(255), IN vRate DECIMAL(4.2), IN vTime TINYINT)
+    BEGIN
+        -- Inserting values into list of Medicine
+        INSERT INTO firstFloor (roomName, hourlyRate)
+        VALUES (vName, vRate);
+    END x
 
+
+CREATE OR REPLACE PROCEDURE modifyProcedure (IN vID INT, vRate DECIMAL(4.2))
+    BEGIN
+
+        --  Updating a procedure
+        UPDATE operation Procedure SET procedureRate = vRate WHERE id = vID;
+    END x
+
+CREATE OR REPLACE PROCEDURE delProcedure ( IN vID INT)
+    BEGIN
+        -- Deleting a row in the operationProcedures table
+        DELETE FROM operationProcedures WHERE id = vID;
+
+    END x
+
+/*******************************************************************/

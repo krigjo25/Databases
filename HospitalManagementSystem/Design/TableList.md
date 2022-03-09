@@ -8,6 +8,13 @@ Its a dynamic list where the doctor can find given desease, alergy or medecine  
 | id | doc | diagonsisName | symptoms | mID |
 |---	|---	|---	|---	|---	|
 
+|Constraints |
+|---	|
+| Unique |
+| id |
+| mID |
+| FOREIGN KEY |
+| miD |
 
 
 ###Alergy (List of Alergies)
@@ -30,20 +37,19 @@ Its a dynamic list where the doctor can find given desease, alergy or medecine  
 Creating a table which contains how many rooms and floors the<br>
 hospital has
 each floor Table should include
+
 | roomID | roomName |
 |--- |--- |
 | 100 | Library |
 | 101 | Pharamacy |
-| 102 | EquipmentRoom |
-| 104 | Cafeteria |
-| 105 | Emergency Services |
-| 106 | Reception |
-| 107 | Observation Room |
-| 108 | Recovery Room |
+| 102 | Cafeteria |
+| 103 | Emergency Services |
+| 104 | Reception |
+| 105-115 | Observation Room |
+| 11 | Recovery Room |
 | 200 | Equipments |
 | 201 | Operation Theaters |
 | 202 | Ward |
-| 300 | Cancer Department |
 
 **Procedures**
 
