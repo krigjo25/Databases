@@ -1,11 +1,45 @@
-
 DELIMITER ;
 
 /********************************** Rooms ************************************/
 
 --  CALL firstFloor ('RoomName', Rate); 
+
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+CALL firstFloor ('RoomName', Rate);
+
 --  CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+CALL secondFloor ('RoomName', Rate);
+
 --  CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+CALL thirdFloor ('RoomName', Rate);
+
 /************************************************************************/
 
 /********************************** operationProcedures ************************************/
@@ -14,16 +48,16 @@ DELIMITER ;
 --  CALL operationProcedure ( 'ProcedureName', rate, time);
 
 
-CALL operationProcedure('MRI', 1000, 90);
-CALL operationProcedure('X-Ray', 3579.90, 004500);
-CALL operationProcedure('CT-Scan', 3275.00, 003000);
-CALL operationProcedure('Consulation', 55.78, 004500);
-CALL operationProcedure('C-Section', 25300.00, 012000);
-CALL operationProcedure('Upper Endoscopy', 1750, 010000);
-CALL operationProcedure('Appendectomy',33000.00, 013000);
-CALL operationProcedure('Echocardiogram', 2000.00, 013000);
-CALL operationProcedure('Cataract Surgery', 2500.00, 00:50:00);
-CALL operationProcedure('Heart Bypass Surgery', 100000.00, 053000);
-CALL operationProcedure('Hip Replacement Surgery', 35000.00, 023000);
+CALL operationProcedure('MRI', 1000.00, '01:30');
+CALL operationProcedure('X-Ray', 3579.90, '00:45');
+CALL operationProcedure('CT-Scan', 3275.00, '01:00');
+CALL operationProcedure('Consulation', 55.78, '00:45');
+CALL operationProcedure('C-Section', 25300.00, '01:20');
+CALL operationProcedure('Upper Endoscopy', 1750, '01:00');
+CALL operationProcedure('Appendectomy',33000.00, '01:30');
+CALL operationProcedure('Echocardiogram', 2000.00, '01:30');
+CALL operationProcedure('Cataract Surgery', 2500.00, '00:50');
+CALL operationProcedure('Heart Bypass Surgery', 100000.00, '5:30');
+CALL operationProcedure('Hip Replacement Surgery', 35000.00, '02:30');
 
 /*******************************************************************/

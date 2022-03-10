@@ -130,7 +130,7 @@ CREATE OR REPLACE TABLE operationProcedures (
                     --  Table Columns
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         procedureName VARCHAR(255) NOT NULL,
-                        procedureRate DECIMAL(4,2) NOT NULL,
+                        procedureRate DECIMAL(8,2) NOT NULL,
                         procedureTime TIME NOT NULL,
                         demo VARCHAR(255),
                         demo1 VARCHAR(255),

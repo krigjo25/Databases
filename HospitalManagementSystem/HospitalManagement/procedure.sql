@@ -24,12 +24,12 @@ CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vrID SM
         DECLARE rName TYPE OF rooms.roomName;
         Declare vInn TYPE OF booking.bookInn;
 
-        DECLARE procedureRate DECIMAL (4,2);
         DECLARE procedureName VARCHAR(255);
-        DECLARE procedureTime DECIMAL (3,1);
+        DECLARE procedureRate DECIMAL(4,2);
+        DECLARE procedureTime DECIMAL(3,1);
 
-        DECLARE veName TYPE OF employees.employees.eName;
-        DECLARE vpName TYPE OF patients.patient.patientName;
+        DECLARE veName VARCHAR(255);
+        DECLARE vpName VARCHAR(255);
 
         --  Selecting the values and insert it into the variable
         SELECT roomName INTO rName FROM rooms WHERE roomID = vRid;
@@ -37,9 +37,9 @@ CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vrID SM
         SELECT employeeName INTO veName FROM employees.employees WHERE eID = veID;
 
         --  Selecting the informaation about the operation procedure
-        SELECT procedureTime INTO procedureTime FROM operation.procedureTime WHERE id = vOid;
-        SELECT procedureName INTo procedureName FROM HospitalManagementSystem.operation WHERE id = vOid;
-        SELECT procedureRate INTO procedureRate FROM HospitalManagementSystem.operation Where id = vOid;
+        SELECT procedureTime INTO procedureTime FROM operationProcedures.procedureTime WHERE id = vOid;
+        SELECT procedureRate INTO procedureRate FROM operationProcedures.rate Where id = vOid;
+        SELECT procedureName INTo procedureName FROM operationProcedures.procedureName WHERE id = vOid;
 
         --  Set values for the variables
         SET vInn = CURDATE();
@@ -128,19 +128,19 @@ CREATE OR REPLACE PROCEDURE thirdFloor ( IN vName VARCHAR(255), IN vRate DECIMAL
 /*******************************************************************/
 
 /*********************** Room Procedures ******************************/
-CREATE OR REPLACE PROCEDURE operationProcedure ( IN vName VARCHAR(255), IN vRate DECIMAL(4.2), IN vTime TINYINT)
+CREATE OR REPLACE PROCEDURE operationProcedure ( IN vName VARCHAR(255), IN vRate DECIMAL(8.2), IN vTime TIME)
     BEGIN
         -- Inserting values into list of Medicine
-        INSERT INTO firstFloor (roomName, hourlyRate)
-        VALUES (vName, vRate);
+        INSERT INTO operationProcedures (procedureName, procedureRate, procedureTime)
+        VALUES (vName, vRate, vTime);
     END x
 
 
-CREATE OR REPLACE PROCEDURE modifyProcedure (IN vID INT, vRate DECIMAL(4.2))
+CREATE OR REPLACE PROCEDURE modifyProcedures (IN vID INT, vRate DECIMAL(4.2))
     BEGIN
 
         --  Updating a procedure
-        UPDATE operation Procedure SET procedureRate = vRate WHERE id = vID;
+        UPDATE operationProcedures SET procedureRate = vRate WHERE id = vID;
     END x
 
 CREATE OR REPLACE PROCEDURE delProcedure ( IN vID INT)
