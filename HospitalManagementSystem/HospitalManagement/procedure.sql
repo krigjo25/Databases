@@ -17,7 +17,7 @@ Procedures of Diagnosis, alergies, rooms and Medecine
 ****************************************************************/
 
 /*********************** Booking Procedures ************************/
-CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vrID SMALLINT, IN vOid INT)
+CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vID SMALLINT, IN vOid INT, IN vTime TINYINT, OUT Emessage VARCHAR(255))
     BEGIN
 
         --  Declareing variables'
@@ -25,50 +25,96 @@ CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vrID SM
         Declare vInn TYPE OF booking.bookInn;
 
         DECLARE procedureName VARCHAR(255);
-        DECLARE procedureRate DECIMAL(4,2);
+        DECLARE procedurePrice DECIMAL(4,2);
         DECLARE procedureTime DECIMAL(3,1);
 
         DECLARE veName VARCHAR(255);
         DECLARE vpName VARCHAR(255);
 
         --  Selecting the values and insert it into the variable
-        SELECT roomName INTO rName FROM rooms WHERE roomID = vRid;
+        SELECT roomName INTO rName FROM rooms WHERE roomID = vID;
         SELECT patientName INTO vpName FROM patients.patient WHERE pID = vpID;
         SELECT employeeName INTO veName FROM employees.employees WHERE eID = veID;
 
         --  Selecting the informaation about the operation procedure
-        SELECT procedureTime INTO procedureTime FROM operationProcedures.procedureTime WHERE id = vOid;
-        SELECT procedureRate INTO procedureRate FROM operationProcedures.rate Where id = vOid;
-        SELECT procedureName INTo procedureName FROM operationProcedures.procedureName WHERE id = vOid;
+        SELECT procedureName INTo procedureName FROM operationProcedures WHERE id = vOid;
+        SELECT procedureTime INTO procedureTime FROM operationProcedures WHERE id = vOid;
+        SELECT procedurePrice INTO procedurePrice FROM operationProcedures Where id = vOid;
 
+        --  Case when a ward is booked
+        CASE
+            WHEN procedureName = 'Ward' THEN
+                SET procedureTime = vTime;
+                SET procedurePrice = 70 * CONVERT(procedureTime, DECIMAL);
+        END CASE;
         --  Set values for the variables
         SET vInn = CURDATE();
         SET procedureTime = ADDTIME(vInn, procedureTime);
 
         --  Inserting values into the table
-        INSERT INTO booking (pID, patientName, rID, roomName, procedures, rate, eID, employeeName, bookingInn, bookingOut)
-            VALUES (vpID, vpName, vrID, rName, procedureName, procedureRate, veID, veName, vInn, procedureTime);
+        INSERT INTO booking (pID, patientName, rID, roomName, oProcedures, price, eID, employeeName, bookingInn, bookingOut)
+            VALUES (vpID, vpName, vID, rName, procedureName, procedurePrice, veID, veName, vInn, procedureTime);
     END x
 
 CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
     BEGIN
 
     --  Delete a row from the database
-    DELETE FROM booking WHERE pID = vpID;
-
+    UPDATE booking SET cmt = 'CLD' WHERE pID = vpID;
+    UPDATE 
     END x
 
-CREATE OR REPLACE PROCEDURE searchRoom (IN vDate DATETIME, IN vrID SMALLINT)
+CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(255))
     BEGIN
+
         --  Declare variables
-        DECLARE vrName VARCHAR(255);
+        DECLARE vBed INT;
+        DECLARE vCounter INT;
 
-        --  Set a value to the variable
-        SET vrName = (SELECT roomName FROM rooms WHERE rID = vrID);
+        WHILE vID <= 105 DO
 
-        --  Select the values from the table
-        SELECT pID, rID, roomName, bookInn, bookOut FROM bookings WHERE bookInn = vDate AND comments != 'Cancelled' AND roomName = vrName;
-    
+            SELECT COUNT(pID) INTO vCounter FROM booking WHERE rID = vID AND cmt != 'CLD';
+
+            CASE
+
+                -- Checking wheter the counter has reached max patients
+                WHEN vCounter = 0 THEN 
+                    SELECT roomID, roomName FROM rooms WHERE roomID = vID;
+                    --  SELECT employeeName FROM employees.turnus WHERE roomID = vID;
+                WHEN vCounter > 0 AND vID = 105 THEN 
+                    SET ErrorMsg = 'No Consultation office is available';
+                    SELECT ErrorMsg AS 'Available Rooms';
+            END CASE;
+
+            --  Adding a new number to the room
+            SET vID = vID +1;
+
+        END WHILE;
+
+        IF vID = 108 OR vID = 110 THEN
+
+            --  Counting how many patient there is in the observation Room
+            SELECT COUNT(pID) INTO vCounter FROM booking WHERE rID = vID AND cmt != 'CLD';
+
+            CASE
+
+                --  Checking wheter the counter has reached max patients
+                WHEN vCounter <= 12 THEN
+
+                --  Counting how many beds available
+                SET ErrorMsg = 12 - vCounter;
+
+
+                SELECT roomID, roomName, ErrorMsg AS 'Available beds'  FROM rooms WHERE roomID = vID;
+                
+                
+
+                WHEN vCounter = 12 THEN
+                    SET ErrorMsg = ' No available beds';
+
+            END CASE;
+        END IF;
+
     END x
 /*******************************************************************/
 
@@ -103,26 +149,26 @@ CREATE OR REPLACE PROCEDURE insertM (mID CHAR(5), vName VARCHAR(255), vIllness V
 /***********************************************************************/
 
 /*********************** Room Procedures ******************************/
-CREATE OR REPLACE PROCEDURE firstFloor ( vName VARCHAR(255), vRate DECIMAL(4.2))
+CREATE OR REPLACE PROCEDURE firstFloor ( IN vName VARCHAR(255))
     BEGIN
         -- Inserting values into list of Medicine
-        INSERT INTO firstFloor (roomName, hourlyRate)
-        VALUES (vName, vRate);
+        INSERT INTO firstFloor (roomName)
+        VALUES (vName);
     END x
 
 
-CREATE OR REPLACE PROCEDURE secondFloor ( IN vName VARCHAR(255), IN vRate DECIMAL(4.2))
+CREATE OR REPLACE PROCEDURE secondFloor ( IN vName VARCHAR(255))
     BEGIN
         -- Inserting values into list of Medicine
-        INSERT INTO secondFloor (roomName, hourlyRate)
-        VALUES (vName, vRate);
+        INSERT INTO secondFloor (roomName)
+        VALUES (vName);
     END x
 
-CREATE OR REPLACE PROCEDURE thirdFloor ( IN vName VARCHAR(255), IN vRate DECIMAL(4.2))
+CREATE OR REPLACE PROCEDURE thirdFloor ( IN vName VARCHAR(255))
     BEGIN
         -- Inserting values into list of Medicine
-        INSERT INTO thirdFloor (roomName, hourlyRate)
-        VALUES (vName, vRate);
+        INSERT INTO thirdFloor (roomName)
+        VALUES (vName);
     END x
 
 /*******************************************************************/
@@ -130,7 +176,8 @@ CREATE OR REPLACE PROCEDURE thirdFloor ( IN vName VARCHAR(255), IN vRate DECIMAL
 /*********************** Room Procedures ******************************/
 CREATE OR REPLACE PROCEDURE operationProcedure ( IN vName VARCHAR(255), IN vRate DECIMAL(8.2), IN vTime TIME)
     BEGIN
-        -- Inserting values into list of Medicine
+
+        --  Inserting values into list of Medicine
         INSERT INTO operationProcedures (procedureName, procedureRate, procedureTime)
         VALUES (vName, vRate, vTime);
     END x

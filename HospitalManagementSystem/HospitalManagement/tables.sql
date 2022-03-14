@@ -70,30 +70,18 @@ CREATE OR REPLACE TABLE availableMedecines (
 DELIMITER
 CREATE OR REPLACE TABLE firstFloor (
                 --  Table Columns
-                    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                    roomID SMALLINT SIGNED NOT NULL UNIQUE,
-                    roomName VARCHAR(255) NOT NULL,
-                    price DECIMAL(7,2) NOT NULL DEFAULT 0.00, 
-                    demo VARCHAR(255),
-                    demo1 VARCHAR(255));
+                    roomID SMALLINT SIGNED NOT NULL, --AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT = 100,
+                    roomName VARCHAR(255) NOT NULL);
 
 CREATE OR REPLACE TABLE secondFloor (
                 --  Table columns
-                    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                    roomID SMALLINT SIGNED NOT NULL UNIQUE,
-                    roomName VARCHAR(255) NOT NULL,
-                    price DECIMAL(7,2) NOT NULL DEFAULT 0.00, 
-                    demo VARCHAR(255),
-                    demo1 VARCHAR(255));
+                    roomID SMALLINT SIGNED NOT NULL, --AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT = 100,
+                    roomName VARCHAR(255) NOT NULL);
 
 CREATE OR REPLACE TABLE thirdFloor (
                 --  Table Columns
-                    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                    roomID SMALLINT SIGNED NOT NULL UNIQUE,
-                    roomName VARCHAR(255) NOT NULL,
-                    demo VARCHAR(255),
-                    demo1 VARCHAR(255));
-
+                    roomID SMALLINT SIGNED NOT NULL, --AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT = 100,
+                    roomName VARCHAR(255) NOT NULL);
 /*************************************************************************************************************/
 
 /******************************** RoomBookings **************************************************************/
@@ -105,22 +93,22 @@ CREATE OR REPLACE TABLE booking (
                         patientName VARCHAR(255) NOT NULL,
                         rID SMALLINT SIGNED NOT NULL,
                         roomName VARCHAR(255),
-                        procedures VARCHAR(255),
-                        rate DECIMAL(4,2) NOT NULL,
+                        oProcedure VARCHAR(255) NOT NULL,
+                        price DECIMAL(8,2) NOT NULL,
                         eID BIGINT NOT NULL,
                         employeeName VARCHAR(255),
                         bookingInn DATETIME NOT NULL,
-                        bookingOut DATETIME NOT NULL,
-                        demo VARCHAR(255),
+                        bookingOut DATETIME NOT NULL ,
+                        cmt VARCHAR(3),
+                        demo VARCHAR(255)
                         demo1 VARCHAR(255),
 
                     --  Table Constraints
-                        INDEX (eID),
-                        CONSTRAINT uniqueName UNIQUE (pID, bookingInn),
-                        CONSTRAINT patient_FK FOREIGN KEY (pID) REFERENCES patients.patient (pID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT employee_FK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT rate_FK FOREIGN KEY (rate) REFERENCES operationProcedures (procedureRate) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT procedureName FOREIGN KEY (procedures) REFERENCES operationProcedures (procedureName) ON DELETE CASCADE ON UPDATE CASCADE);
+                        INDEX (eID, oProcedure, price),
+                        CONSTRAINT uniqueName UNIQUE (pID),
+                        CONSTRAINT patientFK FOREIGN KEY (pID) REFERENCES patients.patient (id) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT employeeFK FOREIGN KEY (eID) REFERENCES employees.employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT procedureNameFK FOREIGN KEY (oProcedure) REFERENCES operationProcedures (procedureName) ON DELETE CASCADE ON UPDATE CASCADE);
                         
 /*************************************************************************************************************/
 
@@ -130,12 +118,12 @@ CREATE OR REPLACE TABLE operationProcedures (
                     --  Table Columns
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         procedureName VARCHAR(255) NOT NULL,
-                        procedureRate DECIMAL(8,2) NOT NULL,
+                        procedurePrice DECIMAL(8,2) NOT NULL,
                         procedureTime TIME NOT NULL,
                         demo VARCHAR(255),
                         demo1 VARCHAR(255),
 
                     --  Table Constraints
-                        INDEX (procedureName, procedureRate));
+                        INDEX (procedureName, procedurePrice, procedureTime));
                         
 /*************************************************************************************************************/
