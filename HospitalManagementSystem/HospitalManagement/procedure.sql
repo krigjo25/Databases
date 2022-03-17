@@ -17,10 +17,10 @@ Procedures of Diagnosis, alergies, rooms and Medecine
 ****************************************************************/
 
 /*********************** Booking Procedures ************************/
-CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vID SMALLINT, IN vOid INT, IN vTime TINYINT, OUT Emessage VARCHAR(255))
+CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN rID SMALLINT, IN vID INT, IN vTime TINYINT, OUT msg VARCHAR(255))
     BEGIN
 
-        --  Declareing variables'
+        --  Declare variables'
         DECLARE rName TYPE OF rooms.roomName;
         Declare vInn TYPE OF booking.bookInn;
 
@@ -28,32 +28,52 @@ CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN veID BIGINT, IN vID SMA
         DECLARE procedurePrice DECIMAL(4,2);
         DECLARE procedureTime DECIMAL(3,1);
 
+        DECLARE veID BIGINT;
         DECLARE veName VARCHAR(255);
         DECLARE vpName VARCHAR(255);
 
         --  Selecting the values and insert it into the variable
-        SELECT roomName INTO rName FROM rooms WHERE roomID = vID;
+        SELECT roomName INTO rName FROM rooms WHERE roomID = rID;
+        SELECT eID INTO veID FROM employees.relations WHERE pID = vpID;
         SELECT patientName INTO vpName FROM patients.patient WHERE pID = vpID;
-        SELECT employeeName INTO veName FROM employees.employees WHERE eID = veID;
+        SELECT employeeName INTO veName FROM employees.relations WHERE veID = vpID;
 
         --  Selecting the informaation about the operation procedure
-        SELECT procedureName INTo procedureName FROM operationProcedures WHERE id = vOid;
-        SELECT procedureTime INTO procedureTime FROM operationProcedures WHERE id = vOid;
-        SELECT procedurePrice INTO procedurePrice FROM operationProcedures Where id = vOid;
+        SELECT procedureName INTo procedureName FROM operationProcedures WHERE id = vID;
+        SELECT procedureTime INTO procedureTime FROM operationProcedures WHERE id = vID;
+        SELECT procedurePrice INTO procedurePrice FROM operationProcedures Where id = vID;
 
         --  Case when a ward is booked
         CASE
             WHEN procedureName = 'Ward' THEN
+
+                --  Give the variables a value
                 SET procedureTime = vTime;
                 SET procedurePrice = 70 * CONVERT(procedureTime, DECIMAL);
         END CASE;
+
         --  Set values for the variables
         SET vInn = CURDATE();
         SET procedureTime = ADDTIME(vInn, procedureTime);
+        
+        --  Checking if a room is available or not to complete the booking.
+        CALL checkBooking (roomID, vInn);
 
-        --  Inserting values into the table
-        INSERT INTO booking (pID, patientName, rID, roomName, oProcedures, price, eID, employeeName, bookingInn, bookingOut)
-            VALUES (vpID, vpName, vID, rName, procedureName, procedurePrice, veID, veName, vInn, procedureTime);
+        CASE
+            WHEN available = 1 THEN
+                --  Inserting values into the table
+                INSERT INTO booking (pID, patientName, rID, roomName, oProcedures, price, eID, employeeName, bookingInn, bookingOut)
+                    VALUES (vpID, vpName, vID, rName, procedureName, procedurePrice, veID, veName, vInn, procedureTime);
+
+                SET msg = CONCAT('Patient Booked for', roomName, vInn);
+                SELECT pID, patientName, roomName, oProcedures, msg AS 'SUCCSESS' FROM booking WHERE pID = vpID AND bookingInn = CURDATE();
+
+            WHEN available < 1 THEN
+
+                SET msg = 'You can not book this time for this procedure';
+                SELECT msg AS 'Booking failed';
+
+        CASE END;
     END x
 
 CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
@@ -67,36 +87,44 @@ CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
 CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(255))
     BEGIN
 
-        --  Declare variables
+        --  Declare varibales
         DECLARE vBed INT;
         DECLARE vCounter INT;
-        DECLARE vRoom TINYINT;
+        DECLARE vRoom SMALLINT;
+        DECLARE vTotal TINYINT;
+        DECLARE vRname VARCHAR(255);
 
         --  Creating a Temporary table
-
-        CREATE TEMPORARY TABLE availableRooms (
+        CREATE OR REPLACE TEMPORARY TABLE availableRooms (
                                 roomID SMALLINT UNSIGNED NOT NULL,
                                 roomName VARCHAR(255) NOT NULL,
-                                totalRoom TINYINT UNSIGNED NOT NULL);
+                                totalRoom TINYINT UNSIGNED);
 
         --  Looping through Consultations offices
         WHILE vID <= 105 DO
 
-            --  Selecting values
-            SELECT roomName INTO vRname FROM rooms WHERE rID = vID AND cmt != 'CLD';
+            --  Selecting values into the variables
+            SELECT roomName INTO vRname FROM rooms WHERE roomID = vID;
             SELECT COUNT(pID) INTO vCounter FROM booking WHERE rID = vID AND cmt != 'CLD';
 
             SET vTotal = 1 - vCounter;
+
             CASE
 
                 -- Checking wheter the counter has reached max patients
                 WHEN vCounter = 0 THEN 
                     INSERT INTO availableRooms (roomID, roomName, totalRoom) VALUES
-                    (vID, vRname, vTotal)
+                    (vID, vRname, vTotal);
 
-                WHEN vCounter > 0 AND vID = 105 THEN 
-                    SET ErrorMsg = 'No Consultation office is available';
-                    SELECT ErrorMsg AS 'Available Rooms';
+                WHEN vCounter > 0 THEN
+
+                    -- Inserting values into the table
+                    INSERT INTO availableRooms (roomID, roomName) VALUES
+                    (vID, vRname);
+                    
+                    SET ErrorMsg = 'Not available';
+
+                    SELECT roomID, roomName, ErrorMsg AS 'Search Status' FROM availableRooms;
             END CASE;
 
             --  Adding a new number to the room
@@ -129,8 +157,8 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
         END IF;
 
         IF ErrorMsg IS NULL THEN
-
-            SELECT roomID, roomName, totalRoom FROM availableRooms;
+            SET ErrorMsg = 'Available';
+            SELECT roomID, roomName, totalRoom, ErrorMsg AS 'Search Status' FROM availableRooms;
 
         END IF;
     END x
@@ -196,7 +224,7 @@ CREATE OR REPLACE PROCEDURE operationProcedure ( IN vName VARCHAR(255), IN vRate
     BEGIN
 
         --  Inserting values into list of Medicine
-        INSERT INTO operationProcedures (procedureName, procedureRate, procedureTime)
+        INSERT INTO operationProcedures (procedureName, procedurePrice, procedureTime)
         VALUES (vName, vRate, vTime);
     END x
 
@@ -205,7 +233,7 @@ CREATE OR REPLACE PROCEDURE modifyProcedures (IN vID INT, vRate DECIMAL(4.2))
     BEGIN
 
         --  Updating a procedure
-        UPDATE operationProcedures SET procedureRate = vRate WHERE id = vID;
+        UPDATE operationProcedures SET procedurePrice = vRate WHERE id = vID;
     END x
 
 CREATE OR REPLACE PROCEDURE delProcedure ( IN vID INT)
