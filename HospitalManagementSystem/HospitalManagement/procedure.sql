@@ -70,17 +70,30 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
         --  Declare variables
         DECLARE vBed INT;
         DECLARE vCounter INT;
+        DECLARE vRoom TINYINT;
 
+        --  Creating a Temporary table
+
+        CREATE TEMPORARY TABLE availableRooms (
+                                roomID SMALLINT UNSIGNED NOT NULL,
+                                roomName VARCHAR(255) NOT NULL,
+                                totalRoom TINYINT UNSIGNED NOT NULL);
+
+        --  Looping through Consultations offices
         WHILE vID <= 105 DO
 
+            --  Selecting values
+            SELECT roomName INTO vRname FROM rooms WHERE rID = vID AND cmt != 'CLD';
             SELECT COUNT(pID) INTO vCounter FROM booking WHERE rID = vID AND cmt != 'CLD';
 
+            SET vTotal = 1 - vCounter;
             CASE
 
                 -- Checking wheter the counter has reached max patients
                 WHEN vCounter = 0 THEN 
-                    SELECT roomID, roomName FROM rooms WHERE roomID = vID;
-                    --  SELECT employeeName FROM employees.turnus WHERE roomID = vID;
+                    INSERT INTO availableRooms (roomID, roomName, totalRoom) VALUES
+                    (vID, vRname, vTotal)
+
                 WHEN vCounter > 0 AND vID = 105 THEN 
                     SET ErrorMsg = 'No Consultation office is available';
                     SELECT ErrorMsg AS 'Available Rooms';
@@ -115,6 +128,11 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
             END CASE;
         END IF;
 
+        IF ErrorMsg IS NULL THEN
+
+            SELECT roomID, roomName, totalRoom FROM availableRooms;
+
+        END IF;
     END x
 /*******************************************************************/
 

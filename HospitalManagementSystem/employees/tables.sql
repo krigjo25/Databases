@@ -39,9 +39,10 @@ CREATE OR REPLACE TABLE employees (
                     --  Constraints
                         INDEX(eName, sickDays, occupation, hRate, department));
                         -- The rooms
-                        --CONSTRAINT room_fk FOREIGN KEY (department) REFERENCES HospitalManagementSystem.rooms ON DELETE CASCADE ON UPDATE CASCADE);
-                        --CONSTRAINT occupation_fk FOREIGN KEY(occupation) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE,
-                        --CONSTRAINT hourlyRate FOREIGN KEY(hRate) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE;
+                        
+                        CONSTRAINT room_fk FOREIGN KEY (department) REFERENCES HospitalManagementSystem.rooms ON DELETE CASCADE ON UPDATE CASCADE);
+                        CONSTRAINT occupation_fk FOREIGN KEY(occupation) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE,
+                        CONSTRAINT hourlyRate FOREIGN KEY(hRate) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE;
 /*************************************************************************************************************/
 DELIMITER ;
 /******************************** Relations **************************************************************/
@@ -75,14 +76,14 @@ CREATE OR REPLACE TABLE turnus (
                         ut TIME NOT NULL,
                         hrs TINYINT NOT NULL,
                         minute TINYINT NOT NULL,
-                        sickDays TINYINT UNSIGNED NOT NULL,
+                        --  sickDays TINYINT UNSIGNED NOT NULL,
                         absence VARCHAR(255),
 
                         --  Table Constraints
-                        INDEX (eID, eName, sickDays),
+                        INDEX (eID, eName),
                         CONSTRAINT employeeID_fk2 FOREIGN KEY (eID) REFERENCES employees (eID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT employeeName_fk2 FOREIGN KEY (eName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT sickDays_fk FOREIGN KEY (sickDays) REFERENCES employees (sickDays) ON DELETE CASCADE ON UPDATE CASCADE);
+                        CONSTRAINT employeeName_fk2 FOREIGN KEY (eName) REFERENCES employees (eName) ON DELETE CASCADE ON UPDATE CASCADE);
+                        --  CONSTRAINT sickDays_fk FOREIGN KEY (sickDays) REFERENCES employees (sickDays) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
 DELIMITER ;
 /******************************** SalaryInfo **************************************************************/
