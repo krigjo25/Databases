@@ -22,7 +22,8 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, I
         DECLARE vSalary DECIMAL(9,2);
     
         --  Add a value to the Variable
-        --SET vSalary = (SELECT salary FROM salaryInfo WHERE occupation = vTitle);
+        SET vSalary = (SELECT salary FROM salaryInfo WHERE occupation = vTitle);
+        SET vSalary = veStatus * vSalary/100;
         
         -- Modifying the employee number
 
@@ -112,80 +113,22 @@ CREATE OR REPLACE PROCEDURE modifyRelation(IN veID BIGINT, IN vpID BIGINT, OUT v
 /*******************************************************************/
 
 /*********************** Turnus Procedures *************************/
-CREATE OR REPLACE PROCEDURE newTurnus (IN veID BIGINT, IN vDate DATE, IN vTimeInn TIME, IN hh VARCHAR(2), IN mm TINYINT, IN vai TINYINT)
+CREATE OR REPLACE PROCEDURE newSalary (IN vName VARCHAR(255), IN ySalary DECIMAL(8.2))
     BEGIN
 
         --  Declare variables
-        DECLARE vAbsence VARCHAR(255);
-        DECLARE vTimeOut TYPE OF turnus.ut;
-        DECLARE veName TYPE OF employees.eName;
-        DECLARE vSick TYPE OF employees.sickDays;
+        DECLARE mSalary DECIMAL(7.2);
+        DECLARE hSalary DECIMAL (6.2);
 
-        --  Insert values to variables
-        SELECT eName INTO veName FROM employees WHERE eID = veID;
+        --  Set values to the variables using a function
+        SET mSalary = ySalary = mSalary / 163.5;
+        SET hSalary = ySalary / 1950;
 
-        --  Converting hours into time 
-        IF mm = 0 AND hh < 10 THEN
-            SET vTimeOut =  ADDTIME(vTimeInn, CONCAT(0,hh, 0, 0, 0, 0));
-
-        -- Checking if hh is greater  or equal to 10
-        ELSEIF mm = 0 AND hh >= 10 THEN 
-            SET vTimeOut = ADDTIME (vTimeInn, CONCAT(hh, 0, 0, 0, 0));
-
-        -- // Challanges vmin converts into random hours
-        ELSEIF mm > 0 THEN
-            SET vTimeOut =  ADDTIME(vTimeInn, CONCAT(0, hh, mm, 0, 0));
-        END IF;
-        --  Creating a case to check wheter vai is equal to one or two
-        CASE
-
-            WHEN vai = 0 THEN
-
-                SET vAbsence = '';
-
-            WHEN vai = 1 THEN            
-
-                SET vAbsence = 'Doctor / Dentis';
-            WHEN vai = 2 THEN
-
-                SET vAbsence = 'Sick';
-
-
-                --  Selecting sickDays values into the variable
-                SET vSick = (SELECT sickDays FROM employees.employees WHERE eID = vEID);
-
-                --  Updating the information in employees 
-                UPDATE employees SET sickDays = vSick - 1 WHERE eID = veID;
-
-        END CASE;
-
-        --  Insert into the table
-        INSERT INTO turnus (eID, eName, dato, inn, ut, absence, hrs, minute) 
-            VALUES (veID, veName, vDate, vTimeInn, vTimeout, vAbsence, hh, mm);
+        --  Inserting values into the table
+        INSERT INTO salaryInfo(occupation, yearlyRate, monthlyRate, hourlyRate)
+            VALUES (vName, ySalary, mSalary, hSalary);
 
     END x
-DELIMITER
-CREATE OR REPLACE PROCEDURE modifySickDay (IN veID BIGINT, IN vInt TINYINT, IN vComment VARCHAR(255))
-    BEGIN
 
-        --  Declaring variables
-        DECLARE vTime TYPE OF turnus.inn;
-        DECLARE vResult TINYINT;
-        DECLARE vComment TYPE OF turnus.comments;
-        DECLARE vSickDays TYPE OF employees.sickDays;
-        
 
-        -- Inserting values into the variables
-        SELECT inn INTO vTime FROM turnus;
-        SET vComment = 'Self-Declareation';
-        SELECT sickDays INTO vSickDays FROM employees;
-
-        -- Updating sickDays
-        IF vInt < vSickDays THEN 
-        SET vResult = vSickDays - vInt;
-        UPDATE employees SET sickDays = vSickDays - vInt WHERE eID = veID;
-        UPDATE turnus SET comments = vComment WHERE dato = vDate AND inn = vTime;
-        END IF;
-
-    END x
 /*******************************************************************/

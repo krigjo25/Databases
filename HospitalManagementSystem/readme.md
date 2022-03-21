@@ -115,18 +115,14 @@ includes the text files below,
 
 **Databases**
 
-*   [patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patients/)
-*   [employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employees/)
-*   [HospitalManageMent](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagement)
-
-**Tables**
-
+[patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patients/)
     patients
         includes the "personal" information about a given patient
     
     Billing
         Information about the Invoices for the patient
 
+[employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employees/)
     Employee..................
         includes the information about the Hospital Staff
 
@@ -136,31 +132,27 @@ includes the text files below,
     reports
         reports / notes from the doctor
 
-
+[HospitalManageMent](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagement)
     roomBookings..............
         A booking system so the staff has to book a given room
 
-    Hospital lists
+    Medecines 
+        List of medecines
 
-        medecines 
-            List of medecines
+    alergies
+        list of given registered Alergies
 
-        alergies
-            list of given registered Alergies
+    diagnosis
+        List of given Deseases
 
-        diagnosis
-            List of given Deseases
-                
-    Interior list
+    First floor
+        100 - 199
 
-        First floor
-            100 - 199
-
-        Second floor
-            200 - 299
+    Second floor
+        200 - 299
             
-        Third floor
-            300 - 399
+    Third floor
+        300 - 399
 
 **Procedures**
 

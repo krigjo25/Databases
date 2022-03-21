@@ -37,12 +37,11 @@ CREATE OR REPLACE TABLE employees (
                         hired TIMESTAMP NOT NULL DEFAULT NOW(),
                         
                     --  Constraints
-                        INDEX(eName, sickDays, occupation, hRate, department));
+                        INDEX(eName, sickDays, occupation, hRate, department),
                         -- The rooms
                         
-                        CONSTRAINT room_fk FOREIGN KEY (department) REFERENCES HospitalManagementSystem.rooms ON DELETE CASCADE ON UPDATE CASCADE);
                         CONSTRAINT occupation_fk FOREIGN KEY(occupation) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT hourlyRate FOREIGN KEY(hRate) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE;
+                        CONSTRAINT hourlyRate FOREIGN KEY(hRate) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
 DELIMITER ;
 /******************************** Relations **************************************************************/

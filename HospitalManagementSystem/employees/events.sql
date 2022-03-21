@@ -22,4 +22,24 @@ CREATE OR REPLACE EVENT delRecords
 
 END x
 /*************************************************************************************************************/
+CREATE OR REPLACE Event salaryChanges
+    ON SCHEDULE EVERY 1 MINUTE DO BEGIN
+
+        --  Declare variables
+        DECLARE mSalary DECIMAL(7.2);
+        DECLARE hSalary DECIMAL(6.2);
+        DECLARE ySalary DECIMAL(9.2);
+
+        --  Set values to the variables using a function
+
+        SELECT yearlyRate into ySalary FROM salaryInfo;
+    
+        SET hSalary = ySalary / 1950;
+        SET mSalary = ySalary = mSalary / 163.5;
+
+        --  Inserting values into the table
+        UPDATE salaryInfo SET hourlyRate = hSalary;
+        UPDATE salaryInfo SET monthlyRate = mSalary;
+
+    END x
 

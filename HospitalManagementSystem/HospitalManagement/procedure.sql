@@ -57,23 +57,24 @@ CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN rID SMALLINT, IN vID IN
         SET procedureTime = ADDTIME(vInn, procedureTime);
         
         --  Checking if a room is available or not to complete the booking.
-        CALL checkBooking (roomID, vInn);
+        SET @available = checkAvailableRoom(rID);
 
-        CASE
-            WHEN available = 1 THEN
+         --  Selecting values into variables
+        SELECT roomName INTO vRname FROM rooms WHERE roomID = rID;
+         CASE
+            WHEN @available = 0 THEN
                 --  Inserting values into the table
-                INSERT INTO booking (pID, patientName, rID, roomName, oProcedures, price, eID, employeeName, bookingInn, bookingOut)
+               INSERT INTO booking (pID, patientName, rID, roomName, oProcedures, price, eID, employeeName, bookingInn, bookingOut)
                     VALUES (vpID, vpName, vID, rName, procedureName, procedurePrice, veID, veName, vInn, procedureTime);
 
                 SET msg = CONCAT('Patient Booked for', roomName, vInn);
-                SELECT pID, patientName, roomName, oProcedures, msg AS 'SUCCSESS' FROM booking WHERE pID = vpID AND bookingInn = CURDATE();
+                SELECT pID, patientName, roomName, oProcedures, msg AS 'SUCCSESS' FROM booking WHERE pID = vpID AND roomID = vRid AND bookingInn = CURDATE();
 
-            WHEN available < 1 THEN
+            WHEN @available = 1 THEN
 
-                SET msg = 'You can not book this time for this procedure';
+                SET msg = CONCAT( roomName, ' Is not available at the moment');
                 SELECT msg AS 'Booking failed';
-
-        CASE END;
+        END CASE;
     END x
 
 CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
@@ -88,79 +89,38 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
     BEGIN
 
         --  Declare varibales
-        DECLARE vBed INT;
-        DECLARE vCounter INT;
-        DECLARE vRoom SMALLINT;
-        DECLARE vTotal TINYINT;
         DECLARE vRname VARCHAR(255);
 
         --  Creating a Temporary table
         CREATE OR REPLACE TEMPORARY TABLE availableRooms (
                                 roomID SMALLINT UNSIGNED NOT NULL,
                                 roomName VARCHAR(255) NOT NULL,
-                                totalRoom TINYINT UNSIGNED);
+                                sStatus VARCHAR(255) NOT NULL);
 
-        --  Looping through Consultations offices
         WHILE vID <= 105 DO
 
-            --  Selecting values into the variables
-            SELECT roomName INTO vRname FROM rooms WHERE roomID = vID;
-            SELECT COUNT(pID) INTO vCounter FROM booking WHERE rID = vID AND cmt != 'CLD';
+        --  Checking wheter the room is avialable or not
+         SET @available = checkAvailableRoom(vID);
 
-            SET vTotal = 1 - vCounter;
+         --  Selecting values into variables
+        SELECT roomName INTO vRname FROM rooms WHERE roomID = vID;
+         CASE
+            WHEN @available = 0 THEN
+                INSERT INTO availableRooms (roomID, roomName, sStatus)
+                    VALUES (vID, vRname, 'Available');
 
-            CASE
+            WHEN @available = 1 THEN
 
-                -- Checking wheter the counter has reached max patients
-                WHEN vCounter = 0 THEN 
-                    INSERT INTO availableRooms (roomID, roomName, totalRoom) VALUES
-                    (vID, vRname, vTotal);
+                INSERT INTO availableRooms (roomID, roomName, sStatus)
+                    VALUES (vID, vRname, 'Un Available');
 
-                WHEN vCounter > 0 THEN
-
-                    -- Inserting values into the table
-                    INSERT INTO availableRooms (roomID, roomName) VALUES
-                    (vID, vRname);
-                    
-                    SET ErrorMsg = 'Not available';
-
-                    SELECT roomID, roomName, ErrorMsg AS 'Search Status' FROM availableRooms;
             END CASE;
 
             --  Adding a new number to the room
             SET vID = vID +1;
-
         END WHILE;
 
-        IF vID = 108 OR vID = 110 THEN
-
-            --  Counting how many patient there is in the observation Room
-            SELECT COUNT(pID) INTO vCounter FROM booking WHERE rID = vID AND cmt != 'CLD';
-
-            CASE
-
-                --  Checking wheter the counter has reached max patients
-                WHEN vCounter <= 12 THEN
-
-                --  Counting how many beds available
-                SET ErrorMsg = 12 - vCounter;
-
-
-                SELECT roomID, roomName, ErrorMsg AS 'Available beds'  FROM rooms WHERE roomID = vID;
-                
-                
-
-                WHEN vCounter = 12 THEN
-                    SET ErrorMsg = ' No available beds';
-
-            END CASE;
-        END IF;
-
-        IF ErrorMsg IS NULL THEN
-            SET ErrorMsg = 'Available';
-            SELECT roomID, roomName, totalRoom, ErrorMsg AS 'Search Status' FROM availableRooms;
-
-        END IF;
+        SELECT roomID, roomName, sStatus AS 'Search Status' FROM availableRooms;
     END x
 /*******************************************************************/
 
