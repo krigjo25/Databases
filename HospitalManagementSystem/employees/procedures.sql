@@ -22,7 +22,7 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, I
         DECLARE vSalary DECIMAL(9,2);
     
         --  Add a value to the Variable
-        SET vSalary = (SELECT salary FROM salaryInfo WHERE occupation = vTitle);
+        SET vSalary = (SELECT hSalary FROM salaryInfo WHERE occupation = vTitle);
         SET vSalary = veStatus * vSalary/100;
         
         -- Modifying the employee number

@@ -27,7 +27,16 @@ CALL newEmployee ('Gregory M. Flood', '1980-12-24', '1921 Reel Avenue', 88061, '
 
 /************************************************************************/
 /****************************** SalaryInfo ******************************/
+CALL newSalary ('Pulmonologists', 333000);
+CALL newSalary ('Radiologist', 350000);
+CALL newSalary ('Immunologist', ySalary);
+CALL newSalary ('Anesthesiologists', ySalary);
+CALL newSalary ('Cardiologist', ySalary);
 
+CALL newSalary ('Critical Care Medecine Specialist', ySalary);
+CALL newSalary ('Dermatologist', ySalary);
+CALL newSalary ('Endocrinologist', ySalary);
+CALL newSalary ('General Surgeons', ySalary);
 /************************************************************************/
 /************************************* relations ************************/
 

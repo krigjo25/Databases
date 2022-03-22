@@ -49,19 +49,3 @@ CREATE OR REPLACE FUNCTION checkRecovery() RETURNS INT DETERMINISTIC
         --  Returning Values
         RETURN vRecovery;
     END x
-
-CREATE OR REPLACE FUNCTION monthlySalary(mSalary) RETURNS INT DETERMINISTIC
-    BEGIN
-
-        --  Declare variables
-        SET 
-
-        RETURN mSalary
-    END x
-CREATE OR REPLACE FUNCTION hourlySalary(hSalary) RETURNS INT DETERMINISTIC
-    BEGIN
-
-        
-
-        RETURN hSalary
-    END x
