@@ -45,7 +45,7 @@ CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN
         SET vPhone = CONCAT ('(', areaCode, ') -', threeDigit, '-', lastDigit);
 
         --  Insert values into the table
-        INSERT INTO patient (patientName, birthDate, ssn, gender, phoneNumber, street, zipCode, bWeight, bHeight, bmi, bloodType, alergies, diagnosis, medecine) VALUES
+        INSERT INTO patient (patientName, birthDate, ssn, gender, phoneNumber, street, zipCode, bWeight, bHeight, bmi, bloodType, alergyID, diagnoseID, medecineID) VALUES
                 (pName, bDate, vssn, vGender, vPhone, vStreet, vZip, vWeight, vHeight, vBMI, bType, vAlergies, vDoc, vMed);
     END x
 
@@ -54,17 +54,73 @@ CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN
 CREATE OR REPLACE PROCEDURE modifyPatient (IN vColumn VARCHAR(20), vValue VARCHAR(255), IN vID INT)
     BEGIN
 
-    --  Updates patient information Which has VARCHAR as DATATYPE
+        --  Declare variables
+        DECLARE vAlergy TYPE OF patient.alergyID;
+        DECLARE vMedecine TYPE OF patient.medecineID;
+        DECLARE vMedecineTwo TYPE OF patient.medecineID;
 
-        SET @Query = CONCAT('UPDATE patient SET ', vColumn , vValue, ' WHERE id = ', vID);
+        -- Selecting medecine value into the variables
 
-            --  Prepareing and executing the statement
-            PREPARE stmt FROM @Query;
-            EXECUTE stmt;
-            DEALLOCATE PREPARE stmt;
-    END x
+        IF vColumn = 'alergyID' THEN
+
+            -- Select the old IDS into the vAlergy variable IF they're not default
+            SELECT alergyID INTO vAlergy FROM patient WHERE patientID = vID;
+            SELECT medecineID INTO vMedecineTwo FROM HospitalManagementSystem.alergies WHERE alergyID = vValue;
+            SELECT medecineID INTO vMedecine FROM HospitalManagementSystem.alergies WHERE alergyID = vAlergy;
+
+            --  Checking wheter the vAlergy Contains 
+            IF vAlergy != 'NNNNA' THEN
+
+                SET vValue = CONCAT(vAlergy, ',', vValue);
+
+                CASE
+
+                    WHEN vMedecine != 'NNNNM' THEN
+                        SET vMedecine = CONCAT(vMedecine, ',', vMedecineTwo);
+                        UPDATE patient SET medecineID = vMedecine WHERE patientID = vID;
+
+                    WHEN vMedecine = 'NNNNM' THEN
+                        UPDATE patient SET medecineID = vMedecine WHERE patientID = vID;            
+                END CASE;
+
+            END IF;
+
+        ELSEIF vColumn = 'diagnoseID' THEN
+
+            -- Select the old IDS into the vAlergy variable IF they're not default
+            SELECT diagnoseID INTO vAlergy FROM patient WHERE patientID = vID;
+            SELECT medecineID INTO vMedecine FROM HospitalManagementSystem.diagnosis WHERE alergyID = vAlergy;
+            SELECT medecineID INTO vMedecine FROM HospitalManagementSystem.diagnosis WHERE alergyID = vAlergy;
+
+            --  Checking wheter the vAlergy Contains 
+            IF vAlergy != 'NNNND' THEN
+
+                SET vValue = CONCAT(vAlergy, ',', vValue);
+            
+                CASE
+
+                    WHEN vMedecine != 'NNNNM' AND vMedecine != vMedecineTwo THEN
+                        SET vMedecine = CONCAT(vMedecine, ',', vMedecineTwo);
+                        UPDATE patient SET medecineID = vMedecine WHERE patientID = vID;
+
+                    WHEN vMedecine = 'NNNNM' THEN
+                        UPDATE patient SET medecineID = vMedecine WHERE patientID = vID;
+                END CASE;
+            
+            END IF;
+
+        END IF;
+
+                --  Updates patient information Which has VARCHAR as DATATYPE
+                SET @Query = CONCAT('UPDATE patient SET ', vColumn , ' = ', vValue, ' WHERE patientID = ', vID);
+
+                --  Prepareing and executing the statement
+                PREPARE stmt FROM @Query;
+                EXECUTE stmt;
+                DEALLOCATE PREPARE stmt;
+        END x
 /***********************************************************************/
-
+DELIMITER
 /*********************** Billing Procedures ************************/
 -- x
 CREATE OR REPLACE PROCEDURE newBilling (IN vpID BIGINT)

@@ -20,6 +20,16 @@ CALL newPatient ('Steven A. Crawford' , '1980-10-25' , '260574702', 'M' , '67854
 CALL newPatient ('Benjamin Z. Krieger' , '1970-05-19' , '024078901', 'M' , '7813863968', '2586 Romano Street', 02154 , 75.7, 176,'B+', 'vAlergies', 'vDoc', 'vMed' );
 CALL newPatient ('Tina L. Abernathy' , '1978-06-07' , '665013723', 'M' , '2255358538', '2874 Eva Pearl Street', 70802 , 64.27, 170,'AB', 'vAlergies', 'vDoc', 'vMed' );
 
+/************************************* Modifying Patients ************************/
+-- CALL modifyPatient('vColumn, vValue, vID)
+
+--  Alergies
+CALL modifyPatient ('alergyID', 'GA04A', 10000);
+
+--  Diagnosis
+
+--  Other
+
 /*****************************************************************************/
 
 /************************************* Billings ************************/

@@ -67,6 +67,34 @@ CALL operationProcedure('Hip Replacement Surgery', 35000.00, '02:30');
 
 /*******************************************************************/
 
+/********************************** Alergies Procedures ************************************/
+--  CALL insertA (vID, vName, vSymptoms, mID);
+--  CALL insertD (vID, vName, vSymptoms, mID);
+--  CALL insertM (mID, vName, vIllness);
+CALL insertD ('NNNND', 'DEFAULT', 'DEFAULT');
+CALL insertD ('DT12D', 'Diabetes Type 1', 'DEFAULT');
+CALL insertD ('DT13D', 'Diabetes Type 2', 'DEFAULT');
+
+
+CALL insertA ('GA04A', 'GrasAlergy', 'renne nese, hossting', 'NS32M');
+CALL insertA ('AS00A', 'Astma', 'Hosting ved høyintesitet', 'AS12M');
+CALL insertA ('NNNNA', 'DEFAULT', 'DEFAULT');
+
+CALL insertM ('NNNNM', 'DEFAULT', 'DEFAULT');
+CALL insertM ('NS32M', 'nose spray', 'testser');
+CALL insertM ('AS12M', 'Inhalator', 'Astma');
+CALL insertM ('NS32M', 'nose spray', 'testser');
+/*******************************************************************/
+
+/********************************** Diagnosis Procedures ************************************/
+--  CALL insertA (vID, vName, vSymptoms, mID);
+
+/*******************************************************************/
+
+/********************************** Medecine Procedures ************************************/
+--  CALL insertA (vID, vName, vSymptoms, mID);
+
+/*******************************************************************/
 
 /********************************** Bookings ************************************/
 

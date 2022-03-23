@@ -11,7 +11,7 @@ patients
 /********************************************   Patient table   *******************************************/
 
 CREATE OR REPLACE TABLE patient (
-                        id BIGINT SIGNED NOT NULL , -- NOT NULL AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
+                        patientID BIGINT SIGNED NOT NULL , -- NOT NULL AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
                         
                         -- General information
                         patientName VARCHAR(255) NOT NULL UNIQUE DEFAULT 'Jhon Doe',
@@ -27,9 +27,9 @@ CREATE OR REPLACE TABLE patient (
                         bHeight SMALLINT SIGNED NOT NULL DEFAULT 180,
                         bmi DECIMAL (5,2) NOT NULL,
                         bloodType VARCHAR(2), 
-                        alergies VARCHAR(255) NOT NULL UNIQUE DEFAULT 'NNNNA',
-                        diagnosis VARCHAR(255) NOT NULL DEFAULT 'NNNND',
-                        medecine  VARCHAR(255) NOT NULL DEFAULT 'NNNNM',
+                        alergyID VARCHAR(255) NOT NULL DEFAULT 'NNNNA,',
+                        diagnoseID VARCHAR(255) NOT NULL DEFAULT 'NNNND,',
+                        medecineID  VARCHAR(255) NOT NULL DEFAULT 'NNNNM,',
                         dateIn DATETIME NOT NULL DEFAULT CURRENT_TIME,
                         dateOut DATETIME,
                         billing MEDIUMBLOB,
@@ -45,10 +45,36 @@ CREATE OR REPLACE TABLE patient (
                         demo1 VARCHAR(255),
                     --  Table Constraints
 
-                        INDEX (diagnosis, medecine, alergies),
-                        CONSTRAINT ListOfAlergies_FK FOREIGN KEY(alergies) REFERENCES HospitalManagementSystem.alergies (alergyID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT ListofMedecine FOREIGN KEY(medecine) REFERENCES HospitalManagementSystem.availableMedecines (mID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT ListOfDiagnosis_FK FOREIGN KEY(diagnosis) REFERENCES HospitalManagementSystem.diagnosis (diagnosisID) ON DELETE CASCADE ON UPDATE CASCADE);
+                        INDEX (diagnoseID, medecineID, alergyID));
+/*********************************************************************************************************/
+DELIMITER
+/********************************************   Patient table   *******************************************/
+
+CREATE OR REPLACE TABLE donors (
+                        id INT SIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, -- NOT NULL AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
+                        
+                        -- General information
+                        patientID BIGINT SIGNED NOT NULL,
+                        patientName VARCHAR(255) NOT NULL UNIQUE DEFAULT 'Jhon Doe',
+                        birthDate DATE NOT NULL DEFAULT '1973-01-01',
+                        bloodType VARCHAR(3) NOT NULL,
+                        ssn VARCHAR(12) NOT NULL,
+                        phoneNumber VARCHAR(255) NOT NULL,
+                        
+                    --  Health information
+                        organDonor VARCHAR(255) DEFAULT 'no',
+                        bloodDonot Char(1) NOT NULL DEFAULT 'x',
+                        diagnosis VARCHAR(255) NOT NULL DEFAULT 'NNNND',
+                        medecine  VARCHAR(255) NOT NULL DEFAULT 'NNNNM',
+                        registered TIMESTAMP NOT NULL DEFAULT NOW(),
+
+                    --  Extra columns
+                        demo VARCHAR(255),
+                        demo1 VARCHAR(255),
+                    --  Table Constraints
+
+                        INDEX (patientID, medecine, alergies),
+                        CONSTRAINT patientID_fk FOREIGN KEY(patientID) REFERENCES patients.patient(id) ON DELETE CASCADE ON UPDATE CASCADE);
 /*********************************************************************************************************/
 
 /************************************* Billings **********************************************************/

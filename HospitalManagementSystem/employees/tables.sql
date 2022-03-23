@@ -40,8 +40,7 @@ CREATE OR REPLACE TABLE employees (
                         INDEX(eName, sickDays, occupation, hRate, department),
                         -- The rooms
                         
-                        CONSTRAINT occupation_fk FOREIGN KEY(occupation) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT hourlyRate FOREIGN KEY(hRate) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE);
+                        CONSTRAINT occupation_fk FOREIGN KEY(occupation) REFERENCES employees.salaryInfo ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
 DELIMITER ;
 /******************************** Relations **************************************************************/
@@ -90,7 +89,7 @@ CREATE OR REPLACE TABLE salaryInfo (
                         --  Table Columns
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
                         occupation VARCHAR(255) NOT NULL, 
-                        yearlyRate DECIMAL(10,2) NOT NULL,
-                        monthlyRate DECIMAL(7,2) NOT NULL,
-                        hRate DECIMAL (5,2) NOT NULL);
+                        yearlySalary DECIMAL(10,2) NOT NULL,
+                        monthlySalary DECIMAL(7,2) NOT NULL,
+                        hourlySalary DECIMAL (5,2) NOT NULL);
 /*************************************************************************************************************/

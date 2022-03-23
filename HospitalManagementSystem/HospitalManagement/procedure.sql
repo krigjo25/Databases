@@ -129,7 +129,7 @@ DELIMITER x
 CREATE OR REPLACE PROCEDURE insertA (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
     BEGIN
         -- Inserting values into list of Alergies
-        INSERT INTO alergies (alergyID, alergyName, symptoms, medicineID)
+        INSERT INTO alergies (alergyID, aName, symptoms, medecineID)
         VALUES (vID, vName, vSymptoms, mID);
     END x
 
@@ -148,7 +148,7 @@ DELIMITER x
 CREATE OR REPLACE PROCEDURE insertM (mID CHAR(5), vName VARCHAR(255), vIllness VARCHAR(255))
     BEGIN
         -- Inserting values into list of Medicine
-        INSERT INTO availableMedecines (medicineID, medicineName, illness) 
+        INSERT INTO availableMedecines (mID, medecineName, illness) 
         VALUES (mID, vName, vIllness);
     END x
 

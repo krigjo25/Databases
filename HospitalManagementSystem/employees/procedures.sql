@@ -20,9 +20,11 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, I
 
         --  Declare variables
         DECLARE vSalary DECIMAL(9,2);
-    
+        DECLARE vCounter INT;
+
+        COUNT(eName) FROM
         --  Add a value to the Variable
-        SET vSalary = (SELECT hSalary FROM salaryInfo WHERE occupation = vTitle);
+        SET vSalary = (SELECT hourlySalary FROM salaryInfo WHERE occupation = vTitle);
         SET vSalary = veStatus * vSalary/100;
         
         -- Modifying the employee number
@@ -31,11 +33,11 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, I
         SET @lastDigit = SUBSTRING(vPhone, 7,4);
         SET @threeDigit = SUBSTRING(vPhone, 4,3);
 
-        SET vPhone = CONCAT ('(', @areaCode, ') -', @threeDigit, '-', @lastDigit);
+        SET vPhone = CONCAT ('(', @areaCode, ')- ', @threeDigit, '-', @lastDigit);
 
 
-        INSERT INTO employees (eName, birthDate, street, zipCode, email, phone, eStatus, department, occupation) VALUES
-        (eName, vDate, vStreet, vZip, vEmail, vPhone, veStatus, vDep, vTitle);
+        INSERT INTO employees (eName, birthDate, street, zipCode, email, phone, eStatus, occupation, hSalary, department) VALUES
+        (eName, vDate, vStreet, vZip, vEmail, vPhone, veStatus, vTitle, vSalary, vDep);
     END x
 
 /**************************************************************/
@@ -121,11 +123,11 @@ CREATE OR REPLACE PROCEDURE newSalary (IN vName VARCHAR(255), IN ySalary DECIMAL
         DECLARE hSalary DECIMAL (6.2);
 
         --  Set values to the variables using a function
-        SET mSalary = ySalary = mSalary / 163.5;
+        SET mSalary = ySalary / 162.5;
         SET hSalary = ySalary / 1950;
 
         --  Inserting values into the table
-        INSERT INTO salaryInfo(occupation, yearlyRate, monthlyRate, hourlyRate)
+        INSERT INTO salaryInfo(occupation, yearlySalary, monthlySalary, hourlySalary)
             VALUES (vName, ySalary, mSalary, hSalary);
 
     END x
