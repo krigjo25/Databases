@@ -22,20 +22,11 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, I
         DECLARE vSalary DECIMAL(9,2);
         DECLARE vCounter INT;
 
-        COUNT(eName) FROM
-        --  Add a value to the Variable
-        SET vSalary = (SELECT hourlySalary FROM salaryInfo WHERE occupation = vTitle);
-        SET vSalary = veStatus * vSalary/100;
-        
-        -- Modifying the employee number
+        --  Calling a function to calculate the salary and convert the Phone number
+        SET vPhone = convertPhone(vPhone);
+        SET vSalary = calculateSalary(veStatus, vSalary);
 
-        SET @areaCode = SUBSTRING(vPhone, 1,3);
-        SET @lastDigit = SUBSTRING(vPhone, 7,4);
-        SET @threeDigit = SUBSTRING(vPhone, 4,3);
-
-        SET vPhone = CONCAT ('(', @areaCode, ')- ', @threeDigit, '-', @lastDigit);
-
-
+        --  Inserting the records into the table
         INSERT INTO employees (eName, birthDate, street, zipCode, email, phone, eStatus, occupation, hSalary, department) VALUES
         (eName, vDate, vStreet, vZip, vEmail, vPhone, veStatus, vTitle, vSalary, vDep);
     END x

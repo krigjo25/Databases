@@ -10,47 +10,16 @@ Billing Proceduures,
 
 /*********************** Patients Procedures ******************************/
 DELIMITER x
-CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN vssn VARCHAR(255), IN vGender VARCHAR(5), IN vPhone VARCHAR(255), IN vStreet VARCHAR(255), IN vZip INT, IN vWeight INT, IN vHeight INT, IN bType VARCHAR(2))
+CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN vssn VARCHAR(12), IN vGender VARCHAR(5), IN vPhone VARCHAR(255), IN vStreet VARCHAR(255), IN vZip INT, IN vWeight INT, IN vHeight INT, IN bType VARCHAR(2))
     BEGIN
         --  Declare variables
         DECLARE vBMI DECIMAL(4.1);
-        
-        --  Gathering Social Security variables
-        DECLARE partOne TYPE OF patient.ssn;
-        DECLARE partTwo TYPE OF patient.ssn;
-        DECLARE partThree TYPE OF patient.ssn;
 
-        --  Gathering phonenumber
-        DECLARE areaCode TYPE OF patient.phoneNumber;
-        DECLARE lastDigit TYPE OF patient.phoneNumber;
-        DECLARE threeDigit TYPE OF patient.phoneNumber;
-
-        -- Converting cm into m
-        SET @height = vHeight / 100;
-        SET @height = @height * 2;
-
-        --  divide the Weight with Height
-        SET vBMI = vWeight/@height;
-
-        --  Trimming the Phone Number
-        SET areaCode = SUBSTRING(vPhone, 1,3);
-        SET lastDigit = SUBSTRING(vPhone, 7,4);
-        SET threeDigit = SUBSTRING(vPhone, 4,3);
-
-        -- Trimming the Social Security Number
-        SET partOne = SUBSTRING(vssn, 1,3);
-        SET partTwo = SUBSTRING(vssn, 3,2);
-        SET partThree = SUBSTRING(vssn,5,4);
-
-        -- Assigning the new values to the variables, using concat to merge the string
-        SET vssn = CONCAT(partOne, '-', partTwo, '-', partThree);
-        SET vPhone = CONCAT ('(', areaCode, ') -', threeDigit, '-', lastDigit);
-        
         --  Converting the given values for the variables using functions
-        --  SET vssn = convertssn(vssn);
-        --  SET vPhone = convertPhone(vPhone)
-        --  SET vBMI = calculateBMI(vWeight, vheight);
-        
+        SET vssn = convertssn(vssn);
+        SET vPhone = convertPhone(vPhone);
+        SET vBMI = calculateBMI(vheight, vWeight);
+
         --  Insert values into the table
         INSERT INTO patient (patientName, birthDate, ssn, gender, phoneNumber, street, zipCode, bWeight, bHeight, bmi, bloodType) 
             VALUES (pName, bDate, vssn, vGender, vPhone, vStreet, vZip, vWeight, vHeight, vBMI, bType);

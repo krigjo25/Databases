@@ -103,6 +103,7 @@ includes the text files below,
 ##  Databases
 
 [patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patients/)
+
     patient
         includes the "personal" information about a given patient
     
@@ -112,6 +113,7 @@ includes the text files below,
     donators
 
 [employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employees/)
+
     Employee..................
         includes the information about the Hospital Staff
 
@@ -124,7 +126,7 @@ includes the text files below,
     reports
         reports / notes from the doctor
 
-[HospitalManageMent](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagement)
+[HospitalManagement](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagement)
 
     roomBookings..............
         A booking system so the staff has to book a given room
@@ -151,16 +153,18 @@ includes the text files below,
 
 ### Universial Procedures
 
-###  Patient
+###  Patients
 
+####  Patient
     #   add a new record of a patient
     CALL newPatient (pName, bDate, vssn, vSex, vPhone, vStreet, vZip,vEmail, vWeight, vHeight, bType, vAlergies, vDoc, vMed);
 
     #   Updates the value for the record
     CALL modifyPatient (vColumn,vValue, vID)d;
 
-
 ### Employee
+
+#### Employee
 
     #   Add a new record to the table
     CALL newEmployee (eName, vDate, vStreet, vEmail, vPhone,veStatus ,vTitle, vDep);
@@ -168,7 +172,7 @@ includes the text files below,
     # Updates the information of the employee  except :x: Date
     CALL modifyEmployee (vColumn, vValue, veID);
 
-### Relations
+#### Relations
 
     #   Assign a doctor to a patient
     CALL newRelation (veID, vpID);
@@ -179,7 +183,7 @@ includes the text files below,
     #   Modify a relation
     CALL modifyRelation (vColumn, veID, vpID);
 
-### Turnus
+#### Turnus
 
     #   Assign time for the employee to be at work
     CALL newTurnus (veID, vDate, vTime, vhrs);
@@ -187,22 +191,24 @@ includes the text files below,
     #   If the doctor is sick, update the sicDays, and add a comment to the turnus
     CALL sickDays (veID, vInt, vComment);
 
-### List Of Alergies
+### HospitalManagementSystem
+
+#### List Of Alergies
 
     #   Creates a new record for alergies
     CALL insertLOA (vID, vName, vSymptoms, medicine ID);
 
-### Diagnosis
+#### Diagnosis
 
     #   Creates a new record for Diagnosis
     CALL insertLOD (vID, vName, vSymptoms, medicine ID);
 
-### Medecines
+#### Medecines
 
     #   Creates a new record for Medecines
     CALL insertLOM (vID, vName, vSymptoms, illness);
 
-### RoomBookings
+#### RoomBookings
 
     #   Booking a room for the patient
     CALL bookRoom (vpID, veID, vrID, vInn);
@@ -213,7 +219,7 @@ includes the text files below,
     #   Check if a room is available
     CALL checkRoom (veID, vDate, vTimeInn);
 
-### Floors
+#### Floors
 
     #   Creates a new record for the table
     CALL firstFloor('roomName', 10000.00);
@@ -222,44 +228,93 @@ includes the text files below,
 
 ##  Functions
 
-###    Functions for employees
- 
+###    Functions for employee database
+
 ####    Calculate a monthly salary
 
- -  calcSalary(eID);
+-   convertPhone(vPhone);
+    Converts the digits into Areacode, 
 
-####  Check if the person is recovered
+-   calculateSalary(veStatus, vSalary);
+    Calculates the salary for the inserted employee
+
 -   checkRecovery();
+    Check if the person is recovered
+
+### Functions for patients Database
+
+-   calculatebmi(vheight, vWeight);
+    Calculates the bmi based on weight / vHeight
+
+-   convertssn(vssn);
+    Converts the digits from the table, and adding "-"
+
+-   convertPhone(vPhone);
+    Converts the digits into areacode.
+
+### Functions for hospitalManagementSystem Database
+
+-   checkAvailableRoom(vID);
+    Check wheter a room is available, and returns an integer
 
 ## Views
 
-*   Rooms
+-   Rooms
 
 ## Triggers
 
 ### Patients
 
+-   triggerPDF
+    triggers a new pdf generation when a patient has been registered<br>
+    in the database
+
+-   terminateBilling
+    moves the old billings into a new database based on the billing is<br>
+    paid or not.
+
+
 ### Employee
 
+-   terminateEmployee
+    trigger a insert into a table, when the delRecords event has been executed.
+
 ### hospitalManagementSystem
+
+### archives
 
 ##  Events
 
 ### Patients
 
+- delRecords
+    Deletes records where the patient is above 200 years
+
 ### Employee
 
+- delRecords
+    Deletes records where the employee has been resigned
+
+-   salaryChanges
+    re calculates the salary every month
+
 ### hospitalManagementSystem
+
+-   delRecords
+    Delete old records
+
+### archives
 
 ##  Testing and SQL Data
 
 ###  Test Performed in this SQL Project
 
-- Manually entered values
+The values has been manually entered, over time.
 
-*
-*
-*
+* [SQL data for employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employees/SQLdata.sql)
+* [SQL data for HospitalManagementSystem](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagementSystem/SQLdata.sql)
+* [SQL data for patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patients/SQLdata.sql)
+* [SQL data for archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/archive/SQLdata.sql)
 
 ##  Python
 
