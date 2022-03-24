@@ -64,8 +64,8 @@ CREATE OR REPLACE TABLE donors (
                     --  Health information
                         organDonor VARCHAR(255) DEFAULT 'no',
                         bloodDonot Char(1) NOT NULL DEFAULT 'x',
-                        diagnosis VARCHAR(255) NOT NULL DEFAULT 'NNNND',
-                        medecine  VARCHAR(255) NOT NULL DEFAULT 'NNNNM',
+                        diagnosis VARCHAR(255) NOT NULL,
+                        medecine  VARCHAR(255) NOT NULL,
                         registered TIMESTAMP NOT NULL DEFAULT NOW(),
 
                     --  Extra columns

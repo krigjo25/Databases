@@ -100,27 +100,16 @@ which lets the personell to add and modify the patient journal
 Infomration about the design can be found in the given links below
 includes the text files below,
 
-*   [Patient](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Patients.md),
-*   [Bookings](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Bookings.md),
-*   [Employee](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Employee.md),
-*   [Billing](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Billing.md),
-*   [Salaries](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/salaries.md)
-*   [Table list](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TableList.md),
-*   [Rooms](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Rooms.md),
-*   [The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
-*   [Turnus](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Turnus.md)
-*   [Patient Employee Relations](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/relations.md)
-
-## SQL Data
-
-**Databases**
+##  Databases
 
 [patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patients/)
-    patients
+    patient
         includes the "personal" information about a given patient
     
     Billing
         Information about the Invoices for the patient
+    
+    donators
 
 [employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employees/)
     Employee..................
@@ -129,10 +118,14 @@ includes the text files below,
     relations
         includes the iformation about assignments for doctors
 
+    Turnus
+
+
     reports
         reports / notes from the doctor
 
 [HospitalManageMent](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagement)
+
     roomBookings..............
         A booking system so the staff has to book a given room
 
@@ -154,11 +147,11 @@ includes the text files below,
     Third floor
         300 - 399
 
-**Procedures**
+## Procedures
 
-***Universial Procedures***
+### Universial Procedures
 
-***Patient***
+###  Patient
 
     #   add a new record of a patient
     CALL newPatient (pName, bDate, vssn, vSex, vPhone, vStreet, vZip,vEmail, vWeight, vHeight, bType, vAlergies, vDoc, vMed);
@@ -166,12 +159,8 @@ includes the text files below,
     #   Updates the value for the record
     CALL modifyPatient (vColumn,vValue, vID)d;
 
-***Billings***
 
-    #   Creating a new billing for the patient
-    CALL newBilling (vpID);
-
-***Employee***
+### Employee
 
     #   Add a new record to the table
     CALL newEmployee (eName, vDate, vStreet, vEmail, vPhone,veStatus ,vTitle, vDep);
@@ -179,7 +168,7 @@ includes the text files below,
     # Updates the information of the employee  except :x: Date
     CALL modifyEmployee (vColumn, vValue, veID);
 
-***Relations***
+### Relations
 
     #   Assign a doctor to a patient
     CALL newRelation (veID, vpID);
@@ -190,7 +179,7 @@ includes the text files below,
     #   Modify a relation
     CALL modifyRelation (vColumn, veID, vpID);
 
-***Turnus***
+### Turnus
 
     #   Assign time for the employee to be at work
     CALL newTurnus (veID, vDate, vTime, vhrs);
@@ -198,22 +187,22 @@ includes the text files below,
     #   If the doctor is sick, update the sicDays, and add a comment to the turnus
     CALL sickDays (veID, vInt, vComment);
 
-***List Of Alergies***
+### List Of Alergies
 
     #   Creates a new record for alergies
     CALL insertLOA (vID, vName, vSymptoms, medicine ID);
 
-***List Of Diagnosis***
+### Diagnosis
 
     #   Creates a new record for Diagnosis
     CALL insertLOD (vID, vName, vSymptoms, medicine ID);
 
-***List of Medicine***
+### Medecines
 
     #   Creates a new record for Medecines
     CALL insertLOM (vID, vName, vSymptoms, illness);
 
-***booking***
+### RoomBookings
 
     #   Booking a room for the patient
     CALL bookRoom (vpID, veID, vrID, vInn);
@@ -224,81 +213,88 @@ includes the text files below,
     #   Check if a room is available
     CALL checkRoom (veID, vDate, vTimeInn);
 
-***Rooms***
+### Floors
 
     #   Creates a new record for the table
     CALL firstFloor('roomName', 10000.00);
     CALL secondFloor('roomName', 10000.00);
     CALL thirdFloor('roomName', 10000.00);
 
-**Functions**
+##  Functions
 
-    #   Functions for employees
-    
-    #  Calculate a monthly salary
-    CALL calcSalary(eID);
+###    Functions for employees
+ 
+####    Calculate a monthly salary
 
-    #  Check if the person is recovered
-    CALL checkRecovery();
+ -  calcSalary(eID);
 
-**Views**
+####  Check if the person is recovered
+-   checkRecovery();
 
-    Rooms
+## Views
 
-**Triggers**
+*   Rooms
 
-    #   Triggers the mysql database to create a new PDF
-    Patient
+## Triggers
 
-    #   Triggers a new record in another table
-    terminateEmployee
+### Patients
 
-**Events**
+### Employee
 
-##  Testing
+### hospitalManagementSystem
 
-**Test Performed in this SQL Project**
+##  Events
 
-    - Manually entered values
+### Patients
 
-***SQL Testing***
+### Employee
 
-The database has been manually tested 
+### hospitalManagementSystem
+
+##  Testing and SQL Data
+
+###  Test Performed in this SQL Project
+
+- Manually entered values
+
+*
+*
+*
 
 ##  Python
 
-**dictionaries.py**
+### dictionaries.py
 
-Created to easly maintain postal codes in the area
+-   Created to easly maintain postal codes in the area
 
-**patientjournal.py**
+###  patientjournal.py
 
-This programming, create a PDF file from values which is in the database
+- This programming, create a PDF file from values which is in the database
 
-**uploadbiodata.py**
+###  uploadbiodata.py
 
-This uploads blob files to the database
+- This uploads blob files to the database
 
-**runPDF.py**
+### runPDF.py
 
 This programming, runs the different methods which is coded
 
 ##  PDF
 
-**sampleJournal.pdf**
+### sampleJournal.pdf
 
 the patient journal, includes information about the given patient,
 what has done during the patient's stay at the Hospital. 
 
-**Invoice.pdf**
+### Invoice.pdf
 
 A simple invoice for the patient, after the patient's stay
 
-**Salary.pdf** 
+### Salary.pdf 
 
 A simple salary for the employee
 
-#  Summuary
+##  Summuary
 
 * In the world of programming, there is always room for cleaning, 
 the common choose were to devide the different methods in classes, 
@@ -327,16 +323,14 @@ The thought were to create a new table, with foreign key, but it wouldnt work,
 as the assumption about foreign keys can not refer to more than one table the b
 etter soloution were to create a view for this matter.
 
-*   Since the database is growing, i have to add new databases to keep the coding as clean as possible, One database for terminate records, 
+*   Since the database is growing, there would be a need for new databases to keep the records as easy to maintain as possible, A database for Archives, patients, and employees
 one database for employees and stuff for the employees, one for the administration, misc, and one for the patients 
 
 ## Responsories
 
-**Database Plugins**
+### Database Plugins
 
-
-
-**Python Libraries** 
+### Python Libraries 
 
 * mariadb, - [MariaDB Community](https://github.com/MariaDB)
 * Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
@@ -344,20 +338,20 @@ one database for employees and stuff for the employees, one for the administrati
 
 ## Credits
 
-**Contact Information**
+### Contact Information
 
-Discord : krigjo25#5588
-messenger : krigjo25
+-   Discord : krigjo25#5588
+-   messenger : krigjo25
 
-Only One advice,
+Author notes<br>
 « Everything is perfect as is. »
 
-**Licence**
+###  Licence
 
 Not licenced.
 
-**Disclamers**
+###  Disclamers
 
 This datebase is as is
 
-**References**
+###  References
