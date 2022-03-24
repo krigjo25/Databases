@@ -1,5 +1,6 @@
-## About the project case
-Create (a) database(es) with full patient details and employee details<br>
+# About the project case
+
+Create (a) database(es) with full patient details and employee details
 
 The patient table will include<br>
 Personal details, work related information and health information
@@ -17,4 +18,4 @@ So by creating a hospital, there has to be different rooms, such as
 The hospital would need some nurses, ward boys for the maintance <br>
 of the hospital and for patient care.
 
-Based sed upon the number of days and treatment bill will be generated.
+Based upon the number of days and treatment bill will be generated.
