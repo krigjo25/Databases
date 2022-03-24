@@ -90,12 +90,12 @@
 
 ## Introduction
 
-**About the Developer**
+### About the Developer
 
 kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
 otherwise, Gym and living life as a human
 
-**Project info**
+### Project info
 
 The idea of HospitalManageSystem is to create a back-end system
 which lets the personell to add and modify the patient journal
@@ -111,10 +111,16 @@ which lets the personell to add and modify the patient journal
     SQL Database:<br> 
         mariaDB
     
-**The Design**
+###  The Design
 
 Infomration about the design can be found in the given links below
 includes the text files below,
+
+*   [The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
+*   [patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Patients.md)
+*   [employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Employee.md)
+*   [HospitalManagementSystem](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/hospitalManagementSystem.md)
+*   [archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/archive.md)
 
 ##  Databases
 
@@ -142,7 +148,7 @@ includes the text files below,
     reports
         reports / notes from the doctor
 
-[HospitalManagement](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagement)
+[HospitalManagementSystem](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagementSystem)
 
     roomBookings..............
         A booking system so the staff has to book a given room
@@ -164,6 +170,8 @@ includes the text files below,
             
     Third floor
         300 - 399
+
+[archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/archive)
 
 ## Procedures
 
