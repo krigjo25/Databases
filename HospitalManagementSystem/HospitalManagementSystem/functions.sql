@@ -1,13 +1,12 @@
-/*
-    Function Name
-        CheckAvailableRoom
-    
-    About this function
 
-        Returns an integer, to show a table of available rooms
-*/
 CREATE OR REPLACE FUNCTIOn checkAvailableRoom (vID SMALLINT) RETURNS TINYINT DETERMINISTIC
     BEGIN
+
+        /************ checkAvailableRoom(vID) ********************'
+            Returns an integer to check wheter the room
+            is available or not
+
+        *****************************************************************/
 
         --  Declare variables
         DECLARE vBookedIn DATE;
@@ -17,6 +16,7 @@ CREATE OR REPLACE FUNCTIOn checkAvailableRoom (vID SMALLINT) RETURNS TINYINT DET
         DECLARE vRoomName VARCHAR(255);
         DECLARE availableRoom TINYINT;
 
+        --  Declare cursor
         DECLARE cur CURSOR FOR 
             SELECT rID, roomName, bookingInn FROM booking WHERE rID = vID;
         DECLARE CONTINUE HANDLER FOR NOT FOUND SET endLoop = 1;

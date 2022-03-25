@@ -12,10 +12,9 @@ CREATE OR REPLACE FUNCTION convertPhone(vPhone VARCHAR(255)) RETURNS VARCHAR(255
         *****************************************************************/--   Calculating bmi
 
         --  Gathering phonenumber
-        DECLARE areaCode TYPE OF patient.phoneNumber;
-        DECLARE lastDigit TYPE OF patient.phoneNumber;
-        DECLARE threeDigit TYPE OF patient.phoneNumber;
-
+        DECLARE areaCode TYPE OF employees.phone;
+        DECLARE lastDigit TYPE OF employees.phone;
+        DECLARE threeDigit TYPE OF employees.phone;
         --  Trimming the Phone Number
         SET areaCode = SUBSTRING(vPhone, 1,3);
         SET lastDigit = SUBSTRING(vPhone, 7,4);
@@ -73,7 +72,7 @@ CREATE OR REPLACE FUNCTION checkRecovery() RETURNS INT NOT DETERMINISTIC
         RETURN vRecovery;
     END x
 
-CREATE OR REPLACE FUNCTION calculateSalary(veStatus TINYINT, vSalary DECIMAL (9.2)) RETURNS DECIMAL(9.2)
+CREATE OR REPLACE FUNCTION calculateSalary(vTitle VARCHAR(255), veStatus TINYINT, vSalary DECIMAL (9.2)) RETURNS DECIMAL(9.2)
     BEGIN
 
         /************ calculateSalary(vSalary) ********************'
@@ -82,10 +81,37 @@ CREATE OR REPLACE FUNCTION calculateSalary(veStatus TINYINT, vSalary DECIMAL (9.
             and returns 1 if the patient has been recovered.
 
         *****************************************************************/
+        
+        --  Declare variables
+        DECLARE endLoop TINYINT;
+        DECLARE msg VARCHAR(255);
+        DECLARE vSalary DECIMAL(9.1);
 
-        SET vSalary = (SELECT hourlySalary FROM salaryInfo WHERE occupation = vTitle);
-        SET vSalary = veStatus * vSalary/100;
+        --  Declare cursor
+        DECLARE cur CURSOR FOR 
+        SELECT occupation, hourlySalary FROM salaryInfo WHERE occupation = vTitle;
+        DECLARE CONTINUE HANDLER FOR NOT FOUND SET endLoop = 1;
 
-        RETURN vSalary;
+        --  Adding values to the declared variables
+        SET endLoop = 0;
+        SET vSalary = 0;
+
+        --  Opening the cur handler
+        OPEN cur;
+            salaryInfoLoop : LOOP
+
+                FETCH cur INTO vTitle, vSalary;
+
+                --  IF the value does not exist, leave the loop
+                IF endLoop = 1 THEN LEAVE salaryInfoLoop;
+                END IF;
+
+            END LOOP;
+
+        IF vTitle IS NOT NULL THEN
+
+            SET vSalary = veStatus * vSalary/100;
+            RETURN vSalary;
+        END IF;
     END x
 /*****************************************************************/

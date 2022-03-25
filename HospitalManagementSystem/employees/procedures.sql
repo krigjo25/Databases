@@ -8,41 +8,59 @@ Employees Procedures,
 
 /***************************************************************/
 
-/********************** Employees Procedures *******************
-
-This procedures below allows the management
-add a new employee into the database
-
-***************************************************************/
-CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, IN vStreet VARCHAR(255), IN vZip MEDIUMINT, IN vEmail VARCHAR(255), IN vPhone VARCHAR(255), IN veStatus TINYINT, IN vTitle VARCHAR(255),  IN vDep VARCHAR(255))
+/********************** Employees Procedures *******************/
+CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, IN vStreet VARCHAR(255), IN vZip MEDIUMINT, IN vEmail VARCHAR(255), IN vPhone VARCHAR(255), IN veStatus TINYINT, IN vTitle VARCHAR(255),  IN vDep VARCHAR(255), OUT msg VARCHAR(255))
     BEGIN
-        -- This procedure creates a new row with the details of an employee 
+
+        /************ newEmployee ********************'
+            Allows the management to insert add a new employee,
+            record into the databse.
+
+        *****************************************************************/
 
         --  Declare variables
-        DECLARE vSalary DECIMAL(9,2);
+        DECLARE Error INT;
         DECLARE vCounter INT;
+        DECLARE tilt VARCHAR(255);
+        DECLARE vSalary DECIMAL(9,2);
+
+        --  Selecting value into the variable tilt
+
+        SELECT occupation INTO tilt FROM salaryInfo WHERE occupation = vTitle;
+
+        -- Checking if the occupation exists, if not, produce an error
+        IF tilt IS NULL THEN
+            
+            SET Error = 404;
+            SET msg = CONCAT(' Title, ', vTitle, ' WERE NOT FOUND IN the Database');
+            SELECT Error, msg AS 'ERROR message';
+
+        ELSE
 
         --  Calling a function to calculate the salary and convert the Phone number
-        SET vPhone = convertPhone(vPhone);
-        SET vSalary = calculateSalary(veStatus, vSalary);
+            SET vPhone = convertPhone(vPhone);
+            SET vSalary = calculateSalary(vTitle, veStatus, vSalary);
 
-        --  Inserting the records into the table
-        INSERT INTO employees (eName, birthDate, street, zipCode, email, phone, eStatus, occupation, hSalary, department) VALUES
-        (eName, vDate, vStreet, vZip, vEmail, vPhone, veStatus, vTitle, vSalary, vDep);
+            --  Inserting the records into the table
+            INSERT INTO employees (eName, birthDate, street, zipCode, email, phone, eStatus, occupation, hSalary, department) VALUES
+            (eName, vDate, vStreet, vZip, vEmail, vPhone, veStatus, vTitle, vSalary, vDep);
+        END IF;
     END x
 
 /**************************************************************/
 
-/***************************************************************
-
-The procedure below allow the management
-to modify information about the employee,
-But it doesnt allow date but we assume 
-the date is correct in this case
-
-****************************************************************/
 CREATE OR REPLACE PROCEDURE modifyEmployee (IN vColumn VARCHAR(20), IN vValue VARCHAR(255), IN veID BIGINT)
     BEGIN
+
+        /************ calculateSalary(vSalary) ********************'
+
+            The procedure below allow the management
+            to modify information about the employee,
+            But it doesnt allow date but we assume 
+            the date is correct in this case
+
+        *******************************************************/
+
         --  The procedure updates, the values for employees, execpt date
         SET @Query = CONCAT('UPDATE employees SET ', vColumn, ' = ', vValue, ' WHERE eID = ', veID);
             PREPARE stmt FROM @Query;
@@ -52,13 +70,15 @@ CREATE OR REPLACE PROCEDURE modifyEmployee (IN vColumn VARCHAR(20), IN vValue VA
     END x
 /***************************************************************/
 
-/*********************** relation Procedures ******************************
 
-This procedure assign a doctor to a patient
-
-***********************************************************************/
 CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT, OUT vError VARCHAR(255))
     BEGIN
+
+            /************ newRelations ********************'
+
+                Assigns a doctor to a patient.
+
+            *****************************************************************/
 
         -- Declareing new variables
         DECLARE vCount TINYINT;
@@ -108,6 +128,13 @@ CREATE OR REPLACE PROCEDURE modifyRelation(IN veID BIGINT, IN vpID BIGINT, OUT v
 /*********************** Turnus Procedures *************************/
 CREATE OR REPLACE PROCEDURE newSalary (IN vName VARCHAR(255), IN ySalary DECIMAL(8.2))
     BEGIN
+
+        /************ calculateSalary(vSalary) ********************'
+
+            Inserting a new record for occupation, and salary
+            information for the occupation.
+
+        *****************************************************************/
 
         --  Declare variables
         DECLARE mSalary DECIMAL(7.2);

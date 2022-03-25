@@ -15,10 +15,15 @@ diagnosis Procedures,
 /****************************************************************
 Procedures of Diagnosis, alergies, rooms and Medecine
 ****************************************************************/
-
 /*********************** Booking Procedures ************************/
-CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN rID SMALLINT, IN vID INT, IN vTime TINYINT, OUT msg VARCHAR(255))
+CREATE OR REPLACE PROCEDURE roomBooking (IN vpID BIGINT, IN rID SMALLINT, IN vID INT, IN vTime TINYINT, OUT msg VARCHAR(255))
     BEGIN
+
+        /************ bookRoom ********************'
+            Booking a room or a operation procedure,
+            record into the databse.
+
+        *****************************************************************/
 
         --  Declare variables'
         DECLARE rName TYPE OF rooms.roomName;
@@ -60,7 +65,7 @@ CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN rID SMALLINT, IN vID IN
         SET @available = checkAvailableRoom(rID);
 
          --  Selecting values into variables
-        SELECT roomName INTO vRname FROM rooms WHERE roomID = rID;
+        SELECT roomName INTO rName FROM rooms WHERE roomID = rID;
          CASE
             WHEN @available = 0 THEN
                 --  Inserting values into the table
@@ -80,6 +85,12 @@ CREATE OR REPLACE PROCEDURE bookRoom (IN vpID BIGINT, IN rID SMALLINT, IN vID IN
 CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
     BEGIN
 
+
+        /************ delbook********************'
+            Deletes a booked room from the table
+
+        *****************************************************************/
+
     --  Delete a row from the database
     UPDATE booking SET cmt = 'CLD' WHERE pID = vpID;
     UPDATE 
@@ -88,8 +99,14 @@ CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
 CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(255))
     BEGIN
 
+
+        /************ newEmployee ********************
+            Checking wheter a room is available or not
+
+        ***********************************************/
+
         --  Declare varibales
-        DECLARE vRname VARCHAR(255);
+        DECLARE rName VARCHAR(255);
 
         --  Creating a Temporary table
         CREATE OR REPLACE TEMPORARY TABLE availableRooms (
@@ -103,16 +120,16 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
          SET @available = checkAvailableRoom(vID);
 
          --  Selecting values into variables
-        SELECT roomName INTO vRname FROM rooms WHERE roomID = vID;
+        SELECT roomName INTO rName FROM rooms WHERE roomID = vID;
          CASE
             WHEN @available = 0 THEN
                 INSERT INTO availableRooms (roomID, roomName, sStatus)
-                    VALUES (vID, vRname, 'Available');
+                    VALUES (vID, rName, 'Available');
 
             WHEN @available = 1 THEN
 
                 INSERT INTO availableRooms (roomID, roomName, sStatus)
-                    VALUES (vID, vRname, 'Un Available');
+                    VALUES (vID, rName, 'Un Available');
 
             END CASE;
 
@@ -124,10 +141,16 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
     END x
 /*******************************************************************/
 
-DELIMITER x
 /************************ Alergies Procedures **************************/
 CREATE OR REPLACE PROCEDURE insertA (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
     BEGIN
+
+
+        /************ newEmployee ********************'
+            Inserting a record into alergies table
+
+        *****************************************************************/
+
         -- Inserting values into list of Alergies
         INSERT INTO alergies (alergyID, aName, symptoms, medecineID)
         VALUES (vID, vName, vSymptoms, mID);
@@ -138,6 +161,13 @@ DELIMITER x
 /************************ Diagnosis Procedures **************************/
 CREATE OR REPLACE PROCEDURE insertD (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
     BEGIN
+
+
+        /************ newEmployee ********************'
+            Inserting a record into Diagnosis table
+
+        **********************************************/
+
         -- Inserting values into list of Diagnosis
         INSERT INTO diagnosis (diagnosisID, diagnosisName, symptoms, medicineID)
         VALUES (vID, vName, vSymptoms, mID);
@@ -147,6 +177,13 @@ DELIMITER x
 /************************ Medecines Procedures **************************/
 CREATE OR REPLACE PROCEDURE insertM (mID CHAR(5), vName VARCHAR(255), vIllness VARCHAR(255))
     BEGIN
+
+
+        /************ insertM ********************
+            Inserting a record into the available medecine table
+
+        *******************************************************/
+
         -- Inserting values into list of Medicine
         INSERT INTO availableMedecines (mID, medecineName, illness) 
         VALUES (mID, vName, vIllness);
@@ -157,6 +194,12 @@ CREATE OR REPLACE PROCEDURE insertM (mID CHAR(5), vName VARCHAR(255), vIllness V
 /*********************** Room Procedures ******************************/
 CREATE OR REPLACE PROCEDURE firstFloor ( IN vName VARCHAR(255))
     BEGIN
+
+        /************ firstfloor ********************'
+            Inserting a record into the firstfloor table.
+
+        ************************************************/
+
         -- Inserting values into list of Medicine
         INSERT INTO firstFloor (roomName)
         VALUES (vName);
@@ -165,6 +208,12 @@ CREATE OR REPLACE PROCEDURE firstFloor ( IN vName VARCHAR(255))
 
 CREATE OR REPLACE PROCEDURE secondFloor ( IN vName VARCHAR(255))
     BEGIN
+
+        /************ secondfloor ********************'
+            Inserting a record into the secondfloor table.
+
+        ************************************************/
+
         -- Inserting values into list of Medicine
         INSERT INTO secondFloor (roomName)
         VALUES (vName);
@@ -172,6 +221,12 @@ CREATE OR REPLACE PROCEDURE secondFloor ( IN vName VARCHAR(255))
 
 CREATE OR REPLACE PROCEDURE thirdFloor ( IN vName VARCHAR(255))
     BEGIN
+
+        /*********** thirdFloor ********************'
+            Inserting a record into the thirdfloor table.
+
+        ************************************************/
+
         -- Inserting values into list of Medicine
         INSERT INTO thirdFloor (roomName)
         VALUES (vName);
@@ -183,6 +238,11 @@ CREATE OR REPLACE PROCEDURE thirdFloor ( IN vName VARCHAR(255))
 CREATE OR REPLACE PROCEDURE operationProcedure ( IN vName VARCHAR(255), IN vRate DECIMAL(8.2), IN vTime TIME)
     BEGIN
 
+        /************  operationProcedure ********************'
+            Inserting a record into the operationProcedure table.
+
+        ************************************************/
+
         --  Inserting values into list of Medicine
         INSERT INTO operationProcedures (procedureName, procedurePrice, procedureTime)
         VALUES (vName, vRate, vTime);
@@ -192,12 +252,23 @@ CREATE OR REPLACE PROCEDURE operationProcedure ( IN vName VARCHAR(255), IN vRate
 CREATE OR REPLACE PROCEDURE modifyProcedures (IN vID INT, vRate DECIMAL(4.2))
     BEGIN
 
+        /************ modifyProcedures ********************'
+            modifying the price of a procedure.
+
+        ************************************************/
+
         --  Updating a procedure
         UPDATE operationProcedures SET procedurePrice = vRate WHERE id = vID;
     END x
 
 CREATE OR REPLACE PROCEDURE delProcedure ( IN vID INT)
     BEGIN
+
+        /************ firstfloor ********************'
+            Deletes a record from the operation procedure table
+
+        ************************************************/
+
         -- Deleting a row in the operationProcedures table
         DELETE FROM operationProcedures WHERE id = vID;
 
