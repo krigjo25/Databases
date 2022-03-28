@@ -6,34 +6,10 @@ from dotenv import load_dotenv
 #   Library responsories
 from lib.patientJournal import PDFCanvas
 from lib.uploadbiodata import UploadFile
-
+from lib.mariadbConnector import sFR
 load_dotenv()
 
 def PDFSetup():
-
-    #   Initializing the Database Connection
-    conn = mariadb.connect(
-                                host=getenv('HOST'),
-                                user= getenv('USERNAME'),
-                                port= int(getenv('PORT')),
-                                password = getenv('PASSWORD'),
-                                database = 'patients'
-            )
-
-    cur = conn.cursor()
-
-        #   Selecting and procsessing from the database
-    query = f' SELECT pID FROM patient;'
-    execute = cur.execute(query)
-    cur = cur.fetchone()
-    
-    pid = []
-    for i in cur:
-        i = str(i)
-        pid.append(i)
-
-    #   Closing the connection
-    conn.close()    
 
     #   Clasees initialization        print(data)
     c = PDFCanvas()
@@ -50,7 +26,7 @@ def PDFSetup():
     c.BodyFooter()
     c.showPage()
     c.save()
-    u.generatePDF('patientJournal', '/home/kriss/Documents/Coding/Database/patientJournal.pdf', f'{pid[0]}')
+    #u.generatePDF('patientJournal', '/home/kriss/Documents/Coding/Database/patientJournal.pdf')#, f'{pid[0]}')
     
 
 if __name__ == '__main__':

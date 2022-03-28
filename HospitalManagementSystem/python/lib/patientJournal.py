@@ -17,9 +17,9 @@ import mariadb
 from dotenv import load_dotenv
 
 #   Library Responsories
-
 from lib.dictionaries import Dictionaries
-
+from lib.mariadbConnector import sFR, iAR
+#from lib.miscFunctions import ageCalculator
 #   ReportLab Resposories
 from reportlab.lib.colors import blue
 from reportlab.lib.pagesizes import A4, letter
@@ -34,146 +34,104 @@ class PDFCanvas (Canvas):
 
         self.height, self.width = letter
 
-        #   Database Connections
-        self.hms = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('HMS'))
-        self.pat = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('PAT'))
-        self.emp = mariadb.connect( host=getenv('HOST'), user= getenv('USERNAME'), port= int(getenv('PORT')),password = getenv('PASSWORD'), database = getenv('EMP'))
-        self.hmsCur = self.hms.cursor()
-        self.patCur = self.pat.cursor()
-        self.empCur = self.emp.cursor()
-    
     def BodyHeader(self):
 
-        #   Initializing the SQL Statement, procsessing it, and fetch the statement and close the
-        #   Personal info about the given patient
-
-        query = 'SELECT * FROM patient WHERE pID = {};'
-        cur = self.patCur.execute(query)
-        data = self.patCur.fetchall()
-        self.conn.close()
+        # initializing the mariadb statements
+        pID = 10000;
+        query = 'SELECT * FROM patient WHERE patientID = 10000;'
+        pat = getenv('PAT')
         
-        #   Initializing a list for the SQL values
+        sqlData = sFR(pat, query)
 
-        patientData = []
+        #   General Information about the patient
+        pid = sqlData[0][0]
+        dateofBirth = sqlData[0][2]
+        age = sqlData[0][2]
+        ssn = sqlData[0][3]
+        sex = sqlData[0][4]
+        name = sqlData[0][1]
+        phone = sqlData[0][5]
+        email = sqlData[0][6]
+        adrs = sqlData[0][7]
+        zipNum = sqlData[0][8]
+        zipCode = Dictionaries.postalCode(zipNum)
 
-        for i in data:
-            patientData.append(i)
+        #   Health Information about the patient
+        bType = sqlData[0][9]
 
-        # Declaring variables fetched from Database
-        pid = patientData[0][0]
-        age = patientData[0][2]
-        sex = patientData[0][3]
-        pName = patientData[0][1]
-        phone = patientData[0][4]
-        email = patientData[0][5]
-        adrs = patientData[0][6]
-        zipNum = patientData[0][7]
-        zipCode = Dictionaries.postalCode(patientData[0][7])
-        
-        bType = patientData[0][8]
-        alC = patientData[0][9]#[0]
-        doC = patientData[0][10]#[0]
+        #   Alergy, diseases, medecines 
+        #doC = [0][10]
+        mID = 'NNNNM'
+        alC = sqlData[0][9]#[0]
 
-        #   Title of the document
-        docTitle = f'Patient Journal of {pName} {pid}'
-
+        #   PDF Document
         self.setFont('Helvetica-BoldOblique', 20)
-        self.drawString(200, 800, docTitle)
+        self.drawString(200, 800, f'Patient Journal of {name} {pid}')
 
         #   Main information
         #   Front end information we get from the user
 
-        
+        #   Titles        
         self.setFont('Helvetica', 18)
         self.drawString( 50, 700, 'Age')
-        self.drawString( 100, 700, 'Sex')
-        self.drawString(150, 700, 'BloodType')
+        self.drawString( 200, 700, 'Sex')
+        self.drawString(300, 700, 'Social Security Number')
 
         self.setFont('Helvetica', 16)
-        self.drawString( 58, 675, f'{age}')
-        self.drawString( 108, 675, f'{sex}')
-        self.drawString(158, 675, f'{bType}')
+        self.drawString( 20, 675, f'{age}')
+        self.drawString( 210, 675, f'{sex}')
+        self.drawString(350, 675, f'{ssn}')
 
         #   ContactInformation
         self.setFont('Helvetica', 18)
-        self.drawString( 50, 600, 'Contact Information')
+        self.drawString( 50, 625, 'Contact Information')
 
         self.setFont('Helvetica', 16)
-        self.drawString( 50, 550, f'{phone},')
-        self.drawString( 50, 525, f'{email}')
-        self.drawString( 50, 475, f'{adrs}')
-        self.drawString( 60, 450, f'{zipNum}, {zipCode}')
+        self.drawString( 50, 575, f'{phone},')
+        self.drawString( 50, 550, f'{email}')
+        self.drawString( 50, 525, f'{adrs}')
+        self.drawString( 60, 500, f'{zipNum}, {zipCode}')
 
                 #   illnesses
 
         self.setFont('Helvetica', 18)
-        self.drawString( 300, 700, 'Diagnosis')
+        self.drawString( 350, 625, 'Alergies and diagnosis')
+        self.drawString( 300, 575, 'Diagnosis & medical Treatment')
 
         self.setFont('Helvetica', 16)
-        self.drawString( 300, 650, f'{doC},')
-        self.drawString( 300, 625, f'{doC}')
-        self.drawString( 300, 600, f'{doC}')
-        self.drawString( 300, 575, f'{doC}')
-
-        self.drawString( 400, 700, 'Recommended Treatment')
-
-        self.setFont('Helvetica', 16)
-        self.drawString( 425, 650, f'{doC},')
-        if doC == True:
-            self.drawString( 425, 625, f'{doC}')
-        
-        if doC == True:   
-            self.drawString( 425, 600, f'{doC}')
-
-        if doC == True:
-            self.drawString( 425, 575, f'{doC}')
+        #self.drawString( 300, 550, f'{doC},')
+        #self.drawString( 300, 525, f'{doC}')
+        #self.drawString( 300, 500, f'{doC}')
+        #self.drawString( 300, 575, f'{doC}')
 
         self.setFont('Helvetica', 18)
-        self.drawString( 300, 525, 'Alergies')
+        self.drawString( 300, 525, 'Alergies & Treatments')
 
         self.setFont('Helvetica', 16)
-        self.drawString( 300, 500, f'{alC},')
-
-        if alC == True:
-            self.drawString( 300, 475, f'{alC}')
-
-        if alC == True:
-            self.drawString( 300, 450, f'{alC}')
-
-        if alC == True:
-            self.drawString( 300, 425, f'{alC}')
-        
-        self.setFont('Helvetica', 18)
-        self.drawString( 400, 525, 'Recommended Treatment')
-
-        self.setFont('Helvetica', 16)
-        self.drawString( 425, 500, f'{alC},')
- 
-        if alC == True:
-            self.drawString( 425, 475, f'{alC}')
-
-        if alC == True:
-            self.drawString( 425, 450, f'{alC}')
-
-        if alC == True:
-            self.drawString( 425, 425, f'{alC}')
+        self.drawString( 300, 500, f'{aID}, {mID}')
 
        #   Lines
         self.setFont ('Helvetica', 30)
         self.line(0,400,890,400)
-        self.drawString( 0, 400, f'{arterise}')
+        #self.drawString( 0, 400, f'{arterise}')
 
         return
 
 
     def BodyMain(self):
-
-        date = '01.01-94'
-        pName = 'Jhon Doe'  
+        pid = 10000
+        query = 'SELECT patientName, dateIn, dateOut FROM patient WHERE patientID = 10000;'
+        pat = getenv('PAT')
+        
+        sqlData = sFR(pat, query)
+        inn = sqlData[0][1]
+        out = sqlData[0][2]
+        name = sqlData[0][0]  
         roomName = 'Ward - Recovery'
         roomID = 225
         reason = 'Demo reason' 
-        doctor = 'Jhon Doe'
+        doctor = 'Jhon Doe'#f'SELECT employeeName FROM relations WHERE patientID = {int(pID)}' 
+        patientInfo = ''
 
         #   255 CHARACTERS
         doc =       'amet aliquam id diam maecenas ultricies mi eget mauris pharetra'
@@ -183,16 +141,16 @@ class PDFCanvas (Canvas):
 
         #   Document Font
         self.setFont('Helvetica', 20)
-        self.drawString(150, 350, f'During {patientInfo}\'s at HospitalName')
+        self.drawString(150, 350, f'During {name}\'s at Saint Mary\'s')
 
         #   Document Text
         self.setFont('Helvetica', 16)
-        self.drawString(50, 300, f'{pName}\'s last visit')
-        self.drawString(50,275, f'{date}')
+        self.drawString(50, 300, f'{name}\'s last visit')
+        self.drawString(50,275, f'{inn}')
         self.drawString(250,300, 'During your last stay at HospitalName')
         self.drawString(250, 275, f'You were visiting {roomName}, {roomID}')
         self.drawString(250, 250, f'Due to {reason}')
-        self.drawString(250, 225, f'Between {date} - {date}')
+        self.drawString(250, 225, f'Between {inn} - {out}')
         self.drawString(50, 175, f'Doctor {doctor}\'s notes')
         self.drawString(50, 150, f'{doc}')
         self.drawString(50, 125, f'{doc1}')

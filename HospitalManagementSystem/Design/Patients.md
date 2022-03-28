@@ -53,61 +53,6 @@ database. Create a PDF containing the personal info, alergies, diagnosis<br>
 
 
         
-        ***************************************************
-        Patient Journal of **Jhon Doe 1000** (fontsize 20, Fontfamily ARIAL titles bold)
-
-        General information
-
-        Social Security Number      Sex     BloodType   List of Current Diseases**
-           ddmm00000             M         O+                 A000A
-
-        Contact Information
-
-            mobile          Street          State   ZipCode
-        123-123-123        
-
-        Work Information
-
-            Company             Industry
-            Unemployed         Unemployed
-        
-        Health information
-
-        bodyWeight      BodyHeight      BodyMass
-
-        
-        bloodType       Diseases        Alergies
-        
-        Current Medecine        Date IN    dateOut
-        
-        -----------------------------------------------------------------------------
-
-        ******************* Hospital Visits**************************
-        Last Visit : dd.mm.yy
-
-        During your last stay at Ålesund Hospital
-        The patient were visiting 
-
-        (roomID)(roomName), 
-        due to {reason}. between inDate + hh.mm and outdate + hh.mm
-
-        Doctor DoctorName's notes 
-        (
-
-        )
-
-        max 200 letters
-
-        --------------------------------------------------------------------------------------------------
-
-        (IF he were visiting more than one room)
-
-        patient were also visiting (roomName)(roomID), between inDate + hh.mm and outdate + hh.mm
-
-        ------------------------------------------------------------------------------
-        Hospital logo, name, number, address, postalcode
-
------------------------------------------------------------------------------------------------------------------------------------
 
 # Billing system
 
@@ -141,32 +86,6 @@ else trigger a record  into paidBillings table
 
 *   When the first overdue has passed on the invoice, trigger a new overdue, add a fine.
 *   When the patient has been recovered trigger a pdf creation 
-
-## Invoice
-
-    FirmName
-    Address                                 logo
-    city, postalcode
-
-    To                                     invoice info
-    Jhon Doe                               invoice (id)
-    address                                invoice sent (through)
-    city, postalcode                       Due date
-
-    -----------------------------------------------------
-    Sourgy | Room Name | Date visited |(hours + min)| $      |
-    -----------------------------------------------------
-    x     Room Name    dd.mm-yy        1.5        000000,00
-
-    -----------------------------------------------------
-                            tax rate       =        25%  -> Amount
-                    insurance discount      =        100%
-                                total       =      $ 30.25
-    -----------------------------------------------------
-
-    (invoice text)
-
-------------------------------------------------------------------------------------------
 
 # Donators
 

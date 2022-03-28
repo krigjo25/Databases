@@ -4,20 +4,22 @@ This file contains the triggers which is used in the project
 
 ***************************************************************/
 
-/*************************** TriggerPDF **********************
-
-This trigger, will trigger a new creation of a pdf file, when
-a new patient is added to the database.
-x
-***********************************************************/
 DELIMITER x
 CREATE OR REPLACE TRIGGER triggerPDF AFTER INSERT ON patient
     FOR EACH ROW
     BEGIN
 
+        /************ salaryChanges ********************'
+            Triggers a new creation of a pdf file, when
+            a new patient is added to the database
+
+        ************************************************/
+
+        --  Declare variables
         DECLARE cmd VARCHAR(255);
         DECLARE result int(10);
 
+        --  Set a value to cmd
         SET cmd = CONCAT('python /home/createPDF.py');
 
         SET result = sys_exec(cmd);
@@ -36,9 +38,13 @@ x
 CREATE OR REPLACE TRIGGER terminateBilling BEFORE DELETE ON billing
     FOR EACH ROW BEGIN
 
-        --  Creating a database and a table if it does not exists
-        CREATE DATABASE IF NOT EXISTS archive;
-        CREATE TABLE IF NOT EXISTS billingArchive ( patientName, invoiceID, discount, incTax, pStatus);
+        /************ salaryChanges ********************'
+            
+            In order to keep records as fresh and clean
+            as possible, we want to trigger a new record
+            into archive, credited (x)
+
+        ************************************************/
 
         --  Declaring variables
         DECLARE vStatus TYPE OF patients.billing;
@@ -65,23 +71,4 @@ CREATE OR REPLACE TRIGGER terminateBilling BEFORE DELETE ON billing
     END x
 /*******************************Patient**************************/
 
-/*************************** Employees **********************
-
-The Trigger add the employee to another table,
-to keep the records clean, and still save the employee
-Archives and termination are keept in new Databases
-x
-*************************************************************/
-CREATE OR REPLACE TRIGGER terminateEmployee BEFORE DELETE ON employees
-    FOR EACH ROW BEGIN
-
-        --  Creating a database and a table if it does not exists
-        CREATE DATABASE IF NOT EXISTS archive;
-        CREATE TABLE IF NOT EXISTS terminatedEmployees (eID, eName, birthDate, street, provice, zipCode, email, phone, mobile, eStatus, occupation, department);
-
-        --  Assigning old values into the new table
-        INSERT INTO terminatedEmployees ( eID, eName, birthDate, street, provice, zipCode, email, phone, mobile, eStatus, occupation, department)
-        VALUES
-        (OLD.eID, OLD.eName, OLD.birthDate, OLD.street, OLD.provice, OLD.zipCode, OLD.email, OLD.phone, OLD.mobile, OLD.eStatus, OLD.occupation, OLD.department);
-    END x
 /*********************************************************/

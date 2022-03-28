@@ -178,7 +178,6 @@ DELIMITER x
 CREATE OR REPLACE PROCEDURE insertM (mID CHAR(5), vName VARCHAR(255), vIllness VARCHAR(255))
     BEGIN
 
-
         /************ insertM ********************
             Inserting a record into the available medecine table
 
@@ -264,7 +263,7 @@ CREATE OR REPLACE PROCEDURE modifyProcedures (IN vID INT, vRate DECIMAL(4.2))
 CREATE OR REPLACE PROCEDURE delProcedure ( IN vID INT)
     BEGIN
 
-        /************ firstfloor ********************'
+        /************ delProcedure ********************'
             Deletes a record from the operation procedure table
 
         ************************************************/
