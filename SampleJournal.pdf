@@ -43,7 +43,7 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 2461
+/Length 2277
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -66,29 +66,23 @@ BT 1 0 0 1 50 525 Tm (76901) Tj T* ET
 BT 1 0 0 1 60 500 Tm (108, None) Tj T* ET
 BT /F1 18 Tf 21.6 TL ET
 BT 1 0 0 1 350 625 Tm (Alergies and diagnosis) Tj T* ET
-BT 1 0 0 1 300 600 Tm (Diagnosis) Tj T* ET
-BT /F1 16 Tf 19.2 TL ET
-BT 1 0 0 1 400 600 Tm (Recommended Treatment) Tj T* ET
+BT 1 0 0 1 300 575 Tm (Diagnosis & medical Treatment) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
 BT /F1 18 Tf 21.6 TL ET
-BT 1 0 0 1 300 525 Tm (Alergies) Tj T* ET
+BT 1 0 0 1 300 525 Tm (Alergies & Treatments) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
-BT 1 0 0 1 300 500 Tm (185,) Tj T* ET
-BT /F1 18 Tf 21.6 TL ET
-BT 1 0 0 1 400 525 Tm (Recommended Treatment) Tj T* ET
-BT /F1 16 Tf 19.2 TL ET
-BT 1 0 0 1 425 500 Tm (185,) Tj T* ET
+BT 1 0 0 1 300 500 Tm (185, NNNNM) Tj T* ET
 BT /F1 30 Tf 36 TL ET
 n 0 400 m 890 400 l S
 BT /F1 20 Tf 24 TL ET
-BT 1 0 0 1 150 350 Tm (During Rober L. Cooper's at Saint Mary's) Tj T* ET
+BT 1 0 0 1 150 350 Tm (During 2022-03-23 20:31:21's at Saint Mary's) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
-BT 1 0 0 1 50 300 Tm (Rober L. Cooper's last visit) Tj T* ET
-BT 1 0 0 1 50 275 Tm (2022-03-23 20:31:21) Tj T* ET
+BT 1 0 0 1 50 300 Tm (2022-03-23 20:31:21's last visit) Tj T* ET
+BT 1 0 0 1 50 275 Tm (None) Tj T* ET
 BT 1 0 0 1 250 300 Tm (During your last stay at HospitalName) Tj T* ET
 BT 1 0 0 1 250 275 Tm (You were visiting Ward - Recovery, 225) Tj T* ET
 BT 1 0 0 1 250 250 Tm (Due to Demo reason) Tj T* ET
-BT 1 0 0 1 250 225 Tm (Between 2022-03-23 20:31:21 - None) Tj T* ET
+BT 1 0 0 1 250 225 Tm (Between None - Rober L. Cooper) Tj T* ET
 BT 1 0 0 1 50 175 Tm (Doctor Jhon Doe's notes) Tj T* ET
 BT 1 0 0 1 50 150 Tm (amet aliquam id diam maecenas ultricies mi eget mauris pharetra) Tj T* ET
 BT 1 0 0 1 50 125 Tm (et ultrices neque ornare aenean euismod elementum nisi quis el-) Tj T* ET
@@ -97,8 +91,8 @@ BT 1 0 0 1 50 75 Tm (tis rhoncus urna neque viverra justo nec ultrices du sa) Tj
 n 0 20 m 890 20 l S
 BT /F1 10 Tf 12 TL ET
 BT 1 0 0 1 50 7 Tm (Logo) Tj T* ET
-BT 1 0 0 1 150 7 Tm (HospitalName) Tj T* ET
-BT 1 0 0 1 250 7 Tm (HospitalNumber) Tj T* ET
+BT 1 0 0 1 150 7 Tm (Saint Mary) Tj T* ET
+BT 1 0 0 1 250 7 Tm (\(474\)- 234 - 123 -1234) Tj T* ET
 BT 1 0 0 1 350 7 Tm (HospitalAddress) Tj T* ET
 BT 1 0 0 1 450 7 Tm (ZipCode, City) Tj T* ET
 n 0 3 m 890 3 l S
@@ -127,5 +121,5 @@ trailer
 /Size 9
 >>
 startxref
-3478
+3294
 %%EOF
