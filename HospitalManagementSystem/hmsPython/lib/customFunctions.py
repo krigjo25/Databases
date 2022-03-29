@@ -1,5 +1,6 @@
 #   Python responsories
 import mariadb
+
 from os import getenv
 from datetime import date
 
@@ -8,22 +9,39 @@ from dotenv import load_dotenv
 load_dotenv()
 
 #   yagMail Responsories
-import yagmail
+#import yagmail
 
-class Calculators ():
-    '''         Calculators
-
-    '''
+class Calculators():
+    '''         Calculators     '''
 
     def __init__(self):
         pass
 
-    def calculateAge(birthDate):
+    def CalculateAge(birthDate):
+
+        '''         calculateAge     
+        
+            Calculates age based on years
+
+        '''
         today = date.today()
         age = today.year - birthDate.year ()
-        return
 
-    from os import getenv
+        return age
+
+    def Calculatebmi(height, weight):
+
+        '''         calculatebmi
+        
+            Calculates bmi based on
+            (height x height) / weight 
+
+        '''
+
+        height = height * height / 100;
+        bmi = height / weight
+
+        return bmi
 
 
 class DatabaseConnection():
@@ -63,8 +81,10 @@ class DatabaseConnection():
 
     def sFR (self, database, query):
 
+        database = str(database)
+        print(database)
         #   Database selection
-        self.conn.database = str(database)
+        self.conn.database = database
 
         #  Execute the query.
         self.cur.execute(query)

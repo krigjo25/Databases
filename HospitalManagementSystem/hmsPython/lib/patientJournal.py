@@ -17,8 +17,8 @@ import mariadb
 from dotenv import load_dotenv
 
 #   Library Responsories
-from lib.customFunctions import Dictionaries, DatabaseConnection
-from lib.customFunctions.Calculators import calculateAge
+from lib.customFunctions import Dictionaries, DatabaseConnection, Calculators
+
 #   ReportLab Resposories
 from reportlab.lib.colors import blue
 from reportlab.lib.pagesizes import A4, letter
@@ -38,35 +38,34 @@ class PDFCanvas (Canvas):
         #   Initializing classes
         kalc = Calculators()
         dc = DatabaseConnection()
-
+        kalc = Calculators()
         #   initializing the mariadb connection
         
-        vID = str(vID)
+        vID = str(getenv('vID'))
         database = getenv('database2')
-        query = f'SELECT * FROM patients WHERE patientID = {vID}'
+        query = f'SELECT * FROM patient WHERE patientID = {vID}'
 
         sqlData = dc.sFR(database, query)
 
         #   General Information about the patient
         pid = sqlData[0][0]
-        dateofBirth = sqlData[0][2]
-        age = calculateAge(dateofBirth)
+        age = sqlData[0][2]
+        #age = kalc.calculateAge(dateofBirth)
         ssn = sqlData[0][3]
         sex = sqlData[0][4]
         name = sqlData[0][1]
         phone = sqlData[0][5]
-        email = sqlData[0][6]
-        adrs = sqlData[0][7]
-        zipNum = sqlData[0][8]
-        zipCode = Dictionaries.postalCode(zipNum)
+        adrs = sqlData[0][6]
+        zipCode = sqlData[0][7]
+        area = Dictionaries.AmericanPostalCodes(zipCode)
 
         
         #   Health Information about the patient
         bType = sqlData[0][9]
 
         #   Alergy, diseases, medecines 
-        dID = sqlData[0][10]
-        aID = sqlData[0][9]#[0]
+        dID = sqlData[0][13]
+        aID = sqlData[0][12]#[0]
 
         query = 'SELECT mID FROM alergies WHERE alergyID = {aID}'
         mID = 'NNNNM'#dc.sFR(getenv('database4'), query)
@@ -83,44 +82,37 @@ class PDFCanvas (Canvas):
 
         #   Titles        
         self.setFont('Helvetica', 18)
-        self.drawString( 50, 700, 'Age')
+        self.drawString(50, 750, 'Health Information')
+        self.drawString( 50, 625, 'Contact Information')
+        self.drawString( 350, 625, 'Alergies and diagnosis')
+        '''
+        self.setFont('Helvetica', 16)
+        self.drawString( 50, 700, 'birth of date')
         self.drawString( 200, 700, 'Sex')
         self.drawString(300, 700, 'Social Security Number')
 
-        self.setFont('Helvetica', 16)
+        self.setFont('Helvetica', 14)
         self.drawString( 20, 675, f'{age}')
         self.drawString( 210, 675, f'{sex}')
         self.drawString(350, 675, f'{ssn}')
 
         #   ContactInformation
-        self.setFont('Helvetica', 18)
-        self.drawString( 50, 625, 'Contact Information')
-
-        self.setFont('Helvetica', 16)
+        self.setFont('Helvetica', 14)
         self.drawString( 50, 575, f'{phone},')
-        self.drawString( 50, 550, f'{email}')
-        self.drawString( 50, 525, f'{adrs}')
-        self.drawString( 60, 500, f'{zipNum}, {zipCode}')
+        self.drawString( 50, 550, f'{adrs},')
+        self.drawString( 60, 525, f'{zipCode},{area}')
 
                 #   illnesses
-
-        self.setFont('Helvetica', 18)
-        self.drawString( 350, 625, 'Alergies and diagnosis')
-        self.drawString( 300, 575, 'Diagnosis & medical Treatment')
-
         self.setFont('Helvetica', 16)
-        #self.drawString( 300, 550, f'{doC}, {mid}')
-        #self.drawString( 300, 525, f'{doC}, {mid}')
-        #self.drawString( 300, 500, f'{doC}, {mid}')
-        #self.drawString( 300, 575, f'{doC}, ')
-
-        self.setFont('Helvetica', 18)
+        self.drawString( 300, 575, 'Diagnosis & medical Treatment')
         self.drawString( 300, 525, 'Alergies & Treatments')
 
-        self.setFont('Helvetica', 16)
-        self.drawString( 300, 500, f'{aID}, {mID}')
-
-       #   Lines
+        self.setFont('Helvetica', 14)
+        '#''Create a list and roll through it''#'
+        #self.drawString( 300, 550, f'{doC}, {mid}')
+        self.drawString( 325, 500, f'{aID}, {mID}')
+        '''
+        #   Page End Lines
         self.setFont ('Helvetica', 30)
         self.line(0,400,890,400)
         #self.drawString( 0, 400, f'{arterise}')
@@ -129,16 +121,19 @@ class PDFCanvas (Canvas):
 
 
     def BodyMain(self):
-
-        #  retrieveing the sql Data
+        
+        #   Class inztalation
         dc = DatabaseConnection()
-        query = 'SELECT * FROM bookings WHERE patientID=0' # query = ' SELECT * FROM {getenv('') WHERE patientID = {vID}}
-        sqlData = dc.sFR(getenv('database1', query))
         
-        inn = sqlData[0][1]
-        out = sqlData[0][2]
-        name = sqlData[0][0]  
+        #  retrieveing the sql Data
+        #query = f'SELECT * FROM bookings WHERE patientID = {getenv("vID")}' # query = ' SELECT * FROM {getenv('') WHERE patientID = {vID}}
+        #sqlData = dc.sFR(getenv('database4'), query)
         
+        inn = '1994-23-02'#sqlData[0][1]
+        out = '1994-27-02'#sqlData[0][2]
+        name = 'patientName' #sqlData[0][0]  
+        
+        roomName = 'Ward'#sqlData
         roomID = 225
         roomName = 'Ward - Recovery'
         
