@@ -11,7 +11,7 @@ from lib.customFunctions import UploadFile
 load_dotenv()
 
 def PDFSetup():
-
+ 
     #   Clasees initialization
     c = PDFCanvas()
     u = UploadFile()

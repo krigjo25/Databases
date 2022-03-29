@@ -47,17 +47,7 @@ class PDFCanvas (Canvas):
 
         sqlData = dc.sFR(database, query)
 
-        #   General Information about the patient
-        pid = sqlData[0][0]
-        age = sqlData[0][2]
-        #age = kalc.calculateAge(dateofBirth)
-        ssn = sqlData[0][3]
-        sex = sqlData[0][4]
-        name = sqlData[0][1]
-        phone = sqlData[0][5]
-        adrs = sqlData[0][6]
-        zipCode = sqlData[0][7]
-        area = Dictionaries.AmericanPostalCodes(zipCode)
+        area = Dictionaries.AmericanPostalCodes(sqlData[0][8])
 
         
         #   Health Information about the patient
@@ -74,34 +64,70 @@ class PDFCanvas (Canvas):
         mID2 = 'NNNNM'#dc.sFR(getenv('database4'), query)
 
         #   PDF Document
-        self.setFont('Helvetica-BoldOblique', 20)
-        self.drawString(200, 800, f'Patient Journal of {name} {pid}')
+        self.setFont('Helvetica-Bold', 18)
+        self.drawString(150, 775, f'Patient Journal of {sqlData[0][1]}, {sqlData[0][0]}')
 
         #   Main information
         #   Front end information we get from the user
 
         #   Titles        
-        self.setFont('Helvetica', 18)
-        self.drawString(50, 750, 'Health Information')
-        self.drawString( 50, 625, 'Contact Information')
-        self.drawString( 350, 625, 'Alergies and diagnosis')
+        self.setFont('Helvetica-Bold', 18)
+        self.drawString(75, 725, 'Health Information')
+        self.drawString(75, 575, 'Contact Information')
+        self.drawString(350, 575, 'Emergency Contacts')
+        self.drawString(75, 450, 'Primary Doctor')
+        self.drawString( 225, 400, 'Alergies & diagnosis')
+        
+        self.setFont('Helvetica-Bold', 16)
+        self.drawString(525, 680, 'Age')
+        self.drawString(225, 680, 'Sex')
+        self.drawString(75, 680, 'birth of Date')
+        self.drawString(300, 680, 'Social Security Number')
+
+        #   Blood type, weight, height, bmi and Donor status
+        self.drawString(525, 630, 'Bmi')
+        self.drawString(350, 630, 'Weight')
+        self.drawString(425, 630, 'Height')
+        self.drawString(225, 630, 'BloodType')
+        self.drawString(75, 630, 'Donor Status')
+        
+        self.setFont('Helvetica', 12)
+
+        #   General information about the patient
+        self.drawString(90, 660, f'{sqlData[0][2]}')
+        self.drawString(350, 660, f'{sqlData[0][3]}')
+        self.drawString(235, 660, f'{sqlData[0][4]}')
+        #self.drawString(505, 660, f'{age}')
+
+        #   Health Information about the patient
+        self.drawString(360, 610, f'{sqlData[0][8]}')
+        self.drawString(435, 610, f'{sqlData[0][9]}')
+        self.drawString(525, 610, f'{sqlData[0][10]}')
+        self.drawString(250, 610, f'{sqlData[0][11]}')
+        #self.drawString(235, 660, f'{sqlData[0][12]}') DStatus
+        #dStatus = sqlData[0][12]
+        
+        
+
+        #   General Information about the patient
+        pid = sqlData[0][0]
+        #age = kalc.calculateAge(dateofBirth)
+
+
+        #   Contact Information
+        self.setFont('Helvetica', 14)
+        self.drawString(75, 545, f'{sqlData[0][5]},')
+        self.drawString(75, 525, f'{sqlData[0][6]},')
+        self.drawString(75, 505, f'{sqlData[0][7]},{area}')
+
+        #   Emergency contacts
+
+        #self.setFont('Helvetica', 14)
+        #self.drawString(75, 550, f'{icuContact},')
+        #self.drawString(75, 525, f'{icuNr},')
+
+        
         '''
-        self.setFont('Helvetica', 16)
-        self.drawString( 50, 700, 'birth of date')
-        self.drawString( 200, 700, 'Sex')
-        self.drawString(300, 700, 'Social Security Number')
-
-        self.setFont('Helvetica', 14)
-        self.drawString( 20, 675, f'{age}')
-        self.drawString( 210, 675, f'{sex}')
-        self.drawString(350, 675, f'{ssn}')
-
-        #   ContactInformation
-        self.setFont('Helvetica', 14)
-        self.drawString( 50, 575, f'{phone},')
-        self.drawString( 50, 550, f'{adrs},')
-        self.drawString( 60, 525, f'{zipCode},{area}')
-
                 #   illnesses
         self.setFont('Helvetica', 16)
         self.drawString( 300, 575, 'Diagnosis & medical Treatment')
@@ -154,7 +180,7 @@ class PDFCanvas (Canvas):
         self.setFont('Helvetica', 16)
         self.drawString(50, 300, f'{name}\'s last visit')
         self.drawString(50,275, f'{inn}')
-        self.drawString(250,300, 'During your last stay at HospitalName')
+        self.drawString(250,300, f'During {name}last stay at HospitalName')
         self.drawString(250, 275, f'You were visiting {roomName}, {roomID}')
         self.drawString(250, 250, f'Due to {reason}')
         self.drawString(250, 225, f'Between {inn} - {out}')
