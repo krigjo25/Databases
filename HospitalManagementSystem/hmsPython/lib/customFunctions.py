@@ -1,6 +1,5 @@
 #   Python responsories
 import mariadb
-from typing_extensions import Self
 from os import getenv
 from datetime import date
 
@@ -12,6 +11,10 @@ load_dotenv()
 import yagmail
 
 class Calculators ():
+    '''         Calculators
+
+    '''
+
     def __init__(self):
         pass
 
@@ -24,6 +27,14 @@ class Calculators ():
 
 
 class DatabaseConnection():
+
+    '''         DatabaseConnection
+
+        Connects to the preferably used database
+        With Commands, such as SELECT, INSERT, UPDATE
+                
+        x callProcedure / callfunction
+    '''
 
     def __init__(self):
 
@@ -38,10 +49,11 @@ class DatabaseConnection():
         #   Creating a cursor to execute the statements
         self.cur = self.conn.cursor()
 
-    # Problems with self, database wont show
         return
 
     def databaseTest (self):
+
+        # Testing the connection to the database
         self.conn.database = getenv(f'database1')
         self.cur.execute('SELECT \'CONNECTION\'')
 
@@ -49,20 +61,18 @@ class DatabaseConnection():
         self.conn.close()
 
 
-    def sFR (self, database, column, table, column2, value):
+    def sFR (self, database, query):
 
         #   Database selection
-        self.conn.database = database
+        self.conn.database = str(database)
 
-        #   Creating the query and execute the query statement
-        query = 'SELECT %s FROM %s WHERE %s = %s;'% (column, table, column2, value)
-        #  Create and execute the query.
+        #  Execute the query.
         self.cur.execute(query)
 
         #   Fetching the sql selection
         sql = self.cur.fetchall()
 
-            #   Initializing a list to return
+        #   Initializing a list to return
         sqlData = []
 
         #   append to the list
@@ -72,6 +82,7 @@ class DatabaseConnection():
         #   Closing the connection to the database
         self.conn.close()
 
+        #   Returning the values in sqlData
         return sqlData
 
     def iAR (self, database, query):
@@ -101,14 +112,38 @@ class DatabaseConnection():
 
         return
 
+    def callProcedure (self, database, query):
+
+        #   Database Connection 
+        self.conn.database = database
+
+        #   calling a procedure
+        sqlData = self.cur.callproc(f'{query}')
+
+        return sqlData
+
 class Dictionaries():
     def __init__(self):
         pass
 
-    def postalCode(postalCode):
+
+
+    def AmericanPostalCodes(postalCode):
+
+        '''         AmericanPostalCodes
+
+            In life there would be an api for this
+            so we leave it as an demostration.
+            
+            AmericanPostalCodes, lists of given 
+            postalcodes in america.
+        '''
+
+        #   Creating a list to walk through
         zipCode = {
                     0000:'Warshington',
         }
+        
         postalCode = zipCode.get(postalCode)
         return postalCode
 

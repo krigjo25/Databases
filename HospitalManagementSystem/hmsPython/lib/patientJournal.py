@@ -18,11 +18,11 @@ from dotenv import load_dotenv
 
 #   Library Responsories
 from lib.customFunctions import Dictionaries, DatabaseConnection
-
+from lib.customFunctions.Calculators import calculateAge
 #   ReportLab Resposories
 from reportlab.lib.colors import blue
 from reportlab.lib.pagesizes import A4, letter
-from reportlab.pdfgen.canvas import Canvas,rl_config
+from reportlab.pdfgen.canvas import Canvas, rl_config
 
 load_dotenv()
 
@@ -34,20 +34,23 @@ class PDFCanvas (Canvas):
         self.height, self.width = letter
 
     def BodyHeader(self):
+
+        #   Initializing classes
+        kalc = Calculators()
         dc = DatabaseConnection()
-        # initializing the mariadb statements
-        value = getenv('value')
-        table = getenv('table')
-        column2 = getenv('column2')
-        database = str(getenv('database1'))
-        column = getenv('column')
-                        # D
-        sqlData = dc.sFR(database, column, table, column2, value)
+
+        #   initializing the mariadb connection
+        
+        vID = str(vID)
+        database = getenv('database2')
+        query = f'SELECT * FROM patients WHERE patientID = {vID}'
+
+        sqlData = dc.sFR(database, query)
 
         #   General Information about the patient
         pid = sqlData[0][0]
         dateofBirth = sqlData[0][2]
-        age = sqlData[0][2]
+        age = calculateAge(dateofBirth)
         ssn = sqlData[0][3]
         sex = sqlData[0][4]
         name = sqlData[0][1]
@@ -64,9 +67,12 @@ class PDFCanvas (Canvas):
         #   Alergy, diseases, medecines 
         dID = sqlData[0][10]
         aID = sqlData[0][9]#[0]
-        mID = 'NNNNM' #DatabaseConnection.sFR(database, select, table, where, vID)
+
+        query = 'SELECT mID FROM alergies WHERE alergyID = {aID}'
+        mID = 'NNNNM'#dc.sFR(getenv('database4'), query)
         
-        #mID2 = DatabaseConnection.sFR(database, mID, table, aID, aID)
+        query = 'SELECT mID FROM diagnoses WHERE diagnoseID = {dID}'
+        mID2 = 'NNNNM'#dc.sFR(getenv('database4'), query)
 
         #   PDF Document
         self.setFont('Helvetica-BoldOblique', 20)
@@ -126,7 +132,8 @@ class PDFCanvas (Canvas):
 
         #  retrieveing the sql Data
         dc = DatabaseConnection()
-        sqlData = dc.sFR(getenv('database1'), getenv('dateName'), getenv('table'), getenv('column2'), getenv('value'))
+        query = 'SELECT * FROM bookings WHERE patientID=0' # query = ' SELECT * FROM {getenv('') WHERE patientID = {vID}}
+        sqlData = dc.sFR(getenv('database1', query))
         
         inn = sqlData[0][1]
         out = sqlData[0][2]

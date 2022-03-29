@@ -51,7 +51,7 @@ CALL newOne ('APB 2200 end LIGHT',  14.39, 31.84, 'APB-Series');
 
         CALL newThree('Kopas 30', 'Kopas Series', 05.05, 27.00, 25, '', 'Marked');
 
-        CALL newThree('APB 1000 FO', 'APB Series', 13.36, 30.40, 23.5, '', 'ON TOP');
+        CALL newThree('APB 1000 FO', 'APB Series', 13.36, 20.00, 23.5, '', 'ON TOP');
 
         CALL newThree('Aqua 2000', 'Aqua Series', 13.36, 22.24, 28.5, '', 'ON bottom');
         CALL newThree('Aqua 2500', 'Aqua Series', 5.00, 25.10, 30, 'add isolation', 'On Top');
