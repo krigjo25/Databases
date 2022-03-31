@@ -45,23 +45,19 @@ class PDFCanvas (Canvas):
         database = getenv('database2')
         query = f'SELECT * FROM patient WHERE patientID = {vID}'
 
-        sqlData = dc.sFR(database, query)
-
-        area = Dictionaries.AmericanPostalCodes(sqlData[0][8])
-
+        sqlData = dc.selectFromTable(database, query)
         
-        #   Health Information about the patient
-        bType = sqlData[0][9]
-
+        area = Dictionaries.AmericanPostalCodes(sqlData[0][8])
+        age = kalc.CalculateAge(sqlData[0][2])
         #   Alergy, diseases, medecines 
         dID = sqlData[0][13]
         aID = sqlData[0][12]#[0]
 
         query = 'SELECT mID FROM alergies WHERE alergyID = {aID}'
-        mID = 'NNNNM'#dc.sFR(getenv('database4'), query)
+        mID = 'NNNNM'#dc.selectFromTable(getenv('database4'), query)
         
         query = 'SELECT mID FROM diagnoses WHERE diagnoseID = {dID}'
-        mID2 = 'NNNNM'#dc.sFR(getenv('database4'), query)
+        mID2 = 'NNNNM'#dc.selectFromTable(getenv('database4'), query)
 
         #   PDF Document
         self.setFont('Helvetica-Bold', 18)
@@ -97,7 +93,7 @@ class PDFCanvas (Canvas):
         self.drawString(90, 660, f'{sqlData[0][2]}')
         self.drawString(350, 660, f'{sqlData[0][3]}')
         self.drawString(235, 660, f'{sqlData[0][4]}')
-        #self.drawString(505, 660, f'{age}')
+        self.drawString(505, 660, f'{age}')
 
         #   Health Information about the patient
         self.drawString(360, 610, f'{sqlData[0][8]}')
@@ -153,7 +149,7 @@ class PDFCanvas (Canvas):
         
         #  retrieveing the sql Data
         #query = f'SELECT * FROM bookings WHERE patientID = {getenv("vID")}' # query = ' SELECT * FROM {getenv('') WHERE patientID = {vID}}
-        #sqlData = dc.sFR(getenv('database4'), query)
+        #sqlData = dc.selectFromTable(getenv('database4'), query)
         
         inn = '1994-23-02'#sqlData[0][1]
         out = '1994-27-02'#sqlData[0][2]

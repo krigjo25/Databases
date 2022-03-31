@@ -1,8 +1,9 @@
 #   Python responsories
-import mariadb
-
 from os import getenv
-from datetime import date
+from datetime import datetime, date
+
+#   Database responsories
+import mariadb
 
 #   dotenv Responsories
 from dotenv import load_dotenv
@@ -17,15 +18,23 @@ class Calculators():
     def __init__(self):
         pass
 
-    def CalculateAge(birthDate):
+    def CalculateAge(*birthDate):
 
         '''         calculateAge     
         
             Calculates age based on years
 
         '''
-        today = date.today()
-        age = today.year - birthDate.year ()
+        birthDate = str(birthDate)
+        birhtDate = datetime.strptime(birthDate, '%Y-%d-%m')
+        #   Get the today's date
+        curDate = date.today()
+        
+        #   Convert the birthdate Date into a readable
+        print(birthDate)
+        birthDate = birthDate - curDate
+        # Declare a variable, substract current year with birthdate year
+        age = curDate.year - birthDate.year - ((curDate.month, curDate.day) < (birthDate.month, birthDay.day))
 
         return age
 
@@ -79,7 +88,7 @@ class DatabaseConnection():
         self.conn.close()
 
 
-    def sFR (self, database, query):
+    def selectFromTable (self, database, query):
 
         database = str(database)
         print(database)
@@ -105,7 +114,7 @@ class DatabaseConnection():
         #   Returning the values in sqlData
         return sqlData
 
-    def iAR (self, database, query):
+    def insertIntoTable (self, database, query):
 
         #   Database selection
         self.conn.database = database
@@ -132,13 +141,13 @@ class DatabaseConnection():
 
         return
 
-    def callProcedure (self, database, query):
+    def callProcedure (self, database, procedure):
 
         #   Database Connection 
         self.conn.database = database
 
         #   calling a procedure
-        sqlData = self.cur.callproc(f'{query}')
+        sqlData = self.cur.callproc(f'{procedure}')
 
         return sqlData
 
@@ -243,7 +252,7 @@ class sendMail():
         database = str(getenv('database5'))
 
         #   Fetch the enire row in order to use some of the information in the database to get contact information, name etc.
-        sqlData = dc.sFR(database, column, table, column2, value)
+        sqlData = dc.selectFromTable(database, query)(database, column, table, column2, value)
         
         if bool(sqlData) == True:
             for row in sqlData:
@@ -288,7 +297,7 @@ class sendMail():
 
             
         
-        elif bool(data) == False:
+        elif bool(sqlData) == False:
             print('Nothing in the selected table')
 
         return
