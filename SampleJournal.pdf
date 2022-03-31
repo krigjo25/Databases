@@ -43,7 +43,7 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 2532
+/Length 1695
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -69,30 +69,18 @@ BT /F1 12 Tf 14.4 TL ET
 BT 1 0 0 1 90 660 Tm (1980-02-11) Tj T* ET
 BT 1 0 0 1 350 660 Tm (635-56-2617) Tj T* ET
 BT 1 0 0 1 235 660 Tm (M) Tj T* ET
-BT 1 0 0 1 360 610 Tm (108) Tj T* ET
+BT 1 0 0 1 535 660 Tm (41) Tj T* ET
+BT 1 0 0 1 120 610 Tm (No) Tj T* ET
+BT 1 0 0 1 360 610 Tm (108.00) Tj T* ET
 BT 1 0 0 1 435 610 Tm (185) Tj T* ET
 BT 1 0 0 1 525 610 Tm (29.00) Tj T* ET
 BT 1 0 0 1 250 610 Tm (B+) Tj T* ET
 BT /F1 14 Tf 16.8 TL ET
 BT 1 0 0 1 75 545 Tm (\(956\) -551-0901,) Tj T* ET
 BT 1 0 0 1 75 525 Tm (3681 Seth Street,) Tj T* ET
-BT 1 0 0 1 75 505 Tm (76901,None) Tj T* ET
+BT 1 0 0 1 75 505 Tm (76901, None) Tj T* ET
 BT /F1 30 Tf 36 TL ET
 n 0 400 m 890 400 l S
-BT /F1 20 Tf 24 TL ET
-BT 1 0 0 1 150 350 Tm (During patientName's at Saint Mary's) Tj T* ET
-BT /F1 16 Tf 19.2 TL ET
-BT 1 0 0 1 50 300 Tm (patientName's last visit) Tj T* ET
-BT 1 0 0 1 50 275 Tm (1994-23-02) Tj T* ET
-BT 1 0 0 1 250 300 Tm (During patientNamelast stay at HospitalName) Tj T* ET
-BT 1 0 0 1 250 275 Tm (You were visiting Ward - Recovery, 225) Tj T* ET
-BT 1 0 0 1 250 250 Tm (Due to Demo reason) Tj T* ET
-BT 1 0 0 1 250 225 Tm (Between 1994-23-02 - 1994-27-02) Tj T* ET
-BT 1 0 0 1 50 175 Tm (Doctor Jhon Doe's notes) Tj T* ET
-BT 1 0 0 1 50 150 Tm (amet aliquam id diam maecenas ultricies mi eget mauris pharetra) Tj T* ET
-BT 1 0 0 1 50 125 Tm (et ultrices neque ornare aenean euismod elementum nisi quis el-) Tj T* ET
-BT 1 0 0 1 50 100 Tm (e ifend quam adipiscing vitae pro in sagittis nisl rhoncus mat-) Tj T* ET
-BT 1 0 0 1 50 75 Tm (tis rhoncus urna neque viverra justo nec ultrices du sa) Tj T* ET
 n 0 20 m 890 20 l S
 BT /F1 10 Tf 12 TL ET
 BT 1 0 0 1 50 7 Tm (Logo) Tj T* ET
@@ -126,5 +114,5 @@ trailer
 /Size 9
 >>
 startxref
-3542
+2705
 %%EOF

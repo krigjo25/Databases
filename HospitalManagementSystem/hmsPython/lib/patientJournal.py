@@ -38,7 +38,7 @@ class PDFCanvas (Canvas):
         #   Initializing classes
         kalc = Calculators()
         dc = DatabaseConnection()
-        kalc = Calculators()
+
         #   initializing the mariadb connection
         
         vID = str(getenv('vID'))
@@ -46,9 +46,7 @@ class PDFCanvas (Canvas):
         query = f'SELECT * FROM patient WHERE patientID = {vID}'
 
         sqlData = dc.selectFromTable(database, query)
-        
-        area = Dictionaries.AmericanPostalCodes(sqlData[0][8])
-        age = kalc.CalculateAge(sqlData[0][2])
+
         #   Alergy, diseases, medecines 
         dID = sqlData[0][13]
         aID = sqlData[0][12]#[0]
@@ -93,35 +91,35 @@ class PDFCanvas (Canvas):
         self.drawString(90, 660, f'{sqlData[0][2]}')
         self.drawString(350, 660, f'{sqlData[0][3]}')
         self.drawString(235, 660, f'{sqlData[0][4]}')
-        self.drawString(505, 660, f'{age}')
+        self.drawString(535, 660, f'{kalc.CalculateAge(sqlData[0][2])}')
 
         #   Health Information about the patient
+        if sqlData[0][12] == True:
+            self.drawString(90, 610, f'{sqlData[0][12]}')
+        else:
+            self.drawString(120, 610, f'No')
+
         self.drawString(360, 610, f'{sqlData[0][8]}')
         self.drawString(435, 610, f'{sqlData[0][9]}')
         self.drawString(525, 610, f'{sqlData[0][10]}')
         self.drawString(250, 610, f'{sqlData[0][11]}')
-        #self.drawString(235, 660, f'{sqlData[0][12]}') DStatus
-        #dStatus = sqlData[0][12]
         
-        
-
-        #   General Information about the patient
-        pid = sqlData[0][0]
-        #age = kalc.calculateAge(dateofBirth)
+        #Donor status
 
 
         #   Contact Information
         self.setFont('Helvetica', 14)
         self.drawString(75, 545, f'{sqlData[0][5]},')
         self.drawString(75, 525, f'{sqlData[0][6]},')
-        self.drawString(75, 505, f'{sqlData[0][7]},{area}')
+        self.drawString(75, 505, f'{sqlData[0][7]}, {Dictionaries.AmericanPostalCodes(sqlData[0][8])}')
 
         #   Emergency contacts
-
-        #self.setFont('Helvetica', 14)
-        #self.drawString(75, 550, f'{icuContact},')
-        #self.drawString(75, 525, f'{icuNr},')
-
+        '''
+        if == True:
+            self.drawString(90, 545, f'{}')
+        else:
+            self.drawString(120, 545, f'No')
+        '''
         
         '''
                 #   illnesses
@@ -134,17 +132,17 @@ class PDFCanvas (Canvas):
         #self.drawString( 300, 550, f'{doC}, {mid}')
         self.drawString( 325, 500, f'{aID}, {mID}')
         '''
+
         #   Page End Lines
         self.setFont ('Helvetica', 30)
         self.line(0,400,890,400)
-        #self.drawString( 0, 400, f'{arterise}')
 
         return
 
 
     def BodyMain(self):
         
-        #   Class inztalation
+        #   Class iniztalation
         dc = DatabaseConnection()
         
         #  retrieveing the sql Data

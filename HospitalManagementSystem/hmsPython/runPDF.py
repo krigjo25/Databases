@@ -12,19 +12,19 @@ load_dotenv()
 
 def PDFSetup():
  
-    #   Clasees initialization
+    #   Classes initialization
     c = PDFCanvas()
     u = UploadFile()
     db = DatabaseConnection()
 
     #   PDF Canvas
-        #   Conctact information
+    #   Health information
     c.BodyHeader()
 
         #   Hospital visits
-    c.BodyMain()
+    #c.BodyMain()
 
-        #   Logo and firm
+    #   Logo and firm
     c.BodyFooter()
     c.showPage()
     c.save()

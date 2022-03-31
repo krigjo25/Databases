@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 #   yagMail Responsories
-#import yagmail
+import yagmail
 
 class Calculators():
     '''         Calculators     '''
@@ -18,24 +18,29 @@ class Calculators():
     def __init__(self):
         pass
 
-    def CalculateAge(*birthDate):
+    def CalculateAge(b, birthDate):
 
         '''         calculateAge     
         
-            Calculates age based on years
+            Calculates the age difference between the current
+            date and the given date
+
+            The leap year is added 
 
         '''
+        #   Converting the date into a string, then back to a date
         birthDate = str(birthDate)
-        birhtDate = datetime.strptime(birthDate, '%Y-%d-%m')
+        birthDate = datetime.strptime(birthDate, '%Y-%d-%m').date()
+
         #   Get the today's date
         curDate = date.today()
         
-        #   Convert the birthdate Date into a readable
-        print(birthDate)
-        birthDate = birthDate - curDate
-        # Declare a variable, substract current year with birthdate year
-        age = curDate.year - birthDate.year - ((curDate.month, curDate.day) < (birthDate.month, birthDay.day))
+        #   Calculate the difference in years
+        difference = curDate.year - birthDate.year  
 
+        #   
+        oneOrZero = ((curDate.month, curDate.day) < (birthDate.month, birthDate.day))
+        age = difference - oneOrZero
         return age
 
     def Calculatebmi(height, weight):
@@ -87,7 +92,6 @@ class DatabaseConnection():
 
         self.conn.close()
 
-
     def selectFromTable (self, database, query):
 
         database = str(database)
@@ -125,12 +129,10 @@ class DatabaseConnection():
 
         return
 
-    def updateTable (self, database, table, column, column2, value):
+    def updateTable (self, database, query):
 
         #   Database selection
         self.conn.database = database
-
-        query = 'UPDATE %s, SET %s = %s WHERE %s = %s;'%(table, column, column2, value)
 
         self.database = database
 
@@ -178,18 +180,20 @@ class Dictionaries():
 
 class UploadFile():
     def __init__(self):
+
+        self.dc = DatabaseConnection
+        self.database = database = getenv('database2')
         pass
 
     def BinaryConverter(self, fName):
         #   Converting data to binary format
         with open(fName, 'rb') as file:
             binaryData = file.read()
-            print(binaryData)
             
         return binaryData
 
-    def generateBlob(self, table, column, id, name, photo, bioData):
-        database = 'patients'
+    def generateBlob(self, query, photo, bioData):
+
         
         conn = mariadb.connect(
                                 host=getenv('HOST'),
@@ -201,30 +205,19 @@ class UploadFile():
 
         cur = conn.cursor()
 
-        query = ' UPDATE %s SET %s = %s WHERE id = %s'
-        bFile = self.BinaryConverter(fName,file)
-        file = self.BinaryConverter(dataFile)
-
+        
+        bFile = self.BinaryConverter(photo,file)
+        file = self.BinaryConverter(bioData)
+        
         #   Converting information into tuple
-        cur = (table, column, id, name, photo)
-        result = cursor.execute(query, bFile)
-        self.conn.close()
-    
-    def generatePDF(self, column, pdf, vid):
-        conn = mariadb.connect(
-                                host=getenv('HOST'),
-                                user= getenv('USERNAME'),
-                                port= int(getenv('PORT')),
-                                password = getenv('PASSWORD'),
-                                database = getenv('DATABASE')
-            )
+        query = query, photo
+        self.dc.updateTable(self.database, query)
 
-        cur = conn.cursor()
+    def generatePDF(self, pdf, vid):
 
         #   Update a column
-        query = f' UPDATE patient SET {column} = "{pdf}" WHERE id = {vid}'
-        execute = cur.execute(query)
-        conn.close()
+        query = f' UPDATE patient SET pdf = "{pdf}" WHERE id = {vid}'
+        self.dc.updateTable(self.database, query)
 
 class sendMail():
 
@@ -252,7 +245,8 @@ class sendMail():
         database = str(getenv('database5'))
 
         #   Fetch the enire row in order to use some of the information in the database to get contact information, name etc.
-        sqlData = dc.selectFromTable(database, query)(database, column, table, column2, value)
+        query = 'SELECT * FROM libraryManageSystem'
+        sqlData = dc.selectFromTable(database, query)
         
         if bool(sqlData) == True:
             for row in sqlData:
@@ -262,7 +256,7 @@ class sendMail():
             #   The email should be sent
 
             returnDate= row[7] - today
-            overDueDate = row[8] -today
+            overDueDate = row[8] - today
             returnDate = returnDate.days
             overDueDate = overDueDate.days
             print(row)
@@ -301,7 +295,3 @@ class sendMail():
             print('Nothing in the selected table')
 
         return
-
-if __name__=='__main__':
-        mail = sendMail()
-        mail.SendMailLibray()

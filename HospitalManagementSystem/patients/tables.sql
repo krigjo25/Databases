@@ -40,6 +40,8 @@ CREATE OR REPLACE TABLE patient (
                         industry VARCHAR(255) NOT NULL DEFAULT 'Unemployeed',
                         registered TIMESTAMP NOT NULL DEFAULT NOW(),
 
+                    --  EmergencyContacts
+
                     --  Extra columns
                         demo VARCHAR(255),
                         demo1 VARCHAR(255),
@@ -48,21 +50,18 @@ CREATE OR REPLACE TABLE patient (
                         INDEX (diagnoseID, medecineID, alergyID));
 /*********************************************************************************************************/
 DELIMITER
-/********************************************   Patient table   *******************************************/
+/********************************************   blood / organ donor table   *******************************************/
 
 CREATE OR REPLACE TABLE donors (
                         id INT SIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT, -- NOT NULL AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
                         
                         -- General information
-                        patientID BIGINT SIGNED NOT NULL,
-                        patientName VARCHAR(255) NOT NULL UNIQUE DEFAULT 'Jhon Doe',
-                        birthDate DATE NOT NULL DEFAULT '1973-01-01',
-                        bloodType VARCHAR(3) NOT NULL,
+                        patientID BIGINT SIGNED NOT NULL UNIQUE,
                         ssn VARCHAR(12) NOT NULL,
                         phoneNumber VARCHAR(255) NOT NULL,
                         
                     --  Health information
-                        organDonor VARCHAR(255) DEFAULT 'no',
+                        organDonor VARCHAR(255) NOT NULL DEFAULT 'no',
                         bloodDonot Char(1) NOT NULL DEFAULT 'x',
                         diagnosis VARCHAR(255) NOT NULL,
                         medecine  VARCHAR(255) NOT NULL,
@@ -74,6 +73,29 @@ CREATE OR REPLACE TABLE donors (
                     --  Table Constraints
 
                         INDEX (patientID, medecine, alergies),
+                        CONSTRAINT patientID_fk FOREIGN KEY(patientID) REFERENCES patients.patient(id) ON DELETE CASCADE ON UPDATE CASCADE);
+/*********************************************************************************************************/
+
+/********************************************   blood / organ donor table   *******************************************/
+
+CREATE OR REPLACE TABLE emergencyContact (
+                        id INT SIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT
+                        
+                        -- General information
+                        patientID BIGINT SIGNED NOT NULL UNIQUE,
+                        contactOne VARCHAR(255),
+                        ContactNumberOne VARCHAR(255),
+                        contactTwo VARCHAR(255),
+                        ContactNumberTwo VARCHAR(255),
+                        contactThree VARCHAR(255),
+                        ContactNumberThree VARCHAR(255),
+
+                    --  Extra columns
+                        demo VARCHAR(255),
+                        demo1 VARCHAR(255),
+                    --  Table Constraints
+
+                        INDEX (patientID),
                         CONSTRAINT patientID_fk FOREIGN KEY(patientID) REFERENCES patients.patient(id) ON DELETE CASCADE ON UPDATE CASCADE);
 /*********************************************************************************************************/
 
