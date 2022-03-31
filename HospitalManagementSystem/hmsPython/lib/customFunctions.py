@@ -16,9 +16,11 @@ class Calculators():
     '''         Calculators     '''
 
     def __init__(self):
+        #   Initializing the classes
+        self.mc = MetricConverter()
         pass
 
-    def CalculateAge(b, birthDate):
+    def CalculateAge(self, birthDate):
 
         '''         calculateAge     
         
@@ -28,35 +30,96 @@ class Calculators():
             The leap year is added 
 
         '''
+
         #   Converting the date into a string, then back to a date
         birthDate = str(birthDate)
         birthDate = datetime.strptime(birthDate, '%Y-%d-%m').date()
 
         #   Get the today's date
         curDate = date.today()
-        
+
         #   Calculate the difference in years
         difference = curDate.year - birthDate.year  
 
         #   
         oneOrZero = ((curDate.month, curDate.day) < (birthDate.month, birthDate.day))
+
+        #   Age equals the difference - one or zero
         age = difference - oneOrZero
+
         return age
 
-    def Calculatebmi(height, weight):
+    def Calculatebmi(self, kg, cm, age, gender):
 
         '''         calculatebmi
         
-            Calculates bmi based on
-            (height x height) / weight 
+            Calculates bmi for adults and children
+
+            Childrens 2-20
+            kg / (m * m) * 10000
+
+            Adults 20+
+            kg / (m * m)
+
 
         '''
 
-        height = height * height / 100;
-        bmi = height / weight
+        #   Convert the height in meters
+        m = self.mc.CentimeterMeter(cm)
 
-        return bmi
+        # Converts the weight into a integer
+        kg = int(kg)
+        
+        #   Finds the bmi by dividing  with age and gender
+        if age <= 21 and gender == 'M':
 
+            bmi = kg / (m * m) * 10000
+
+        elif age < 21 and gender == 'F':
+
+            bmi = kg / (m * m) * 10000
+
+        else:
+            bmi = kg / (m * m)
+
+        return round(bmi, 2)
+
+class MetricConverter():
+
+    def __init__(self):
+        pass
+
+    def MiliMeter(self, mm):
+
+        # Deviding decimeeter on 10
+        # 1000 mm = 1 meeter
+        m = mm / 1000
+
+        return round(m, 2)
+
+    def CentimeterMeter(self, cm):
+
+        # Dividing centimeter on 100
+        # 100 cm = 1 meeter
+        m = cm / 100
+         
+        return m
+    
+    def DecimeterMeter(self, dm):
+
+        # Deviding decimeeter on 10
+        # 10 dm = 1 meeter
+        m = dm / 10
+
+        return round(m, 2)
+    
+    def MeterKiloMeter(self, m):
+
+        # Deviding decimeeter on 10
+        # 10 dm = 1 meeter
+        km = m / 1000
+
+        return km
 
 class DatabaseConnection():
 

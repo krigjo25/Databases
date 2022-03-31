@@ -7,6 +7,7 @@ from lib.customFunctions import DatabaseConnection
 #   Library responsories
 from lib.patientJournal import PDFCanvas
 from lib.customFunctions import UploadFile
+#from lib.DatabasePython import CreateTable
 
 load_dotenv()
 
@@ -15,7 +16,11 @@ def PDFSetup():
     #   Classes initialization
     c = PDFCanvas()
     u = UploadFile()
+    #tc = TableCreation()
     db = DatabaseConnection()
+
+    # Creating a table, views  with the patientID,
+    #tc.createTable()
 
     #   PDF Canvas
     #   Health information

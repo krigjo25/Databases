@@ -47,16 +47,6 @@ class PDFCanvas (Canvas):
 
         sqlData = dc.selectFromTable(database, query)
 
-        #   Alergy, diseases, medecines 
-        dID = sqlData[0][13]
-        aID = sqlData[0][12]#[0]
-
-        query = 'SELECT mID FROM alergies WHERE alergyID = {aID}'
-        mID = 'NNNNM'#dc.selectFromTable(getenv('database4'), query)
-        
-        query = 'SELECT mID FROM diagnoses WHERE diagnoseID = {dID}'
-        mID2 = 'NNNNM'#dc.selectFromTable(getenv('database4'), query)
-
         #   PDF Document
         self.setFont('Helvetica-Bold', 18)
         self.drawString(150, 775, f'Patient Journal of {sqlData[0][1]}, {sqlData[0][0]}')
@@ -101,7 +91,7 @@ class PDFCanvas (Canvas):
 
         self.drawString(360, 610, f'{sqlData[0][8]}')
         self.drawString(435, 610, f'{sqlData[0][9]}')
-        self.drawString(525, 610, f'{sqlData[0][10]}')
+        self.drawString(525, 610, f'{kalc.Calculatebmi(sqlData[0][8], sqlData[0][9], kalc.CalculateAge(sqlData[0][2]), sqlData[0][4])}')
         self.drawString(250, 610, f'{sqlData[0][11]}')
         
         #Donor status
@@ -114,24 +104,20 @@ class PDFCanvas (Canvas):
         self.drawString(75, 505, f'{sqlData[0][7]}, {Dictionaries.AmericanPostalCodes(sqlData[0][8])}')
 
         #   Emergency contacts
-        '''
-        if == True:
-            self.drawString(90, 545, f'{}')
-        else:
-            self.drawString(120, 545, f'No')
-        '''
+
+        self.drawString(350, 550, f'Husband, Jhon Doe, \n 123 123 123')
+        self.drawString(350, 525, f'Father, Jhon Doe, \n 123 123 123')
+        self.drawString(350, 500, f'Son, Jhon Doe, \n 123 123 123')
+
         
-        '''
-                #   illnesses
+
         self.setFont('Helvetica', 16)
-        self.drawString( 300, 575, 'Diagnosis & medical Treatment')
-        self.drawString( 300, 525, 'Alergies & Treatments')
+        self.drawString(300, 375, 'Diagnosis & medical Treatment')
+        self.drawString(50, 375, 'Alergies & medical Treatments')
 
         self.setFont('Helvetica', 14)
-        '#''Create a list and roll through it''#'
-        #self.drawString( 300, 550, f'{doC}, {mid}')
-        self.drawString( 325, 500, f'{aID}, {mID}')
-        '''
+
+
 
         #   Page End Lines
         self.setFont ('Helvetica', 30)
