@@ -44,9 +44,12 @@ class PDFCanvas (Canvas):
         vID = str(getenv('vID'))
         database = getenv('database2')
         query = f'SELECT * FROM patient WHERE patientID = {vID}'
+        qury = 'SELECT COUNT(patientID) FROM patient'
 
         sqlData = dc.selectFromTable(database, query)
 
+        cur = dc.selectFromTable(database, qury)
+        print(cur)
         #   PDF Document
         self.setFont('Helvetica-Bold', 18)
         self.drawString(150, 775, f'Patient Journal of {sqlData[0][1]}, {sqlData[0][0]}')
@@ -90,7 +93,7 @@ class PDFCanvas (Canvas):
             self.drawString(120, 610, f'No')
 
         self.drawString(360, 610, f'{sqlData[0][8]}')
-        self.drawString(435, 610, f'{sqlData[0][9]}')
+        self.drawString(435, 610, f'{sqlData[0][9]} cm')
         self.drawString(525, 610, f'{kalc.Calculatebmi(sqlData[0][8], sqlData[0][9], kalc.CalculateAge(sqlData[0][2]), sqlData[0][4])}')
         self.drawString(250, 610, f'{sqlData[0][11]}')
         
@@ -134,41 +137,11 @@ class PDFCanvas (Canvas):
         #  retrieveing the sql Data
         #query = f'SELECT * FROM bookings WHERE patientID = {getenv("vID")}' # query = ' SELECT * FROM {getenv('') WHERE patientID = {vID}}
         #sqlData = dc.selectFromTable(getenv('database4'), query)
-        
-        inn = '1994-23-02'#sqlData[0][1]
-        out = '1994-27-02'#sqlData[0][2]
-        name = 'patientName' #sqlData[0][0]  
-        
-        roomName = 'Ward'#sqlData
-        roomID = 225
-        roomName = 'Ward - Recovery'
-        
-        reason = 'Demo reason' 
-        doctor = 'Jhon Doe'#f'SELECT employeeName FROM relations WHERE patientID = {int(pID)}' 
+        vID = 0
+        counter = 0 #dc.selectFromTable(getenv('database5', query))
+        while vID <= counter:
 
-        #   255 CHARACTERS
-        doc =       'amet aliquam id diam maecenas ultricies mi eget mauris pharetra'
-        doc1 =      'et ultrices neque ornare aenean euismod elementum nisi quis el-'
-        doc2 =      'e ifend quam adipiscing vitae pro in sagittis nisl rhoncus mat-'
-        doc3 =      'tis rhoncus urna neque viverra justo nec ultrices du sa'
-
-        #   Document Font
-        self.setFont('Helvetica', 20)
-        self.drawString(150, 350, f'During {name}\'s at Saint Mary\'s')
-
-        #   Document Text
-        self.setFont('Helvetica', 16)
-        self.drawString(50, 300, f'{name}\'s last visit')
-        self.drawString(50,275, f'{inn}')
-        self.drawString(250,300, f'During {name}last stay at HospitalName')
-        self.drawString(250, 275, f'You were visiting {roomName}, {roomID}')
-        self.drawString(250, 250, f'Due to {reason}')
-        self.drawString(250, 225, f'Between {inn} - {out}')
-        self.drawString(50, 175, f'Doctor {doctor}\'s notes')
-        self.drawString(50, 150, f'{doc}')
-        self.drawString(50, 125, f'{doc1}')
-        self.drawString(50, 100, f'{doc2}')
-        self.drawString(50, 75, f'{doc3}')
+            vID += 1
 
         return
 

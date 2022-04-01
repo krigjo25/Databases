@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 #   yagMail Responsories
-import yagmail
+#import yagmail
 
 class Calculators():
     '''         Calculators     '''
@@ -71,7 +71,7 @@ class Calculators():
         kg = int(kg)
         
         #   Finds the bmi by dividing  with age and gender
-        if age <= 21 and gender == 'M':
+        if age < 21 and gender == 'M':
 
             bmi = kg / (m * m) * 10000
 
@@ -142,14 +142,14 @@ class DatabaseConnection():
                                     database = getenv('database'))
         
         #   Creating a cursor to execute the statements
-        self.cur = self.conn.cursor()
+        self.cur = self.conn.cursor(buffered=True)
 
         return
 
     def databaseTest (self):
 
         # Testing the connection to the database
-        self.conn.database = getenv(f'database1')
+        self.conn.database = getenv('database1')
         self.cur.execute('SELECT \'CONNECTION\'')
 
 
@@ -158,12 +158,13 @@ class DatabaseConnection():
     def selectFromTable (self, database, query):
 
         database = str(database)
-        print(database)
+
         #   Database selection
         self.conn.database = database
 
         #  Execute the query.
         self.cur.execute(query)
+        curCount = self.cur.rowcount
 
         #   Fetching the sql selection
         sql = self.cur.fetchall()
@@ -174,12 +175,12 @@ class DatabaseConnection():
         #   append to the list
         for i in sql:
             sqlData.append(i)
-
+        
+        sql
         #   Closing the connection to the database
         self.conn.close()
-
         #   Returning the values in sqlData
-        return sqlData
+        return sqlData, curCount
 
     def insertIntoTable (self, database, query):
 

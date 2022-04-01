@@ -132,13 +132,12 @@ class DatabaseConnection():
     def selectFromTable (self, database, query):
 
         database = str(database)
-        print(database)
+
         #   Database selection
         self.conn.database = database
 
         #  Execute the query.
-        self.cur.execute(query)
-
+        cur = self.cur.execute(query)
         #   Fetching the sql selection
         sql = self.cur.fetchall()
 
@@ -153,7 +152,7 @@ class DatabaseConnection():
         self.conn.close()
 
         #   Returning the values in sqlData
-        return sqlData
+        return sqlData, cur
 
     def insertIntoTable (self, database, query):
 
