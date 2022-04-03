@@ -6,8 +6,10 @@ DATABASE
 patients
     Tables
         patient,
+        socialSecurityNumber
         billing
 ************************************************************************/
+
 /********************************************   Patient table   *******************************************/
 
 CREATE OR REPLACE TABLE patient (
@@ -16,7 +18,7 @@ CREATE OR REPLACE TABLE patient (
 
                         -- General information
                         birthDate DATE NOT NULL DEFAULT '1973-01-01',
-                        ssn VARCHAR(12) NOT NULL DEFAULT 0101740009,
+                        socialSecurityNumber VARCHAR(12) NOT NULL UNIQUE DEFAULT 0101740009,
                         gender VARCHAR(5) NOT NULL DEFAULT 'M',
                         phoneNumber VARCHAR(255),
                         street VARCHAR(255) NOT NULL DEFAULT '128 CharminAvenue',
@@ -25,12 +27,14 @@ CREATE OR REPLACE TABLE patient (
                     --  Health information
                         organDonor VARCHAR(3) NOT NULL DEFAULT 'no',
                         bloodDonor VARCHAR(3) NOT NULL DEFAULT 'no',
-                        bWeight DECIMAL (5.2) DEFAULT 80.0,
-                        bHeight DECIMAL (4.1) NOT NULL DEFAULT 180.0,
+                        kg DECIMAL (5.2) DEFAULT 80.0,
+                        cm DECIMAL (4.1) NOT NULL DEFAULT 180.0,
                         bloodType VARCHAR(2), 
+                        primaryDoctor VARCHAR(255) NOT NULL DEFAULT 'Jhon Doe',
                         alergyID VARCHAR(255) NOT NULL DEFAULT 'NNNNA,',
                         diagnoseID VARCHAR(255) NOT NULL DEFAULT 'NNNND,',
                         medecineID  VARCHAR(255) NOT NULL DEFAULT 'NNNNM,',
+                        patientJournal MEDIUMBLOB,
 
                     -- Employeement status 
                         company VARCHAR(255) NOT NULL DEFAULT 'Unemployeed',
@@ -46,7 +50,32 @@ CREATE OR REPLACE TABLE patient (
 /*********************************************************************************************************/
 DELIMITER
 
+/********************************************   patientInfoTable,    *******************************************/
 
+CREATE OR REPLACE TABLE socialSecurityNumber (
+                        id INT SIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT
+                        
+                    --  General Information
+                        dateIn CURDATE NOT NULL,
+                        oProcedure VARCHAR(255),
+                        price DECIMAL (8.2)
+                        dateProcedure DATE NOT NULL,
+                        timeProcedure TIME NOT NULL,
+                        employeeReport VARCHAR(255),
+                        employeeName VARCHAR(255),
+                        roomName VARCHAR(255) NOT NULL,
+                        dateBooked DATE NOT NULL CURDATE(), 
+                        dateOut Date,
+
+                    --  Extra columns
+                        demo VARCHAR(255),
+                        demo1 VARCHAR(255),
+                        
+                    --  Table Constraints
+
+                        INDEX (patientID),
+                        CONSTRAINT patientID_fk FOREIGN KEY(patientID) REFERENCES patients.patient(id) ON DELETE CASCADE ON UPDATE CASCADE);
+/*********************************************************************************************************/
 
 /************************************* Billings **********************************************************/
 DELIMITER
@@ -64,39 +93,3 @@ CREATE TABLE billing (
                         INDEX (pID),
                         CONSTRAINT patientID_FK FOREIGN KEY (pID) REFERENCES patient (id) ON DELETE CASCADE ON UPDATE CASCADE);
 /*************************************************************************************************************/
-
-/********************************************   patientTable,    *******************************************/
-
-CREATE OR REPLACE TABLE socialSecurityNumber (
-                        id INT SIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT
-                        patientID BIGINT SIGNED NOT NULL UNIQUE,
-                        
-                    --  General Information
-                        dateIn CURDATE NOT NULL,
-                        booking VARCHAR(255),
-                        oProcedure VARCHAR(255),
-                        price DECIMAL (8.2)
-                        employeeName VARCHAR(255)
-                        primaryDoctor VARCHAR(255)
-                        roomID SMALLINT NOT NULL,
-
-                        dateIn DATE, 
-                        dateOut Date,
-                    -- Health information
-
-
-
-
-                    --  Finance information
-                        billing MEDIUMBLOB,
-                        billingStatus VARCHAR(8) NOT NULL DEFAULT 'Not Paid'
-                        patientJournal MEDIUMBLOB,
-                    --  Extra columns
-                        demo VARCHAR(255),
-                        demo1 VARCHAR(255),
-                        
-                    --  Table Constraints
-
-                        INDEX (patientID),
-                        CONSTRAINT patientID_fk FOREIGN KEY(patientID) REFERENCES patients.patient(id) ON DELETE CASCADE ON UPDATE CASCADE);
-/*********************************************************************************************************/

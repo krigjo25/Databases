@@ -1,26 +1,5 @@
 /*****************************functions for patients***********************************/
-CREATE OR REPLACE FUNCTION calculatebmi(vheight DECIMAL(3.2), vWeight DECIMAL (5.2)) RETURNS DECIMAL(4.1) NOT DETERMINISTIC
-    BEGIN
-        /************ calculatebmi ********************
-            The function calculates a patient's bmi using
-            the mathmatic formula
-            (m2 x m2) / kg 
-        *****************************************************************/
-        
-        --  Declare variables
-        DECLARE vBMI DECIMAL(5.2);
 
-        --  Coverting cm into meetrs
-        SET vHeight = vHeight * vHeight / 100;
-
-        --  Divide the weight with the height BMI = vWeight / Height
-        SET vBMI = vWeight / vHeight;
-
-        RETURN vBMI;
-
-    END x
-
---  Converting ssn 
 CREATE OR REPLACE FUNCTION convertssn(vssn VARCHAR(255)) RETURNS VARCHAR(12) NOT DETERMINISTIC
     BEGIN
         /************ convertssn ********************
@@ -38,7 +17,7 @@ CREATE OR REPLACE FUNCTION convertssn(vssn VARCHAR(255)) RETURNS VARCHAR(12) NOT
         -- Trimming the Social Security Number
         SET partOne = SUBSTRING(vssn, 1,3);
         SET partTwo = SUBSTRING(vssn, 3,2);
-        SET partThree = SUBSTRING(vssn,5,4);
+        SET partThree = SUBSTRING(vssn, 5, 4);
 
         -- Assigning the new values to the variables, using concat to merge the string
         SET vssn = CONCAT(partOne, '-', partTwo, '-', partThree);
@@ -46,7 +25,7 @@ CREATE OR REPLACE FUNCTION convertssn(vssn VARCHAR(255)) RETURNS VARCHAR(12) NOT
 
     END x
 
---  Converting Phone numbers
+
 CREATE OR REPLACE FUNCTION convertPhone(vPhone VARCHAR(255)) RETURNS VARCHAR(255) NOT DETERMINISTIC
     BEGIN
 
@@ -55,7 +34,7 @@ CREATE OR REPLACE FUNCTION convertPhone(vPhone VARCHAR(255)) RETURNS VARCHAR(255
             using SUBSTRING to get a part of the digits,
             using CONCAT to add, '-'.
 
-        *****************************************************************/--   Calculating bmi
+        *****************************************************************/
 
         --  Gathering phonenumber
         DECLARE areaCode TYPE OF patient.phoneNumber;
@@ -71,4 +50,32 @@ CREATE OR REPLACE FUNCTION convertPhone(vPhone VARCHAR(255)) RETURNS VARCHAR(255
     RETURN vPhone;
     END x
 
-/*****************************************************************/--   Calculating bmi
+CREATE OR REPLACE FUNCTION generateTableName (vName VARCHAR(255), vssn  VARCHAR(255)) RETURNS VARCHAR(7) NOT DETERMINISTIC
+    BEGIN
+
+        /************ generateTableName ********************
+            The function Trimming the patientName (threeFirst letters 
+            and Three Last letters), vssn(four last digits), 
+            and creating a tablename with the
+            using SUBSTRING to get a part of the digits,
+            using CONCAT to add, '-'.
+
+        *****************************************************************/
+
+        --  Declare variables
+
+        DECLARE vTableName VARCHAR(255);
+        
+
+        --  Trimming the Phone Number 123456789
+        SET vssn = SUBSTRING(vssn, 5, 4);
+        SET vName = SUBSTRING(vName, 1, 3);
+
+        SET vTableName = CONCAT(vName, vssn);
+
+    RETURN vTableName;
+
+    END x
+
+/*****************************************************************/
+

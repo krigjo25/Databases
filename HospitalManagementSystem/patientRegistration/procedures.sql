@@ -22,16 +22,16 @@ CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN
 
         *****************************************************************/
 
+        --  Calls a StoredProcedure  
+        CALL newPatientTable(pName, vssn);
+
         --  Converting the given values for the variables using functions
         SET vssn = convertssn(vssn);
         SET vPhone = convertPhone(vPhone);
 
-        --  Calls a StoredProcedure  
-        CALL newTable(vssn);
-
         --  Insert values into the table
-        INSERT INTO patient (patientName, birthDate, ssn, gender, phoneNumber, street, zipCode, bWeight, bHeight, bmi, bloodType) 
-            VALUES (pName, bDate, vssn, vGender, vPhone, vStreet, vZip, vWeight, vHeight, @bmi, bType);
+        INSERT INTO patient (patientName, birthDate, ssn, gender, phoneNumber, street, zipCode, kg, cm, bloodType) 
+            VALUES (pName, bDate, vssn, vGender, vPhone, vStreet, vZip, vWeight, vHeight, bType);
 
 
     END x
@@ -116,23 +116,26 @@ DELIMITER
 /*********************** Creating a new patientTable Procedures ************************/
 -- x
 DELIMITER x
-CREATE OR REPLACE PROCEDURE newPatientTable (IN tableName VARCHAR(255))
+CREATE OR REPLACE PROCEDURE newPatientTable (IN vName VARCHAR(255), IN vssn VARCHAR(255) )
     BEGIN
          /************ newPatientTable ********************
             The Procedure creates a new patient table, with
             the socialSecurityNumber of the patient
     
         *****************************************************************/
-        --  Declare variables
+        DECLARE tableName VARCHAR(255);
+    
 
-        
+        SET tableName = generateTableName(vName, vssn);
+
         --  Creating the table
-        SET @Query = CONCAT('CREATE TABLE IF NOT EXISTS ', tableName,'(id NOT NULL PRIMARYKEY AUTO_INCREMENT, oProcedure VARCHAR(255) NOT NULL, DateProcedure DATE NOT NULL, timeProcedure DATE NOT NULL, doctorReport VARCHAR(255), employeeName VARCHAR(255) NOT NULL, roomName VARCHAR(255), dateBooked DATE NOT NULL DEFAULT CURDATE(), patientJournal MEDIUMBLOB);');
+        SET @Query = CONCAT('CREATE TABLE IF NOT EXISTS patientInfo.', tableName, '(id BIGINT PRIMARY KEY AUTO_INCREMENT, oProcedure VARCHAR(255) NOT NULL, DateProcedure DATE NOT NULL, timeProcedure TIME NOT NULL, doctorReport VARCHAR(255), employeeName VARCHAR(255) NOT NULL, roomName VARCHAR(255) NOT NULL, dateBooked DATE NOT NULL DEFAULT CURDATE());');
         
         --Prepareing and executing the statement
         PREPARE stmt FROM @Query;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
+
     END x
 
 

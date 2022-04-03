@@ -32,11 +32,16 @@ the patient's health, and proffesion.
 ###  Modify patient information
 - CALL modifyPatient()
 
+###    Create a new record in patientInfo
+
+-   Call newTable();
+
 ##  Functions
 
 *   Convert ssn digits
 *   Convert phone digits
-*   Calculate the BMI of a patient
+*   [s]Calculate the BMI of a patient[/s] - The bmi gets calculated in the python code
+-   generateTable(vName, vssn)
 
 ##  Events
 
@@ -49,8 +54,8 @@ When the patient gets registered for the first time in the<br>
 database. Create a PDF containing the personal info, alergies, diagnosis<br>
 ( where the recommended treatments get fetched from the database)
 
-##  Patient Journal
-
+##  Python Code
+Goto [PatientJournal.md]()
 
         
 
@@ -69,38 +74,24 @@ The invoice fetches
 | patientID | invoiceID | incTax | reminder | overdue |
 |--- |--- |--- |--- |--- |--- |
 
-## Procedures
+### Procedures
 
-###  Insert necsessary values to create the pdf file
+####  Insert necsessary values to create the pdf file
 -    CALL newBilling (vpID)                 
 
-###  Updates the values, if wrongly added
+####  Updates the values, if wrongly added
     CALL updateBilling (vColumn, vpID)
 
-## Triggers
+### Triggers
 
 After the overdue, trigger a record into credited table<br>
 else trigger a record  into paidBillings table
 
-## Events
+### Events
 
 *   When the first overdue has passed on the invoice, trigger a new overdue, add a fine.
 *   When the patient has been recovered trigger a pdf creation 
 
-# Donators
+### PythonCode
 
-A list of patients which is organ / blood donator.
-
-## Donators Table
-
-| patientID | patientName | bloodType | ssn | phoneNumber | organDonor | bloodDonor | diagnosID | medecineID | 
-|--- |--- |--- |--- |--- |--- |--- |--- |--- |---
-
-##  Procedures
-
-Creating a procedure to add a new record in the table <br>
-modifying a records value, and one to remove a donor from the list<br>
-
-*   CALL newDonor(vID, vorgan);  -- Creating a new donor record
-*   CALL modifyDonor(vID, vColum, vValue);   --  modifying given values
-*   CALL delDonor(vID) --    Removes a donor from the list.
+Goto [Invoice.md]() 

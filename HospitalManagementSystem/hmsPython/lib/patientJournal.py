@@ -24,7 +24,8 @@ from reportlab.pdfgen.canvas import Canvas, rl_config
 load_dotenv()
 
 class PDFCanvas (Canvas):
-
+    # Creating a PDF title with the three first letters in the FirstName, 
+    # LastName and four last digits in the ssn
     def __init__(self, filename='SampleJournal.pdf', pagesize=A4, bottomup=1, pageCompression=0, encoding=rl_config.defaultEncoding, verbosity=0, encrypt=None):
         super().__init__(filename,pagesize, bottomup, pageCompression, encoding, verbosity, encrypt)
 

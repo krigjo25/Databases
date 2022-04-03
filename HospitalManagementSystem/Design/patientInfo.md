@@ -7,7 +7,9 @@ in the database patient.
 
 ##   Tables
 
-The tables is dynamic and will be updated each time a patient has done a procedure
+The tables is dynamic and will be updated each time a patient has done a 
+procedure in this hospital, the patient table will be named with 3 firstletters
+and four last digits in social security Number
 The table is
 
 ### patient social security
@@ -22,6 +24,7 @@ The table is
 
 ## Procedures
 - New record
+
 ## Triggers
 
 - Trigger new patient
