@@ -39,9 +39,9 @@ CREATE OR REPLACE PROCEDURE roomBooking (IN vpID BIGINT, IN rID SMALLINT, IN vID
 
         --  Selecting the values and insert it into the variable
         SELECT roomName INTO rName FROM rooms WHERE roomID = rID;
-        SELECT eID INTO veID FROM employees.relations WHERE pID = vpID;
-        SELECT patientName INTO vpName FROM patients.patient WHERE pID = vpID;
-        SELECT employeeName INTO veName FROM employees.relations WHERE veID = vpID;
+        SELECT eID INTO veID FROM employeement.relations WHERE pID = vpID;
+        SELECT employeeName INTO veName FROM employeement.relations WHERE veID = vpID;
+        SELECT patientName INTO vpName FROM patientRegistration.patientRegistrations WHERE pID = vpID;
 
         --  Selecting the informaation about the operation procedure
         SELECT procedureName INTo procedureName FROM operationProcedures WHERE id = vID;
@@ -64,12 +64,16 @@ CREATE OR REPLACE PROCEDURE roomBooking (IN vpID BIGINT, IN rID SMALLINT, IN vID
         --  Checking if a room is available or not to complete the booking.
         SET @available = checkAvailableRoom(rID);
 
-         --  Selecting values into variables
+        --  Selecting values into variables
         SELECT roomName INTO rName FROM rooms WHERE roomID = rID;
+
+        --   Creating a record into the patientRecords tables
+        CALL newPatientRecord (vPatientID, procedureName, vInn, procedureTime, veName roomName, procedurePrice);
+
          CASE
             WHEN @available = 0 THEN
                 --  Inserting values into the table
-               INSERT INTO booking (pID, patientName, rID, roomName, oProcedures, price, eID, employeeName, bookingInn, bookingOut)
+               INSERT INTO booking (patientID, patientName, rID, roomName, oProcedures, price, eID, employeeName, bookingInn, bookingOut)
                     VALUES (vpID, vpName, vID, rName, procedureName, procedurePrice, veID, veName, vInn, procedureTime);
 
                 SET msg = CONCAT('Patient Booked for', roomName, vInn);
@@ -82,18 +86,18 @@ CREATE OR REPLACE PROCEDURE roomBooking (IN vpID BIGINT, IN rID SMALLINT, IN vID
         END CASE;
     END x
 
+
 CREATE OR REPLACE PROCEDURE delbook (in vpID BIGINT)
     BEGIN
 
 
-        /************ delbook********************'
+        /************ delbook ********************'
             Deletes a booked room from the table
 
         *****************************************************************/
 
     --  Delete a row from the database
     UPDATE booking SET cmt = 'CLD' WHERE pID = vpID;
-    UPDATE 
     END x
 
 CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(255))
@@ -139,6 +143,17 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
 
         SELECT roomID, roomName, sStatus AS 'Search Status' FROM availableRooms;
     END x
+
+CREATE OR REPLACE PROCEDURE newPatientRecord (IN vPatientID BIGINT, IN procedureName VARCHAR(255), IN vInn DATE, IN procedureTime TIME, IN veName VARCHAR(255), IN roomName VARCHAR(255), IN procedurePrice DECIMAL(8.2))
+    BEGIN
+
+
+        /************ newPatientRecord ********************'
+            Deletes a booked room from the table
+
+        *****************************************************************/
+
+    END x
 /*******************************************************************/
 
 /************************ Alergies Procedures **************************/
@@ -161,7 +176,6 @@ DELIMITER x
 /************************ Diagnosis Procedures **************************/
 CREATE OR REPLACE PROCEDURE insertD (vID CHAR(5), vName VARCHAR(255), vSymptoms VARCHAR(255), mID CHAR(5))
     BEGIN
-
 
         /************ newEmployee ********************'
             Inserting a record into Diagnosis table
@@ -233,7 +247,7 @@ CREATE OR REPLACE PROCEDURE thirdFloor ( IN vName VARCHAR(255))
 
 /*******************************************************************/
 
-/*********************** Room Procedures ******************************/
+/*********************** Operation Procedures ******************************/
 CREATE OR REPLACE PROCEDURE operationProcedure ( IN vName VARCHAR(255), IN vRate DECIMAL(8.2), IN vTime TIME)
     BEGIN
 

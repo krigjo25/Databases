@@ -13,7 +13,7 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, I
     BEGIN
 
         /************ newEmployee ********************'
-            Allows the management to insert add a new employee,
+            Allows the management to insert a new employee,
             record into the databse.
 
         *****************************************************************/
@@ -42,7 +42,7 @@ CREATE OR REPLACE PROCEDURE newEmployee (IN eName VARCHAR(255), IN vDate DATE, I
             SET vSalary = calculateSalary(vTitle, veStatus, vSalary);
 
             --  Inserting the records into the table
-            INSERT INTO employees (eName, birthDate, street, zipCode, email, phone, eStatus, occupation, hSalary, department) VALUES
+            INSERT INTO employeeRecords (eName, birthDate, street, zipCode, email, phone, eStatus, occupation, hSalary, department) VALUES
             (eName, vDate, vStreet, vZip, vEmail, vPhone, veStatus, vTitle, vSalary, vDep);
         END IF;
     END x
@@ -62,7 +62,7 @@ CREATE OR REPLACE PROCEDURE modifyEmployee (IN vColumn VARCHAR(20), IN vValue VA
         *******************************************************/
 
         --  The procedure updates, the values for employees, execpt date
-        SET @Query = CONCAT('UPDATE employees SET ', vColumn, ' = ', vValue, ' WHERE eID = ', veID);
+        SET @Query = CONCAT('UPDATE employeeRecords SET ', vColumn, ' = ', vValue, ' WHERE eID = ', veID);
             PREPARE stmt FROM @Query;
             EXECUTE stmt;
             DEALLOCATE PREPARE stmt;
@@ -86,7 +86,7 @@ CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT, OUT vE
         DECLARE veName VARCHAR(255);
 
         --  Assigning the new variable values
-        SET veName = (SELECT eName from employees WHERE eID = veID);
+        SET veName = (SELECT eName from employeement WHERE eID = veID);
         SET pName = (SELECT patientName from patients.patient WHERE id = vpID);
 
         --  Counting how many times the doctor has been added to the table
@@ -111,12 +111,12 @@ CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT, OUT vE
         END IF;
     END x
 
-CREATE OR REPLACE PROCEDURE modifyRelation(IN veID BIGINT, IN vpID BIGINT, OUT vCon VARCHAR(100))
+CREATE OR REPLACE PROCEDURE modifyRelation(IN veID BIGINT, IN vpID BIGINT, OUT vConf VARCHAR(100))
     BEGIN
 
             -- Update relations patient and employee name
             UPDATE relations SET patientName = (SELECT patientName FROM patients.patient WHERE pID = vpID) WHERE pID= vpID;
-            UPDATE relations SET employeeName = (SELECT employeeName FROm employees.employees WHERE eID = veID) WHERE eID = veID;
+            UPDATE relations SET employeeName = (SELECT employeeName FROm employeement.employeeRecords WHERE eID = veID) WHERE eID = veID;
 
             SET vConf = CONCAT('You have re-assigned ', (SELECT employeeName FROM relation WHERE eID = veID), ' To ', (SELECT patientName FROM relations WHERE pID = vpID));
 

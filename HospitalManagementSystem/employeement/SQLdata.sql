@@ -1,3 +1,17 @@
+/****************************** SalaryInfo ******************************/
+CALL newSalary ('Pulmonologists', 333000.00);
+CALL newSalary ('Radiologist', 350000.00);
+CALL newSalary ('Immunologist', 393466.00);
+CALL newSalary ('Anesthesiologists', 404000.00);
+CALL newSalary ('Cardiologist', 252151.00);
+
+CALL newSalary ('Critical Care Medecine Specialist', 366000.00);
+CALL newSalary ('Dermatologist', 359000.00);
+CALL newSalary ('Endocrinologist', 237500.00);
+CALL newSalary ('General Surgeon', 373000.00);
+CALL newSalary ('Certified Nurse Practisioner', 61220.56 );
+/************************************************************************/
+
 /************************************* employees ************************/
 
 -- CALL newEmployee (Name, date, street, zip, email, phone, mobile, eStatus, occupation, department)
@@ -29,19 +43,7 @@ CALL newEmployee ('Brian M Howell', '1976-06-04', '2645 Foley Street', 33442, 'j
 CALL newEmployee ('Loida G Newton', '1972-08-18', '552 Horizon Circle', 98119, 'barton2000@hotmail.com', '2536855251', 100,'Surgeon', 'ICU', @Error);
 CALL newEmployee ('Julia A. Hanson', '1994-01-01', '118 Cerullo Road', 20001, 'frida2015@gmail.com', '9122491720', 100,'Surgeon', 'ICU', @Error);
 /************************************************************************/
-/****************************** SalaryInfo ******************************/
-CALL newSalary ('Pulmonologists', 333000.00);
-CALL newSalary ('Radiologist', 350000.00);
-CALL newSalary ('Immunologist', 393466.00);
-CALL newSalary ('Anesthesiologists', 404000.00);
-CALL newSalary ('Cardiologist', 252151.00);
 
-CALL newSalary ('Critical Care Medecine Specialist', 366000.00);
-CALL newSalary ('Dermatologist', 359000.00);
-CALL newSalary ('Endocrinologist', 237500.00);
-CALL newSalary ('General Surgeon', 373000.00);
-CALL newSalary ('Certified Nurse Practisioner', 61220.56 );
-/************************************************************************/
 /************************************* relations ************************/
 
 --  CALL newRelation (veID, vpID, @vError);

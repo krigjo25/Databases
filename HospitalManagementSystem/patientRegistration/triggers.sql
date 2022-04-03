@@ -11,7 +11,7 @@ a new patient is added to the database.
 x
 ***********************************************************/
 DELIMITER x
-CREATE OR REPLACE TRIGGER triggerPDF AFTER INSERT ON patient
+CREATE OR REPLACE TRIGGER triggerPDF AFTER INSERT ON patientRegistrations
     FOR EACH ROW
     BEGIN
 
@@ -27,7 +27,7 @@ CREATE OR REPLACE TRIGGER triggerPDF AFTER INSERT ON patient
         DECLARE result int(10);
 
         -- Give Variables a value
-        SET cmd = CONCAT('python /home/createPDF.py');
+        SET cmd = CONCAT('python /home/runPDF.py');
 
         SET result = sys_exec(cmd);
 

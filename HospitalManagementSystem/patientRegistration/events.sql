@@ -6,19 +6,16 @@ CREATE OR REPLACE EVENT delRecords
     ON SCHEDULE EVERY 1 DAY DO BEGIN
         
         --  Deletes records from given tables with-in 12 hours
-        DELETE FROM patients.billings WHERE overDue = overDue < DATE_SUB(NOW(), INTERVAL 12 HOUR);
-        
+        DELETE FROM patientRegistrations.billings WHERE overDue = overDue < DATE_SUB(NOW(), INTERVAL 12 HOUR);
+       -- Counting the age of the patient, then deleting if the patient is above 150
+
+        --DELETE FROM patients.patient 
+
+        --  Delete records from employee
+        DELETE FROM employeement.employeeRecords WHERE eStatus = 0;
+
+        DELETE FROM employeement.relations WHERE recovered = 1;
     END x
 
-CREATE OR REPLACE EVENT createTable
-    --  The event shuld be scheduled every minute,
-    ON SCHEDULE EVERY 1 MIN DO BEGIN
 
-    DEclare run VARCHAR(255);
-    DECLARE query VARCHAR(255);
-
-    SET query = CONCAT('/home/hospitalManagementSystem/hmsPython/createTable')
-    SET run = sys_exec(query);
-    END x
 /*************************************************************************************************************/
-

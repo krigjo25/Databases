@@ -12,9 +12,9 @@ CREATE OR REPLACE FUNCTION convertPhone(vPhone VARCHAR(255)) RETURNS VARCHAR(255
         *****************************************************************/--   Calculating bmi
 
         --  Gathering phonenumber
-        DECLARE areaCode TYPE OF employees.phone;
-        DECLARE lastDigit TYPE OF employees.phone;
-        DECLARE threeDigit TYPE OF employees.phone;
+        DECLARE areaCode TYPE OF employeeRecords.phone;
+        DECLARE lastDigit TYPE OF employeeRecords.phone;
+        DECLARE threeDigit TYPE OF employeeRecords.phone;
         --  Trimming the Phone Number
         SET areaCode = SUBSTRING(vPhone, 1,3);
         SET lastDigit = SUBSTRING(vPhone, 7,4);
@@ -58,7 +58,7 @@ CREATE OR REPLACE FUNCTION checkRecovery() RETURNS INT NOT DETERMINISTIC
 
                 CASE
 
-                    WHEN vRecovery > 0 THEN UPDATE employee.relations SET recovered = vRecovery WHERE pID = vpID AND recovered = 0;
+                    WHEN vRecovery > 0 THEN UPDATE employeement.relations SET recovered = vRecovery WHERE pID = vpID AND recovered = 0;
 
                 END CASE;
 

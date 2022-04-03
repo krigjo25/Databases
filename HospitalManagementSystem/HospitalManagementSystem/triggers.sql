@@ -11,12 +11,12 @@ CREATE OR REPLACE TRIGGER newRecord AFTER INSERT ON hospitalManagementSystem.boo
 
         /************ NewRecord ********************'
             
-            Inserts a new record into patientInfo.socialsecurity
+            Inserts a new record into patientRecords.socialsecurity
             When there is a new record in record into bookings 
             
         ************************************************/
         
-        CALL NewRecord (NEW.patientID, NEW.oProcedure, NEW.dateIn, NEW.dateOut);
+        CALL NewPatientRecord (NEW.patientID, NEW.oProcedure, NEW.dateIn, NEW.dateOut);
 
     END x
 /***************************************************************/

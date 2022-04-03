@@ -12,7 +12,7 @@ patients
 
 /********************************************   Patient table   *******************************************/
 
-CREATE OR REPLACE TABLE patient (
+CREATE OR REPLACE TABLE patientRegistrations (
                         patientID BIGINT SIGNED NOT NULL, -- N AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
                         patientName VARCHAR(255) NOT NULL,
 
@@ -41,12 +41,21 @@ CREATE OR REPLACE TABLE patient (
                         industry VARCHAR(255) NOT NULL DEFAULT 'Unemployeed',
                         registered TIMESTAMP NOT NULL DEFAULT NOW(),
 
+                    --  EmergencyContacts
+                        contactOne VARCHAR(255),
+                        NumberOne VARCHAR(255),
+                        contactTwo VARCHAR(255),
+                        NumberTwo VARCHAR(255),
+                        contactThree VARCHAR(255),
+                        NumberThree VARCHAR(255),
+                    
                     --  Extra columns
                         demo VARCHAR(255),
                         demo1 VARCHAR(255),
                     --  Table Constraints
 
                         INDEX (diagnoseID, medecineID, alergyID));
+
 /*********************************************************************************************************/
 DELIMITER
 
@@ -83,13 +92,13 @@ CREATE TABLE billing (
                     --  Table Columns
                         id BIGINT NOT NULL UNIQUE AUTO_INCREMENT,
                         invoiceID INT NOT NULL UNIQUE, -- AUTO_INCREMENT PRIMARY KEY, AUTO_INCREMENT=300000 
-                        pID BIGINT SIGNED NOT NULL,
+                        patientID BIGINT SIGNED NOT NULL,
                         discount TINYINT NOT NULL,
                         incTax DECIMAL(11,2),
                         overDue DATE NOT NULL,
                         paymentStatus TINYINT NOT NULL DEFAULT 0,
                     
                     -- Table Constraints
-                        INDEX (pID),
-                        CONSTRAINT patientID_FK FOREIGN KEY (pID) REFERENCES patient (id) ON DELETE CASCADE ON UPDATE CASCADE);
+                        INDEX (patientID),
+                        CONSTRAINT patientID_FK FOREIGN KEY (patientID) REFERENCES patientRegistrations (patientID) ON DELETE CASCADE);
 /*************************************************************************************************************/

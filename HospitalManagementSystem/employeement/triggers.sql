@@ -13,7 +13,7 @@ x
 DELIMITER x
 
 DELIMITER x
-CREATE OR REPLACE TRIGGER terminateEmployee BEFORE DELETE ON employees
+CREATE OR REPLACE TRIGGER terminateEmployee BEFORE DELETE ON employeeRecords
     FOR EACH ROW BEGIN
 
         /************ salaryChanges ********************'
@@ -60,4 +60,5 @@ CREATE OR REPLACE TRIGGER salaryChanges AFTER UPDATE ON salaryInfo
         UPDATE salaryInfo SET monthlyRate = mSalary;
 
     END x
+    
 

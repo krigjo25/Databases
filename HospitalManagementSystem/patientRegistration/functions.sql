@@ -10,9 +10,9 @@ CREATE OR REPLACE FUNCTION convertssn(vssn VARCHAR(255)) RETURNS VARCHAR(12) NOT
         *****************************************************************/--   Calculating bmi
 
         --  Gathering Social Security variables
-        DECLARE partOne TYPE OF patient.ssn;
-        DECLARE partTwo TYPE OF patient.ssn;
-        DECLARE partThree TYPE OF patient.ssn;
+        DECLARE partOne VARCHAR(255);
+        DECLARE partTwo VARCHAR(255);
+        DECLARE partThree VARCHAR(255);
 
         -- Trimming the Social Security Number
         SET partOne = SUBSTRING(vssn, 1,3);
@@ -37,9 +37,9 @@ CREATE OR REPLACE FUNCTION convertPhone(vPhone VARCHAR(255)) RETURNS VARCHAR(255
         *****************************************************************/
 
         --  Gathering phonenumber
-        DECLARE areaCode TYPE OF patient.phoneNumber;
-        DECLARE lastDigit TYPE OF patient.phoneNumber;
-        DECLARE threeDigit TYPE OF patient.phoneNumber;
+        DECLARE areaCode TYPE OF patientRegistrations.phoneNumber;
+        DECLARE lastDigit TYPE OF patientRegistrations.phoneNumber;
+        DECLARE threeDigit TYPE OF patientRegistrations.phoneNumber;
 
         --  Trimming the Phone Number
         SET areaCode = SUBSTRING(vPhone, 1,3);
@@ -47,6 +47,7 @@ CREATE OR REPLACE FUNCTION convertPhone(vPhone VARCHAR(255)) RETURNS VARCHAR(255
         SET threeDigit = SUBSTRING(vPhone, 4,3);
 
         SET vPhone = CONCAT ('(', areaCode, ')- ', threeDigit, '-', lastDigit);
+
     RETURN vPhone;
     END x
 
