@@ -5,8 +5,8 @@ CREATE OR REPLACE FUNCTION calculatebmi(vheight DECIMAL(3.2), vWeight DECIMAL (5
             The function calculates a patient's bmi using
             the mathmatic formula
             (m2 x m2) / kg 
-        *****************************************************************/--   Calculating bmi
-   
+        *****************************************************************/
+        
         --  Declare variables
         DECLARE vBMI DECIMAL(5.2);
 

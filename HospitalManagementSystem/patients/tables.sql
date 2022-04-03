@@ -11,14 +11,15 @@ patients
 /********************************************   Patient table   *******************************************/
 
 CREATE OR REPLACE TABLE patient (
-                        patientID BIGINT SIGNED NOT NULL , -- NOT NULL AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
-                        patientName VARCHAR(255)
+                        patientID BIGINT SIGNED NOT NULL, -- N AUTO_INCREMENT PRIMARY KEY AUTO_INCREMENT=100
+                        patientName VARCHAR(255) NOT NULL,
+
                         -- General information
                         birthDate DATE NOT NULL DEFAULT '1973-01-01',
                         ssn VARCHAR(12) NOT NULL DEFAULT 0101740009,
                         gender VARCHAR(5) NOT NULL DEFAULT 'M',
                         phoneNumber VARCHAR(255),
-                        street VARCHAR(255) NOT NULL DEFAULT 'CharminAvenue',
+                        street VARCHAR(255) NOT NULL DEFAULT '128 CharminAvenue',
                         zipcode MEDIUMINT SIGNED NOT NULL DEFAULT 12345,
 
                     --  Health information
@@ -26,7 +27,7 @@ CREATE OR REPLACE TABLE patient (
                         bloodDonor VARCHAR(3) NOT NULL DEFAULT 'no',
                         bWeight DECIMAL (5.2) DEFAULT 80.0,
                         bHeight DECIMAL (4.1) NOT NULL DEFAULT 180.0,
-                        bloodType VARCHAR(3), 
+                        bloodType VARCHAR(2), 
                         alergyID VARCHAR(255) NOT NULL DEFAULT 'NNNNA,',
                         diagnoseID VARCHAR(255) NOT NULL DEFAULT 'NNNND,',
                         medecineID  VARCHAR(255) NOT NULL DEFAULT 'NNNNM,',

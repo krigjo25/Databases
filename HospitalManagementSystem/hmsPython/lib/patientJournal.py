@@ -9,15 +9,12 @@
 import sys
 from os import getenv
 
-
-#   Database    Responsories
-import mariadb
-
 #   dotenv Responsories
 from dotenv import load_dotenv
 
 #   Library Responsories
-from lib.customFunctions import Dictionaries, DatabaseConnection, Calculators
+from lib.databasePython import mariaDB
+from lib.customFunctions import Dictionaries, Calculators
 
 #   ReportLab Resposories
 from reportlab.lib.colors import blue
@@ -37,19 +34,15 @@ class PDFCanvas (Canvas):
 
         #   Initializing classes
         kalc = Calculators()
-        dc = DatabaseConnection()
+        dc = mariaDB()
 
         #   initializing the mariadb connection
         
-        vID = str(getenv('vID'))
-        database = getenv('database2')
-        query = f'SELECT * FROM patient WHERE patientID = {vID}'
-        qury = 'SELECT COUNT(patientID) FROM patient'
+        database = getenv('database1')
+        query = f'SELECT * FROM patient;'
 
         sqlData = dc.selectFromTable(database, query)
 
-        cur = dc.selectFromTable(database, qury)
-        print(cur)
         #   PDF Document
         self.setFont('Helvetica-Bold', 18)
         self.drawString(150, 775, f'Patient Journal of {sqlData[0][1]}, {sqlData[0][0]}')
@@ -59,10 +52,10 @@ class PDFCanvas (Canvas):
 
         #   Titles        
         self.setFont('Helvetica-Bold', 18)
+        self.drawString(75, 450, 'Primary Doctor')
         self.drawString(75, 725, 'Health Information')
         self.drawString(75, 575, 'Contact Information')
         self.drawString(350, 575, 'Emergency Contacts')
-        self.drawString(75, 450, 'Primary Doctor')
         self.drawString( 225, 400, 'Alergies & diagnosis')
         
         self.setFont('Helvetica-Bold', 16)
@@ -115,12 +108,12 @@ class PDFCanvas (Canvas):
         
 
         self.setFont('Helvetica', 16)
-        self.drawString(300, 375, 'Diagnosis & medical Treatment')
-        self.drawString(50, 375, 'Alergies & medical Treatments')
+        self.drawString(50, 300, 'Alergies')
+        self.drawString(50, 375, 'Diagnosis')
+        self.drawString(300, 375, 'Suggested Treatments')
+        self.drawString(300, 300, 'Suggested Treatments')
 
         self.setFont('Helvetica', 14)
-
-
 
         #   Page End Lines
         self.setFont ('Helvetica', 30)
@@ -131,18 +124,35 @@ class PDFCanvas (Canvas):
 
     def BodyMain(self):
         
-        #   Class iniztalation
-        dc = DatabaseConnection()
+        #   Class initializion
+        dc = mariaDB()
         
         #  retrieveing the sql Data
-        #query = f'SELECT * FROM bookings WHERE patientID = {getenv("vID")}' # query = ' SELECT * FROM {getenv('') WHERE patientID = {vID}}
-        #sqlData = dc.selectFromTable(getenv('database4'), query)
-        vID = 0
-        counter = 0 #dc.selectFromTable(getenv('database5', query))
-        while vID <= counter:
+        database = getenv('database1')
 
-            vID += 1
+        query = 'SELECT ssn FROM patient'
 
+        #   Selecting and counting rows
+        sqlData = dc.selectFromTable(database, query)
+        print(sqlData)
+        counter = dc.RowCount(database, getenv('pt1'), query)
+
+        #   Declare and initialize the variables
+        rID = 1
+        x = 0
+        while rID <= counter :
+
+            #  Collecting intel from the given Database
+            
+            query = f'SELECT * FROM {sqlData[x][3]} WHERE id = {rID};'
+
+            sqlData = dc.selectFromTable(database, query)
+
+
+
+            #   Increment the variables by one
+            x += 1
+            rID += 1
         return
 
     def BodyFooter(self):

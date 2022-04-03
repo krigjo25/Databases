@@ -8,10 +8,6 @@ DATABASE = 'DATABASE'
 
 ##   Databases
 
-
-###   Discord databases
-
-
 ## sms- Configuration
 
 ## Mail - configuration

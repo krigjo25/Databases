@@ -10,8 +10,8 @@ CALL newPatient ('Tammy F. Dudley', '1989-02-25' , '136768137', 'M', '7329755329
 CALL newPatient ('Judy R. Daniel' , '1996-08-17' , '208036728', 'F', '4127279908', '3077 Losh Lane', 1519 , 69.5, 170,'O+', 'vAlergies', 'vDoc', 'vMed' );
 CALL newPatient ('Joseph A. Mauldin' , '1975-06-07' , '426279252', 'M', '6017868837', '1484 School House Road', 39069 , 76.0, 168,'O+', 'vAlergies', 'vDoc' , 'vMed' );
 CALL newPatient ('Geraldine J. Egerton' , '2000-11-02' , '171014356', 'F', '7243752103', '3426 Stuart Street', 15001 , 73.39, 162,'A+', 'vAlergies', 'vDoc' , 'vMed' );
-CALL newPatient ('Kevin L. Planas' , '1985-11-28' , '428950341', 'M' , '6016610065', '2986 Walnut Street', 39180 , 84.4, 169,'O+', 'vAlergies', 'vDoc', 'vMed' );
-CALL newPatient ('Keith N. Brown' , '1986-11-11' , '689035234', 'M' , '7043133213', '4287 Red Dog Road', 28273 , 110.7, 186,'B-', 'vAlergies', 'vDoc', 'vMed' );
+CALL newPatient ('Kevin L. Planas' , '1985-11-28' , '428950341', 'M' , '6016610065', '2986 Walnut Street', 39180 , 84.4, 169,'O+');
+CALL newPatient ('Keith N. Brown' , '1986-11-11' , '689035234', 'M' , '7043133213', '4287 Red Dog Road', 28273 , 110.7, 186,'B-');
 CALL newPatient ('Mabelle R. Williams' , '1971-12-24' , '7684288873', 'F' , '4072392175', '3794 Barnes Street', 34746 , 83.19, 173,'A+', 'vAlergies', 'vDoc', 'vMed' );
 CALL newPatient ('Ivan S. Miller' , '1988-04-15' , '253462254', 'M' , '6787085679', '900 Kuhl Avenue', 30329 , 91.9, 176,'O+', 'vAlergies', 'vDoc', 'vMed' );
 CALL newPatient ('Maria A. Acheson' , '1951-03-12' , '260410526', 'F' , '4043805030', '4949 College Street', 30071 , 65.77, 164,'O-', 'vAlergies', 'vDoc', 'vMed' );

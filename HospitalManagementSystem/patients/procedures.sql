@@ -12,24 +12,40 @@ Billing Proceduures,
 DELIMITER x
 CREATE OR REPLACE PROCEDURE newPatient (IN pName VARCHAR(255), IN bDate DATE, IN vssn VARCHAR(12), IN vGender VARCHAR(5), IN vPhone VARCHAR(255), IN vStreet VARCHAR(255), IN vZip INT, IN vWeight INT, IN vHeight INT, IN bType VARCHAR(2))
     BEGIN
-        --  Declare variables
-        DECLARE vBMI DECIMAL(4.1);
+        /************ newPatient ********************
+            Creates a new patient record inside the patient table, with
+            
+            -   Converting vssn from 123456789 to 123-456-789
+            -   Converting Phone characters to area code etc.
+            -   Calls a stored procedure to create a new table in patientInfo
+                for storing booking data, by using the social security number
+
+        *****************************************************************/
 
         --  Converting the given values for the variables using functions
         SET vssn = convertssn(vssn);
         SET vPhone = convertPhone(vPhone);
-        SET vBMI = calculateBMI(vheight, vWeight);
+
+        --  Calls a StoredProcedure  
+        CALL newTable(vssn);
 
         --  Insert values into the table
         INSERT INTO patient (patientName, birthDate, ssn, gender, phoneNumber, street, zipCode, bWeight, bHeight, bmi, bloodType) 
-            VALUES (pName, bDate, vssn, vGender, vPhone, vStreet, vZip, vWeight, vHeight, vBMI, bType);
+            VALUES (pName, bDate, vssn, vGender, vPhone, vStreet, vZip, vWeight, vHeight, @bmi, bType);
+
+
     END x
 
 /*****************************************************************/
 
 CREATE OR REPLACE PROCEDURE modifyPatient (IN vColumn VARCHAR(20), vValue VARCHAR(255), IN vID INT)
     BEGIN
+        /************ modifyPatient ********************
 
+            The Procedure modifies the selected column,
+            updates the value
+    
+        *****************************************************************/
         --  Declare variables
         DECLARE vAlergy TYPE OF patient.alergyID;
         DECLARE vMedecine TYPE OF patient.medecineID;
@@ -97,42 +113,27 @@ CREATE OR REPLACE PROCEDURE modifyPatient (IN vColumn VARCHAR(20), vValue VARCHA
         END x
 /***********************************************************************/
 DELIMITER
-/*********************** Donor Procedures ************************/
+/*********************** Creating a new patientTable Procedures ************************/
 -- x
-
-CREATE OR REPLACE PROCEDURE newDonor (IN vpID BIGINT, IN vOrgan VARCHAR(3), IN vBlood VARCHAR(3))
+DELIMITER x
+CREATE OR REPLACE PROCEDURE newPatientTable (IN tableName VARCHAR(255))
     BEGIN
-
-        --  Declare variables
-        DECLARE ssn TYPE OF patient.ssn;
-        DECLARE bType TYPE OF patient.bloodType;
-        DECLARE vName TYPE OF patient.patientName;
-        DECLARE vPhone TYPE OF patient.phoneNumber;
-        DECLARE vMedecineID TYPE OF patient.medecine;
-        DECLARE vDiagnoseID TYPE OF patient.diagnosis;
+         /************ newPatientTable ********************
+            The Procedure creates a new patient table, with
+            the socialSecurityNumber of the patient
     
-        --  Selecting values from the patient table
-        SELECT ssn INTO vssn FROM patient WHERE patientID = vpID;
-        SELECT bloodType INTO bType FROM patient WHERE patientID = vpID;
-        SELECT patientName INTO vName FROM patient WHERE patientID = vpID;
-        SELECT diagnoseID INTO vDiagnoseID FROM patient WHERE patientID = vpID;
-        SELECT medecineID INTO vMedecineID FROM patient WHERE patientID = vpID;
+        *****************************************************************/
+        --  Declare variables
 
-        --  Inserting values to the table
-        INSERT INTO donator (patientID, patientName, bloodType, phoneNumber, organDonor, bloodDonor, diagnoseID, medecineID)
-            VALUES (pID, vName, bType, vPhone, vOrgan, vBlood, vDiagnoseID, vMedecineID);
+        
+        --  Creating the table
+        SET @Query = CONCAT('CREATE TABLE IF NOT EXISTS ', tableName,'(id NOT NULL PRIMARYKEY AUTO_INCREMENT, oProcedure VARCHAR(255) NOT NULL, DateProcedure DATE NOT NULL, timeProcedure DATE NOT NULL, doctorReport VARCHAR(255), employeeName VARCHAR(255) NOT NULL, roomName VARCHAR(255), dateBooked DATE NOT NULL DEFAULT CURDATE(), patientJournal MEDIUMBLOB);');
+        
+        --Prepareing and executing the statement
+        PREPARE stmt FROM @Query;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
     END x
 
-CREATE OR REPLACE PROCEDURE modifyDonor (IN pID BIGINT, IN vColumn VARCHAR(25), IN vValue VARCHAR(25) )
-    BEGIN
 
-        --  Updating values for the table
-        CASE
-            WHEN vColumn = 'organ' THEN
-                UPDATE donorList SET organDonor = vValue WHERE patientID = pID;
-
-            WHEN vColumn = 'blood' THEN
-                UPDATE donorList SET blodDonor = vValue WHERE patientID = pID;
-        CASE END;
-    END x
 /*******************************************************************/

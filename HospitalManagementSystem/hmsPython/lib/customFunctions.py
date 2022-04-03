@@ -3,14 +3,16 @@ from os import getenv
 from datetime import datetime, date
 
 #   Database responsories
-import mariadb
+from lib.databasePython import mariaDB
 
 #   dotenv Responsories
 from dotenv import load_dotenv
+
+
 load_dotenv()
 
 #   yagMail Responsories
-#import yagmail
+import yagmail
 
 class Calculators():
     '''         Calculators     '''
@@ -121,102 +123,6 @@ class MetricConverter():
 
         return km
 
-class DatabaseConnection():
-
-    '''         DatabaseConnection
-
-        Connects to the preferably used database
-        With Commands, such as SELECT, INSERT, UPDATE
-                
-        x callProcedure / callfunction
-    '''
-
-    def __init__(self):
-
-        #   Initializing the database connection
-        self.conn = mariadb.connect(
-                                    host = getenv('H0ST'), 
-                                    user = getenv('MASTER'), 
-                                    port = int(getenv('PORT')), 
-                                    password = getenv('PASSWORD'),
-                                    database = getenv('database'))
-        
-        #   Creating a cursor to execute the statements
-        self.cur = self.conn.cursor(buffered=True)
-
-        return
-
-    def databaseTest (self):
-
-        # Testing the connection to the database
-        self.conn.database = getenv('database1')
-        self.cur.execute('SELECT \'CONNECTION\'')
-
-
-        self.conn.close()
-
-    def selectFromTable (self, database, query):
-
-        database = str(database)
-
-        #   Database selection
-        self.conn.database = database
-
-        #  Execute the query.
-        self.cur.execute(query)
-        curCount = self.cur.rowcount
-
-        #   Fetching the sql selection
-        sql = self.cur.fetchall()
-
-        #   Initializing a list to return
-        sqlData = []
-
-        #   append to the list
-        for i in sql:
-            sqlData.append(i)
-        
-        sql
-        #   Closing the connection to the database
-        self.conn.close()
-        #   Returning the values in sqlData
-        return sqlData, curCount
-
-    def insertIntoTable (self, database, query):
-
-        #   Database selection
-        self.conn.database = database
-
-        #   Executes the query
-        self.cur.execute(query)
-        self.conn.close()
-
-        return
-
-    def updateTable (self, database, query):
-
-        #   Database selection
-        self.conn.database = database
-
-        self.database = database
-
-        #   Executes the query and close the connection
-
-        self.cur.execute(query)
-        self.conn.close()
-
-        return
-
-    def callProcedure (self, database, procedure):
-
-        #   Database Connection 
-        self.conn.database = database
-
-        #   calling a procedure
-        sqlData = self.cur.callproc(f'{procedure}')
-
-        return sqlData
-
 class Dictionaries():
     def __init__(self):
         pass
@@ -245,7 +151,7 @@ class Dictionaries():
 class UploadFile():
     def __init__(self):
 
-        self.dc = DatabaseConnection
+        self.dc = mariaDB
         self.database = database = getenv('database2')
         pass
 
@@ -258,18 +164,6 @@ class UploadFile():
 
     def generateBlob(self, query, photo, bioData):
 
-        
-        conn = mariadb.connect(
-                                host=getenv('HOST'),
-                                user= getenv('USERNAME'),
-                                port= int(getenv('PORT')),
-                                password = getenv('PASSWORD'),
-                                database = getenv('DATABASE')
-            )
-
-        cur = conn.cursor()
-
-        
         bFile = self.BinaryConverter(photo,file)
         file = self.BinaryConverter(bioData)
         
@@ -297,7 +191,7 @@ class sendMail():
     def SendMailLibray(self):
 
         #   Connecting to the database
-        dc = DatabaseConnection()
+        dc = mariaDB()
         
         dates = []
         today = date.today()
