@@ -47,7 +47,7 @@ class mariaDB():
         #database = str(database)
         #   Database selection
         self.conn.database = database
-
+        print(database)
         #  Execute the query.
         self.cur.execute(query)
 

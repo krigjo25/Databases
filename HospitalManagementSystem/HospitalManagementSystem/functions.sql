@@ -41,3 +41,32 @@ CREATE OR REPLACE FUNCTIOn checkAvailableRoom (vID SMALLINT) RETURNS TINYINT DET
         CLOSE cur;
         RETURN availableRoom;
     END x
+/***************************************************************/
+CREATE OR REPLACE FUNCTION generateTableName (vName VARCHAR(255), vssn  VARCHAR(255)) RETURNS VARCHAR(7) NOT DETERMINISTIC
+    BEGIN
+
+        /************ generateTableName ********************
+            The function Trimming the patientName (threeFirst letters 
+            and Three Last letters), vssn(four last digits), 
+            and creating a tablename with the
+            using SUBSTRING to get a part of the digits,
+            using CONCAT to add, '-'.
+
+        *****************************************************************/
+
+        --  Declare variables
+
+        DECLARE vTableName VARCHAR(255);
+        
+
+        --  Trimming the Phone Number 123456789
+        SET vssn = SUBSTRING(vssn, 5, 4);
+        SET vName = SUBSTRING(vName, 1, 3);
+
+        SET vTableName = CONCAT(vName, vssn);
+
+    RETURN vTableName;
+
+    END x
+
+/*****************************************************************/

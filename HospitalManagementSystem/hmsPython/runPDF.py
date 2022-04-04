@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 
 
 #   Library responsories
+from lib.databasePython import mariaDB
 from lib.patientJournal import PDFCanvas
 from lib.customFunctions import UploadFile
-from lib.databasePython import mariaDB, tableCreation
 
 load_dotenv()
 
@@ -23,7 +23,7 @@ def PDFSetup():
     c.BodyHeader()
 
         #   Hospital visits
-    c.BodyMain()
+    #c.BodyMain()
 
     #   Logo and firm
     c.BodyFooter()

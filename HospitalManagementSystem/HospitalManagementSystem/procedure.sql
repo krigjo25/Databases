@@ -68,7 +68,7 @@ CREATE OR REPLACE PROCEDURE roomBooking (IN vpID BIGINT, IN rID SMALLINT, IN vID
         SELECT roomName INTO rName FROM rooms WHERE roomID = rID;
 
         --   Creating a record into the patientRecords tables
-        CALL newPatientRecord (vPatientID, procedureName, vInn, procedureTime, veName roomName, procedurePrice);
+        CALL newPatientRecord (vpID, procedureName, vInn, procedureTime, veName roomName, procedurePrice);
 
          CASE
             WHEN @available = 0 THEN
@@ -146,8 +146,24 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
 
 CREATE OR REPLACE PROCEDURE newPatientRecord (IN vPatientID BIGINT, IN procedureName VARCHAR(255), IN vInn DATE, IN procedureTime TIME, IN veName VARCHAR(255), IN roomName VARCHAR(255), IN procedurePrice DECIMAL(8.2))
     BEGIN
+        
+        --  Declare necsessary variables
+        DECLARE vssn VARCHAR(255);
+        DECLARE Query VARCHAR(255);
+        DECLARE vName VARCHAR(255);
+        DECLARE tableName VARCHAR(7);
 
+        --  Selecting values into the variables
+        SELECT patientName into vName FROM patientRegistration.patientRegistrations WHERE patientID = vpID;
+        SELECT socialSecurityNumber into vssn FROM patientRegistration.patientRegistrations WHERE patientID = vpID;
 
+        SET tableName = generateTableName(vName, vssn);
+        SET Query = CONCAT('INSERT INTO patientRecords.', tableName, '(oProcedure, dateProcedure, timeProcedure, employeeName, roomName, procedurePrice) VALUES (', procedureName, procedureDate, procedureTime, veName, roomName, procedurePrice, ')');
+        
+        --  Prepareing and executing the statement
+        PREPARE stmt FROM Query;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
         /************ newPatientRecord ********************'
             Deletes a booked room from the table
 

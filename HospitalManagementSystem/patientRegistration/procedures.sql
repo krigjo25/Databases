@@ -119,23 +119,22 @@ DELIMITER x
 CREATE OR REPLACE PROCEDURE newPatientRecord (IN vName VARCHAR(255), IN vssn VARCHAR(255))
     BEGIN
 
-         /************ newPatientTable ********************
+        /************ newPatientTable ********************
             The Procedure creates a new patient table, with
             the socialSecurityNumber of the patient
-    
+
         *****************************************************************/
 
         --  Declare variables
-        DECLARE tableName VARCHAR(255);
-    
+        DECLARE tableName VARCHAR(255);    
 
         SET tableName = generateTableName(vName, vssn);
 
         --  Creating the table
-        SET @Query = CONCAT('CREATE TABLE IF NOT EXISTS patientRecords.', tableName, '(id BIGINT PRIMARY KEY AUTO_INCREMENT, oProcedure VARCHAR(255) NOT NULL, DateProcedure DATE NOT NULL, timeProcedure TIME NOT NULL, doctorReport VARCHAR(255), employeeName VARCHAR(255) NOT NULL, roomName VARCHAR(255) NOT NULL, dateBooked DATE NOT NULL DEFAULT CURDATE());');
+        SET @Query = CONCAT('CREATE TABLE IF NOT EXISTS patientRecords.', tableName, '(id BIGINT PRIMARY KEY AUTO_INCREMENT, oProcedure VARCHAR(255) NOT NULL, DateProcedure DATE NOT NULL, timeProcedure TIME NOT NULL, procedurePrice DECIMAL(8.2), doctorReport VARCHAR(255), employeeName VARCHAR(255) NOT NULL, roomName VARCHAR(255) NOT NULL, dateBooked DATE NOT NULL DEFAULT CURDATE());');
         
         --Prepareing and executing the statement
-        PREPARE stmt FROM @Query;
+        PREPARE stmt FROM Query;
         EXECUTE stmt;
         DEALLOCATE PREPARE stmt;
 

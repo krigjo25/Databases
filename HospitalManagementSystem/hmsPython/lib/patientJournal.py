@@ -39,11 +39,11 @@ class PDFCanvas (Canvas):
 
         #   initializing the mariadb connection
         
-        database = getenv('database1')
-        query = f'SELECT * FROM patient;'
+        database = getenv('database2')
+        query = f'SELECT * FROM patientRegistrations;'
 
         sqlData = dc.selectFromTable(database, query)
-
+        print(sqlData)
         #   PDF Document
         self.setFont('Helvetica-Bold', 18)
         self.drawString(150, 775, f'Patient Journal of {sqlData[0][1]}, {sqlData[0][0]}')
@@ -130,12 +130,14 @@ class PDFCanvas (Canvas):
         
         #  retrieveing the sql Data
         database = getenv('database1')
-
-        query = 'SELECT ssn FROM patient'
+        
+        #   Get the table by using patientID
+        query = f'SELECT * FROM '
 
         #   Selecting and counting rows
         sqlData = dc.selectFromTable(database, query)
         print(sqlData)
+
         counter = dc.RowCount(database, getenv('pt1'), query)
 
         #   Declare and initialize the variables

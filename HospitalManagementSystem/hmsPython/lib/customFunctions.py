@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 #   yagMail Responsories
-import yagmail
+#import yagmail
 
 class Calculators():
     '''         Calculators     '''
@@ -228,7 +228,7 @@ class sendMail():
                 If the book is not delivered by {row[7]} a fine may apply\n This is an automatic generated email, please do not respond.'''   
 
                 #  Sending an e-mail 
-                yag = yagmail.SMTP(self.smtpUser, self.smtpPass).send(to=self.smtpUser,subject=self.subject,contents=msg)
+#                yag = yagmail.SMTP(self.smtpUser, self.smtpPass).send(to=self.smtpUser,subject=self.subject,contents=msg)
 
             elif overDueDate == 0:
 

@@ -58,20 +58,18 @@ CREATE OR REPLACE TABLE relations (
 
                         --  Table Columns
                         id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                        pID BIGINT NOT NULL,
+                        pID BIGINT SIGNED NOT NULL,
                         patientName VARCHAR(255),
-                        eID BIGINT NOT NULL,
+                        eID BIGINT SIGNED NOT NULL,
                         employeeName VARCHAR(255) NOT NULL,
                         recovered TINYINT NOT NULL DEFAULT 0,
 
                         --  Table Constraints
                         UNIQUE(pID),
-                        INDEX (eID, employeeName, patientName),
-                        CONSTRAINT employeeID_fk FOREIGN KEY (eID) REFERENCES employeeRecords (eID) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT employeeName_fk FOREIGN KEY (employeeName) REFERENCES employeeRecords (eName) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT patientID_fk FOREIGN KEY (pID) REFERENCES patientsRegistration.patientRecords (id) ON DELETE CASCADE ON UPDATE CASCADE,
-                        CONSTRAINT patientName_fk FOREIGN KEY (patientName) REFERENCES patientsRegistration.patient (patientName) ON DELETE CASCADE ON UPDATE CASCADE);
-/*************************************************************************************************************/
+                        INDEX (eID, pID),
+                        CONSTRAINT employeeID_fk FOREIGN KEY (eID) REFERENCES employeement.employeeRecords (eID) ON DELETE CASCADE,
+                        CONSTRAINT employeeName_fk FOREIGN KEY (employeeName) REFERENCES employeement.employeeRecords (eName) ON DELETE CASCADE,
+                        CONSTRAINT patientID_fk FOREIGN KEY (pID) REFERENCES patientRegistration.patientRegistrations (patientID) ON DELETE CASCADE);
 DELIMITER ;
 /******************************** Turnus **************************************************************/
 CREATE OR REPLACE TABLE turnus (
@@ -91,6 +89,6 @@ CREATE OR REPLACE TABLE turnus (
                         INDEX (eID, eName, sickDays),
                         CONSTRAINT employeementID_FK2 FOREIGN KEY (eID) REFERENCES employeeRecords (eID) ON DELETE CASCADE ON UPDATE CASCADE,
                         CONSTRAINT employeeName_fk2 FOREIGN KEY (eName) REFERENCES employeeRecords (eName) ON DELETE CASCADE ON UPDATE CASCADE,
-                        --CONSTRAINT sickDays_fk FOREIGN KEY (sickDays) REFERENCES employeeRecords (sickDays) ON DELETE CASCADE);
+                        CONSTRAINT sickDays_fk FOREIGN KEY (sickDays) REFERENCES employeeRecords (sickDays) ON DELETE CASCADE);
 /*************************************************************************************************************/
 DELIMITER ;
