@@ -19,7 +19,7 @@ class Calculators():
 
     def __init__(self):
         #   Initializing the classes
-        self.mc = MetricConverter()
+
         pass
 
     def CalculateAge(self, birthDate):
@@ -67,7 +67,7 @@ class Calculators():
         '''
 
         #   Convert the height in meters
-        m = self.mc.CentimeterMeter(cm)
+        m = cm / 100
 
         # Converts the weight into a integer
         kg = int(kg)
@@ -86,42 +86,6 @@ class Calculators():
 
         return round(bmi, 2)
 
-class MetricConverter():
-
-    def __init__(self):
-        pass
-
-    def MiliMeter(self, mm):
-
-        # Deviding decimeeter on 10
-        # 1000 mm = 1 meeter
-        m = mm / 1000
-
-        return round(m, 2)
-
-    def CentimeterMeter(self, cm):
-
-        # Dividing centimeter on 100
-        # 100 cm = 1 meeter
-        m = cm / 100
-         
-        return m
-    
-    def DecimeterMeter(self, dm):
-
-        # Deviding decimeeter on 10
-        # 10 dm = 1 meeter
-        m = dm / 10
-
-        return round(m, 2)
-    
-    def MeterKiloMeter(self, m):
-
-        # Deviding decimeeter on 10
-        # 10 dm = 1 meeter
-        km = m / 1000
-
-        return km
 
 class Dictionaries():
     def __init__(self):
@@ -148,7 +112,8 @@ class Dictionaries():
         postalCode = zipCode.get(postalCode)
         return postalCode
 
-class UploadFile():
+# Fix these
+"""class UploadFile():
     def __init__(self):
 
         self.dc = mariaDB
@@ -175,9 +140,10 @@ class UploadFile():
 
         #   Update a column
         query = f' UPDATE patient SET pdf = "{pdf}" WHERE id = {vid}'
-        self.dc.updateTable(self.database, query)
+        self.dc.updateTable(self.database, query)"""
 
-class sendMail():
+# Fix this one
+"""class sendMail():
 
     def __init__(self):
 
@@ -196,10 +162,6 @@ class sendMail():
         dates = []
         today = date.today()
         
-        value = getenv('value')
-        table = getenv('table')
-        column = getenv('column')
-        column2 = getenv('column2')
         database = str(getenv('database5'))
 
         #   Fetch the enire row in order to use some of the information in the database to get contact information, name etc.
@@ -252,4 +214,4 @@ class sendMail():
         elif bool(sqlData) == False:
             print('Nothing in the selected table')
 
-        return
+        return"""

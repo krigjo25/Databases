@@ -37,17 +37,29 @@ class mariaDB():
             self.cur = self.conn.cursor()
 
         except mariadb.Error as e:
-            print(f"Error connecting to the database: {e}")
+            print(f"Error connecting to the database: \n {e}")
             exit(1)
+
+        try:
+            self.conn.ping()
+
+        except mariadb.DatabaseError:
+            self.conn.reconnect()
+
+        return
+    def closeConnection (self):
+
+        #   Closing the connection to the database
+        self.conn.close()
 
         return
 
     def selectFromTable (self, database, query):
 
-        #database = str(database)
+
         #   Database selection
         self.conn.database = database
-        print(database)
+
         #  Execute the query.
         self.cur.execute(query)
 
@@ -61,9 +73,6 @@ class mariaDB():
         #   append to the list
         for i in sql:
             sqlData.append(i)
-
-        #   Closing the connection to the database
-        self.conn.close()
 
         #   Returning the values in sqlData
         return sqlData
@@ -81,9 +90,6 @@ class mariaDB():
 
         #   Counts the rows in the cursor
         counter = self.cur.rowcount
-
-        #   Close the connection
-        self.conn.close()
 
         return counter
 
@@ -122,9 +128,6 @@ class mariaDB():
         else:
             msg = ' An error occurred'
 
-        #   Closing the connection to the database
-        self.conn.close()
-
         return print(msg)
 
     def DropDatabase(self, name):
@@ -137,9 +140,6 @@ class mariaDB():
         else:
             msg = ' An error occurred'
 
-        #   Closing the connection to the database
-        self.conn.close()
-
         return print(msg)
     def DropTable(self, database, name):
         #   Database selection
@@ -149,7 +149,4 @@ class mariaDB():
         query = f'DROP TABLE IF EXISTS {name};'
         self.cur.execute(query)
 
-
-        #   Closing the connection to the database
-        self.conn.close()
         return

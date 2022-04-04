@@ -43,7 +43,7 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 1829
+/Length 1985
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
@@ -83,12 +83,16 @@ BT 1 0 0 1 350 550 Tm (None, None) Tj T* ET
 BT 1 0 0 1 350 525 Tm (None, None) Tj T* ET
 BT 1 0 0 1 350 500 Tm (None, None) Tj T* ET
 BT 1 0 0 1 90 425 Tm (Jhon Doe) Tj T* ET
-BT /F1 16 Tf 19.2 TL ET
+BT /F2 16 Tf 19.2 TL ET
 BT 1 0 0 1 75 300 Tm (Alergies) Tj T* ET
 BT 1 0 0 1 75 375 Tm (Diagnosis) Tj T* ET
 BT 1 0 0 1 350 375 Tm (Suggested Treatments) Tj T* ET
 BT 1 0 0 1 350 300 Tm (Suggested Treatments) Tj T* ET
 BT /F1 14 Tf 16.8 TL ET
+BT 1 0 0 1 90 350 Tm (NNNNA,) Tj T* ET
+BT 1 0 0 1 90 275 Tm (NNNND,) Tj T* ET
+BT 1 0 0 1 350 350 Tm (NNNNM) Tj T* ET
+BT 1 0 0 1 350 275 Tm (NNNNM) Tj T* ET
 BT /F1 30 Tf 36 TL ET
  
 endstream
@@ -115,5 +119,5 @@ trailer
 /Size 9
 >>
 startxref
-2839
+2995
 %%EOF
