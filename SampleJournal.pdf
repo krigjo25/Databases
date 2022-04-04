@@ -2,7 +2,7 @@
 %“Œ‹ž ReportLab Generated PDF document http://www.reportlab.com
 1 0 obj
 <<
-/F1 2 0 R /F2 3 0 R /F3 4 0 R
+/F1 2 0 R /F2 3 0 R
 >>
 endobj
 2 0 obj
@@ -17,12 +17,7 @@ endobj
 endobj
 4 0 obj
 <<
-/BaseFont /ZapfDingbats /Name /F3 /Subtype /Type1 /Type /Font
->>
-endobj
-5 0 obj
-<<
-/Contents 9 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 8 0 R /Resources <<
+/Contents 8 0 R /MediaBox [ 0 0 595.2756 841.8898 ] /Parent 7 0 R /Resources <<
 /Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
 >> /Rotate 0 /Trans <<
 
@@ -30,30 +25,30 @@ endobj
   /Type /Page
 >>
 endobj
-6 0 obj
+5 0 obj
 <<
-/PageMode /UseNone /Pages 8 0 R /Type /Catalog
+/PageMode /UseNone /Pages 7 0 R /Type /Catalog
 >>
 endobj
-7 0 obj
+6 0 obj
 <<
 /Author (anonymous) /CreationDate (D:20000101000000+00'00') /Creator (ReportLab PDF Library - www.reportlab.com) /Keywords () /ModDate (D:20000101000000+00'00') /Producer (ReportLab PDF Library - www.reportlab.com) 
   /Subject (unspecified) /Title (untitled) /Trapped /False
 >>
 endobj
-8 0 obj
+7 0 obj
 <<
-/Count 1 /Kids [ 5 0 R ] /Type /Pages
+/Count 1 /Kids [ 4 0 R ] /Type /Pages
 >>
 endobj
-9 0 obj
+8 0 obj
 <<
-/Length 2208
+/Length 1829
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 BT /F2 18 Tf 21.6 TL ET
-BT 1 0 0 1 150 775 Tm (Patient Journal of Rober L. Cooper, 10000) Tj T* ET
+BT 1 0 0 1 150 775 Tm (Patient Journal of Geraldine J. Egerton, 100) Tj T* ET
 BT /F2 18 Tf 21.6 TL ET
 BT 1 0 0 1 75 450 Tm (Primary Doctor) Tj T* ET
 BT 1 0 0 1 75 725 Tm (Health Information) Tj T* ET
@@ -71,61 +66,54 @@ BT 1 0 0 1 425 630 Tm (Height) Tj T* ET
 BT 1 0 0 1 225 630 Tm (BloodType) Tj T* ET
 BT 1 0 0 1 75 630 Tm (Donor Status) Tj T* ET
 BT /F1 12 Tf 14.4 TL ET
-BT 1 0 0 1 90 660 Tm (1980-02-11) Tj T* ET
-BT 1 0 0 1 350 660 Tm (635-56-2617) Tj T* ET
-BT 1 0 0 1 235 660 Tm (M) Tj T* ET
-BT 1 0 0 1 535 660 Tm (41) Tj T* ET
-BT 1 0 0 1 120 610 Tm (No) Tj T* ET
-BT 1 0 0 1 360 610 Tm (108.00) Tj T* ET
-BT 1 0 0 1 435 610 Tm (185 cm) Tj T* ET
-BT 1 0 0 1 525 610 Tm (31.56) Tj T* ET
-BT 1 0 0 1 250 610 Tm (B+) Tj T* ET
+BT 1 0 0 1 90 660 Tm (2000-11-02) Tj T* ET
+BT 1 0 0 1 350 660 Tm (171-10-1435) Tj T* ET
+BT 1 0 0 1 235 660 Tm (F) Tj T* ET
+BT 1 0 0 1 535 660 Tm (22) Tj T* ET
+BT 1 0 0 1 90 610 Tm (Organ : no, Blood : no) Tj T* ET
+BT 1 0 0 1 360 610 Tm (73.00) Tj T* ET
+BT 1 0 0 1 435 610 Tm (162.00 cm) Tj T* ET
+BT 1 0 0 1 525 610 Tm (27.82) Tj T* ET
+BT 1 0 0 1 250 610 Tm (A+) Tj T* ET
 BT /F1 14 Tf 16.8 TL ET
-BT 1 0 0 1 75 545 Tm (\(956\) -551-0901,) Tj T* ET
-BT 1 0 0 1 75 525 Tm (3681 Seth Street,) Tj T* ET
-BT 1 0 0 1 75 505 Tm (76901, None) Tj T* ET
-BT 1 0 0 1 350 550 Tm (Husband, Jhon Doe, ) Tj /F3 14 Tf 16.8 TL (n) Tj /F1 14 Tf 16.8 TL ( 123 123 123) Tj T* ET
-BT 1 0 0 1 350 525 Tm (Father, Jhon Doe, ) Tj /F3 14 Tf 16.8 TL (n) Tj /F1 14 Tf 16.8 TL ( 123 123 123) Tj T* ET
-BT 1 0 0 1 350 500 Tm (Son, Jhon Doe, ) Tj /F3 14 Tf 16.8 TL (n) Tj /F1 14 Tf 16.8 TL ( 123 123 123) Tj T* ET
+BT 1 0 0 1 75 545 Tm (\(724\)- 375-2103,) Tj T* ET
+BT 1 0 0 1 75 525 Tm (3426 Stuart Street,) Tj T* ET
+BT 1 0 0 1 75 505 Tm (15001, None) Tj T* ET
+BT 1 0 0 1 350 550 Tm (None, None) Tj T* ET
+BT 1 0 0 1 350 525 Tm (None, None) Tj T* ET
+BT 1 0 0 1 350 500 Tm (None, None) Tj T* ET
+BT 1 0 0 1 90 425 Tm (Jhon Doe) Tj T* ET
 BT /F1 16 Tf 19.2 TL ET
-BT 1 0 0 1 300 375 Tm (Diagnosis & medical Treatment) Tj T* ET
-BT 1 0 0 1 50 375 Tm (Alergies & medical Treatments) Tj T* ET
+BT 1 0 0 1 75 300 Tm (Alergies) Tj T* ET
+BT 1 0 0 1 75 375 Tm (Diagnosis) Tj T* ET
+BT 1 0 0 1 350 375 Tm (Suggested Treatments) Tj T* ET
+BT 1 0 0 1 350 300 Tm (Suggested Treatments) Tj T* ET
 BT /F1 14 Tf 16.8 TL ET
 BT /F1 30 Tf 36 TL ET
-n 0 400 m 890 400 l S
-n 0 20 m 890 20 l S
-BT /F1 10 Tf 12 TL ET
-BT 1 0 0 1 50 7 Tm (Logo) Tj T* ET
-BT 1 0 0 1 150 7 Tm (Saint Mary) Tj T* ET
-BT 1 0 0 1 250 7 Tm (\(474\)- 234 - 123 -1234) Tj T* ET
-BT 1 0 0 1 350 7 Tm (HospitalAddress) Tj T* ET
-BT 1 0 0 1 450 7 Tm (ZipCode, City) Tj T* ET
-n 0 3 m 890 3 l S
  
 endstream
 endobj
 xref
-0 10
+0 9
 0000000000 65535 f 
 0000000073 00000 n 
-0000000124 00000 n 
-0000000231 00000 n 
-0000000343 00000 n 
-0000000426 00000 n 
-0000000629 00000 n 
-0000000697 00000 n 
-0000000993 00000 n 
-0000001052 00000 n 
+0000000114 00000 n 
+0000000221 00000 n 
+0000000333 00000 n 
+0000000536 00000 n 
+0000000604 00000 n 
+0000000900 00000 n 
+0000000959 00000 n 
 trailer
 <<
 /ID 
 [<1c178198fbdfa51b25995d89d4102043><1c178198fbdfa51b25995d89d4102043>]
 % ReportLab generated PDF document -- digest (http://www.reportlab.com)
 
-/Info 7 0 R
-/Root 6 0 R
-/Size 10
+/Info 6 0 R
+/Root 5 0 R
+/Size 9
 >>
 startxref
-3311
+2839
 %%EOF

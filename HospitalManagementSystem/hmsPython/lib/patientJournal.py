@@ -39,7 +39,7 @@ class PDFCanvas (Canvas):
 
         #   initializing the mariadb connection
         
-        database = getenv('database2')
+        database = getenv('database3')
         query = f'SELECT * FROM patientRegistrations;'
 
         sqlData = dc.selectFromTable(database, query)
@@ -81,15 +81,13 @@ class PDFCanvas (Canvas):
         self.drawString(535, 660, f'{kalc.CalculateAge(sqlData[0][2])}')
 
         #   Health Information about the patient
-        if sqlData[0][12] == True:
-            self.drawString(90, 610, f'{sqlData[0][12]}')
-        else:
-            self.drawString(120, 610, f'No')
+        self.drawString(90, 610, f'Organ : {sqlData[0][8]}, Blood : {sqlData[0][9]}')
+        
 
-        self.drawString(360, 610, f'{sqlData[0][8]}')
-        self.drawString(435, 610, f'{sqlData[0][9]} cm')
-        self.drawString(525, 610, f'{kalc.Calculatebmi(sqlData[0][8], sqlData[0][9], kalc.CalculateAge(sqlData[0][2]), sqlData[0][4])}')
-        self.drawString(250, 610, f'{sqlData[0][11]}')
+        self.drawString(360, 610, f'{round(sqlData[0][10],2)}')
+        self.drawString(435, 610, f'{round(sqlData[0][11], 2)} cm')
+        self.drawString(525, 610, f'{kalc.Calculatebmi(sqlData[0][10], sqlData[0][11], kalc.CalculateAge(sqlData[0][2]), sqlData[0][4])}')
+        self.drawString(250, 610, f'{sqlData[0][12]}')
         
         #Donor status
 
@@ -102,23 +100,24 @@ class PDFCanvas (Canvas):
 
         #   Emergency contacts
 
-        self.drawString(350, 550, f'Husband, Jhon Doe, \n 123 123 123')
-        self.drawString(350, 525, f'Father, Jhon Doe, \n 123 123 123')
-        self.drawString(350, 500, f'Son, Jhon Doe, \n 123 123 123')
+        self.drawString(350, 550, f'{sqlData[0][21]}, {sqlData[0][22]}')
+        self.drawString(350, 525, f'{sqlData[0][23]}, {sqlData[0][24]}')
+        self.drawString(350, 500, f'{sqlData[0][25]}, {sqlData[0][26]}')
+        self.drawString(90, 425, f'{sqlData[0][13]}')
 
         
 
         self.setFont('Helvetica', 16)
-        self.drawString(50, 300, 'Alergies')
-        self.drawString(50, 375, 'Diagnosis')
-        self.drawString(300, 375, 'Suggested Treatments')
-        self.drawString(300, 300, 'Suggested Treatments')
+        self.drawString(75, 300, 'Alergies')
+        self.drawString(75, 375, 'Diagnosis')
+        self.drawString(350, 375, 'Suggested Treatments')
+        self.drawString(350, 300, 'Suggested Treatments')
 
         self.setFont('Helvetica', 14)
 
         #   Page End Lines
         self.setFont ('Helvetica', 30)
-        self.line(0,400,890,400)
+        #self.line(0,400,890,400)
 
         return
 

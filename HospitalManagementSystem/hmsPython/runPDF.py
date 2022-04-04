@@ -26,7 +26,7 @@ def PDFSetup():
     #c.BodyMain()
 
     #   Logo and firm
-    c.BodyFooter()
+    #c.BodyFooter()
 
     c.showPage()
     c.save()
