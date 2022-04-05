@@ -12,20 +12,20 @@
 [SQLData](#Databases)..........................
 
     Archive.......................
-        terminatedEmployees.....
+        terminatedemployeements.....
         credited................
         paidBillings............
 
-    patientRegistration..........
-        patient...............
+    patientRegistrationsRegistration..........
+        patientRegistrationsRegistrations...............
         billings..............
 
-    patientInfo..................
+    patientRegistrationsInfo..................
         socialSecurityNumber..
 
 
-    employeeMent.................
-        employees.............
+    employeementMent.................
+        employeementmrecord.......
         relations.............
         turnus................
         salaryinfo............
@@ -40,28 +40,29 @@
 
     Procedures........................
 
-        patients.....................
-            patient................
-            billing................
+        patientRegistrationsRegistration.....................
+            patientRegistrationsRegistrations...
+            billing.............................
+            patientRegistrationsRecords........
 
-        employees....................
-            employee...............
+        employeementment....................
+            employeementmentRecord.....
             relations..............
             Turnus.................
 
         hospitalManagementSystem.....
             alergies...............
             diagnosis..............
-            medecine...............
-
+            availablemedecines.....
+......
     Functions.........................
 
-        patients.....................
-            patient................
+        patientRegistrationsRegistration........
+            patientRegistrations................
             billing................
 
-        employees....................
-            employee...............
+        employeements....................
+            employeementRecord...............
             relations..............
 
         hospitalManagementSystem.....
@@ -82,10 +83,9 @@
     
 [Python](#Python).....................
 
-        dictonaries.py................
+        mariadbPython.py...............
+        customFunctions.py
         patientJournal.py.............
-        uploadbiodata.py..............
-        sendSMS.py....................    
         runPDF.py.....................
 
 
@@ -97,7 +97,6 @@
 [Testing](#Testing)...................
 
         SQL Data......................
-        test.sql......................
     
 [Summuary](#Summuary).................
 
@@ -112,19 +111,19 @@
 
 ### About the Developer
 
-kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
-otherwise, Gym and living life as a human
+Kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
+otherwise, Gym and living life as a human being.
 
 ### Project info
 
 The idea of HospitalManageSystem is to create a back-end system
-which lets the personel to add and modify the patient journal
+which lets the personel to add and modify the patientjournal
  
     project start :<br>
         01.01-22
 
    Last Update :<br>
-        24.02-22
+        05.04-22
 
     Finished : <br>
         dd.mm-yy
@@ -138,26 +137,28 @@ Infomration about the design can be found in the given links below
 includes the text files below,
 
 *   [The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
-*   [patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Patients.md)
-*   [employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/Employee.md)
+*   [patientRegistrationsRegistration](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/patientRegistration.md)
+*   [employeements](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/employeement.md)
 *   [HospitalManagementSystem](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/hospitalManagementSystem.md)
 *   [archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/archive.md)
 
 ##  Databases
 
-[patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patients/)
+[patientRegistrationsRegistration](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patientRegistrationsRegistration/)
 
-    patient
-        includes the "personal" information about a given patient
+    patientRegistrations
+        includes the "personal" information about a given patientRegistrations
+
+    patientRecords
+        has the tables of the patients, which includes what the patient is 
+        doing at the hospital
     
     Billing
-        Information about the Invoices for the patient
-    
-    donators
+        Information about the Invoices for the patient.
 
-[employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employees/)
+[employeements](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employeements/)
 
-    Employee..................
+    employeerecords..................
         includes the information about the Hospital Staff
 
     relations
@@ -174,7 +175,7 @@ includes the text files below,
     roomBookings..............
         A booking system so the staff has to book a given room
 
-    Medecines 
+    availableMedecines 
         List of medecines
 
     alergies
@@ -196,33 +197,35 @@ includes the text files below,
 
 ## Procedures
 
-### Universial Procedures
+###  patientRegistrationsRegistration
 
-###  Patients
+####  patientRegistrations
 
-####  Patient
-    #   add a new record of a patient
-    CALL newPatient (pName, bDate, vssn, vSex, vPhone, vStreet, vZip,vEmail, vWeight, vHeight, bType, vAlergies, vDoc, vMed);
+    #####   add a new record of a patientRegistrations
+    CALL newpatient (pName, bDate, vssn, vSex, vPhone, vStreet, vZip,vEmail, vWeight, vHeight, bType, vAlergies, vDoc, vMed);
 
-    #   Updates the value for the record
-    CALL modifyPatient (vColumn,vValue, vID)d;
+    #####   Creates a new table in patientsRecords
+    CALL newPatientRecord (pName, vssn);
+ 
+    #####   Updates the value for the record
+    CALL modifypatient (vColumn,vValue, vID)d;
 
-### Employee
+### employeement
 
-#### Employee
+#### employeerecords
 
-    #   Add a new record to the table
-    CALL newEmployee (eName, vDate, vStreet, vEmail, vPhone,veStatus ,vTitle, vDep);
+    #####   Add a new record to the table
+    CALL newemployee (eName, vDate, vStreet, vEmail, vPhone,veStatus ,vTitle, vDep);
 
-    # Updates the information of the employee  except :x: Date
-    CALL modifyEmployee (vColumn, vValue, veID);
+    ##### Updates the information of the employeement  except :x: Date
+    CALL modifyemployee (vColumn, vValue, veID);
 
 #### Relations
 
-    #   Assign a doctor to a patient
+    #####   Assign a doctor to a patientRegistrations
     CALL newRelation (veID, vpID);
 
-    #   Delete an assignement manually
+    #####  Delete an assignement manually
     CALL delRelation (veID, vpID);
 
     #   Modify a relation
@@ -230,50 +233,51 @@ includes the text files below,
 
 #### Turnus
 
-    #   Assign time for the employee to be at work
+    #####   Assign time for the employeement to be at work
     CALL newTurnus (veID, vDate, vTime, vhrs);
 
-    #   If the doctor is sick, update the sicDays, and add a comment to the turnus
+    #####   If the doctor is sick, update the sicDays, and add a comment to the turnus
     CALL sickDays (veID, vInt, vComment);
 
 ### HospitalManagementSystem
 
 #### List Of Alergies
 
-    #   Creates a new record for alergies
-    CALL insertLOA (vID, vName, vSymptoms, medicine ID);
+    #####   Creates a new record for alergies
+    CALL insertA (vID, vName, vSymptoms, medicine ID);
 
 #### Diagnosis
 
-    #   Creates a new record for Diagnosis
-    CALL insertLOD (vID, vName, vSymptoms, medicine ID);
+    #####  Creates a new record for Diagnosis
+    CALL insertD (vID, vName, vSymptoms, medicine ID);
 
 #### Medecines
 
-    #   Creates a new record for Medecines
-    CALL insertLOM (vID, vName, vSymptoms, illness);
+    #####  Creates a new record for Medecines
+    CALL insertM (vID, vName, vSymptoms, illness);
 
 #### RoomBookings
 
-    #   Booking a room for the patient
+    #####   Booking a room for the patientRegistrations
     CALL bookRoom (vpID, veID, vrID, vInn);
 
-    #   Cancellation of a room booking
+    #####   Cancellation of a room booking
     CALL delbook (vpID);
 
-    #   Check if a room is available
+    #####   Check if a room is available
     CALL checkRoom (veID, vDate, vTimeInn);
 
 #### Floors
 
-    #   Creates a new record for the table
+    #####   Creates a new record for the table
+
     CALL firstFloor('roomName', 10000.00);
     CALL secondFloor('roomName', 10000.00);
     CALL thirdFloor('roomName', 10000.00);
 
 ##  Functions
 
-###    Functions for employee database
+###    Functions for employeement database
 
 ####    Calculate a monthly salary
 
@@ -281,15 +285,14 @@ includes the text files below,
     Converts the digits into Areacode, 
 
 -   calculateSalary(veStatus, vSalary);
-    Calculates the salary for the inserted employee
+    Calculates the salary for the inserted employeement
 
 -   checkRecovery();
     Check if the person is recovered
 
-### Functions for patients Database
+### Functions for patientRegistration Database
 
--   calculatebmi(vheight, vWeight);
-    Calculates the bmi based on weight / vHeight
+-   generateTableName(vName, vssn)
 
 -   convertssn(vssn);
     Converts the digits from the table, and adding "-"
@@ -308,10 +311,10 @@ includes the text files below,
 
 ## Triggers
 
-### Patients
+### patientRegistration
 
 -   triggerPDF
-    triggers a new pdf generation when a patient has been registered<br>
+    triggers a new pdf generation when a patientRegistrations has been registered<br>
     in the database
 
 -   terminateBilling
@@ -319,9 +322,9 @@ includes the text files below,
     paid or not.
 
 
-### Employee
+### employeement
 
--   terminateEmployee
+-   terminateemployeement
     trigger a insert into a table, when the delRecords event has been executed.
 
 ### hospitalManagementSystem
@@ -330,15 +333,15 @@ includes the text files below,
 
 ##  Events
 
-### Patients
+### patientRegistration
 
 - delRecords
-    Deletes records where the patient is above 200 years
+    Deletes records where the patientRegistrations is above 200 years
 
-### Employee
+### employeement
 
 - delRecords
-    Deletes records where the employee has been resigned
+    Deletes records where the employeement has been resigned
 
 -   salaryChanges
     re calculates the salary every month
@@ -346,7 +349,7 @@ includes the text files below,
 ### hospitalManagementSystem
 
 -   delRecords
-    Delete old records
+    Delete old bookingrecords
 
 ### archives
 
@@ -356,9 +359,9 @@ includes the text files below,
 
 The values has been manually entered, over time.
 
-* [SQL data for employees](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employees/SQLdata.sql)
+* [SQL data for employeements](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employeements/SQLdata.sql)
 * [SQL data for HospitalManagementSystem](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagementSystem/SQLdata.sql)
-* [SQL data for patients](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patients/SQLdata.sql)
+* [SQL data for patientRegistrationsRegistration](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patientRegistrationsRegistration/SQLdata.sql)
 * [SQL data for archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/archive/SQLdata.sql)
 
 ##  Python
@@ -383,16 +386,16 @@ This programming, runs the different methods which is coded
 
 ### sampleJournal.pdf
 
-the patient journal, includes information about the given patient,
-what has done during the patient's stay at the Hospital. 
+the patient journal, includes information about the given patientRegistrations,
+what has done during the patientRegistrations's stay at the Hospital. 
 
 ### Invoice.pdf
 
-A simple invoice for the patient, after the patient's stay
+A simple invoice for the patientRegistrations, after the patientRegistrations's stay
 
 ### Salary.pdf 
 
-A simple salary for the employee
+A simple salary for the employeement
 
 ##  Summuary
 
@@ -423,8 +426,8 @@ The thought were to create a new table, with foreign key, but it wouldnt work,
 as the assumption about foreign keys can not refer to more than one table the b
 etter soloution were to create a view for this matter.
 
-*   Since the database is growing, there would be a need for new databases to keep the records as easy to maintain as possible, A database for Archives, patients, and employees
-one database for employees and stuff for the employees, one for the administration, misc, and one for the patients 
+*   Since the database is growing, there would be a need for new databases to keep the records as easy to maintain as possible, A database for Archives, patientRegistrationsRegistration, and employeements
+one database for employeements and stuff for the employeements, one for the administration, misc, and one for the patientRegistrationsRegistration 
 
 ## Responsories
 
@@ -444,7 +447,7 @@ one database for employees and stuff for the employees, one for the administrati
 -   messenger : krigjo25
 
 Author notes<br>
-« Everything is perfect as is. »
+« Everything is perfect at all times. »
 
 ###  Licence
 
@@ -455,3 +458,6 @@ Not licenced.
 This datebase is as is
 
 ###  References
+
+Sincerely, 
+@krigjo25
