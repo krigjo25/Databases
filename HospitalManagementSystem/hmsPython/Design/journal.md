@@ -1,68 +1,33 @@
 # Patient journal
 
-
 ## The Design of the patient journal
 
-        ***************************************************
-        Patient Journal of **Jhon Doe 1000** (fontsize 20, Fontfamily ARIAL titles bold)
+To see the sample design go to [patientjournal.pdf]()
 
-        General information
+## Kriss's plan
 
-        Social Security Number      Sex     BloodType   List of Current Diseases**
-           ddmm00000             M         O+                 A000A
+By using the responsory "**reportlab**" a person can generate a pdf file,<br>
+which is mostlikely readable for every computers, by using <b>google's pdf <br> reader</b>, <b> Adobe's pdf reader</b>
 
-        Contact Information
+## Functions for the design
 
-            mobile          Street          State   ZipCode
-        123-123-123        
+### Access MariaDB connector
 
-        Work Information
+*   A function to access the MariaDB connector, by creating a<br> 
+    a class that contains necessary functions to connect the database<br>
+    and extract the information.
 
-            Company             Industry
-            Unemployed         Unemployed
-        
-        Health information
+*   a function for closing the connection to close<br> 
+    the connection when is not needed anymore.
 
-        bodyWeight      BodyHeight      BodyMass
+*   a function to list Diagnosis, allergies, suggested treatment
 
-        
-        bloodType       Diseases        Alergies
-        
-        Current Medecine        Date IN    dateOut
-        
-        -----------------------------------------------------------------------------
+*   A function to select a table from **patientRecords**,<br> 
+    so the script can access the data inside the table.
 
-        ******************* Hospital Visits**************************
-        Last Visit : dd.mm.yy
 
-        During your last stay at Ålesund Hospital
-        The patient were visiting 
 
-        (roomID)(roomName), 
-        due to {reason}. between inDate + hh.mm and outdate + hh.mm
-
-        Doctor DoctorName's notes 
-        (
-
-        )
-
-        max 200 letters
-
-        --------------------------------------------------------------------------------------------------
-
-        (IF he were visiting more than one room)
-
-        patient were also visiting (roomName)(roomID), between inDate + hh.mm and outdate + hh.mm
-
-        ------------------------------------------------------------------------------
-        Hospital logo, name, number, address, postalcode
-
-## How to i plan to achive the the design
-
-By using reportlab you can generate a pdf file, which is mostlikely readable for every computers, by using <b>google's pdf reader</b>, <b> Adobe's pdf reader</b>
-
-I would like to create a function where you can accsess mariadb connector in a easier way
 ### Responsories
 
 -   reportlab
--   mariadb
+-   MariaDB

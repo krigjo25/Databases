@@ -7,7 +7,7 @@
 
 #   Python Responsories
 import sys
-from os import getenv
+from os import getenv, getenv
 
 #   dotenv Responsories
 from dotenv import load_dotenv
@@ -49,7 +49,7 @@ class PDFCanvas (Canvas):
 
         #   PDF Document
         self.setFont('Helvetica-Bold', 18)
-        self.drawString(150, 775, f'Patient Journal of {sqlData[x][1]}, {sqlData[x][0]}')
+        self.drawString(150, 775, f'Patient Journal of {sqlData[x][1]}')
 
         #   Main information
         #   Front end information we get from the user
@@ -153,49 +153,43 @@ class PDFCanvas (Canvas):
 
 
     def BodyMain(self):
-        
+        x = 0
+
         #   Class initializion
         dc = mariaDB()
         
         #  retrieveing the sql Data
-        database = getenv('database2')
-        
+        database = getenv('database3')
+        table = getenv('ptrts')
         #   Get the table by using patientID
-        query = f'SELECT * FROM '
-
+        query = f'SELECT * FROM {table};'
         #   Selecting and counting rows
+
         sqlData = dc.selectFromTable(database, query)
-        print(sqlData)
+        query = f'SELECT * FROM {sqlData[x][1][0:3]}{sqlData[x][3][7:11]}'
+        database = getenv('database2')
+        sqlData = dc.selectFromTable(database, query)
 
-        counter = dc.RowCount(database, getenv('pt1'), query)
+        #self.line(0,400,890,400)
 
-        #   Declare and initialize the variables
-        rID = 1
-        x = 0
-        while rID <= counter :
+        #self.line(0,400,890,400)
+        dc.closeConnection()
 
-            #  Collecting intel from the given Database
-            
-            query = f'SELECT * FROM {sqlData[x][3]};'
-
-            sqlData = dc.selectFromTable(database, query)
-
-
-
-            #   Increment the variables by one
-            x += 1
-            rID += 1
         return
 
     def BodyFooter(self):
+
+        #   Class initializion
+        dc = mariaDB()
         
         self.line(0,20,890,20)
         self.setFont('Helvetica', 10)
         self.drawString(50, 7, f'Logo')
         self.drawString(150, 7, f'Saint Mary')
-        self.drawString(250, 7, f'(474)- 234 - 123 -1234')
+        self.drawString(250, 7, f'(474)- 234-123-1234')
         self.drawString(350, 7, f'HospitalAddress')
         self.drawString(450, 7, f'ZipCode, City')
         self.line(0,3,890,3)
 
+        dc.closeConnection()
         return

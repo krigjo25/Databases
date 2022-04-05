@@ -112,8 +112,11 @@ class Dictionaries():
         postalCode = zipCode.get(postalCode)
         return postalCode
 
+class miscFunctions():
+
 # Fix these
-"""class UploadFile():
+    """
+class UploadFile():
     def __init__(self):
 
         self.dc = mariaDB

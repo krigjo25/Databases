@@ -43,12 +43,12 @@ endobj
 endobj
 8 0 obj
 <<
-/Length 1985
+/Length 1980
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 BT /F2 18 Tf 21.6 TL ET
-BT 1 0 0 1 150 775 Tm (Patient Journal of Geraldine J. Egerton, 100) Tj T* ET
+BT 1 0 0 1 150 775 Tm (Patient Journal of Geraldine J. Egerton) Tj T* ET
 BT /F2 18 Tf 21.6 TL ET
 BT 1 0 0 1 75 450 Tm (Primary Doctor) Tj T* ET
 BT 1 0 0 1 75 725 Tm (Health Information) Tj T* ET
@@ -119,5 +119,5 @@ trailer
 /Size 9
 >>
 startxref
-2995
+2990
 %%EOF

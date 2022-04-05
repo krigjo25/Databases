@@ -23,7 +23,7 @@ def PDFSetup():
     c.BodyHeader()
 
         #   Hospital visits
-    #c.BodyMain()
+    c.BodyMain()
 
     #   Logo and firm
     #c.BodyFooter()

@@ -40,17 +40,12 @@ class mariaDB():
             print(f"Error connecting to the database: \n {e}")
             exit(1)
 
-        try:
-            self.conn.ping()
-
-        except mariadb.DatabaseError:
-            self.conn.reconnect()
-
         return
     def closeConnection (self):
 
         #   Closing the connection to the database
         self.conn.close()
+
 
         return
 
