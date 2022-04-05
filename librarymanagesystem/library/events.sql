@@ -1,14 +1,16 @@
-/*****************  Deletes records from termination *****************************/
-/*
-Del records*/
+/*****************  Trigger an event to send a mail using python *****************************/
 DELIMITER **
-    CREATE OR REPLACE EVENT delRecords
-    ON SCHEDULE EVERY 1 DAY -- Schedule the time for the event
-    DO BEGIN
-            
-                -- Deletes records from given tables with-in 12 hours
-            DELETE FROM terminBooks WHERE terminate = terminate < DATE_SUB(NOW(), INTERVAL 12 HOUR);
-            DELETE FROM terminMember WHERE terminate < DATE_SUB(NOW(), INTERVAL 12 HOUR);
+CREATE OR REPLACE EVENT sendMail 
+ON SCHEDULE EVERY 1 DAY
+DO  
+    BEGIN
+        -- Declare variables
+        DECLARE cmd VARCHAR(255);
+        DECLARE result INT(10);
+
+        -- set variables
+        SET cmd = CONCAT('home/krigjo25/libraryManageSystem/Python/sendMail.py');
+        SET result = sys_exec(cmd);
     END **
 /************************************************************************************/
 
@@ -35,20 +37,4 @@ DELIMITER **
             CALL addDiscount(1,10);
             CALL addDiscount(3,20);
         END **
-/************************************************************************************/
-
-/*****************  Trigger an event to send a mail using python *****************************/
-DELIMITER **
-CREATE OR REPLACE EVENT sendMail 
-ON SCHEDULE EVERY 1 DAY
-DO  
-    BEGIN
-        -- Declare variables
-        DECLARE cmd VARCHAR(255);
-        DECLARE result INT(10);
-
-        -- set variables
-        SET cmd = CONCAT('home/krigjo25/libraryManageSystem/Python/sendMail.py');
-        SET result = sys_exec(cmd);
-    END **
 /************************************************************************************/

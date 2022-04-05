@@ -22,6 +22,7 @@ CREATE OR REPLACE VIEW library AS SELECT
     lib.bookID = books.bookID
     WHERE bookID = libbookID; 
 /*************************************************************************/
+
 /******************************** Books **********************************/
 CREATE OR REPLACE VIEW bookOverView AS SELECT
     books.id AS ID,

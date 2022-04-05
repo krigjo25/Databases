@@ -1,9 +1,9 @@
-/*****************  Triggers to terminate students ***********************************/
-    CREATE OR REPLACE TRIGGER termineMembers BEFORE DELETE ON member FOR EACH ROW
+/*****************  Triggers to terminate members ***********************************/
+    CREATE OR REPLACE TRIGGER termineMembers BEFORE DELETE ON bookOrms.member FOR EACH ROW
         BEGIN
             CASE
                 WHEN OLD.lCash > 0 OR OLD.lCash < 0 THEN
-                    INSERT INTO terminMember (id, memberName, class, lCash, contactInfo) 
+                    INSERT INTO libraryArchive.terminMember (id, memberName, class, lCash, contactInfo) 
                     VALUES(OLD.id, OLD.memberName, OLD.lCash, OLD.contactInfo);
                     UPDATE terminStudent SET terminate = NOW() + INTERVAL 1 DAY;
             
@@ -17,19 +17,18 @@
 DELIMITER ??
 
 /*****************  Triggers to terminate Books ***********************************/
-    CREATE OR REPLACE TRIGGER termineBooks BEFORE DELETE ON books FOR EACH ROW
+    CREATE OR REPLACE TRIGGER termineBooks BEFORE DELETE ON library.books FOR EACH ROW
         BEGIN
             CASE
                          
                 WHEN OLD.qty >= OLD.maxQty  THEN
-                    INSERT INTO terminBooks (id, bookName,author, price, qty, genre, subgenre) 
+                    INSERT INTO libraryArchive.terminBooks (id, bookName,author, price, qty, genre, subgenre) 
                     VALUES(OLD.id, OLD.bookName, OLD.author, OLD.price, OLD.qty, OLD.genre, OLD.subgenre);
 
                     UPDATE terminBook SET terminate = NOW() + INTERVAL 1 DAY;
             END CASE;
         END ??
 /***********************************************************************************/
-
 
 
 /*****************  Trigger, update the qty in Books***********************************/
@@ -52,7 +51,7 @@ DELIMITER ??
 
         END ??
 DELIMITER ??    
-    CREATE OR REPLACE TRIGGER returnBook  BEFORE DELETE ON lib FOR EACH ROW
+    CREATE OR REPLACE TRIGGER returnBook  BEFORE DELETE ON library.lib FOR EACH ROW
         BEGIN
              -- Declaring variables
             DECLARE vQty TYPE OF books.qty;
@@ -77,11 +76,7 @@ DELIMITER ??
             UPDATE books SET qty = vQty+returnBook WHERE id = OLD.bookID;
 
             -- Inserting values into returnedBooks
-            INSERT INTO returnedBooks (bookID, bookName, author, borrowedBy, memberID, terminate) VALUES 
+            INSERT INTO libraryArchive.returnedBooks (bookID, bookName, author, borrowedBy, memberID, terminate) VALUES 
             (OLD.bookID, OLD.bookName, OLD.author, OLD.borrowedBy, OLD.memberID, NOW() + INTERVAL 1 DAY);
         END ??
-/***********************************************************************************/
-/*****************  Trigger, update the qty in Books***********************************/
 
-
-/***********************************************************************************/

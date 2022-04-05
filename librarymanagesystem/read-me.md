@@ -4,42 +4,38 @@
 
 [Introduction](#Introduction)......................
     
-    developer.....................
-    project...........................
+    Developer.....................
+    Project...........................
         The design....................
         Case..........................
 
-[SQLData](#SQLData)..........................
-    
-    Tables........................
-    patients..................
-    Employee..................
-    roomBookings..............
-    lom.......................
-    loa.......................
-    lom.......................
+[SQLData](#Databases)..........................
 
-    Procedures....................
+    bookOrms..........
+
+
+    library..................
+
+
+    libraryArchive.........
+
+
+
+    Procedures........................
+
+    Functions.........................
 
     Triggers......................
-        terminatemember...........
-        terminatebook.............
+
             
     Events........................
-        delRecords................
-        discount..................
+
     
     Views.........................
 
 
     
 [Python](#Python).....................
-
-        dictonaries.py................
-        patientJournal.py.............
-        uploadbiodata.py..............
-        sendSMS.py....................    
-        runPDF.py.....................
 
 
 [PDF](#PDF).......................
@@ -50,7 +46,6 @@
 [Testing](#Testing)...................
 
         SQL Data......................
-        test.sql......................
     
 [Summuary](#Summuary).................
 
@@ -63,184 +58,86 @@
 
 ## Introduction
 
-**About the Developer**
+### About the Developer
 
-kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
-otherwise, Gym and living life as a human
+Kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
+otherwise, Gym and living life as a human being.
 
-**Project info**
+### Project information
 
-    Creating a back-end system, to send reminders, invoice, reciepte, of a rentail books book, 
+    The idea is to create a Library system, which sends
+    out a notification, receipts and invoices
 
-    Started : 10.10-21
-    Last Update: 06.01-22
+ 
+    project start :<br>
+        10.10-21
 
-## The Design
+   Last Update :<br>
+        05.04-22
 
-    The idea is to create a Library ystem, which sends
-    out a notification, recipte and invoices
+    Finished : <br>
+        06.01-22
+    
+    SQL Database:<br> 
+        mariaDB
+    
+###  The Design
+
+Infomration about the design can be found in the given links below
+includes the text files below,
+
+*   [The Case](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/TheCase.md)
+*   [bookOrms](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/bookOrms.md)
+*   [employeements](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/employeement.md)
+*   [library](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/library.md)
+*   [libraryArchive](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/libraryArchive.md)
+
+##  Databases
+
+[bookOrm](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/bookOrms/)
+
+
+
+
+[library](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/library/)
+
+
+
+[libraryArchive](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/libraryArchive)
+
 
 ## SQL DATA
 
-**Tables**
-
-    Member
-    
-    books
-    
-    lib
-
-**Procedures**
-
-***Universial Procedures***
-
-**Triggers**
-
-**Events**
-
-Delete events
-    deletes row, which is in the terminated row,
-    sends rows to terminated after x days
-    sends an notification through email
-
-
-
-**Tables**
-
-    Members
-        Stores information about the given member,
-        Name, title, contactInfo, classes, cash, 
-        negative values equals how much credit the
-        member has, positive values 
-        equals how much the member owns the library. 
-
-    terminMember/ terminBooks / returnBook
-        Stores the information for a given time, 
-        before the information gets terminated 
-        from the server
-
-    Books
-        list up information about the given books,
-        in the library. 
-
-
-    lib
-        Stores the information about the borrowed,
-        book, date of return, if the user does not 
-        return the book in the given time. Automatically
-        send a reminder on email, after a given time, 
-        there will be added a fine to the user of x cash
-
-**Procedures**
-
-    Universal procedures
-        Universal procedures is created, its not necsessary
-        to re-create multiple procedures
-
-        delRow( tableName, id)
-            Deletes a row from a choosen table
-
-        updateChar( tableName, columnName, value, vID)
-            Updates a column in choosen table, value must be
-             characters
-            
-        intUpdate (tableName, columnName, value, vID)
-            Updates a column in a choosen table, the value must
-            be integers.
-        
-    Members
-        
-        insertM(mName, vMail, vNum)
-            Inserts a user to the member table.
-
-        updatelCash(vID, vlCash);
-            By using an id we can update the given value in the
-            credit
-
-    Books
-
-        insertB(vName, vAuthor, vPrice, vQty,vMax, vGenre, vSub) 
-            Inserts a row into the Books table
-
-        bookSearch('vBook')
-            search for a given book   
-
-    lib 
-        insertL(bID, vbookName, vAuthor, vQty, bBy, mID)
-            inserts a book as a borrowed book
-
-        returnBook(vID)
-            inserts a book into the returnedBooks, and Triggers
-            the books back into the book table
-
-        userSearch (vID)
-            Search for the user and check if the
-            user has any given books in his acoount
-
-**Triggers**
-
-    termineMember
-        Moves a row from the member table into
-        termineBooks, ready for terminate the member
-
-
-    termineBook
-        Moves a row from the books table into 
-        termineBook, ready for termination
-
-
-    returnBook
-        Moves a row from the lib table into 
-        returnedBooks, updates the qty in Books, 
-        as the book is returned, and ready to be 
-        deleted from the database.
-
-**Events**
-
-    delRecords
-        deletes records which has 0 value and older than given value
-    
-    discount 
-        gives discounts in a given period
-
-    SendMail
-        Trigger an event to send a reciepte when a user has returned
-        or borrowed a book. 
-        Trigger an event to send a reminder when the returndate is
-        close, on or 7days behind
-
-**Views**
-
-    lib
-        Viewing important colums
-
-    books 
-        Viewing important colums
-
 ## Responsories
 
-Plugins for mariadb
+### Database Plugins
 
-Libraries 
+### Python Libraries 
 
-Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
-mariadb, - [MariaDB](https://github.com/MariaDB)
-yagmail, - [Pascal Van Kooten]()
-- []()
-- []()
+*   mariadb, - [MariaDB Community](https://github.com/MariaDB)
+*   Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
+*   reportlab, - [Andy Robinson, Robin Becker, the ReportLab team and the community](https://reportlab.com)
+*   yagmail, - [Pascal Van Kooten]()
 
-## Credentials
+## Credits
 
-Reposories and plugins used for this projects,
-    yagmail,
-    mariadb
+### Contact Information
 
-**Contact Information**
+-   Discord : krigjo25#5588
+-   messenger : krigjo25
 
-Discord : krigjo25#5588
+Author notes<br>
+« Everything is perfect at all times. »
 
-Only One advice,
-« The importance of creating is just have fun. »
+###  Licence
 
-**Licence**
-Not Licenced
+Not licenced.
+
+###  Disclamers
+
+This datebase is as is
+
+###  References
+
+Sincerely, 
+@krigjo25
