@@ -2,6 +2,8 @@
 from os import getenv
 from datetime import datetime, date
 
+#   Database responsories
+from databasePython import mariaDB
 
 #   dotenv Responsories
 from dotenv import load_dotenv
@@ -9,6 +11,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+#   yagMail Responsories
+import yagmail
 
 class Calculators():
     '''         Calculators     
@@ -17,6 +21,9 @@ class Calculators():
         
         Calculate bmi :
             Calculates the bmi
+
+        DateCountDown :
+            Calculates how many years, months days left
     '''
 
     def __init__(self):
@@ -91,6 +98,14 @@ class Calculators():
 
         return round(bmi, 2)
 
+    def DateCountDown(self, arg):
+        '''
+            Calculates how many days left
+            from today to arg
+        '''
+        today = date.today()
+        arg = arg - today
+        return arg
 
 
 class Dictionaries():
@@ -118,6 +133,9 @@ class Dictionaries():
         postalCode = zipCode.get(postalCode)
         return postalCode
 
+class miscFunctions():
+        pass
+# Fix these
 """
 class UploadFile():
     def __init__(self):
@@ -147,3 +165,44 @@ class UploadFile():
         #   Update a column
         query = f' UPDATE patient SET pdf = "{pdf}" WHERE id = {vid}'
         self.dc.updateTable(self.database, query)"""
+
+# Fix this one
+
+class sendMail():
+    '''
+        Sends an email, different functions for different mail 
+        service setups.
+    '''
+
+    def __init__(self):
+
+        #   Loading environment values Needed to mask password and user 
+
+        return
+
+    def sendMailOutlook(self):
+        pass
+
+    def sendMailYahoo(self):
+        pass
+    
+    def SendMailGmail(self):
+
+        #   SMTP Initialazion
+        SMPTPass = getenv('GmailPass')
+        SMPTReciever = getenv('Reciever')
+        SMPTMaster = getenv('GmailMaster')
+
+
+
+        #   Initializing mariadb Connection 
+        dc = mariaDB()
+
+        #   Sending an e-mail 
+        subject = ''
+        msg = ''
+        yag = yagmail.SMTP(SMPTMaster, SMPTPass).send(to=SMPTReciever,subject=subject,contents=msg)
+
+        #   Closing the connection to the database
+        dc.closeConnection()
+        return

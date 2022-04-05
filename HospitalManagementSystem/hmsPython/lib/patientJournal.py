@@ -144,52 +144,81 @@ class PDFCanvas (Canvas):
         sqlData = dc.selectFromTable(database, query)
         self.drawString(350, 275, f'{sqlData[0][4]}')
 
-        #   Page End Lines
-        self.setFont ('Helvetica', 30)
-        #self.line(0,400,890,400)
+        self.digitalPrint()
 
         dc.closeConnection()
         return
 
 
     def BodyMain(self):
-        x = 0
+        
 
         #   Class initializion
         dc = mariaDB()
         
-        #  retrieveing the sql Data
-        database = getenv('database3')
+        x = 0
+        #  reterieve the sqlData from the table
         table = getenv('ptrts')
-        #   Get the table by using patientID
+        database = getenv('database3')
         query = f'SELECT * FROM {table};'
-        #   Selecting and counting rows
 
+        #   Selecting the sqlData
         sqlData = dc.selectFromTable(database, query)
-        query = f'SELECT * FROM {sqlData[x][1][0:3]}{sqlData[x][3][7:11]}'
+
+        #   Selecting values from database2
         database = getenv('database2')
+        query = f'SELECT * FROM {sqlData[x][1][0:3]}{sqlData[x][3][7:11]}'
         sqlData = dc.selectFromTable(database, query)
 
-        #self.line(0,400,890,400)
+        counter = dc.RowCount(database, query)        
 
-        #self.line(0,400,890,400)
+        while x <= counter:
+            #   Starting the session with dotted lines
+            self.setDash(5,10)
+            self.line(0,800,890,800)
+
+            #   Creating the text
+
+            #   Ending the session with dotted lines
+            self.line(0,600,890,600)
+
+            if x == 5:
+                self.digitalPrint()
+                
+            x += 1
+
+        #   Close the connection to the database
+        self.digitalPrint()
         dc.closeConnection()
-
+        
         return
 
-    def BodyFooter(self):
+    def digitalPrint(self):
 
         #   Class initializion
         dc = mariaDB()
         
+        #   Create digitalPrints at the start
+        self.line(0,835,890,835)
+        self.setFont('Helvetica', 10)
+        self.drawString(50, 822, f'Logo')
+        self.drawString(150, 822, f'Saint Mary,')
+        self.drawString(250, 822, f'(474)- 234-123-1234,')
+        self.drawString(350, 822, f'HospitalAddress')
+        self.drawString(450, 822, f'ZipCode, City')
+        self.line(0,818,890,818)
+
+        #   Create the digitalPrints at the end
         self.line(0,20,890,20)
         self.setFont('Helvetica', 10)
         self.drawString(50, 7, f'Logo')
-        self.drawString(150, 7, f'Saint Mary')
-        self.drawString(250, 7, f'(474)- 234-123-1234')
+        self.drawString(150, 7, f'Saint Mary,')
+        self.drawString(250, 7, f'(474)- 234-123-1234,')
         self.drawString(350, 7, f'HospitalAddress')
         self.drawString(450, 7, f'ZipCode, City')
         self.line(0,3,890,3)
 
+        #   Close the connection to the database
         dc.closeConnection()
+        self.showPage()
         return

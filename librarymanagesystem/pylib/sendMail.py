@@ -1,10 +1,17 @@
-# Importing yagmail to handle the smtp configs, Os, to retriev env variables
-import yagmail, os, mariadb
-
+#   Python Responsories
+from os import getenv
 from datetime import date
 
-# Importing dotenv to handle the enviormental variables
+# yagmail Responsories
+
+import yagmail
+
+# Importing dotenv
 from dotenv import load_dotenv
+
+#   Library Responsories
+from databasePython import mariaDB
+from customFunctions import Calculators
 
 load_dotenv()
 
@@ -14,30 +21,36 @@ class SendMail():
     def __init__(self):
 
     # Loading environment values Needed to mask password and user 
-        self.smtpUser = os.getenv('SMTPUser')
-        self.smtpPass = os.getenv('SMTPPass')
-        self.subject = os.getenv('Subject')
-        
-        #   Connecting to the database
-        self.conn = mariadb.connect(
-            user =os.getenv('USER'),
-            password=os.getenv('PASSWORD'),
-            host=os.getenv('HOST'),
-            db=os.getenv('DATABASE'))
+        self.kalc = Calculators()
+        self.subject = getenv('Subject')
+        self.smtpUser = getenv('SMTPUser')
+        self.smtpPass = getenv('SMTPPass')
 
-        self.cur = self.conn.cursor()
         return
     
-    def sendMail(self):
+    def sendMailOutlook(self):
+        pass
+
+    def sendMailYahoo(self):
+        pass
+
+    
+    def SendMailGmail(self):
+        '''
+            Sends an email, different functions for different mail 
+            services setups.
+        '''
+
+        #   Initializing mariadb Connection 
+        dc = mariaDB()
+        database = getenv('database7')
 
         dates = []
-        today = date.today()
         
         #   Fetch the enire row in order to use some of the information in the database to get contact information, name etc.
         query = 'SELECT * FROM lib'
+        data = dc.selectFromTable(database, query)
 
-        self.cur.execute(query)
-        data = self.cur.fetchall()
         
         if bool(data) == True:
             for row in data:
@@ -45,11 +58,12 @@ class SendMail():
 
             #   Selecting the overdue date and return date, and create a countdown until
             #   The email should be sent
-
-            returnDate= row[7] - today
-            overDueDate = row[8] -today
+            self.kalc.dateCountDown(row[7])
+            returnDate= self.kalc.dateCountDown(row[7])
+            overDueDate = self.kalc.dateCountDown(row[8])
             returnDate = returnDate.days
             overDueDate = overDueDate.days
+
             print(row)
             if returnDate == 7:
 
@@ -83,8 +97,8 @@ class SendMail():
         
         elif bool(data) == False:
             print('Nothing in the selected table')
-        self.conn.close()
-
+        
+        dc.closeConnection()
         return
 
 if __name__=='__main__':

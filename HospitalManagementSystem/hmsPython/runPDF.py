@@ -19,16 +19,13 @@ def PDFSetup():
 
     #   Creating the PDF
 
-    #   Health information
+    #   information about the patient
     c.BodyHeader()
 
-        #   Hospital visits
+    #   information about the visits
     c.BodyMain()
 
-    #   Logo and firm
-    #c.BodyFooter()
-
-    c.showPage()
+    #   Save the canvas document
     c.save()
 
     #   Uploading the pdf file
