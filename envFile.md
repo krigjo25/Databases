@@ -1,13 +1,53 @@
 #   Database Configuration
 
-PORT = 
-PASSWORD = 'PassCode'
-USERNAME = 'userName'
-HOST = 'HOST'
-DATABASE = 'DATABASE'
+PORT = ''
+H0ST = ''
+MASTER = ''
+PASSWORD = ''
 
-##   Databases
 
-## sms- Configuration
+#   Databases
 
-## Mail - configuration
+    #   HospitalManagementSystem
+    database = ''
+    database1 = ''
+    database2 = ''
+    database3 = ''
+    database4 = ''
+
+    #   Discord
+    database5 = ''
+
+    #   Work projects
+    database6 = ''
+
+    #   libraryManageSystem
+    database7 = ''
+
+
+
+#   Tables
+
+    #   HospitalManagementSystem
+
+
+    #   Discord
+
+
+    #   Work projects
+
+
+    #   libraryManageSystem
+
+
+
+
+# sms- Configuration
+
+SMTPPASS = ''
+SMTPMASTER = ''
+
+# Mail - configuration
+
+SMTPPASS = ''
+SMTPMASTER = ''
