@@ -36,17 +36,20 @@ class PDFCanvas (Canvas):
         #   Initializing classes
         kalc = Calculators()
         dc = mariaDB()
-
+        x = 0
         #   initializing the mariadb connection
         
-        database = getenv('database2')
-        query = f'SELECT * FROM patientRegistrations;'
+        database = getenv('database3')
+        query = f'SHOW TABLES;'
 
         sqlData = dc.selectFromTable(database, query)
-        print(sqlData)
+
+        query = f'SELECT * FROM {sqlData[0][0]};'
+        sqlData = dc.selectFromTable(database, query)
+
         #   PDF Document
         self.setFont('Helvetica-Bold', 18)
-        self.drawString(150, 775, f'Patient Journal of {sqlData[0][1]}, {sqlData[0][0]}')
+        self.drawString(150, 775, f'Patient Journal of {sqlData[x][1]}, {sqlData[x][0]}')
 
         #   Main information
         #   Front end information we get from the user
@@ -58,7 +61,7 @@ class PDFCanvas (Canvas):
         self.drawString(75, 575, 'Contact Information')
         self.drawString(350, 575, 'Emergency Contacts')
         self.drawString( 225, 400, 'Alergies & diagnosis')
-        
+
         self.setFont('Helvetica-Bold', 16)
         self.drawString(525, 680, 'Age')
         self.drawString(225, 680, 'Sex')
@@ -75,51 +78,77 @@ class PDFCanvas (Canvas):
         self.setFont('Helvetica', 12)
 
         #   General information about the patient
-        self.drawString(90, 660, f'{sqlData[0][2]}')
-        self.drawString(350, 660, f'{sqlData[0][3]}')
-        self.drawString(235, 660, f'{sqlData[0][4]}')
-        self.drawString(535, 660, f'{kalc.CalculateAge(sqlData[0][2])}')
+        self.drawString(90, 660, f'{sqlData[x][2]}')
+        self.drawString(350, 660, f'{sqlData[x][3]}')
+        self.drawString(235, 660, f'{sqlData[x][4]}')
+        self.drawString(535, 660, f'{kalc.CalculateAge(sqlData[x][2])}')
 
         #   Health Information about the patient
-        if sqlData[0][12] == True:
-            self.drawString(90, 610, f'{sqlData[0][12]}')
-        else:
-            self.drawString(120, 610, f'No')
+        self.drawString(90, 610, f'Organ : {sqlData[x][8]}, Blood : {sqlData[x][9]}')
+        
 
-        self.drawString(360, 610, f'{sqlData[0][8]}')
-        self.drawString(435, 610, f'{sqlData[0][9]} cm')
-        self.drawString(525, 610, f'{kalc.Calculatebmi(sqlData[0][8], sqlData[0][9], kalc.CalculateAge(sqlData[0][2]), sqlData[0][4])}')
-        self.drawString(250, 610, f'{sqlData[0][11]}')
+        self.drawString(360, 610, f'{round(sqlData[x][10],2)}')
+        self.drawString(435, 610, f'{round(sqlData[x][11], 2)} cm')
+        self.drawString(525, 610, f'{kalc.Calculatebmi(sqlData[x][10], sqlData[x][11], kalc.CalculateAge(sqlData[0][2]), sqlData[0][4])}')
+        self.drawString(250, 610, f'{sqlData[x][12]}')
         
         #Donor status
 
 
         #   Contact Information
         self.setFont('Helvetica', 14)
-        self.drawString(75, 545, f'{sqlData[0][5]},')
-        self.drawString(75, 525, f'{sqlData[0][6]},')
-        self.drawString(75, 505, f'{sqlData[0][7]}, {Dictionaries.AmericanPostalCodes(sqlData[0][8])}')
+        self.drawString(75, 545, f'{sqlData[x][5]},')
+        self.drawString(75, 525, f'{sqlData[x][6]},')
+        self.drawString(75, 505, f'{sqlData[x][7]}, {Dictionaries.AmericanPostalCodes(sqlData[0][8])}')
 
         #   Emergency contacts
 
-        self.drawString(350, 550, f'Husband, Jhon Doe, \n 123 123 123')
-        self.drawString(350, 525, f'Father, Jhon Doe, \n 123 123 123')
-        self.drawString(350, 500, f'Son, Jhon Doe, \n 123 123 123')
+        self.drawString(350, 550, f'{sqlData[x][21]}, {sqlData[x][22]}')
+        self.drawString(350, 525, f'{sqlData[x][23]}, {sqlData[x][24]}')
+        self.drawString(350, 500, f'{sqlData[x][25]}, {sqlData[x][26]}')
+        self.drawString(90, 425, f'{sqlData[x][13]}')
 
         
+        #   Alergies and diagnosis
+        #   x Listing the values automatically
 
-        self.setFont('Helvetica', 16)
-        self.drawString(50, 300, 'Alergies')
-        self.drawString(50, 375, 'Diagnosis')
-        self.drawString(300, 375, 'Suggested Treatments')
-        self.drawString(300, 300, 'Suggested Treatments')
+
+        self.setFont('Helvetica-Bold', 16)
+        self.drawString(75, 300, 'Alergies')
+        self.drawString(75, 375, 'Diagnosis')
+        self.drawString(350, 375, 'Suggested Treatments')
+        self.drawString(350, 300, 'Suggested Treatments')
 
         self.setFont('Helvetica', 14)
+        self.drawString(90, 350, f'{sqlData[x][14]}')
+        self.drawString(90, 275, f'{sqlData[x][15]}')
+
+        #   Initializing the connection the database
+
+
+        database = getenv('database4')
+        query = 'SHOW TABLES;'
+        queryData = dc.selectFromTable(database, query)
+
+
+        #   Alergies
+        query = f'SELECT * from {queryData[0][0]} WHERE alergyID = \'{sqlData[x][14][0:5]}\';'
+        data = dc.selectFromTable(database, query)
+
+        self.drawString(350, 350, f'{data[x][4]}')
+
+        
+        #   Diagnosis
+
+        query = f'SELECT * from {queryData[3][0]} WHERE diagnoseID = \'{sqlData[x][15][0:5]}\';'
+        sqlData = dc.selectFromTable(database, query)
+        self.drawString(350, 275, f'{sqlData[0][4]}')
 
         #   Page End Lines
         self.setFont ('Helvetica', 30)
-        self.line(0,400,890,400)
+        #self.line(0,400,890,400)
 
+        dc.closeConnection()
         return
 
 
@@ -129,7 +158,7 @@ class PDFCanvas (Canvas):
         dc = mariaDB()
         
         #  retrieveing the sql Data
-        database = getenv('database1')
+        database = getenv('database2')
         
         #   Get the table by using patientID
         query = f'SELECT * FROM '
@@ -147,7 +176,7 @@ class PDFCanvas (Canvas):
 
             #  Collecting intel from the given Database
             
-            query = f'SELECT * FROM {sqlData[x][3]} WHERE id = {rID};'
+            query = f'SELECT * FROM {sqlData[x][3]};'
 
             sqlData = dc.selectFromTable(database, query)
 
