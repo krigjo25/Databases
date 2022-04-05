@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 #   Library responsories
 from lib.databasePython import mariaDB
 from lib.patientJournal import PDFCanvas
-#from lib.customFunctions import UploadFile
+from lib.customFunctions import UploadFile
 
 load_dotenv()
 
@@ -15,7 +15,7 @@ def PDFSetup():
     #   Classes initialization
     db = mariaDB()
     c = PDFCanvas()
-    #u = UploadFile()
+    u = UploadFile()
 
     #   Creating the PDF
 
@@ -29,7 +29,7 @@ def PDFSetup():
     c.save()
 
     #   Uploading the pdf file
-    #u.generatePDF('patientJournal', '/home/kriss/Documents/Coding/Database/patientJournal.pdf')#, f'{pid[0]}')
+    u.generatePDF('patientJournal', '/home/kriss/Documents/Coding/Database/patientJournals/patientJournal.pdf')#, f'{pid[0]}')
     
 
 if __name__ == '__main__':
