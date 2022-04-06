@@ -104,6 +104,6 @@ CALL insertD ('DT13D', 'Diabetes Type 2', 'DEFAULT');
 --  CALL bookRoom (vpID, veID, vID, vOid, '00:00');
 
 CALL searchRoom(101, @ErrorMsg); -- Working only directly in the database
-CALL roomBooking (100, 210, 6, '00:00', @msg);
+CALL roomBooking (100, 210, 6, 0, @msg);
 
 /*******************************************************************/

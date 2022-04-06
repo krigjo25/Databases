@@ -64,15 +64,11 @@ CREATE OR REPLACE FUNCTION generateTableName (vName VARCHAR(255), vssn  VARCHAR(
         *****************************************************************/
 
         --  Declare variables
-
         DECLARE vTableName VARCHAR(255);
-        
 
-        --  Trimming the Phone Number 123456789
-        SET vssn = SUBSTRING(vssn, 5, 4);
-        SET vName = SUBSTRING(vName, 1, 3);
-
-        SET vTableName = CONCAT(vName, vssn);
+        SET vssn = SUBSTRING(vssn FROM 8 FOR 4);
+        SET vName = SUBSTRING(vName FROM 0 FOR 3);
+        SET vTableName = CONCAT(vName,vssn);
 
     RETURN vTableName;
 

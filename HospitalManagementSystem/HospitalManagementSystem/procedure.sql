@@ -16,7 +16,7 @@ diagnosis Procedures,
 Procedures of Diagnosis, alergies, rooms and Medecine
 ****************************************************************/
 /*********************** Booking Procedures ************************/
-CREATE OR REPLACE PROCEDURE roomBooking (IN vpID BIGINT, IN rID SMALLINT, IN vID INT, IN vTime DECIMAL(3,1), OUT msg VARCHAR(255))
+CREATE OR REPLACE PROCEDURE roomBooking (IN vpID BIGINT, IN rID SMALLINT, IN vID INT, IN vTime TIME, OUT msg VARCHAR(255))
     BEGIN
 
         /************ bookRoom ********************'
@@ -25,65 +25,65 @@ CREATE OR REPLACE PROCEDURE roomBooking (IN vpID BIGINT, IN rID SMALLINT, IN vID
 
         *****************************************************************/
 
-        --  Declare variables'
+        --  Declare variables
         DECLARE rName TYPE OF rooms.roomName;
         Declare vInn TYPE OF booking.bookingInn;
 
-        DECLARE procedureName VARCHAR(255);
-        DECLARE procedurePrice DECIMAL(4,2);
-        DECLARE procedureTime DECIMAL(3,1);
+        DECLARE pTime VARCHAR(255);
+        DECLARE pName VARCHAR(255);
+        DECLARE pPrice DECIMAL(8,2);
 
+        
         DECLARE veID BIGINT;
         DECLARE veName VARCHAR(255);
         DECLARE vpName VARCHAR(255);
 
-        --  Selecting the values and insert it into the variable
-        SELECT roomName INTO rName FROM rooms WHERE roomID = rID;
-        SELECT eID INTO veID FROM employeement.relations WHERE pID = vpID;
-        SELECT employeeName INTO veName FROM employeement.relations WHERE veID = vpID;
-        SELECT patientName INTO vpName FROM patientRegistration.patientRegistrations WHERE patientID = vpID;
-
-        --  Selecting the informaation about the operation procedure
-        SELECT procedureName INTO procedureName FROM operationProcedures WHERE id = vID;
-        SELECT procedureTime INTO procedureTime FROM operationProcedures WHERE id = vID;
-        SELECT procedurePrice INTO procedurePrice FROM operationProcedures Where id = vID;
+        --  Selecting the information about the operation procedure
+        SELECT procedureName INTO pName FROM operationProcedures WHERE id = vID;
+        SELECT procedureTime INTO pTime FROM operationProcedures WHERE id = vID;
+        SELECT procedurePrice INTO pPrice FROM operationProcedures Where id = vID;
 
         --  Case when a ward is booked
-            IF procedureName = 'Ward' THEN
+            IF pName = 'Ward' THEN
 
                 --  Give the variables a value
-                SET procedureTime = vTime;
-                SET procedurePrice = 70 * CONVERT(procedureTime, DECIMAL);
+                SET pTime = vTime;
+                SET pPrice = 70 * CONVERT(pTime, DECIMAL(3,1));
         END IF;
 
         --  Set values for the variables
         SET vInn = CURDATE();
-        SET procedureTime = ADDTIME(vInn, procedureTime);
-        
+        SET pTime = ADDTIME(vInn, pTime);
+
+                --  Selecting values from Employeement
+        SELECT eID INTO veID FROM employeement.relations WHERE vpID = vpID;
+        SELECT employeeName INTO veName FROM employeement.relations WHERE pID = vpID;
+
+        --  Selecting values from patientRegistration        
+        SELECT patientName INTO vpName FROM patientRegistration.patientRegistrations WHERE patientID = vpID;
+
+        --  Selecting values from rooms
+        SELECT roomName INTO rName FROM rooms WHERE roomID = rID;
+
         --  Checking if a room is available or not to complete the booking.
         SET @available = checkAvailableRoom(rID);
 
-        --  Selecting values into variables
-        SELECT roomName INTO rName FROM rooms WHERE roomID = rID;
-
-        --   Creating a record into the patientRecords tables
-        
          CASE
             WHEN @available = 0 THEN
 
-            -- Inserting a new record into the patient's table
-                CALL newPatientRecord (vpID, procedureName, vInn, procedureTime, veName, rName, procedurePrice);
+                -- Inserting a new record into the patient's table
+                CALL newPatientRecord (vpID, veName, rName, pName, pTime, vInn, pPrice);
 
                 --  Inserting a new record into booking
-               INSERT INTO booking (patientID, patientName, rID, roomName, oProcedures, price, eID, employeeName, bookingInn, bookingOut)
-                    VALUES (vpID, vpName, vID, rName, procedureName, procedurePrice, veID, veName, vInn, procedureTime);
+               INSERT INTO booking (patientID, patientName, rID, roomName, oProcedure, price, eID, employeeName, bookingInn, bookingOut)
+                    VALUES (vpID, vpName, rID, rName, pName, pPrice, veID, veName, vInn, pTime);
 
-                SET msg = CONCAT('Patient Booked for', roomName, vInn);
-                SELECT pID, patientName, roomName, oProcedures, msg AS 'SUCCSESS' FROM booking WHERE pID = vpID AND roomID = vRid AND bookingInn = CURDATE();
+                SET msg = CONCAT('Patient Booked for', rName, vInn);
+                SELECT msg AS 'SUCCSESS';
 
             WHEN @available = 1 THEN
 
-                SET msg = CONCAT( roomName, ' Is not available at the moment');
+                SET msg = CONCAT( rName, ' Is not available at the moment');
                 SELECT msg AS 'Booking failed';
         END CASE;
     END x
@@ -146,24 +146,30 @@ CREATE OR REPLACE PROCEDURE searchRoom (IN vID SMALLINT, OUT ErrorMsg VARCHAR(25
         SELECT roomID, roomName, sStatus AS 'Search Status' FROM availableRooms;
     END x
 
-CREATE OR REPLACE PROCEDURE newPatientRecord (IN vPatientID BIGINT, IN vprocedureName VARCHAR(255), IN vInn DATE, IN procedureTime TIME, IN veName VARCHAR(255), IN roomName VARCHAR(255), IN procedurePrice DECIMAL(8.2))
+CREATE OR REPLACE PROCEDURE newPatientRecord (IN pID BIGINT, IN veName VARCHAR(255), IN vrName VARCHAR(255), IN pName VARCHAR(255), IN pTime TIME, IN vInn DATE, IN vPrice DECIMAL(8.2))
     BEGIN 
+    -- ????
         
         --  Declare necsessary variables
         DECLARE vssn VARCHAR(255);
-        DECLARE Query VARCHAR(255);
-        DECLARE vName VARCHAR(255);
         DECLARE tableName VARCHAR(7);
+        DECLARE vpName VARCHAR(255);
 
-        --  Selecting values into the variables
+        --  Selecting values from patientRegistration.patientRegistrations
+        SELECT patientName INTO vpName FROM patientRegistration.patientRegistrations WHERE patientID = pID;
+        SELECT socialSecurityNumber INTO vssn FROM patientRegistration.patientRegistrations WHERE patientID = pID;
 
-        SELECT patientName into vName FROM patientRegistration.patientRegistrations WHERE patientID = vpID;
-        SELECT vssn into vssn FROM patientRegistration.patientRegistrations WHERE patientID = vpID;
 
-        SET tableName = generateTableName(vName, vssn);
-       
-        INSERT INTO patientRecords.tableName(oprocedure, datein, procedureTime, procedurePrice, eName, room)
-            VALUES (procedureName, vInn, procedureTime, vprocedurePrice, veName, roomName);
+        --  Generation of the table name
+        SET tableName = generateTableName(vpName, vssn);
+        SET pTime = TIME(pTime);
+
+        --  Create and execute the query
+        SET @Query = CONCAT('INSERT INTO patientRecords.', tableName, ' ( oprocedure, datein, procedureTime, procedurePrice, eName, room) VALUES (', pName, ',', vInn, ',', pTime, ',', vPrice, ',', veName, ',', vrName, ' );');
+
+        PREPARE stmt FROM @Query;
+        EXECUTE stmt;
+        DEALLOCATE PREPARE stmt;
 
     END x
 /*******************************************************************/

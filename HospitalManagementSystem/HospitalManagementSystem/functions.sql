@@ -1,5 +1,5 @@
 
-CREATE OR REPLACE FUNCTIOn checkAvailableRoom (vID SMALLINT) RETURNS TINYINT DETERMINISTIC
+CREATE OR REPLACE FUNCTION checkAvailableRoom (vID SMALLINT) RETURNS TINYINT DETERMINISTIC
     BEGIN
 
         /************ checkAvailableRoom(vID) ********************'
@@ -55,17 +55,13 @@ CREATE OR REPLACE FUNCTION generateTableName (vName VARCHAR(255), vssn  VARCHAR(
         *****************************************************************/
 
         --  Declare variables
+        DECLARE tableName VARCHAR(255);
 
-        DECLARE vTableName VARCHAR(255);
-        
-
-        --  Trimming the Phone Number 123456789
         SET vssn = SUBSTRING(vssn, 5, 4);
         SET vName = SUBSTRING(vName, 1, 3);
+        SET tableName = CONCAT(vName, vssn);
 
-        SET vTableName = CONCAT(vName, vssn);
-
-    RETURN vTableName;
+    RETURN tableName;
 
     END x
 
