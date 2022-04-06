@@ -2,7 +2,8 @@
 
 ## The Design of the patient journal
 
-To see the sample design go to [patientjournal.pdf]()
+To see the sample design go to <br> 
+[patientjournal.pdf]()
 
 ## Kriss's plan
 

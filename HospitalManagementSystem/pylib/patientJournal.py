@@ -13,8 +13,8 @@ from os import getenv, getenv
 from dotenv import load_dotenv
 
 #   Library Responsories
-from lib.databasePython import mariaDB
-from lib.customFunctions import Dictionaries, Calculators
+from pylib.databasePython import mariaDB
+from pylib.customFunctions import Dictionaries, Calculators
 
 #   ReportLab Resposories
 from reportlab.lib.colors import blue
@@ -26,9 +26,9 @@ load_dotenv()
 class PDFCanvas (Canvas):
     # Creating a PDF title with the three first letters in the FirstName, 
     # LastName and four last digits in the ssn
-    def __init__(self, filename='SampleJournal.pdf', pagesize=A4, bottomup=1, pageCompression=0, encoding=rl_config.defaultEncoding, verbosity=0, encrypt=None):
+    def __init__(self, filename=f'abcdef1234', pagesize=A4, bottomup=1, pageCompression=0, encoding=rl_config.defaultEncoding, verbosity=0, encrypt=None):
         super().__init__(filename,pagesize, bottomup, pageCompression, encoding, verbosity, encrypt)
-
+        self.fileName = filename
         self.height, self.width = letter
 
     def BodyHeader(self):
@@ -46,6 +46,7 @@ class PDFCanvas (Canvas):
 
         query = f'SELECT * FROM {sqlData[0][0]};'
         sqlData = dc.selectFromTable(database, query)
+        self.filename = sqlData[x][1]
 
         #   PDF Document
         self.setFont('Helvetica-Bold', 18)

@@ -1,7 +1,6 @@
 #   Python responsories
 from sys import exit
 from os import getenv
-from datetime import datetime, date
 
 #   Database responsories
 import mariadb
@@ -112,36 +111,6 @@ class mariaDB():
 
         return
 
-    def CreateDatabase(self, name):
-
-        query = f'CREATE DATABASE IF NOT EXISTS {name}'
-        self.cur.execute(query)
-        self.conn.database = name
-
-        if self.conn == True:
-            msg = f'{name}, were successfully created'
-        else:
-            msg = ' An error occurred'
-
-        return print(msg)
-
-    def DropDatabase(self, name):
-
-        query = f'DROP DATABASE IF NOT EXISTS {name}'
-        self.cur.execute(query)
-
-        if self.conn == False:
-            msg = f'{name}, were successfully deleted'
-        else:
-            msg = ' An error occurred'
-
-        return print(msg)
-    def DropTable(self, database, name):
-        #   Database selection
-        self.conn.database = database
-
-        #   Creating a query and execute it
-        query = f'DROP TABLE IF EXISTS {name};'
-        self.cur.execute(query)
-
+    def patientRecords(self):
+        pass
         return

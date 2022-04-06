@@ -2,7 +2,7 @@
 from os import getenv
 from datetime import datetime, date
 
-from databasePython import mariaDB
+from pylib.databasePython import mariaDB
 
 
 #   dotenv Responsories
@@ -155,8 +155,9 @@ class UploadFile():
 
     def generateBlob(self, query, photo):
 
-        file = self.BinaryConverter(bioData)
+        file = self.BinaryConverter(photo)
         bioData = self.BinaryConverter(photo, file)
+        
         
         
         #   Converting information into tuple

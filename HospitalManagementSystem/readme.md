@@ -5,9 +5,9 @@
 [Introduction](#Introduction)......................
     
     developer.....................
-    project...........................
+    projectInformation...........................
         The design....................
-        Case..........................
+        status..........................
 
 [SQLData](#Databases)..........................
 
@@ -92,13 +92,14 @@
 [PDF](#PDF).......................
 
     patientjournal.pdf............
+    employementSalary.............
     invoice.pdf...................
 
 [Testing](#Testing)...................
 
         SQL Data......................
     
-[Summuary](#Summuary).................
+[Project Summuary](#ProjectSummuary).................
 
 [Responsary](#Responsary).............
 
@@ -116,9 +117,20 @@ otherwise, Gym and living life as a human being.
 
 ### Project info
 
-The idea of HospitalManageSystem is to create a back-end system
-which lets the personel to add and modify the patientjournal
- 
+Information about the design can be found in the given links below
+includes the text files below,
+
+*   [archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/archive.md)
+*   [invoice](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/invoice.md)
+*   [Journal](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/journal.md)
+*   [The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
+*   [employeements](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/employeement.md)
+*   [HospitalManagementSystem](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/hospitalManagementSystem.md)
+*   [patientRegistrationsRegistration](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/patientRegistration.md)
+
+
+#### Status
+
     project start :<br>
         01.01-22
 
@@ -130,21 +142,10 @@ which lets the personel to add and modify the patientjournal
     
     SQL Database:<br> 
         mariaDB
-    
-###  The Design
-
-Infomration about the design can be found in the given links below
-includes the text files below,
-
-*   [The Case](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/TheCase.md)
-*   [patientRegistrationsRegistration](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/patientRegistration.md)
-*   [employeements](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/employeement.md)
-*   [HospitalManagementSystem](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/hospitalManagementSystem.md)
-*   [archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/archive.md)
 
 ##  Databases
 
-[patientRegistrationsRegistration](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patientRegistrationsRegistration/)
+[patientRegistration](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patientRegistration/)
 
     patientRegistrations
         includes the "personal" information about a given patientRegistrations
@@ -158,14 +159,14 @@ includes the text files below,
 
 [employeements](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employeements/)
 
-    employeerecords..................
+    employeeRecords..................
         includes the information about the Hospital Staff
 
     relations
         includes the iformation about assignments for doctors
 
     Turnus
-
+        employee work schedule
 
     reports
         reports / notes from the doctor
@@ -175,29 +176,29 @@ includes the text files below,
     roomBookings..............
         A booking system so the staff has to book a given room
 
-    availableMedecines 
-        List of medecines
+    availableMedicines 
+        List of medicines
 
-    alergies
-        list of given registered Alergies
+    allergies
+        list of given registered Allergies
 
-    diagnosis
-        List of given Deseases
+    diagnoses
+        List of given diagnoses
 
     First floor
-        100 - 199
+        room number 100 - 199
 
     Second floor
-        200 - 299
+        room number 200 - 299
             
     Third floor
-        300 - 399
+        room number 300 - 399
 
 [archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/archive)
 
 ## Procedures
 
-###  patientRegistrationsRegistration
+###  patientRegistration
 
 ####  patientRegistrations
 
@@ -212,7 +213,7 @@ includes the text files below,
 
 ### employeement
 
-#### employeerecords
+#### employeeRecords
 
     #####   Add a new record to the table
     CALL newemployee (eName, vDate, vStreet, vEmail, vPhone,veStatus ,vTitle, vDep);
@@ -277,22 +278,23 @@ includes the text files below,
 
 ##  Functions
 
-###    Functions for employeement database
+###    employeement
 
 ####    Calculate a monthly salary
 
 -   convertPhone(vPhone);
-    Converts the digits into Areacode, 
+        Converts the digits into Areacode, 
 
 -   calculateSalary(veStatus, vSalary);
-    Calculates the salary for the inserted employeement
+        Calculates the salary for the inserted employeement
 
 -   checkRecovery();
-    Check if the person is recovered
+        Check if the person is recovered
 
-### Functions for patientRegistration Database
+### patientRegistration
 
 -   generateTableName(vName, vssn)
+        Generates a new table in patientRecords
 
 -   convertssn(vssn);
     Converts the digits from the table, and adding "-"
@@ -300,7 +302,7 @@ includes the text files below,
 -   convertPhone(vPhone);
     Converts the digits into areacode.
 
-### Functions for hospitalManagementSystem Database
+### hospitalManagementSystem 
 
 -   checkAvailableRoom(vID);
     Check wheter a room is available, and returns an integer
@@ -325,7 +327,7 @@ includes the text files below,
 ### employeement
 
 -   terminateemployeement
-    trigger a insert into a table, when the delRecords event has been executed.
+    trigger a new record, when the delRecords event has been executed.
 
 ### hospitalManagementSystem
 
@@ -344,7 +346,7 @@ includes the text files below,
     Deletes records where the employeement has been resigned
 
 -   salaryChanges
-    re calculates the salary every month
+        Re calculates the salary every month
 
 ### hospitalManagementSystem
 
@@ -359,45 +361,70 @@ includes the text files below,
 
 The values has been manually entered, over time.
 
+* [SQL data for archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/archive/SQLdata.sql)
 * [SQL data for employeements](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/employeements/SQLdata.sql)
 * [SQL data for HospitalManagementSystem](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/HospitalManagementSystem/SQLdata.sql)
 * [SQL data for patientRegistrationsRegistration](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/patientRegistrationsRegistration/SQLdata.sql)
-* [SQL data for archive](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/archive/SQLdata.sql)
 
 ##  Python
 
-### dictionaries.py
+### The Design
 
--   Created to easly maintain postal codes in the area
+Information about the design can be found in the given links below
+includes the text files below,
+
+*   [pyLib](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/pylib/)
+*   [invoice](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/invoice.md)
+*   [Journal](https://github.com/krigjo25/Databases/blob/main/HospitalManagementSystem/Design/journal.md)
+
+
+
+### customFunctions.py
+
+
+-   Created to easly maintain postal codes
+-   This uploads blob files to the database
+
 
 ###  patientjournal.py
 
-- This programming, create a PDF file from values which is in the database
+-   Creates a pdf file with values from the database.
 
-###  uploadbiodata.py
+### databasePython.py
 
-- This uploads blob files to the database
+-   Connects the scripts to the database.
 
 ### runPDF.py
 
-This programming, runs the different methods which is coded
+-   Runs the scripts
 
 ##  PDF
 
-### sampleJournal.pdf
+### The patient's journal
 
-the patient journal, includes information about the given patientRegistrations,
-what has done during the patientRegistrations's stay at the Hospital. 
+The patient's invoice file name :<br>
+3 first letters in the firstName<br>
+3 first letters in the lastName<br>
+4 last digits in the social security<br>
 
-### Invoice.pdf
+The patient's journal includes information about the patient, and what has been done.
 
-A simple invoice for the patientRegistrations, after the patientRegistrations's stay
+### the patient's invoice
+
+The patient's invoice file name :<br>
+3 first letters in the firstName<br>
+3 first letters in the lastName<br>
+4 last digits in the social security.
+
+Its a simple invoice for the patient,
+during the patient's stay at the hospital
+
 
 ### Salary.pdf 
 
 A simple salary for the employeement
 
-##  Summuary
+##  ProjectSummuary
 
 * In the world of programming, there is always room for cleaning, 
 the common choose were to devide the different methods in classes, 
@@ -429,17 +456,17 @@ etter soloution were to create a view for this matter.
 *   Since the database is growing, there would be a need for new databases to keep the records as easy to maintain as possible, A database for Archives, patientRegistrationsRegistration, and employeements
 one database for employeements and stuff for the employeements, one for the administration, misc, and one for the patientRegistrationsRegistration 
 
-## Responsories
+
+## Credits
 
 ### Database Plugins
 
-### Python Libraries 
+### Python Responsories
+
 
 * mariadb, - [MariaDB Community](https://github.com/MariaDB)
 * Python-dotenv, - [Saurabh Kumar](https://github.com/skwebdeveloper)
 * reportlab, - [Andy Robinson, Robin Becker, the ReportLab team and the community](https://reportlab.com)
-
-## Credits
 
 ### Contact Information
 
@@ -451,13 +478,8 @@ Author notes<br>
 
 ###  Licence
 
-Not licenced.
 
-###  Disclamers
-
-This datebase is as is
-
-###  References
+This project is just an Open-Source licence.
 
 Sincerely, 
 @krigjo25
