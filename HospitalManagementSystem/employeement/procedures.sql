@@ -86,8 +86,8 @@ CREATE OR REPLACE PROCEDURE newRelation ( IN veID BIGINT, IN vpID BIGINT, OUT vE
         DECLARE veName VARCHAR(255);
 
         --  Assigning the new variable values
-        SET veName = (SELECT eName from employeement WHERE eID = veID);
-        SET pName = (SELECT patientName from patients.patient WHERE id = vpID);
+        SET veName = (SELECT eName from employeeRecords WHERE eID = veID);
+        SET pName = (SELECT patientName from patientRegistration.patientRegistrations WHERE patientID = vpID);
 
         --  Counting how many times the doctor has been added to the table
         SET vCount = (SELECT COUNT(eID) FROM relations WHERE eID = veID);
