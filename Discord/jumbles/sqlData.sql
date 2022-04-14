@@ -1,6 +1,7 @@
-CREATE DATABASE Discord;
-INSERT INTO disneyCharactersEasy( characterName, role, animation) VALUES
+
+INSERT INTO waltdisney ( characters, roles, animation) VALUES
 ('Aladdin', 'Hero', 'Aladdin'),
+('Clayton', 'Villian', 'Tarzan'),
 ('Simba', 'Hero', ' The Lion King'),
 ('Robin Hood', ' Hero', 'Robin Hood'),
 ('Pinhoccio', 'Hero', 'Pinocchio'),
@@ -33,11 +34,10 @@ INSERT INTO disneyCharactersEasy( characterName, role, animation) VALUES
 ("Mor'du", 'Villian', ' Brave'),
 ('Hades', 'Villian', 'Hercules'),
 ('Gideon', 'Villian', 'Pinocchio'),
-('Clayton', 'Villian', 'Tarzan'),
 ('Gaston', ' Villian', 'The Beauti And The Beast');
 
 DELIMITER ;
-INSERT INTO disneyClassicsEasy (title) VALUES
+INSERT INTO waltDisneyTitles (title) VALUES
 ('Aladdin'),
 ('Brave'),
 ('Cinderella'),
@@ -57,7 +57,7 @@ INSERT INTO disneyClassicsEasy (title) VALUES
 ('The Little Marmaid'),
 ('The Princsess And The Frog');
 
-INSERT INTO mainGenres (genre) VALUES
+INSERT INTO jumbleGenres (genre) VALUES
 ('Action'),
 ('Animation'),
 ('Adventure'),
@@ -71,17 +71,3 @@ INSERT INTO mainGenres (genre) VALUES
 ('Thriller'),
 ('Western'),
 ('Other');
-
-CREATE TABLE movies (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                        movieName VARCHAR(255) NOT NULL,
-                        genre VARCHAR(255) NOT NULL );
-
-CREATE TABLE series (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                        tvShowName VARCHAR(255) NOT NULL,
-                        genre VARCHAR(255) NOT NULL);
-
-CREATE TABLE welcomeMessages (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                                message VARCHAR(255) NOT NULL);
-
-CREATE TABLE leaveMessages (id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                            message VARCHAR(255) NOT NULL);
