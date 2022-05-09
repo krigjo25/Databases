@@ -60,9 +60,9 @@
 
 ### About the Developer
 
-Kristoffer Gjøsund, born in 94, Norway,
-1/3 of the times goes to python, SQL
-otherwise, Gym and living life as a human being.
+Kristoffer Gjøsund, born in 94, Norway,<br>
+1/3 of the times goes to python, SQL<br>
+otherwise, Gym and living life as a human being.<br>
 
 ### Project information
 
@@ -71,26 +71,30 @@ otherwise, Gym and living life as a human being.
 
  
 start :<br>
-        10.10-21
+10.10-21
 
 Last Update :<br>
-    05.04-22
+05.04-22
 
 Finished : <br>
-    06.01-22
+06.01-22
     
 SQL Database:<br> 
-    mariaDB
+mariaDB
     
 ###  The Design
 
-Infomration about the design can be found in the given links below
+Table / database design can be found in the links below
 includes the text files below,
 
 *   [The Case](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/TheCase.md)
+
 *   [bookOrms](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/bookOrms.md)
+
 *   [employeements](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/employeement.md)
+
 *   [library](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/library.md)
+
 *   [libraryArchive](https://github.com/krigjo25/Databases/blob/main/libraryManageSystem/Design/libraryArchive.md)
 
 ##  Databases
@@ -109,6 +113,8 @@ includes the text files below,
 
 ## SQL DATA
 
+### Procedures
+
 ## Responsories
 
 ### Database Plugins
@@ -124,11 +130,13 @@ includes the text files below,
 
 ### Contact Information
 
--   Discord : krigjo25#5588
 -   messenger : krigjo25
+-   website : krigjo25.com
+-   Discord : krigjo25#5588
+
 
 Author notes<br>
-« Everything is perfect at all times. »
+« EA human can maintain something, but never actually create some thing. The side effects of the maintained element is what has been created. »
 
 ###  Licence
 
