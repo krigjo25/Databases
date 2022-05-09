@@ -54,7 +54,7 @@
             alergies...............
             diagnosis..............
             availablemedecines.....
-......
+
     Functions.........................
 
         patientRegistrationsRegistration........
@@ -78,8 +78,6 @@
         discount..................
     
     Views.........................
-
-
     
 [Python](#Python).....................
 
@@ -112,8 +110,9 @@
 
 ### About the Developer
 
-Kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
-otherwise, Gym and living life as a human being.
+Kristoffer, born in 94, :flag_no:.
+maintaining Python & SQL projects
+otherwise just being a human.
 
 ### Project info
 

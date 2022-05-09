@@ -2,7 +2,7 @@
 from os import getenv
 from datetime import datetime, date
 
-from pylib.databasePython import mariaDB
+from pylib.databasePython import MariaDB
 
 
 #   dotenv Responsories
@@ -112,8 +112,6 @@ class Calculators():
 
         return bmi
 
-
-
 class Dictionaries():
     def __init__(self):
         pass
@@ -142,7 +140,7 @@ class Dictionaries():
 class UploadFile():
     def __init__(self):
 
-        self.dc = mariaDB
+        self.dc = MariaDB
         self.database = database = getenv('database2')
 
     def BinaryConverter(self, fName):
@@ -173,3 +171,5 @@ class UploadFile():
         bioData =self.generateBlob(query, pdf)
 
         return print(bioData)
+
+
