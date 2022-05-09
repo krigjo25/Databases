@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 
 #   Library responsories
-from pylib.databasePython import mariaDB
+from pylib.databasePython import MariaDB
 from pylib.patientJournal import PDFCanvas
 from pylib.customFunctions import UploadFile
 
@@ -13,7 +13,7 @@ load_dotenv()
 def PDFSetup():
  
     #   Classes initialization
-    db = mariaDB()
+    db = MariaDB()
     c = PDFCanvas()
     u = UploadFile()
 

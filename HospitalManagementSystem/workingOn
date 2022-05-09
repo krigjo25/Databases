@@ -1,1 +1,10 @@
 newPatientRecord
+
+
+patientJournal
+
+Fetch file name using variable,
+
+filename = name first three letters, ssn 4 last digits.
+
+trying to automate the selections.
