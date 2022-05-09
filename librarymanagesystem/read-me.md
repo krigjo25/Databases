@@ -60,7 +60,8 @@
 
 ### About the Developer
 
-Kristoffer Gjøsund, born in 94, Norway, part the time goes to python, SQL
+Kristoffer Gjøsund, born in 94, Norway,
+1/3 of the times goes to python, SQL
 otherwise, Gym and living life as a human being.
 
 ### Project information
@@ -69,17 +70,17 @@ otherwise, Gym and living life as a human being.
     out a notification, receipts and invoices
 
  
-    project start :<br>
+start :<br>
         10.10-21
 
-   Last Update :<br>
-        05.04-22
+Last Update :<br>
+    05.04-22
 
-    Finished : <br>
-        06.01-22
+Finished : <br>
+    06.01-22
     
-    SQL Database:<br> 
-        mariaDB
+SQL Database:<br> 
+    mariaDB
     
 ###  The Design
 
