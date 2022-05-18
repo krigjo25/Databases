@@ -48,7 +48,6 @@ class PDFCanvas (Canvas):
 
         query = f'SELECT * FROM {sqlData[x][0]};'
         sqlData = dc.selectFromTable(database, query)
-        print(sqlData)
 
         counter = dc.RowCount(database, query)
 
@@ -171,31 +170,42 @@ class PDFCanvas (Canvas):
 
         x = 0
 
-        #  reterieve the sqlData from the table
-        table = 'patientRegistrations'
+        #  reterieve the table
+
         database = getenv('database2')
-        query = f'SELECT * FROM {table};'
-
-        #   Selecting the sqlData
-        sqlData = dc.selectFromTable(database, query)
-
-        #  reterieve the sqlData from the table
-        table = f'{sqlData[x][1][0:3]}{sqlData[x][3][7:11]}'
-        database = getenv('database1')
-        query = f'SELECT * FROM {table};'
-
-        #   Selecting the sqlData
-        sqlData = dc.selectFromTable(database, query)
+        query = f'SHOW TABLES;'
+        sqlData = dc.selectFromTable(database, query)     
 
         #   Counting rows
-        counter = dc.RowCount(database, query)        
+        counter = dc.RowCount(database, query)
+        while x < counter:
 
-        while x <= counter:
+            #   Retrieve the information in the table
+            query = f'SELECT * FROM {sqlData[0][0]};'
+            sqlData = dc.selectFromTable(database, query)
+   
+
+            #   Creating the canvas page
+
             #   Starting the session with dotted lines
             self.setDash(5,10)
             self.line(0,800,890,800)
 
             #   Creating the text
+            self.setFont('Helvetica-Bold', 18)
+
+            
+            self.drawString(75, 750, 'DateBooked')
+            self.drawString(150, 750, 'Procedure')
+            self.drawString(75, 450, 'Time')
+            self.drawString(75, 450, 'Price')
+            self.drawString(75, 450, 'Notes')
+            self.drawString(75, 450, 'By')            
+            #self.drawString(x, y, 'Procedure')
+            #self.drawString(x, y, 'Time')
+            #self.drawString(x, y, 'Price')
+            #self.drawString(x, y, 'Notes')
+            #self.drawString(x, y, 'By')
 
             #   Ending the session with dotted lines
             self.line(0,600,890,600)
