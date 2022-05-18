@@ -6,27 +6,50 @@ from dotenv import load_dotenv
 #   Library responsories
 from pylib.databasePython import MariaDB
 from pylib.patientJournal import PDFCanvas
-from pylib.customFunctions import UploadFile
+from pylib.customFunctions import UploadFile, Converters
 
 load_dotenv()
 
 def PDFSetup():
  
+    x = 0
     #   Classes initialization
-    db = MariaDB()
-    c = PDFCanvas()
-    u = UploadFile()
+    dc = MariaDB()
+    con = Converters()
 
-    #   Creating the PDF
+    database = getenv('database2')
+    query = f'SHOW TABLES;'
 
-    #   information about the patient
-    c.BodyHeader()
+    sqlData = dc.selectFromTable(database, query)
 
-    #   information about the visits
-    c.BodyMain()
+    query = f'SELECT * FROM {sqlData[0][0]}'
+    sqlData = dc.selectFromTable(database, query)
+    counter = dc.RowCount(database, query)
 
-    #   Save the canvas document
-    c.save()
+    #   Converting the sqlData into appropiatename
+    while x < counter:
+
+        #   Converting the sqlData into appropiate name
+
+        sqlData = con.TrimValue(sqlData[x][1], sqlData[x][3])
+        print(sqlData)
+
+        #   Initializing classes
+        c = PDFCanvas(filename = sqlData)
+        u = UploadFile()
+
+        #   Creating the PDF
+
+        #   information about the patient
+        c.FirstPage()
+
+        #   information about the visits
+        c.SecondaryPage()
+
+        #   Save the canvas document
+        c.save()
+
+        x += 1
 
     #   Uploading the pdf file
     #u.generatePDF('patientJournal', '/home/kriss/Documents/Coding/Database/patientJournals/patientJournal.pdf')#, f'{pid[0]}')

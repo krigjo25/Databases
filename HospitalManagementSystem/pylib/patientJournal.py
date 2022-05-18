@@ -27,8 +27,8 @@ class PDFCanvas (Canvas):
 
     # Creating a PDF title with the three first letters in the FirstName, 
 
-    def __init__(self, filename= fileName+'.pdf', pagesize=A4, bottomup=1, pageCompression=0, encoding=rl_config.defaultEncoding, verbosity=0, encrypt=None):
-        super().__init__(filename,pagesize, bottomup, pageCompression, encoding, verbosity, encrypt)
+    def __init__(self, filename, pagesize=A4, bottomup=1, pageCompression=0, encoding=rl_config.defaultEncoding, verbosity=0, encrypt=None):
+        super().__init__(filename, pagesize, bottomup, pageCompression, encoding, verbosity, encrypt)
 
         self.height, self.width = A4
 
@@ -48,18 +48,15 @@ class PDFCanvas (Canvas):
 
         query = f'SELECT * FROM {sqlData[x][0]};'
         sqlData = dc.selectFromTable(database, query)
-
+        print(sqlData)
 
         counter = dc.RowCount(database, query)
 
         #   PDF Document
 
         while x <= counter:
-
-            #   Document Configurations
-            self.filename = sqlData[x][1]
                 
-            x += 1
+            
             self.setFont('Helvetica-Bold', 18)
             self.drawString(150, 775, f'Patient Journal of {sqlData[x][1]}')
 
@@ -159,6 +156,8 @@ class PDFCanvas (Canvas):
             self.digitalPrint()
 
             dc.closeConnection()
+
+            x += 1
 
             return
 

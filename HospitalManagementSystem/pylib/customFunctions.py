@@ -13,7 +13,9 @@ load_dotenv()
 
 
 class Calculators():
+
     '''         Calculators     
+
         Calculate age
             Calculate a age type : yyyy-dd-mm
         
@@ -112,7 +114,33 @@ class Calculators():
 
         return bmi
 
+class Converters():
+
+    '''         Converters   
+
+        TrimValues
+            Trimming valuesCalculate a age type : yyyy-dd-mm
+
+    '''
+
+    def __init__(self):
+        #   Initializing the classes
+
+        pass
+
+    def TrimValue(self, kwarg, kwargs):
+
+        kwarg = str(kwarg[0:3])
+
+        kwargs = str(kwargs).replace("-", "")
+        kwargs = str(kwargs[5:9])
+
+        result = kwarg + kwargs
+
+        return result
+
 class Dictionaries():
+
     def __init__(self):
         pass
 
