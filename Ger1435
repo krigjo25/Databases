@@ -124,15 +124,19 @@ endstream
 endobj
 10 0 obj
 <<
-/Length 785
+/Length 943
 >>
 stream
 1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
 [5 10] 0 d
 n 0 800 m 890 800 l S
 BT /F2 18 Tf 21.6 TL ET
-BT 1 0 0 1 75 750 Tm (Date) Tj T* ET
-BT 1 0 0 1 150 750 Tm (Procedure) Tj T* ET
+BT 1 0 0 1 75 750 Tm (DateBooked) Tj T* ET
+BT 1 0 0 1 200 750 Tm (Procedure) Tj T* ET
+BT 1 0 0 1 300 750 Tm (Time) Tj T* ET
+BT 1 0 0 1 350 750 Tm (Price) Tj T* ET
+BT 1 0 0 1 400 750 Tm (Notes) Tj T* ET
+BT 1 0 0 1 475 750 Tm (By) Tj T* ET
 n 0 600 m 890 600 l S
 n 0 835 m 890 835 l S
 BT /F1 10 Tf 12 TL ET
@@ -177,5 +181,5 @@ trailer
 /Size 11
 >>
 startxref
-4602
+4760
 %%EOF

@@ -196,16 +196,11 @@ class PDFCanvas (Canvas):
 
             
             self.drawString(75, 750, 'DateBooked')
-            self.drawString(150, 750, 'Procedure')
-            self.drawString(75, 450, 'Time')
-            self.drawString(75, 450, 'Price')
-            self.drawString(75, 450, 'Notes')
-            self.drawString(75, 450, 'By')            
-            #self.drawString(x, y, 'Procedure')
-            #self.drawString(x, y, 'Time')
-            #self.drawString(x, y, 'Price')
-            #self.drawString(x, y, 'Notes')
-            #self.drawString(x, y, 'By')
+            self.drawString(200, 750, 'Procedure')
+            self.drawString(300, 750, 'Time')
+            self.drawString(350, 750, 'Price')
+            self.drawString(400, 750, 'Notes')
+            self.drawString(475, 750, 'By')            
 
             #   Ending the session with dotted lines
             self.line(0,600,890,600)
