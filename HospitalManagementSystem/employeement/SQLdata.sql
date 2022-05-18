@@ -20,9 +20,8 @@ CALL newEmployee ('Jon George', '1994-01-01', '118 Cerullo Road', 20001, 'billie
 CALL newEmployee ('Yollanda K. Lambardi', '1995-07-28', '2390 Russel Street', 01468, 'hoyt1978@gmail.com', '9789390913', 100,'Critical Care Medecine Specialist', 'ICU', @Error);
 CALL newEmployee ('Eric E. West', '1975-07-23', '1164 Prospect Street', 08014, 'carli.barte@hotmail.com', '8567362941', 75,'Critical Care Medecine Specialist', 'ICU', @Error);
 
-
 CALL newEmployee ('Brian A Benites', '1984-01-25', '2501 Woodland Terrace', 95630, 'allan2000@gmail.com','9169349710', 100,'General Surgeon', '', @Error);
-CALL newEmployee ('Michele R. Dejesus', '1969-06-12', '1698 Wescam Street', 89501, 'rasheed_wiega@gmail.com', '7758981143', 100,'General Surgeon', 'ICU', @Error);
+CALL newEmpoyee ('Michele R. Dejesus', '1969-06-12', '1698 Wescam Street', 89501, 'rasheed_wiega@gmail.com', '7758981143', 100,'General Surgeon', 'ICU', @Error);
 
 CALL newEmployee ('Sabrina R. McMahon', '1997-05-12', '4210 Norma Avenue', 75925, 'sabrmc@gmail.com', '830-890-3860', 50,'Radiologist', 'X-rayRoom', @Error);
 CALL newEmployee ('Christopher S. Howard', '1974-03-30', '118 Cerullo Road', 84119, 'lilana_bart@yahoo.com', '4355146733', 50,'Radiologist', 'x-rayRoom', @Error);
@@ -31,7 +30,7 @@ CALL newEmployee ('Roberto E. Marshall', '1953-05-05', '1068 Center Street', 937
 CALL newEmployee ('Dennis M. Perez', '2000-12-25', '1550 Patterson Street', 77002, 'javonte2012@hotmail.com', '7132762437', 60,'Cardiologist', 'ICU', @Error);
 
 CALL newEmployee ('Cathrine T.Beyer', '1999-02-25', '657 Tibbs Avenue', 20001, '657 Tibbs Avenue', '406-689-5023', 75,'Pulmonologists', 'ICU', @Error);
-CALL newEmployee ('Cathrine J. Levis', '1994-01-01', '2890 Chandler Hollow Road', 15106, 'kelsie.greenho@hotmail.com', '412-429-1997', 50,'Immunologist', 'ICU');
+CALL newEmployee ('Cathrine J. Levis', '1994-01-01', '2890 Chandler Hollow Road', 15106, 'kelsie.greenho@hotmail.com', '412-429-1997', 50,'Immunologist', 'ICU', @Error);
 CALL newEmployee ('Carolyn R Elliott', '1988-02-03', '1673 Lang Avenue', 84734, 'Kaley.bartolet@yahoo.com', '435-788-1852', 75,'Anesthesiologists', 'ICU', @Error);
 
 CALL newEmployee ('Donald M. Woodfin', '1994-01-01', '118 Cerullo Road', 20001, 'neoma_kemme10@yahoo.com', '646-744-8588', 25,'Certified Nurse Practision', 'ICU', @Error);

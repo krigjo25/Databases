@@ -13,16 +13,18 @@ load_dotenv()
 def PDFSetup():
  
     x = 0
+
     #   Classes initialization
     dc = MariaDB()
     con = Converters()
 
+    #   Database Initialization
     database = getenv('database2')
     query = f'SHOW TABLES;'
 
     sqlData = dc.selectFromTable(database, query)
 
-    query = f'SELECT * FROM {sqlData[0][0]}'
+    query = f'SELECT * FROM {sqlData[x][0]}'
     sqlData = dc.selectFromTable(database, query)
     counter = dc.RowCount(database, query)
 
@@ -32,7 +34,6 @@ def PDFSetup():
         #   Converting the sqlData into appropiate name
 
         sqlData = con.TrimValue(sqlData[x][1], sqlData[x][3])
-        print(sqlData)
 
         #   Initializing classes
         c = PDFCanvas(filename = sqlData)

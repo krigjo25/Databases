@@ -129,9 +129,9 @@ CREATE OR REPLACE PROCEDURE newPatientRecord (IN vName VARCHAR(255), IN vssn VAR
         DECLARE tableName VARCHAR(255);
 
         SET tableName = generateTableName(vName, vssn);
-
+        
         --  Creating the table
-        SET @Query = CONCAT('CREATE TABLE IF NOT EXISTS patientRecords.', tableName, '(id BIGINT SIGNED PRIMARY KEY AUTO_INCREMENT,oprocedure VARCHAR(255),DateIn DATE,procedureTime TIME,procedurePrice DECIMAL(8.2),report VARCHAR(255),eName VARCHAR(255),room VARCHAR(255),booked DATE DEFAULT CURDATE())');
+        SET @Query = CONCAT('CREATE TABLE IF NOT EXISTS patientRecords.', tableName,'(id BIGINT SIGNED PRIMARY KEY AUTO_INCREMENT,oprocedure VARCHAR(255),DateIn DATE,procedureTime TIME,procedurePrice DECIMAL(8.2),report VARCHAR(255),eName VARCHAR(255),room VARCHAR(255),booked DATE DEFAULT CURDATE())');
         
         --Prepareing and executing the statement
         PREPARE stmt FROM @Query;
@@ -139,6 +139,5 @@ CREATE OR REPLACE PROCEDURE newPatientRecord (IN vName VARCHAR(255), IN vssn VAR
         DEALLOCATE PREPARE stmt;
 
     END x
-
 
 /*******************************************************************/

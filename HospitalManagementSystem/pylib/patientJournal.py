@@ -40,22 +40,19 @@ class PDFCanvas (Canvas):
         x = 0
 
         #   initializing the mariadb connection
-        
+
         database = getenv('database2')
-        query = f'SHOW TABLES;'
-
-        sqlData = dc.selectFromTable(database, query)
-
-        query = f'SELECT * FROM {sqlData[x][0]};'
-        sqlData = dc.selectFromTable(database, query)
-
-        counter = dc.RowCount(database, query)
+        counter = dc.RowCount(database, "SHOW TABLES;")
+        queryData = dc.selectFromTable(database, "SHOW TABLES;")
 
         #   PDF Document
 
         while x <= counter:
-                
-            
+
+            #   initializing the mariadb connection
+            query = f'SELECT * FROM {sqlData[x][0]};'
+            sqlData = dc.selectFromTable(database, query)
+
             self.setFont('Helvetica-Bold', 18)
             self.drawString(150, 775, f'Patient Journal of {sqlData[x][1]}')
 
@@ -133,11 +130,9 @@ class PDFCanvas (Canvas):
 
             #   Initializing the connection the database
 
-
             database = getenv('database4')
             query = 'SHOW TABLES;'
             queryData = dc.selectFromTable(database, query)
-
 
             #   Alergies
             query = f'SELECT * from {queryData[0][0]} WHERE alergyID = \'{sqlData[x][14][0:5]}\';'
@@ -145,7 +140,6 @@ class PDFCanvas (Canvas):
 
             self.drawString(350, 350, f'{data[x][4]}')
 
-            
             #   Diagnosis
 
             query = f'SELECT * from {queryData[3][0]} WHERE diagnoseID = \'{sqlData[x][15][0:5]}\';'
@@ -174,16 +168,16 @@ class PDFCanvas (Canvas):
 
         database = getenv('database2')
         query = f'SHOW TABLES;'
-        sqlData = dc.selectFromTable(database, query)     
+        queryData = dc.selectFromTable(database, query)     
 
         #   Counting rows
         counter = dc.RowCount(database, query)
+
         while x < counter:
 
             #   Retrieve the information in the table
-            query = f'SELECT * FROM {sqlData[0][0]};'
+            query = f'SELECT * FROM {queryData[x][0]} WHERE id = {x};'
             sqlData = dc.selectFromTable(database, query)
-   
 
             #   Creating the canvas page
 
@@ -196,12 +190,22 @@ class PDFCanvas (Canvas):
 
             
             self.drawString(75, 750, 'DateBooked')
-            self.drawString(200, 750, 'Procedure')
-            self.drawString(300, 750, 'Time')
-            self.drawString(350, 750, 'Price')
-            self.drawString(400, 750, 'Notes')
-            self.drawString(475, 750, 'By')            
+            self.drawString(200, 750, 'Room')
+            self.drawString(300, 750, 'Procedure')
+            self.drawString(400, 750, 'Time')
+            self.drawString(450, 750, 'Price')
+            self.drawString(500, 750, 'Notes')
+            self.drawString(575, 750, 'By')            
 
+            self.setFont('Helvetica', 14)
+            self.drawString(75, 700, {sqlData[x][8]})
+            self.drawString(200, 700, {sqlData[x][7]})
+            self.drawString(300, 700, {sqlData[x][1]})
+            self.drawString(350, 700, {sqlData[x][3]})
+            self.drawString(400, 700, {sqlData[x][4]})
+            self.drawString(475, 700, {sqlData[x][5]})
+            self.drawString(475, 700, {sqlData[x][6]})
+            
             #   Ending the session with dotted lines
             self.line(0,600,890,600)
 
