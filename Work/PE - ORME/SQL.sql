@@ -57,6 +57,8 @@ CALL newOne ('APB 2200 end LIGHT',  14.39, 31.84, 'APB-Series');
         CALL newThree('Aqua 2500', 'Aqua Series', 5.00, 25.10, 30, 'add isolation', 'On Top');
         CALL newThree('Aqua 4000', 'Aqua Series', 11.16, 20.35, 37.5, '', 'On Top');
         CALL newThree('Protoon 420l', 'Pontoon Series', 14.15, 35.92, 'long middlepiece', 'On Top')
+
+        CALL newThree('Lodd Sotra 1200l', 'Sotra Series', 13.36, 20.00, 20.00, 35, 'loong middlepiece', 'On top')
 /*******************************************************************/
 
 /********************************** productionInfo ***********************/
@@ -98,3 +100,6 @@ CALL proInfo(3003, 85);
 CALL proInfo(3004, 85);
 CALL proInfo(3005, 90);
 CALL proInfo(3006, 140);
+
+CALL proInfo(3007, 20);
+CALL proinfo(3008, 40);
